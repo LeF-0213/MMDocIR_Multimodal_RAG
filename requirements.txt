@@ -1,0 +1,11 @@
+# 문서 파싱 파이프라인과 표·수식 등 관련 의존성
+paddleocr[doc-parser]==3.7.0
+
+# 모델을 실행하는 PaddlePaddle CPU 버전
+paddlepaddle==3.3.1
+
+# PDF 텍스트층 추출·렌더링·좌표 처리
+PyMuPDF==1.28.2
+
+# 모델 입력 이미지와 모델 출력 배열 처리
+numpy>=1.26,<3
