@@ -1,4 +1,4 @@
-# 문서 파싱 파이프라인과 표·수식 등 관련 의존성
+# PaddleOCR-VL·PP-StructureV3 문서 파싱에 필요한 라이브러리와 추가 의존성
 paddleocr[doc-parser]==3.7.0
 
 # 모델을 실행하는 PaddlePaddle CPU 버전
