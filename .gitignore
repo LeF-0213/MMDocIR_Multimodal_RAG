@@ -1,6 +1,9 @@
 # 압축을 해제한 PDF는 로컬에서만 사용한다.
-# outputs/의 source.pdf와 review_*.pdf도 이 규칙으로 저장소에서 빠진다.
+# outputs/의 source.pdf도 이 규칙으로 저장소에서 빠진다.
 *.pdf
+
+# 파싱 영역을 원본 페이지에 표시한 검토 PDF는 결과 대조를 위해 추적한다.
+!outputs/**/review_*.pdf
 
 # 로컬 가상환경과 Python 바이트코드 캐시는 저장소에 넣지 않는다.
 # outputs/의 실행 기록(JSON·PNG)은 결과 비교를 위해 추적한다.

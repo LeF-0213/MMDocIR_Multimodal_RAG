@@ -157,8 +157,8 @@ python -B -m parsing.run \
 
 ## 결과 확인
 
-실행 폴더는 다음 구조로 저장된다. 저장소에는 `outputs/`의 JSON·PNG만 올리고,
-PDF 파일(`source.pdf`, `review_*.pdf`)은 `.gitignore`의 `*.pdf` 규칙에 따라 로컬에만 둔다.
+실행 폴더는 다음 구조로 저장된다. 저장소에는 `outputs/`의 JSON·PNG·검토 PDF(`review_*.pdf`)를 올린다.
+원본 `source.pdf`는 `.gitignore`의 `*.pdf` 규칙에 따라 로컬에만 둔다.
 
 ```text
 outputs/<실행명>/
