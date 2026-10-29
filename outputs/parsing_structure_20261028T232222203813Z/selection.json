@@ -1,0 +1,77 @@
+{
+  "page_numbering": "pdf_viewer_1_based",
+  "documents": [
+    {
+      "document_name": "0b85477387a9d0cc33fca0f4becaa0e5",
+      "page_numbers": [
+        1,
+        3,
+        11
+      ]
+    },
+    {
+      "document_name": "0e94b4197b10096b1f4c699701570fbf",
+      "page_numbers": [
+        4,
+        6,
+        8,
+        10,
+        15
+      ]
+    },
+    {
+      "document_name": "3M_2018_10K",
+      "page_numbers": [
+        8,
+        9,
+        15
+      ]
+    },
+    {
+      "document_name": "2005.12872v3",
+      "page_numbers": [
+        5,
+        13
+      ]
+    },
+    {
+      "document_name": "2312.10997v5",
+      "page_numbers": [
+        3,
+        4,
+        6
+      ]
+    },
+    {
+      "document_name": "competitiveoutcomes-091006065143-phpapp01_95",
+      "page_numbers": [
+        16,
+        29,
+        40
+      ]
+    },
+    {
+      "document_name": "91521110100M_4K_UHD_Display_User_Manual_V1.1",
+      "page_numbers": [
+        8
+      ]
+    },
+    {
+      "document_name": "NYSE_TM_2021",
+      "page_numbers": [
+        2,
+        7,
+        21,
+        32,
+        34
+      ]
+    },
+    {
+      "document_name": "NUS-Business-School-BBA-Brochure-2024",
+      "page_numbers": [
+        9,
+        22
+      ]
+    }
+  ]
+}

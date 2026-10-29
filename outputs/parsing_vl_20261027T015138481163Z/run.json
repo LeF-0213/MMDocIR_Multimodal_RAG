@@ -1,0 +1,56 @@
+{
+  "schema_version": "project.parsing.v1",
+  "status": "started",
+  "started_at_utc": "2026-10-27T01:51:39.455143+00:00",
+  "environment": {
+    "python": "3.12.14 (main, Sep  1 2026, 14:17:39) [MSC v.1944 64 bit (AMD64)]",
+    "executable": "C:\\Users\\CNXK\\abs_sandbox\\MMDocIR_Multimodal_RAG\\.venv\\Scripts\\python.exe",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "paddleocr": "3.7.0",
+      "paddlex": "3.7.2",
+      "paddlepaddle": "3.3.1",
+      "paddlepaddle-gpu": null,
+      "PyMuPDF": "1.28.2",
+      "numpy": "2.3.5"
+    }
+  },
+  "parser": "vl",
+  "parser_options": {
+    "pipeline_version": "v1.6",
+    "engine": "paddle",
+    "device": "cpu",
+    "cpu_threads": 4,
+    "vl_rec_backend": "native",
+    "use_layout_detection": true,
+    "use_doc_orientation_classify": false,
+    "use_doc_unwarping": false,
+    "use_chart_recognition": true,
+    "use_ocr_for_image_block": true,
+    "use_seal_recognition": false,
+    "format_block_content": false,
+    "markdown_ignore_labels": [],
+    "use_queues": false
+  },
+  "dpi": 144,
+  "http_timeout_seconds": 30,
+  "all_pages": false,
+  "base_url": "http://127.0.0.1:8080/raw/mmdocir_data/extracted/doc_pdfs/",
+  "selection_sha256": "78b68c1793024ad117fe75c10de66d78136b983d808bde18b0a51b52b4da6de5",
+  "model_weight_revision": null,
+  "quality_evaluation": "not_run",
+  "code_sha256": {
+    "__init__.py": "8e2bd20a9b0f51ad196e3096de5f3e323399f07a73d4150d78f0ec513f6acf3b",
+    "model_result.py": "7e7bd03f0737df65287d6a93e134640c7a3b3dd5baf7645675a50d2a2298a17f",
+    "pdf_parser.py": "a9550d16506628c577ea0183e21b66e3ee3414e63e26594eda397e77e27f4b4d",
+    "pdf_source.py": "6de88cef72d88ef7f6ad57053a46d00fb85d9c6e86fe90828d6874a9ef179bae",
+    "result_store.py": "d30f3bfba2af2f6bb410b713c4bbbdff065cbee017f934d941e7ffcc41b10a7b",
+    "review_pdf.py": "fa5ee1f3bf58ea94a83067dadd8c905a8628bdf2558cac03e9894f8ef7df9b89",
+    "run.py": "0b657e756e5e4b69ce2b860944673297eb3b19c627e82f01fc432add1103fea4",
+    "structure_parser.py": "e9f8c813107501897f019348f2ffaf9b1892f3915b2e9cc68798a2b744a3787d",
+    "v1_parser.py": "8dab4fdb1dfc6cd14bab973486d112420dd1cce81c5e592f6af7984be68b5227"
+  },
+  "predict_options": {
+    "layout_shape_mode": "rect"
+  }
+}

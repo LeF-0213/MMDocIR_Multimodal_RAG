@@ -1,0 +1,4576 @@
+{
+  "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11",
+  "id_origin": "project_generated",
+  "document_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943",
+  "document_name": "0b85477387a9d0cc33fca0f4becaa0e5",
+  "page_number": 11,
+  "page_numbering": "pdf_viewer_1_based",
+  "page_index": 10,
+  "source_sha256": "004b6c63f504f3868b678e04339be94361434e405ff2cf54fbf84e894a71183c",
+  "status": "ok",
+  "geometry": {
+    "coordinate_system": "pymupdf_unrotated_page_points",
+    "origin": "top_left_of_unrotated_page",
+    "unit": "point_1/72_inch",
+    "rotation_degrees": 0,
+    "mediabox": [
+      0.0,
+      0.0,
+      612.0,
+      792.0
+    ],
+    "cropbox": [
+      0.0,
+      0.0,
+      612.0,
+      792.0
+    ],
+    "rotated_page_rect": [
+      0.0,
+      0.0,
+      612.0,
+      792.0
+    ]
+  },
+  "native": {
+    "status": "ok",
+    "text": "NMR&D News \nVolume IV, Issue 12 \n11 \nPresidential Memorandum - Accelerating Technology Transfer \nBy Todd Ponzio, NMRC Technology Transfer Office \n \nSILVER SPRING, Md. - The “Presidential Memorandum - \nAccelerating Technology Transfer and Commercialization \nof Federal Research in Support of High-Growth Busi-\nnesses” was released toward the end of last year. This \nmemorandum‟s objectives directed Federal agencies to \n“[1] establish goals and measure performance, [2] stream-\nline administrative processes, and [3] facilitate local and \nregional partnerships in order to accelerate technology \ntransfer and support private sector commercialization.”  \n„Technology transfer and commercialization‟ is a \nphrase used by the business side of research and devel-\nopment that manages the wide range of discoveries, \ninventions and other intellectual property within the Naval \nMedical Research Center (NMRC) enterprise. The goal is \nbringing these discoveries to market for the benefit of the \nwarfighter. \nThe NMRC enterprise excels in facilitating local and \nregional partnerships due to the inventiveness and creativ-\nity of our research scientists and physicians. Most valu-\nable biomedical developments begin in a laboratory, but \nthe value to the warfighter requires moving that discovery \nthrough all the business steps, ultimately to manufacturing \nand distribution. This requires the establishment of appro-\npriate technology transfer agreements. NMRC‟s technol-\nogy transfer collaborations leverage research capabilities \nfound in the public and private sectors to stretch research \ndollars and accomplish the mission of supporting the \nhealth and readiness of the military‟s men and women in \nuniform. \nFor example, instead of a company having to reinvent \nsomething that is already available in a Navy laboratory, or \nvice versa, a partnership can capitalize on each collabora-\ntor‟s expertise toward achieving a shared goal. Every time \nan invention from one of our laboratories is commercial-\nized into an accessible product, the U.S. taxpayer sees a \ntangible return on their investment and the Department of \nDefense has a product that will enhance the readiness of \nmilitary personnel. \nCooperative Research and Development Agree-\nments (CRADAs) are key business vehicles among \nNavy biomedical scientists. This past quarter, the \nNMRC enterprise executed just over twenty CRADAs \nand reviewed an additional fourteen CRADAs for the \nNaval hospitals in Portsmouth and San Diego.  \nOne notable collaboration is being spearheaded by \nCmdr. Jonathan Forsberg (NMRC, Operational and Un-\ndersea Medicine Directorate), who is working with a com-\npany to explore a novel mode of anchoring prosthetics. \nThis project could produce important results for amputees. \nAnother collaboration being led by Lt. Roxanne Burrus \n(U.S. Naval Medical Research Unit No. 6, Lima, Peru) \ninvolves Duke University and focuses on evaluating the \neffects of changing demography and land use on malaria \ntransmission. This is an important issue in light of the \nprevalence of malaria in developing countries and is \nimportant to the health of deployed warfighters. An addi-\ntional malaria-focused collaboration is being headed by Lt. \nR. Vince Gerbasi (NMRC, Infectious Diseases Director-\nate), who is using mass spectrometry to identify novel \nantigens to be used as potential vaccine candidates. \nLastly, Dr Bjorn Song (Naval Medical Research Unit-San \nAntonio) is leading a collaboration focused on exploring \nthe use of a synthetic oxygen-carrying fluid to reduce \ntissue damage occurring in response to hemorrhagic \nshock. \nAll of these collaborations have significant relevance to \nthe military, but there is also considerable potential for \nthese new sources of information and technologies to \nbenefit the general population. Through the appropriate \nleveraging of resources through CRADAs and the com-\nmercialization of Navy Medicine inventions through patent \nlicensing agreements, the NMRC enterprise excels at \ntechnology transfer. This is a key part of what the Presi-\ndential Memorandum was all about. \nA graphic illustration depicting Lt. R. Vince Gerbasi's \neffort to use mass spectrometry to identify novel \nantigens to be used as potential malaria vaccine \ncandidates. ",
+    "raw": {
+      "width": 612.0,
+      "height": 792.0,
+      "blocks": [
+        {
+          "type": 0,
+          "number": 0,
+          "flags": 0,
+          "bbox": [
+            38.880001068115234,
+            35.58000183105469,
+            576.5559692382812,
+            48.96000289916992
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 12.0,
+                  "flags": 18,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "Arial,BoldItalic",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "NMR&D News ",
+                  "origin": [
+                    38.880001068115234,
+                    46.44000244140625
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    35.58000183105469,
+                    121.55599975585938,
+                    48.96000289916992
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                35.58000183105469,
+                121.55599975585938,
+                48.96000289916992
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 12.0,
+                  "flags": 16,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "Arial,Bold",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "Volume IV, Issue 12 ",
+                  "origin": [
+                    461.1400146484375,
+                    46.44000244140625
+                  ],
+                  "bbox": [
+                    461.1400146484375,
+                    35.58000183105469,
+                    576.5559692382812,
+                    48.96000289916992
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                461.1400146484375,
+                35.58000183105469,
+                576.5559692382812,
+                48.96000289916992
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 1,
+          "flags": 0,
+          "bbox": [
+            299.3299865722656,
+            746.2200317382812,
+            316.1059875488281,
+            759.6000366210938
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 12.0,
+                  "flags": 16,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "Arial,Bold",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "11 ",
+                  "origin": [
+                    299.3299865722656,
+                    757.0800170898438
+                  ],
+                  "bbox": [
+                    299.3299865722656,
+                    746.2200317382812,
+                    316.1059875488281,
+                    759.6000366210938
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                299.3299865722656,
+                746.2200317382812,
+                316.1059875488281,
+                759.6000366210938
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 2,
+          "flags": 0,
+          "bbox": [
+            38.880001068115234,
+            57.150001525878906,
+            577.719970703125,
+            77.3280029296875
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 18.0,
+                  "flags": 16,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "Arial,Bold",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "Presidential Memorandum - Accelerating Technology Transfer",
+                  "origin": [
+                    38.880001068115234,
+                    73.44000244140625
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    57.150001525878906,
+                    573.121826171875,
+                    77.22000122070312
+                  ]
+                },
+                {
+                  "size": 18.0,
+                  "flags": 20,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "Times New Roman,Bold",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.890999972820282,
+                  "descender": -0.2160000056028366,
+                  "text": " ",
+                  "origin": [
+                    573.219970703125,
+                    73.44000244140625
+                  ],
+                  "bbox": [
+                    573.219970703125,
+                    57.402000427246094,
+                    577.719970703125,
+                    77.3280029296875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                57.150001525878906,
+                577.719970703125,
+                77.3280029296875
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 3,
+          "flags": 0,
+          "bbox": [
+            38.880001068115234,
+            87.72618865966797,
+            298.0188903808594,
+            213.79161071777344
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 2,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial,Italic",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20800000429153442,
+                  "text": "By Todd Ponzio, NMRC Technology Transfer Office ",
+                  "origin": [
+                    38.880001068115234,
+                    96.739990234375
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    87.72618865966797,
+                    273.41888427734375,
+                    98.8116683959961
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                87.72618865966797,
+                273.41888427734375,
+                98.8116683959961
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": " ",
+                  "origin": [
+                    38.880001068115234,
+                    108.260009765625
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    99.24620819091797,
+                    41.64888000488281,
+                    110.35160827636719
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                99.24620819091797,
+                41.64888000488281,
+                110.35160827636719
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "SILVER SPRING, Md. - The “Presidential Memorandum - ",
+                  "origin": [
+                    38.880001068115234,
+                    119.780029296875
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    110.76622772216797,
+                    298.0188903808594,
+                    121.87162780761719
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                110.76622772216797,
+                298.0188903808594,
+                121.87162780761719
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "Accelerating Technology Transfer and Commercialization ",
+                  "origin": [
+                    38.880001068115234,
+                    131.17999267578125
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    122.16619110107422,
+                    297.6806335449219,
+                    133.27159118652344
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                122.16619110107422,
+                297.6806335449219,
+                133.27159118652344
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "of Federal Research in Support of High-Growth Busi-",
+                  "origin": [
+                    38.880001068115234,
+                    142.70001220703125
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    133.68621826171875,
+                    275.4463195800781,
+                    144.79161071777344
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                133.68621826171875,
+                275.4463195800781,
+                144.79161071777344
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "nesses” was released toward the end of last year. This ",
+                  "origin": [
+                    38.880001068115234,
+                    154.219970703125
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    145.2061767578125,
+                    285.4398193359375,
+                    156.3115692138672
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                145.2061767578125,
+                285.4398193359375,
+                156.3115692138672
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "memorandum‟s objectives directed Federal agencies to ",
+                  "origin": [
+                    38.880001068115234,
+                    165.739990234375
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    156.7261962890625,
+                    288.6768493652344,
+                    167.8315887451172
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                156.7261962890625,
+                288.6768493652344,
+                167.8315887451172
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "“[1] establish goals and measure performance, [2] stream-",
+                  "origin": [
+                    38.880001068115234,
+                    177.260009765625
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    168.2462158203125,
+                    297.8201599121094,
+                    179.3516082763672
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                168.2462158203125,
+                297.8201599121094,
+                179.3516082763672
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "line administrative processes, and [3] facilitate local and ",
+                  "origin": [
+                    38.880001068115234,
+                    188.780029296875
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    179.7662353515625,
+                    290.61895751953125,
+                    190.8716278076172
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                179.7662353515625,
+                290.61895751953125,
+                190.8716278076172
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "regional partnerships in order to accelerate technology ",
+                  "origin": [
+                    38.880001068115234,
+                    200.17999267578125
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    191.16619873046875,
+                    284.9418640136719,
+                    202.27159118652344
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                191.16619873046875,
+                284.9418640136719,
+                202.27159118652344
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "transfer and support private sector commercialization.”  ",
+                  "origin": [
+                    38.880001068115234,
+                    211.70001220703125
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    202.68621826171875,
+                    288.29888916015625,
+                    213.79161071777344
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                202.68621826171875,
+                288.29888916015625,
+                213.79161071777344
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 4,
+          "flags": 0,
+          "bbox": [
+            38.880001068115234,
+            214.2061767578125,
+            297.81304931640625,
+            294.34161376953125
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "„Technology transfer and commercialization‟ is a ",
+                  "origin": [
+                    52.439998626708984,
+                    223.219970703125
+                  ],
+                  "bbox": [
+                    52.439998626708984,
+                    214.2061767578125,
+                    270.46441650390625,
+                    225.3115692138672
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                52.439998626708984,
+                214.2061767578125,
+                270.46441650390625,
+                225.3115692138672
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "phrase used by the business side of research and devel-",
+                  "origin": [
+                    38.880001068115234,
+                    234.739990234375
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    225.7261962890625,
+                    291.4955139160156,
+                    236.8315887451172
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                225.7261962890625,
+                291.4955139160156,
+                236.8315887451172
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "opment that manages the wide range of discoveries, ",
+                  "origin": [
+                    38.880001068115234,
+                    246.260009765625
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    237.2462158203125,
+                    275.32049560546875,
+                    248.3516082763672
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                237.2462158203125,
+                275.32049560546875,
+                248.3516082763672
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "inventions and other intellectual property within the Naval ",
+                  "origin": [
+                    38.880001068115234,
+                    257.80999755859375
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    248.79620361328125,
+                    296.6547546386719,
+                    259.901611328125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                248.79620361328125,
+                296.6547546386719,
+                259.901611328125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "Medical Research Center (",
+                  "origin": [
+                    38.880001068115234,
+                    269.21002197265625
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    260.19622802734375,
+                    158.5792999267578,
+                    271.3016357421875
+                  ]
+                },
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 26367,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "NMRC",
+                  "origin": [
+                    158.89999389648438,
+                    269.21002197265625
+                  ],
+                  "bbox": [
+                    158.89999389648438,
+                    260.19622802734375,
+                    188.89950561523438,
+                    271.3016357421875
+                  ]
+                },
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": ") enterprise. The goal is ",
+                  "origin": [
+                    189.02000427246094,
+                    269.21002197265625
+                  ],
+                  "bbox": [
+                    189.02000427246094,
+                    260.19622802734375,
+                    297.81304931640625,
+                    271.3016357421875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                260.19622802734375,
+                297.81304931640625,
+                271.3016357421875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "bringing these discoveries to market for the benefit of the ",
+                  "origin": [
+                    38.880001068115234,
+                    280.7300109863281
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    271.7162170410156,
+                    295.65887451171875,
+                    282.8216247558594
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                271.7162170410156,
+                295.65887451171875,
+                282.8216247558594
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "warfighter. ",
+                  "origin": [
+                    38.880001068115234,
+                    292.25
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    283.2362060546875,
+                    88.71288299560547,
+                    294.34161376953125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                283.2362060546875,
+                88.71288299560547,
+                294.34161376953125
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 5,
+          "flags": 0,
+          "bbox": [
+            38.880001068115234,
+            294.7561950683594,
+            301.2164001464844,
+            443.8816223144531
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "The NMRC enterprise excels in facilitating local and ",
+                  "origin": [
+                    52.439998626708984,
+                    303.7699890136719
+                  ],
+                  "bbox": [
+                    52.439998626708984,
+                    294.7561950683594,
+                    286.21112060546875,
+                    305.8616027832031
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                52.439998626708984,
+                294.7561950683594,
+                286.21112060546875,
+                305.8616027832031
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "regional partnerships due to the inventiveness and creativ-",
+                  "origin": [
+                    38.880001068115234,
+                    315.2900085449219
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    306.2762145996094,
+                    299.95159912109375,
+                    317.3816223144531
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                306.2762145996094,
+                299.95159912109375,
+                317.3816223144531
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "ity of our research scientists and physicians. Most valu-",
+                  "origin": [
+                    38.880001068115234,
+                    326.80999755859375
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    317.79620361328125,
+                    285.4598083496094,
+                    328.901611328125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                317.79620361328125,
+                285.4598083496094,
+                328.901611328125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "able biomedical developments begin in a laboratory, but ",
+                  "origin": [
+                    38.880001068115234,
+                    338.2099914550781
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    329.1961975097656,
+                    290.99755859375,
+                    340.3016052246094
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                329.1961975097656,
+                290.99755859375,
+                340.3016052246094
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "the value to the warfighter requires moving that discovery ",
+                  "origin": [
+                    38.880001068115234,
+                    349.7300109863281
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    340.7162170410156,
+                    297.1926574707031,
+                    351.8216247558594
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                340.7162170410156,
+                297.1926574707031,
+                351.8216247558594
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "through all the business steps, ultimately to manufacturing ",
+                  "origin": [
+                    38.880001068115234,
+                    361.25
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    352.2362060546875,
+                    301.2164001464844,
+                    363.34161376953125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                352.2362060546875,
+                301.2164001464844,
+                363.34161376953125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "and distribution. This requires the establishment of appro-",
+                  "origin": [
+                    38.880001068115234,
+                    372.7699890136719
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    363.7561950683594,
+                    296.1069641113281,
+                    374.8616027832031
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                363.7561950683594,
+                296.1069641113281,
+                374.8616027832031
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "priate technology transfer agreements. NMRC‟s technol-",
+                  "origin": [
+                    38.880001068115234,
+                    384.2900085449219
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    375.2762145996094,
+                    290.4296875,
+                    386.3816223144531
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                375.2762145996094,
+                290.4296875,
+                386.3816223144531
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "ogy transfer collaborations leverage research capabilities ",
+                  "origin": [
+                    38.880001068115234,
+                    395.69000244140625
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    386.67620849609375,
+                    296.10699462890625,
+                    397.7816162109375
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                386.67620849609375,
+                296.10699462890625,
+                397.7816162109375
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "found in the public and private sectors to stretch research ",
+                  "origin": [
+                    38.880001068115234,
+                    407.2099914550781
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    398.1961975097656,
+                    297.67071533203125,
+                    409.3016052246094
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                398.1961975097656,
+                297.67071533203125,
+                409.3016052246094
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "dollars and accomplish the mission of supporting the ",
+                  "origin": [
+                    38.880001068115234,
+                    418.7300109863281
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    409.7162170410156,
+                    275.94793701171875,
+                    420.8216247558594
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                409.7162170410156,
+                275.94793701171875,
+                420.8216247558594
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "health and readiness of the military‟s men and women in ",
+                  "origin": [
+                    38.880001068115234,
+                    430.2699890136719
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    421.2561950683594,
+                    293.22845458984375,
+                    432.3616027832031
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                421.2561950683594,
+                293.22845458984375,
+                432.3616027832031
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "uniform. ",
+                  "origin": [
+                    38.880001068115234,
+                    441.7900085449219
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    432.7762145996094,
+                    78.15288543701172,
+                    443.8816223144531
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                432.7762145996094,
+                78.15288543701172,
+                443.8816223144531
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 6,
+          "flags": 0,
+          "bbox": [
+            38.880001068115234,
+            444.29620361328125,
+            303.3679504394531,
+            547.3215942382812
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "For example, instead of a company having to reinvent ",
+                  "origin": [
+                    52.439998626708984,
+                    453.30999755859375
+                  ],
+                  "bbox": [
+                    52.439998626708984,
+                    444.29620361328125,
+                    295.0058898925781,
+                    455.401611328125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                52.439998626708984,
+                444.29620361328125,
+                295.0058898925781,
+                455.401611328125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "something that is already available in a Navy laboratory, or ",
+                  "origin": [
+                    38.880001068115234,
+                    464.7099914550781
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    455.6961975097656,
+                    303.3679504394531,
+                    466.8016052246094
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                455.6961975097656,
+                303.3679504394531,
+                466.8016052246094
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "vice versa, a partnership can capitalize on each collabora-",
+                  "origin": [
+                    38.880001068115234,
+                    476.2300109863281
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    467.2162170410156,
+                    298.3678283691406,
+                    478.3216247558594
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                467.2162170410156,
+                298.3678283691406,
+                478.3216247558594
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "tor‟s expertise toward achieving a shared goal. Every time ",
+                  "origin": [
+                    38.880001068115234,
+                    487.75
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    478.7362060546875,
+                    300.0313415527344,
+                    489.84161376953125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                478.7362060546875,
+                300.0313415527344,
+                489.84161376953125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "an invention from one of our laboratories is commercial-",
+                  "origin": [
+                    38.880001068115234,
+                    499.2699890136719
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    490.2561950683594,
+                    287.6608581542969,
+                    501.3616027832031
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                490.2561950683594,
+                287.6608581542969,
+                501.3616027832031
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "ized into an accessible product, the U.S. taxpayer sees a ",
+                  "origin": [
+                    38.880001068115234,
+                    510.7900085449219
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    501.7762145996094,
+                    295.5093994140625,
+                    512.881591796875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                501.7762145996094,
+                295.5093994140625,
+                512.881591796875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "tangible return on their investment and the Department of ",
+                  "origin": [
+                    38.880001068115234,
+                    522.3099975585938
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    513.2962036132812,
+                    297.20263671875,
+                    524.401611328125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                513.2962036132812,
+                297.20263671875,
+                524.401611328125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "Defense has a product that will enhance the readiness of ",
+                  "origin": [
+                    38.880001068115234,
+                    533.7099609375
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    524.6961669921875,
+                    295.3798828125,
+                    535.8015747070312
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                524.6961669921875,
+                295.3798828125,
+                535.8015747070312
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "military personnel. ",
+                  "origin": [
+                    38.880001068115234,
+                    545.22998046875
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    536.2161865234375,
+                    123.50888061523438,
+                    547.3215942382812
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                536.2161865234375,
+                123.50888061523438,
+                547.3215942382812
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 7,
+          "flags": 0,
+          "bbox": [
+            38.880001068115234,
+            547.7362060546875,
+            294.2047119140625,
+            616.3516235351562
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 16,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "Arial,Bold",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "Cooperative Research and Development Agree-",
+                  "origin": [
+                    52.439998626708984,
+                    556.75
+                  ],
+                  "bbox": [
+                    52.439998626708984,
+                    547.7362060546875,
+                    280.25506591796875,
+                    558.8416137695312
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                52.439998626708984,
+                547.7362060546875,
+                280.25506591796875,
+                558.8416137695312
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 16,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "Arial,Bold",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "ments (CRADAs) are key business vehicles among ",
+                  "origin": [
+                    38.880001068115234,
+                    568.27001953125
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    559.2562255859375,
+                    285.29052734375,
+                    570.3616333007812
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                559.2562255859375,
+                285.29052734375,
+                570.3616333007812
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 16,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "Arial,Bold",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "Navy biomedical scientists. This past quarter, the ",
+                  "origin": [
+                    38.880001068115234,
+                    579.6699829101562
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    570.6561889648438,
+                    278.7666320800781,
+                    581.7615966796875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                570.6561889648438,
+                278.7666320800781,
+                581.7615966796875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 16,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "Arial,Bold",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "NMRC enterprise executed just over twenty CRADAs ",
+                  "origin": [
+                    38.880001068115234,
+                    591.219970703125
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    582.2061767578125,
+                    294.2047119140625,
+                    593.3115844726562
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                582.2061767578125,
+                294.2047119140625,
+                593.3115844726562
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 16,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "Arial,Bold",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "and reviewed an additional fourteen CRADAs for the ",
+                  "origin": [
+                    38.880001068115234,
+                    602.739990234375
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    593.7261962890625,
+                    292.64093017578125,
+                    604.8316040039062
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                593.7261962890625,
+                292.64093017578125,
+                604.8316040039062
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 16,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "Arial,Bold",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "Naval hospitals in Portsmouth and San Diego.  ",
+                  "origin": [
+                    38.880001068115234,
+                    614.260009765625
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    605.2462158203125,
+                    265.4989013671875,
+                    616.3516235351562
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                605.2462158203125,
+                265.4989013671875,
+                616.3516235351562
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 8,
+          "flags": 0,
+          "bbox": [
+            38.880001068115234,
+            616.7662353515625,
+            301.85394287109375,
+            731.3076171875
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "One notable collaboration is being spearheaded by ",
+                  "origin": [
+                    52.439998626708984,
+                    625.780029296875
+                  ],
+                  "bbox": [
+                    52.439998626708984,
+                    616.7662353515625,
+                    282.56591796875,
+                    627.8716430664062
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                52.439998626708984,
+                616.7662353515625,
+                282.56591796875,
+                627.8716430664062
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "Cmdr. Jonathan Forsberg (NMRC, Operational and Un-",
+                  "origin": [
+                    38.880001068115234,
+                    637.2999877929688
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    628.2861938476562,
+                    286.40594482421875,
+                    639.3916015625
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                628.2861938476562,
+                286.40594482421875,
+                639.3916015625
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "dersea Medicine Directorate), who is working with a com-",
+                  "origin": [
+                    38.880001068115234,
+                    648.8200073242188
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    639.8062133789062,
+                    294.4535827636719,
+                    650.91162109375
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                639.8062133789062,
+                294.4535827636719,
+                650.91162109375
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "pany to explore a novel mode of anchoring prosthetics. ",
+                  "origin": [
+                    38.880001068115234,
+                    660.219970703125
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    651.2061767578125,
+                    286.5852966308594,
+                    662.3115844726562
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                651.2061767578125,
+                286.5852966308594,
+                662.3115844726562
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "This project could produce important results for amputees. ",
+                  "origin": [
+                    38.880001068115234,
+                    671.739990234375
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    662.7261962890625,
+                    301.85394287109375,
+                    673.8316040039062
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                662.7261962890625,
+                301.85394287109375,
+                673.8316040039062
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "Another collaboration being led by Lt. Roxanne Burrus ",
+                  "origin": [
+                    38.880001068115234,
+                    683.260009765625
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    674.2462158203125,
+                    283.7666015625,
+                    685.3516235351562
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                674.2462158203125,
+                283.7666015625,
+                685.3516235351562
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "(",
+                  "origin": [
+                    38.880001068115234,
+                    694.7760009765625
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    685.76220703125,
+                    42.19668197631836,
+                    696.8676147460938
+                  ]
+                },
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 26367,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "U.S. Naval Medical Research Unit No. 6",
+                  "origin": [
+                    42.2400016784668,
+                    694.7760009765625
+                  ],
+                  "bbox": [
+                    42.2400016784668,
+                    685.76220703125,
+                    221.51002502441406,
+                    696.8676147460938
+                  ]
+                },
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": ", Lima, Peru) ",
+                  "origin": [
+                    221.80999755859375,
+                    694.7760009765625
+                  ],
+                  "bbox": [
+                    221.80999755859375,
+                    685.76220703125,
+                    282.3667907714844,
+                    696.8676147460938
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                685.76220703125,
+                282.3667907714844,
+                696.8676147460938
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "involves Duke University and focuses on evaluating the ",
+                  "origin": [
+                    38.880001068115234,
+                    706.2960205078125
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    697.2822265625,
+                    288.1987609863281,
+                    708.3876342773438
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                697.2822265625,
+                288.1987609863281,
+                708.3876342773438
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "effects of changing demography and land use on malaria ",
+                  "origin": [
+                    38.880001068115234,
+                    717.8159790039062
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    708.8021850585938,
+                    295.4496154785156,
+                    719.9075927734375
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                708.8021850585938,
+                295.4496154785156,
+                719.9075927734375
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "transmission. This is an important issue in light of the ",
+                  "origin": [
+                    38.880001068115234,
+                    729.2160034179688
+                  ],
+                  "bbox": [
+                    38.880001068115234,
+                    720.2022094726562,
+                    278.29852294921875,
+                    731.3076171875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                38.880001068115234,
+                720.2022094726562,
+                278.29852294921875,
+                731.3076171875
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 9,
+          "flags": 0,
+          "bbox": [
+            310.7300109863281,
+            87.72618865966797,
+            573.6686401367188,
+            213.79161071777344
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "prevalence of malaria in developing countries and is ",
+                  "origin": [
+                    310.7300109863281,
+                    96.739990234375
+                  ],
+                  "bbox": [
+                    310.7300109863281,
+                    87.72618865966797,
+                    545.57666015625,
+                    98.83158874511719
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                310.7300109863281,
+                87.72618865966797,
+                545.57666015625,
+                98.83158874511719
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "important to the health of deployed warfighters. An addi-",
+                  "origin": [
+                    310.7300109863281,
+                    108.260009765625
+                  ],
+                  "bbox": [
+                    310.7300109863281,
+                    99.24620819091797,
+                    561.2040405273438,
+                    110.35160827636719
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                310.7300109863281,
+                99.24620819091797,
+                561.2040405273438,
+                110.35160827636719
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "tional malaria-focused collaboration is being headed by Lt. ",
+                  "origin": [
+                    310.7300109863281,
+                    119.780029296875
+                  ],
+                  "bbox": [
+                    310.7300109863281,
+                    110.76622772216797,
+                    573.6686401367188,
+                    121.87162780761719
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                310.7300109863281,
+                110.76622772216797,
+                573.6686401367188,
+                121.87162780761719
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "R. Vince Gerbasi (NMRC, Infectious Diseases Director-",
+                  "origin": [
+                    310.7300109863281,
+                    131.17999267578125
+                  ],
+                  "bbox": [
+                    310.7300109863281,
+                    122.16619110107422,
+                    557.6982421875,
+                    133.27159118652344
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                310.7300109863281,
+                122.16619110107422,
+                557.6982421875,
+                133.27159118652344
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "ate), who is using mass spectrometry to identify novel ",
+                  "origin": [
+                    310.7300109863281,
+                    142.70001220703125
+                  ],
+                  "bbox": [
+                    310.7300109863281,
+                    133.68621826171875,
+                    552.9373168945312,
+                    144.79161071777344
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                310.7300109863281,
+                133.68621826171875,
+                552.9373168945312,
+                144.79161071777344
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "antigens to be used as potential vaccine candidates. ",
+                  "origin": [
+                    310.7300109863281,
+                    154.219970703125
+                  ],
+                  "bbox": [
+                    310.7300109863281,
+                    145.2061767578125,
+                    547.1007690429688,
+                    156.3115692138672
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                310.7300109863281,
+                145.2061767578125,
+                547.1007690429688,
+                156.3115692138672
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "Lastly, Dr Bjorn Song (",
+                  "origin": [
+                    310.7300109863281,
+                    165.739990234375
+                  ],
+                  "bbox": [
+                    310.7300109863281,
+                    156.7261962890625,
+                    412.0730895996094,
+                    167.8315887451172
+                  ]
+                },
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 26367,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "Naval Medical Research Unit-San ",
+                  "origin": [
+                    412.2699890136719,
+                    165.739990234375
+                  ],
+                  "bbox": [
+                    412.2699890136719,
+                    156.7261962890625,
+                    566.4871215820312,
+                    167.8315887451172
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                310.7300109863281,
+                156.7261962890625,
+                566.4871215820312,
+                167.8315887451172
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 26367,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "Antonio",
+                  "origin": [
+                    310.7300109863281,
+                    177.260009765625
+                  ],
+                  "bbox": [
+                    310.7300109863281,
+                    168.2462158203125,
+                    344.783203125,
+                    179.3516082763672
+                  ]
+                },
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": ") is leading a collaboration focused on exploring ",
+                  "origin": [
+                    344.8299865722656,
+                    177.260009765625
+                  ],
+                  "bbox": [
+                    344.8299865722656,
+                    168.2462158203125,
+                    560.7230224609375,
+                    179.3516082763672
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                310.7300109863281,
+                168.2462158203125,
+                560.7230224609375,
+                179.3516082763672
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "the use of a synthetic oxygen-carrying fluid to reduce ",
+                  "origin": [
+                    310.7300109863281,
+                    188.780029296875
+                  ],
+                  "bbox": [
+                    310.7300109863281,
+                    179.7662353515625,
+                    549.739013671875,
+                    190.8716278076172
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                310.7300109863281,
+                179.7662353515625,
+                549.739013671875,
+                190.8716278076172
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "tissue damage occurring in response to hemorrhagic ",
+                  "origin": [
+                    310.7300109863281,
+                    200.17999267578125
+                  ],
+                  "bbox": [
+                    310.7300109863281,
+                    191.16619873046875,
+                    548.2659301757812,
+                    202.27159118652344
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                310.7300109863281,
+                191.16619873046875,
+                548.2659301757812,
+                202.27159118652344
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "shock. ",
+                  "origin": [
+                    310.7300109863281,
+                    211.70001220703125
+                  ],
+                  "bbox": [
+                    310.7300109863281,
+                    202.68621826171875,
+                    342.67889404296875,
+                    213.79161071777344
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                310.7300109863281,
+                202.68621826171875,
+                342.67889404296875,
+                213.79161071777344
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 10,
+          "flags": 0,
+          "bbox": [
+            310.7300109863281,
+            214.2061767578125,
+            572.0848999023438,
+            317.3816223144531
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "All of these collaborations have significant relevance to ",
+                  "origin": [
+                    324.30999755859375,
+                    223.219970703125
+                  ],
+                  "bbox": [
+                    324.30999755859375,
+                    214.2061767578125,
+                    572.0848999023438,
+                    225.3115692138672
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                324.30999755859375,
+                214.2061767578125,
+                572.0848999023438,
+                225.3115692138672
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "the military, but there is also considerable potential for ",
+                  "origin": [
+                    310.7300109863281,
+                    234.739990234375
+                  ],
+                  "bbox": [
+                    310.7300109863281,
+                    225.7261962890625,
+                    554.7001342773438,
+                    236.8315887451172
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                310.7300109863281,
+                225.7261962890625,
+                554.7001342773438,
+                236.8315887451172
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "these new sources of information and technologies to ",
+                  "origin": [
+                    310.7300109863281,
+                    246.260009765625
+                  ],
+                  "bbox": [
+                    310.7300109863281,
+                    237.2462158203125,
+                    551.7023315429688,
+                    248.3516082763672
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                310.7300109863281,
+                237.2462158203125,
+                551.7023315429688,
+                248.3516082763672
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "benefit the general population. Through the appropriate ",
+                  "origin": [
+                    310.7300109863281,
+                    257.80999755859375
+                  ],
+                  "bbox": [
+                    310.7300109863281,
+                    248.79620361328125,
+                    560.05859375,
+                    259.901611328125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                310.7300109863281,
+                248.79620361328125,
+                560.05859375,
+                259.901611328125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "leveraging of resources through CRADAs and the com-",
+                  "origin": [
+                    310.7300109863281,
+                    269.21002197265625
+                  ],
+                  "bbox": [
+                    310.7300109863281,
+                    260.19622802734375,
+                    557.3295288085938,
+                    271.3016357421875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                310.7300109863281,
+                260.19622802734375,
+                557.3295288085938,
+                271.3016357421875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "mercialization of Navy Medicine inventions through patent ",
+                  "origin": [
+                    310.7300109863281,
+                    280.7300109863281
+                  ],
+                  "bbox": [
+                    310.7300109863281,
+                    271.7162170410156,
+                    571.2138671875,
+                    282.8216247558594
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                310.7300109863281,
+                271.7162170410156,
+                571.2138671875,
+                282.8216247558594
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "licensing agreements, the NMRC enterprise excels at ",
+                  "origin": [
+                    310.7300109863281,
+                    292.25
+                  ],
+                  "bbox": [
+                    310.7300109863281,
+                    283.2362060546875,
+                    551.6224365234375,
+                    294.34161376953125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                310.7300109863281,
+                283.2362060546875,
+                551.6224365234375,
+                294.34161376953125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "technology transfer. This is a key part of what the Presi-",
+                  "origin": [
+                    310.7300109863281,
+                    303.7699890136719
+                  ],
+                  "bbox": [
+                    310.7300109863281,
+                    294.7561950683594,
+                    559.55078125,
+                    305.8616027832031
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                310.7300109863281,
+                294.7561950683594,
+                559.55078125,
+                305.8616027832031
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 0,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20999999344348907,
+                  "text": "dential Memorandum was all about. ",
+                  "origin": [
+                    310.7300109863281,
+                    315.2900085449219
+                  ],
+                  "bbox": [
+                    310.7300109863281,
+                    306.2762145996094,
+                    472.9089050292969,
+                    317.3816223144531
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                310.7300109863281,
+                306.2762145996094,
+                472.9089050292969,
+                317.3816223144531
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 11,
+          "flags": 0,
+          "bbox": [
+            317.3299865722656,
+            680.126220703125,
+            551.858154296875,
+            725.6476440429688
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 2,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial,Italic",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20800000429153442,
+                  "text": "A graphic illustration depicting Lt. R. Vince Gerbasi's ",
+                  "origin": [
+                    317.3299865722656,
+                    689.1400146484375
+                  ],
+                  "bbox": [
+                    317.3299865722656,
+                    680.126220703125,
+                    551.858154296875,
+                    691.211669921875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                317.3299865722656,
+                680.126220703125,
+                551.858154296875,
+                691.211669921875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 2,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial,Italic",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20800000429153442,
+                  "text": "effort to use mass spectrometry to identify novel ",
+                  "origin": [
+                    317.3299865722656,
+                    700.656005859375
+                  ],
+                  "bbox": [
+                    317.3299865722656,
+                    691.6422119140625,
+                    532.237060546875,
+                    702.7276611328125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                317.3299865722656,
+                691.6422119140625,
+                532.237060546875,
+                702.7276611328125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 2,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial,Italic",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20800000429153442,
+                  "text": "antigens to be used as potential malaria vaccine ",
+                  "origin": [
+                    317.3299865722656,
+                    712.0560302734375
+                  ],
+                  "bbox": [
+                    317.3299865722656,
+                    703.042236328125,
+                    533.392333984375,
+                    714.127685546875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                317.3299865722656,
+                703.042236328125,
+                533.392333984375,
+                714.127685546875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.960000038146973,
+                  "flags": 2,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Arial,Italic",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9049999713897705,
+                  "descender": -0.20800000429153442,
+                  "text": "candidates. ",
+                  "origin": [
+                    317.3299865722656,
+                    723.5759887695312
+                  ],
+                  "bbox": [
+                    317.3299865722656,
+                    714.5621948242188,
+                    371.118896484375,
+                    725.6476440429688
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                317.3299865722656,
+                714.5621948242188,
+                371.118896484375,
+                725.6476440429688
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "extraction_flags": 195,
+    "sort": false
+  },
+  "images": {
+    "status": "ok",
+    "options": {
+      "hashes": true,
+      "xrefs": true
+    },
+    "digest_algorithm": "md5",
+    "digest_encoding": "hex",
+    "items": [
+      {
+        "number": 11,
+        "bbox": [
+          309.6000061035156,
+          323.1899719238281,
+          576.0,
+          673.1099853515625
+        ],
+        "transform": [
+          266.3999938964844,
+          0.0,
+          -0.0,
+          349.9200134277344,
+          309.6000061035156,
+          323.1899719238281
+        ],
+        "width": 1110,
+        "height": 1458,
+        "colorspace": 3,
+        "cs-name": "DeviceRGB",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 179743,
+        "digest": "3d7cb0dfc4f15f109fc4f28ecbd2d208",
+        "has-mask": false,
+        "xref": 109
+      }
+    ]
+  },
+  "render": {
+    "status": "ok",
+    "dpi": 144,
+    "width": 1224,
+    "height": 1584,
+    "coordinate_system": "rendered_page_image_pixels",
+    "origin": "top_left",
+    "unit": "pixel",
+    "render_color_order": "RGB",
+    "input_color_order": "BGR",
+    "annotation_included": true,
+    "pixmap_origin_pixels": [
+      0,
+      0
+    ],
+    "pixel_to_pdf_matrix": [
+      0.5,
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.0
+    ]
+  },
+  "page_image": {
+    "path": "documents/3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943/page_00011.png",
+    "sha256": "9c6f72ae49e3291864d9ce5b0a7ea5d5e95ff6f0710406847f42dd0b38d69b78"
+  },
+  "parsing": {
+    "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11",
+    "source": "paddleocr_vl",
+    "status": "ok",
+    "raw": {
+      "res": {
+        "input_path": null,
+        "page_index": null,
+        "page_count": null,
+        "width": 1224,
+        "height": 1584,
+        "model_settings": {
+          "use_doc_preprocessor": false,
+          "use_layout_detection": true,
+          "use_chart_recognition": true,
+          "use_seal_recognition": false,
+          "use_ocr_for_image_block": true,
+          "format_block_content": false,
+          "merge_layout_blocks": true,
+          "markdown_ignore_labels": [],
+          "return_layout_polygon_points": false
+        },
+        "parsing_res_list": [
+          {
+            "block_label": "header",
+            "block_content": "NMR&D News",
+            "block_bbox": [
+              75,
+              72,
+              240,
+              97
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0
+          },
+          {
+            "block_label": "header",
+            "block_content": "Volume IV, Issue 12",
+            "block_bbox": [
+              918,
+              72,
+              1150,
+              98
+            ],
+            "block_id": 1,
+            "block_order": null,
+            "group_id": 1
+          },
+          {
+            "block_label": "doc_title",
+            "block_content": "Presidential Memorandum - Accelerating Technology Transfer",
+            "block_bbox": [
+              74,
+              116,
+              1151,
+              155
+            ],
+            "block_id": 2,
+            "block_order": 1,
+            "group_id": 2
+          },
+          {
+            "block_label": "text",
+            "block_content": "By Todd Ponzio, NMRC Technology Transfer Office",
+            "block_bbox": [
+              72,
+              174,
+              545,
+              200
+            ],
+            "block_id": 3,
+            "block_order": 2,
+            "group_id": 3
+          },
+          {
+            "block_label": "text",
+            "block_content": "SILVER SPRING, Md. - The “Presidential Memorandum - Accelerating Technology Transfer and Commercialization of Federal Research in Support of High-Growth Businesses” was released toward the end of last year. This memorandum’s objectives directed Federal agencies to “[1] establish goals and measure performance, [2] streamline administrative processes, and [3] facilitate local and regional partnerships in order to accelerate technology transfer and support private sector commercialization.”",
+            "block_bbox": [
+              72,
+              222,
+              598,
+              428
+            ],
+            "block_id": 4,
+            "block_order": 3,
+            "group_id": 4
+          },
+          {
+            "block_label": "text",
+            "block_content": "'Technology transfer and commercialization' is a phrase used by the business side of research and development that manages the wide range of discoveries, inventions and other intellectual property within the Naval Medical Research Center (NMRC) enterprise. The goal is bringing these discoveries to market for the benefit of the warfighter.",
+            "block_bbox": [
+              72,
+              430,
+              593,
+              589
+            ],
+            "block_id": 5,
+            "block_order": 4,
+            "group_id": 5
+          },
+          {
+            "block_label": "text",
+            "block_content": "The NMRC enterprise excels in facilitating local and regional partnerships due to the inventiveness and creativity of our research scientists and physicians. Most valuable biomedical developments begin in a laboratory, but the value to the warfighter requires moving that discovery through all the business steps, ultimately to manufacturing and distribution. This requires the establishment of appropriate technology transfer agreements. NMRC's technology transfer collaborations leverage research capabilities found in the public and private sectors to stretch research dollars and accomplish the mission of supporting the health and readiness of the military's men and women in uniform.",
+            "block_bbox": [
+              72,
+              590,
+              602,
+              889
+            ],
+            "block_id": 6,
+            "block_order": 5,
+            "group_id": 6
+          },
+          {
+            "block_label": "text",
+            "block_content": "For example, instead of a company having to reinvent something that is already available in a Navy laboratory, or vice versa, a partnership can capitalize on each collaborator's expertise toward achieving a shared goal. Every time an invention from one of our laboratories is commercialized into an accessible product, the U.S. taxpayer sees a tangible return on their investment and the Department of Defense has a product that will enhance the readiness of military personnel.",
+            "block_bbox": [
+              72,
+              890,
+              604,
+              1096
+            ],
+            "block_id": 7,
+            "block_order": 6,
+            "group_id": 7
+          },
+          {
+            "block_label": "text",
+            "block_content": "Cooperative Research and Development Agreements (CRADAs) are key business vehicles among Navy biomedical scientists. This past quarter, the NMRC enterprise executed just over twenty CRADAs and reviewed an additional fourteen CRADAs for the Naval hospitals in Portsmouth and San Diego.",
+            "block_bbox": [
+              72,
+              1097,
+              588,
+              1235
+            ],
+            "block_id": 8,
+            "block_order": 7,
+            "group_id": 8
+          },
+          {
+            "block_label": "text",
+            "block_content": "One notable collaboration is being spearheaded by Cmdr. Jonathan Forsberg (NMRC, Operational and Undersea Medicine Directorate), who is working with a company to explore a novel mode of anchoring prosthetics. This project could produce important results for amputees. Another collaboration being led by Lt. Roxanne Burrus (U.S. Naval Medical Research Unit No. 6, Lima, Peru) involves Duke University and focuses on evaluating the effects of changing demography and land use on malaria transmission. This is an important issue in light of the prevalence of malaria in developing countries and is important to the health of deployed warfighters. An additional malaria-focused collaboration is being headed by Lt. R. Vince Gerbasi (NMRC, Infectious Diseases Directorate), who is using mass spectrometry to identify novel antigens to be used as potential vaccine candidates. Lastly, Dr Bjorn Song (Naval Medical Research Unit-San Antonio) is leading a collaboration focused on exploring the use of a synthetic oxygen-carrying fluid to reduce tissue damage occurring in response to hemorrhagic shock.",
+            "block_bbox": [
+              72,
+              1236,
+              598,
+              1465
+            ],
+            "block_id": 9,
+            "block_order": 8,
+            "group_id": 9
+          },
+          {
+            "block_label": "text",
+            "block_content": "",
+            "block_bbox": [
+              614,
+              175,
+              1143,
+              427
+            ],
+            "block_id": 10,
+            "block_order": 9,
+            "group_id": 9
+          },
+          {
+            "block_label": "text",
+            "block_content": "All of these collaborations have significant relevance to the military, but there is also considerable potential for these new sources of information and technologies to benefit the general population. Through the appropriate leveraging of resources through CRADAs and the commercialization of Navy Medicine inventions through patent licensing agreements, the NMRC enterprise excels at technology transfer. This is a key part of what the Presidential Memorandum was all about.",
+            "block_bbox": [
+              615,
+              428,
+              1144,
+              639
+            ],
+            "block_id": 11,
+            "block_order": 10,
+            "group_id": 11
+          },
+          {
+            "block_label": "image",
+            "block_content": "CD8+ T cell\n\nIFN- $ \\gamma $\n\nFas\n\nClass I\n\nFasR\n\nCD8\n\nLiver Cell\n\nPf peptide\n\nPerforin/Granzymes\n\nPf.schizont\n\napoptosis and death of parasite",
+            "block_bbox": [
+              627,
+              652,
+              1142,
+              1345
+            ],
+            "block_id": 12,
+            "block_order": null,
+            "group_id": 12
+          },
+          {
+            "block_label": "vision_footnote",
+            "block_content": "A graphic illustration depicting Lt. R. Vince Gerbasi's effort to use mass spectrometry to identify novel antigens to be used as potential malaria vaccine candidates.",
+            "block_bbox": [
+              628,
+              1359,
+              1102,
+              1453
+            ],
+            "block_id": 13,
+            "block_order": null,
+            "group_id": 13
+          },
+          {
+            "block_label": "number",
+            "block_content": "11",
+            "block_bbox": [
+              597,
+              1495,
+              627,
+              1517
+            ],
+            "block_id": 14,
+            "block_order": 11,
+            "group_id": 14
+          }
+        ],
+        "layout_det_res": {
+          "input_path": null,
+          "page_index": null,
+          "boxes": [
+            {
+              "cls_id": 12,
+              "label": "header",
+              "score": 0.8338799476623535,
+              "coordinate": [
+                75,
+                72,
+                240,
+                97
+              ],
+              "order": null
+            },
+            {
+              "cls_id": 12,
+              "label": "header",
+              "score": 0.8706850409507751,
+              "coordinate": [
+                918,
+                72,
+                1150,
+                98
+              ],
+              "order": null
+            },
+            {
+              "cls_id": 6,
+              "label": "doc_title",
+              "score": 0.8962781429290771,
+              "coordinate": [
+                74,
+                116,
+                1151,
+                155
+              ],
+              "order": 1
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.8277801275253296,
+              "coordinate": [
+                72,
+                174,
+                545,
+                200
+              ],
+              "order": 2
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.9610246419906616,
+              "coordinate": [
+                72,
+                222,
+                598,
+                428
+              ],
+              "order": 3
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.9559603929519653,
+              "coordinate": [
+                72,
+                430,
+                593,
+                589
+              ],
+              "order": 4
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.9627882242202759,
+              "coordinate": [
+                72,
+                590,
+                602,
+                889
+              ],
+              "order": 5
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.9578981399536133,
+              "coordinate": [
+                72,
+                890,
+                604,
+                1096
+              ],
+              "order": 6
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.9518548250198364,
+              "coordinate": [
+                72,
+                1097,
+                588,
+                1235
+              ],
+              "order": 7
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.9516475796699524,
+              "coordinate": [
+                72,
+                1236,
+                598,
+                1465
+              ],
+              "order": 8
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.961093008518219,
+              "coordinate": [
+                614,
+                175,
+                1143,
+                427
+              ],
+              "order": 9
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.9584468007087708,
+              "coordinate": [
+                615,
+                428,
+                1144,
+                639
+              ],
+              "order": 10
+            },
+            {
+              "cls_id": 14,
+              "label": "image",
+              "score": 0.8724004030227661,
+              "coordinate": [
+                627,
+                652,
+                1142,
+                1345
+              ],
+              "order": null
+            },
+            {
+              "cls_id": 24,
+              "label": "vision_footnote",
+              "score": 0.5161329507827759,
+              "coordinate": [
+                628,
+                1359,
+                1102,
+                1453
+              ],
+              "order": null
+            },
+            {
+              "cls_id": 16,
+              "label": "number",
+              "score": 0.764586329460144,
+              "coordinate": [
+                597,
+                1495,
+                627,
+                1517
+              ],
+              "order": 11
+            }
+          ]
+        }
+      }
+    },
+    "blocks": [
+      {
+        "element_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11:vl:0",
+        "id_origin": "project_generated",
+        "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11",
+        "source": "paddleocr_vl",
+        "source_list_index": 0,
+        "model_block_id": 0,
+        "model_block_order": null,
+        "label": "header",
+        "content": "NMR&D News",
+        "bbox_image_pixels": [
+          75.0,
+          72.0,
+          240.0,
+          97.0
+        ],
+        "polygon_pdf_points": [
+          [
+            37.5,
+            36.0
+          ],
+          [
+            120.0,
+            36.0
+          ],
+          [
+            120.0,
+            48.5
+          ],
+          [
+            37.5,
+            48.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          37.5,
+          36.0,
+          120.0,
+          48.5
+        ]
+      },
+      {
+        "element_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11:vl:1",
+        "id_origin": "project_generated",
+        "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11",
+        "source": "paddleocr_vl",
+        "source_list_index": 1,
+        "model_block_id": 1,
+        "model_block_order": null,
+        "label": "header",
+        "content": "Volume IV, Issue 12",
+        "bbox_image_pixels": [
+          918.0,
+          72.0,
+          1150.0,
+          98.0
+        ],
+        "polygon_pdf_points": [
+          [
+            459.0,
+            36.0
+          ],
+          [
+            575.0,
+            36.0
+          ],
+          [
+            575.0,
+            49.0
+          ],
+          [
+            459.0,
+            49.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          459.0,
+          36.0,
+          575.0,
+          49.0
+        ]
+      },
+      {
+        "element_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11:vl:2",
+        "id_origin": "project_generated",
+        "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11",
+        "source": "paddleocr_vl",
+        "source_list_index": 2,
+        "model_block_id": 2,
+        "model_block_order": 1,
+        "label": "doc_title",
+        "content": "Presidential Memorandum - Accelerating Technology Transfer",
+        "bbox_image_pixels": [
+          74.0,
+          116.0,
+          1151.0,
+          155.0
+        ],
+        "polygon_pdf_points": [
+          [
+            37.0,
+            58.0
+          ],
+          [
+            575.5,
+            58.0
+          ],
+          [
+            575.5,
+            77.5
+          ],
+          [
+            37.0,
+            77.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          37.0,
+          58.0,
+          575.5,
+          77.5
+        ]
+      },
+      {
+        "element_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11:vl:3",
+        "id_origin": "project_generated",
+        "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11",
+        "source": "paddleocr_vl",
+        "source_list_index": 3,
+        "model_block_id": 3,
+        "model_block_order": 2,
+        "label": "text",
+        "content": "By Todd Ponzio, NMRC Technology Transfer Office",
+        "bbox_image_pixels": [
+          72.0,
+          174.0,
+          545.0,
+          200.0
+        ],
+        "polygon_pdf_points": [
+          [
+            36.0,
+            87.0
+          ],
+          [
+            272.5,
+            87.0
+          ],
+          [
+            272.5,
+            100.0
+          ],
+          [
+            36.0,
+            100.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          36.0,
+          87.0,
+          272.5,
+          100.0
+        ]
+      },
+      {
+        "element_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11:vl:4",
+        "id_origin": "project_generated",
+        "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11",
+        "source": "paddleocr_vl",
+        "source_list_index": 4,
+        "model_block_id": 4,
+        "model_block_order": 3,
+        "label": "text",
+        "content": "SILVER SPRING, Md. - The “Presidential Memorandum - Accelerating Technology Transfer and Commercialization of Federal Research in Support of High-Growth Businesses” was released toward the end of last year. This memorandum’s objectives directed Federal agencies to “[1] establish goals and measure performance, [2] streamline administrative processes, and [3] facilitate local and regional partnerships in order to accelerate technology transfer and support private sector commercialization.”",
+        "bbox_image_pixels": [
+          72.0,
+          222.0,
+          598.0,
+          428.0
+        ],
+        "polygon_pdf_points": [
+          [
+            36.0,
+            111.0
+          ],
+          [
+            299.0,
+            111.0
+          ],
+          [
+            299.0,
+            214.0
+          ],
+          [
+            36.0,
+            214.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          36.0,
+          111.0,
+          299.0,
+          214.0
+        ]
+      },
+      {
+        "element_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11:vl:5",
+        "id_origin": "project_generated",
+        "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11",
+        "source": "paddleocr_vl",
+        "source_list_index": 5,
+        "model_block_id": 5,
+        "model_block_order": 4,
+        "label": "text",
+        "content": "'Technology transfer and commercialization' is a phrase used by the business side of research and development that manages the wide range of discoveries, inventions and other intellectual property within the Naval Medical Research Center (NMRC) enterprise. The goal is bringing these discoveries to market for the benefit of the warfighter.",
+        "bbox_image_pixels": [
+          72.0,
+          430.0,
+          593.0,
+          589.0
+        ],
+        "polygon_pdf_points": [
+          [
+            36.0,
+            215.0
+          ],
+          [
+            296.5,
+            215.0
+          ],
+          [
+            296.5,
+            294.5
+          ],
+          [
+            36.0,
+            294.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          36.0,
+          215.0,
+          296.5,
+          294.5
+        ]
+      },
+      {
+        "element_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11:vl:6",
+        "id_origin": "project_generated",
+        "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11",
+        "source": "paddleocr_vl",
+        "source_list_index": 6,
+        "model_block_id": 6,
+        "model_block_order": 5,
+        "label": "text",
+        "content": "The NMRC enterprise excels in facilitating local and regional partnerships due to the inventiveness and creativity of our research scientists and physicians. Most valuable biomedical developments begin in a laboratory, but the value to the warfighter requires moving that discovery through all the business steps, ultimately to manufacturing and distribution. This requires the establishment of appropriate technology transfer agreements. NMRC's technology transfer collaborations leverage research capabilities found in the public and private sectors to stretch research dollars and accomplish the mission of supporting the health and readiness of the military's men and women in uniform.",
+        "bbox_image_pixels": [
+          72.0,
+          590.0,
+          602.0,
+          889.0
+        ],
+        "polygon_pdf_points": [
+          [
+            36.0,
+            295.0
+          ],
+          [
+            301.0,
+            295.0
+          ],
+          [
+            301.0,
+            444.5
+          ],
+          [
+            36.0,
+            444.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          36.0,
+          295.0,
+          301.0,
+          444.5
+        ]
+      },
+      {
+        "element_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11:vl:7",
+        "id_origin": "project_generated",
+        "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11",
+        "source": "paddleocr_vl",
+        "source_list_index": 7,
+        "model_block_id": 7,
+        "model_block_order": 6,
+        "label": "text",
+        "content": "For example, instead of a company having to reinvent something that is already available in a Navy laboratory, or vice versa, a partnership can capitalize on each collaborator's expertise toward achieving a shared goal. Every time an invention from one of our laboratories is commercialized into an accessible product, the U.S. taxpayer sees a tangible return on their investment and the Department of Defense has a product that will enhance the readiness of military personnel.",
+        "bbox_image_pixels": [
+          72.0,
+          890.0,
+          604.0,
+          1096.0
+        ],
+        "polygon_pdf_points": [
+          [
+            36.0,
+            445.0
+          ],
+          [
+            302.0,
+            445.0
+          ],
+          [
+            302.0,
+            548.0
+          ],
+          [
+            36.0,
+            548.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          36.0,
+          445.0,
+          302.0,
+          548.0
+        ]
+      },
+      {
+        "element_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11:vl:8",
+        "id_origin": "project_generated",
+        "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11",
+        "source": "paddleocr_vl",
+        "source_list_index": 8,
+        "model_block_id": 8,
+        "model_block_order": 7,
+        "label": "text",
+        "content": "Cooperative Research and Development Agreements (CRADAs) are key business vehicles among Navy biomedical scientists. This past quarter, the NMRC enterprise executed just over twenty CRADAs and reviewed an additional fourteen CRADAs for the Naval hospitals in Portsmouth and San Diego.",
+        "bbox_image_pixels": [
+          72.0,
+          1097.0,
+          588.0,
+          1235.0
+        ],
+        "polygon_pdf_points": [
+          [
+            36.0,
+            548.5
+          ],
+          [
+            294.0,
+            548.5
+          ],
+          [
+            294.0,
+            617.5
+          ],
+          [
+            36.0,
+            617.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          36.0,
+          548.5,
+          294.0,
+          617.5
+        ]
+      },
+      {
+        "element_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11:vl:9",
+        "id_origin": "project_generated",
+        "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11",
+        "source": "paddleocr_vl",
+        "source_list_index": 9,
+        "model_block_id": 9,
+        "model_block_order": 8,
+        "label": "text",
+        "content": "One notable collaboration is being spearheaded by Cmdr. Jonathan Forsberg (NMRC, Operational and Undersea Medicine Directorate), who is working with a company to explore a novel mode of anchoring prosthetics. This project could produce important results for amputees. Another collaboration being led by Lt. Roxanne Burrus (U.S. Naval Medical Research Unit No. 6, Lima, Peru) involves Duke University and focuses on evaluating the effects of changing demography and land use on malaria transmission. This is an important issue in light of the prevalence of malaria in developing countries and is important to the health of deployed warfighters. An additional malaria-focused collaboration is being headed by Lt. R. Vince Gerbasi (NMRC, Infectious Diseases Directorate), who is using mass spectrometry to identify novel antigens to be used as potential vaccine candidates. Lastly, Dr Bjorn Song (Naval Medical Research Unit-San Antonio) is leading a collaboration focused on exploring the use of a synthetic oxygen-carrying fluid to reduce tissue damage occurring in response to hemorrhagic shock.",
+        "bbox_image_pixels": [
+          72.0,
+          1236.0,
+          598.0,
+          1465.0
+        ],
+        "polygon_pdf_points": [
+          [
+            36.0,
+            618.0
+          ],
+          [
+            299.0,
+            618.0
+          ],
+          [
+            299.0,
+            732.5
+          ],
+          [
+            36.0,
+            732.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          36.0,
+          618.0,
+          299.0,
+          732.5
+        ]
+      },
+      {
+        "element_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11:vl:10",
+        "id_origin": "project_generated",
+        "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11",
+        "source": "paddleocr_vl",
+        "source_list_index": 10,
+        "model_block_id": 10,
+        "model_block_order": 9,
+        "label": "text",
+        "content": "",
+        "bbox_image_pixels": [
+          614.0,
+          175.0,
+          1143.0,
+          427.0
+        ],
+        "polygon_pdf_points": [
+          [
+            307.0,
+            87.5
+          ],
+          [
+            571.5,
+            87.5
+          ],
+          [
+            571.5,
+            213.5
+          ],
+          [
+            307.0,
+            213.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          307.0,
+          87.5,
+          571.5,
+          213.5
+        ]
+      },
+      {
+        "element_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11:vl:11",
+        "id_origin": "project_generated",
+        "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11",
+        "source": "paddleocr_vl",
+        "source_list_index": 11,
+        "model_block_id": 11,
+        "model_block_order": 10,
+        "label": "text",
+        "content": "All of these collaborations have significant relevance to the military, but there is also considerable potential for these new sources of information and technologies to benefit the general population. Through the appropriate leveraging of resources through CRADAs and the commercialization of Navy Medicine inventions through patent licensing agreements, the NMRC enterprise excels at technology transfer. This is a key part of what the Presidential Memorandum was all about.",
+        "bbox_image_pixels": [
+          615.0,
+          428.0,
+          1144.0,
+          639.0
+        ],
+        "polygon_pdf_points": [
+          [
+            307.5,
+            214.0
+          ],
+          [
+            572.0,
+            214.0
+          ],
+          [
+            572.0,
+            319.5
+          ],
+          [
+            307.5,
+            319.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          307.5,
+          214.0,
+          572.0,
+          319.5
+        ]
+      },
+      {
+        "element_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11:vl:12",
+        "id_origin": "project_generated",
+        "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11",
+        "source": "paddleocr_vl",
+        "source_list_index": 12,
+        "model_block_id": 12,
+        "model_block_order": null,
+        "label": "image",
+        "content": "CD8+ T cell\n\nIFN- $ \\gamma $\n\nFas\n\nClass I\n\nFasR\n\nCD8\n\nLiver Cell\n\nPf peptide\n\nPerforin/Granzymes\n\nPf.schizont\n\napoptosis and death of parasite",
+        "bbox_image_pixels": [
+          627.0,
+          652.0,
+          1142.0,
+          1345.0
+        ],
+        "polygon_pdf_points": [
+          [
+            313.5,
+            326.0
+          ],
+          [
+            571.0,
+            326.0
+          ],
+          [
+            571.0,
+            672.5
+          ],
+          [
+            313.5,
+            672.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          313.5,
+          326.0,
+          571.0,
+          672.5
+        ]
+      },
+      {
+        "element_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11:vl:13",
+        "id_origin": "project_generated",
+        "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11",
+        "source": "paddleocr_vl",
+        "source_list_index": 13,
+        "model_block_id": 13,
+        "model_block_order": null,
+        "label": "vision_footnote",
+        "content": "A graphic illustration depicting Lt. R. Vince Gerbasi's effort to use mass spectrometry to identify novel antigens to be used as potential malaria vaccine candidates.",
+        "bbox_image_pixels": [
+          628.0,
+          1359.0,
+          1102.0,
+          1453.0
+        ],
+        "polygon_pdf_points": [
+          [
+            314.0,
+            679.5
+          ],
+          [
+            551.0,
+            679.5
+          ],
+          [
+            551.0,
+            726.5
+          ],
+          [
+            314.0,
+            726.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          314.0,
+          679.5,
+          551.0,
+          726.5
+        ]
+      },
+      {
+        "element_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11:vl:14",
+        "id_origin": "project_generated",
+        "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11",
+        "source": "paddleocr_vl",
+        "source_list_index": 14,
+        "model_block_id": 14,
+        "model_block_order": 11,
+        "label": "number",
+        "content": "11",
+        "bbox_image_pixels": [
+          597.0,
+          1495.0,
+          627.0,
+          1517.0
+        ],
+        "polygon_pdf_points": [
+          [
+            298.5,
+            747.5
+          ],
+          [
+            313.5,
+            747.5
+          ],
+          [
+            313.5,
+            758.5
+          ],
+          [
+            298.5,
+            758.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          298.5,
+          747.5,
+          313.5,
+          758.5
+        ]
+      }
+    ],
+    "block_count": 15,
+    "character_count": 4299,
+    "input_image": {
+      "width": 1224,
+      "height": 1584,
+      "color_order": "BGR",
+      "coordinate_system": "rendered_page_image_pixels"
+    },
+    "elapsed_seconds": 725.9055246000644,
+    "coordinate_status": "ok"
+  },
+  "review": {
+    "review_page_number": 3,
+    "status": "ok",
+    "drawn_count": 15,
+    "warnings": [],
+    "json_path": "documents/3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943/page_00011.json",
+    "path": "documents/3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943/review_vl.pdf"
+  },
+  "elapsed_seconds": 726.1836045000236
+}

@@ -1,0 +1,1091 @@
+{
+  "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4",
+  "id_origin": "project_generated",
+  "document_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82",
+  "document_name": "0e94b4197b10096b1f4c699701570fbf",
+  "page_number": 4,
+  "page_numbering": "pdf_viewer_1_based",
+  "page_index": 3,
+  "source_sha256": "13ff22623b747d1facbb405369001c6d3793322b24a56365bb8cef89db2f903e",
+  "status": "ok",
+  "geometry": {
+    "coordinate_system": "pymupdf_unrotated_page_points",
+    "origin": "top_left_of_unrotated_page",
+    "unit": "point_1/72_inch",
+    "rotation_degrees": 0,
+    "mediabox": [
+      0.0,
+      0.0,
+      720.0,
+      405.0
+    ],
+    "cropbox": [
+      0.0,
+      0.0,
+      720.0,
+      405.0
+    ],
+    "rotated_page_rect": [
+      0.0,
+      0.0,
+      720.0,
+      405.0
+    ]
+  },
+  "native": {
+    "status": "empty",
+    "text": "",
+    "raw": {
+      "width": 720.0,
+      "height": 405.0,
+      "blocks": []
+    },
+    "extraction_flags": 195,
+    "sort": false
+  },
+  "images": {
+    "status": "ok",
+    "options": {
+      "hashes": true,
+      "xrefs": true
+    },
+    "digest_algorithm": "md5",
+    "digest_encoding": "hex",
+    "items": [
+      {
+        "number": 0,
+        "bbox": [
+          50.80311584472656,
+          10.16339111328125,
+          645.350341796875,
+          394.83673095703125
+        ],
+        "transform": [
+          594.5472412109375,
+          0.0,
+          -0.0,
+          384.67333984375,
+          50.80311584472656,
+          10.16339111328125
+        ],
+        "width": 2000,
+        "height": 1294,
+        "colorspace": 3,
+        "cs-name": "DeviceRGB",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 246913,
+        "digest": "08462d57a776d20715f9874781e33fad",
+        "has-mask": false,
+        "xref": 35
+      }
+    ]
+  },
+  "render": {
+    "status": "ok",
+    "dpi": 144,
+    "width": 1440,
+    "height": 810,
+    "coordinate_system": "rendered_page_image_pixels",
+    "origin": "top_left",
+    "unit": "pixel",
+    "render_color_order": "RGB",
+    "input_color_order": "BGR",
+    "annotation_included": true,
+    "pixmap_origin_pixels": [
+      0,
+      0
+    ],
+    "pixel_to_pdf_matrix": [
+      0.5,
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.0
+    ]
+  },
+  "page_image": {
+    "path": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/page_00004.png",
+    "sha256": "ce99bf5ff9e4d01ab7b2edd1e9c23e62356a763153f6e540423000f4d0db6fb1"
+  },
+  "parsing": {
+    "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4",
+    "source": "paddleocr_vl",
+    "status": "ok",
+    "raw": {
+      "res": {
+        "input_path": null,
+        "page_index": null,
+        "page_count": null,
+        "width": 1440,
+        "height": 810,
+        "model_settings": {
+          "use_doc_preprocessor": false,
+          "use_layout_detection": true,
+          "use_chart_recognition": true,
+          "use_seal_recognition": false,
+          "use_ocr_for_image_block": true,
+          "format_block_content": false,
+          "merge_layout_blocks": true,
+          "markdown_ignore_labels": [],
+          "return_layout_polygon_points": false
+        },
+        "parsing_res_list": [
+          {
+            "block_label": "paragraph_title",
+            "block_content": "US SPACE TRAVEL\nA TIMELINE OF MANNED NASA FLIGHTS",
+            "block_bbox": [
+              130,
+              45,
+              479,
+              136
+            ],
+            "block_id": 0,
+            "block_order": 1,
+            "group_id": 0
+          },
+          {
+            "block_label": "text",
+            "block_content": "On July 21, 2011, the last Space Shuttle flight landed, ending 50 years of manned NASA flights. The US space program began in 1981 and resulted in 166 nearly continuous missions, costing an estimated $7 billion per year. Space travel continues through international partnerships and unmanned missions, but it remains to be seen what is next for American space exploration.",
+            "block_bbox": [
+              130,
+              161,
+              465,
+              198
+            ],
+            "block_id": 1,
+            "block_order": 2,
+            "group_id": 1
+          },
+          {
+            "block_label": "text",
+            "block_content": "MERCURY",
+            "block_bbox": [
+              134,
+              214,
+              170,
+              228
+            ],
+            "block_id": 2,
+            "block_order": 3,
+            "group_id": 2
+          },
+          {
+            "block_label": "text",
+            "block_content": "Mercury Redstone 3 (Freedom 7), May 5, 1931\nMercury Redstone 4 (Liberty Bell 7), July 24, 1961\nMercury Atlas 6 (Friendship 7), February 20, 1962\nMercury Atlas 7 (Aurora 7), May 24, 1962\nMercury Atlas 8 (Sigma 7), October 3, 1962\nMercury Atlas 9 (Faith 7), May 15-16, 1963",
+            "block_bbox": [
+              133,
+              228,
+              291,
+              277
+            ],
+            "block_id": 3,
+            "block_order": 4,
+            "group_id": 3
+          },
+          {
+            "block_label": "text",
+            "block_content": "GEMINI",
+            "block_bbox": [
+              134,
+              283,
+              163,
+              296
+            ],
+            "block_id": 4,
+            "block_order": 5,
+            "group_id": 4
+          },
+          {
+            "block_label": "text",
+            "block_content": "Gemini 3, March 23, 1965\nGemini IV, June 3-7, 1965\nGemini V, August 21-29, 1965\nGemini VII, December 4-18, 1965\nGemini VI, December 15-16, 1965\nGemini VIII, March 16, 1966\nGemini IX, June 3-6, 1966\nGemini X, July 18-21, 1966\nGemini XI, September 12-15, 1966\nGemini XII, November 11-15, 1966",
+            "block_bbox": [
+              133,
+              297,
+              248,
+              378
+            ],
+            "block_id": 5,
+            "block_order": 6,
+            "group_id": 5
+          },
+          {
+            "block_label": "text",
+            "block_content": "APOLLO",
+            "block_bbox": [
+              134,
+              384,
+              164,
+              398
+            ],
+            "block_id": 6,
+            "block_order": 7,
+            "group_id": 6
+          },
+          {
+            "block_label": "text",
+            "block_content": "Apollo 7, October 11–22, 1968\nApollo 8, December 21–22, 1968\nApollo 9, March 3–13, 1969\nApollo 10, May 18–26, 1969\nApollo 11, July 16–24, 1969\nApollo 12, November 14–24, 1969\nApollo 13, April 11–17, 1970\nApollo 14, January 31–February 9, 1971\nApollo 15, July 26–August 7, 1971\nApollo 16, April 16–27, 1972\nApollo 17, December 7–19, 1972",
+            "block_bbox": [
+              133,
+              397,
+              256,
+              488
+            ],
+            "block_id": 7,
+            "block_order": 8,
+            "group_id": 7
+          },
+          {
+            "block_label": "text",
+            "block_content": "SKYLAB",
+            "block_bbox": [
+              134,
+              494,
+              163,
+              508
+            ],
+            "block_id": 8,
+            "block_order": 9,
+            "group_id": 8
+          },
+          {
+            "block_label": "text",
+            "block_content": "Orbited the Earth from 1973 to 1979\nSkylab 2, May 25–June 22, 1973\nSkylab 3, July 28–September 25, 1973\nSkylab 4, November 16, 1973–February 9, 1974 (at 84 days, 1 hour, 15 minutes, and 31 seconds, Skylab 4 remains the longest US space flight to date)",
+            "block_bbox": [
+              133,
+              504,
+              397,
+              549
+            ],
+            "block_id": 9,
+            "block_order": 10,
+            "group_id": 9
+          },
+          {
+            "block_label": "text",
+            "block_content": "APOLLO/SOYUZ TEST PROJECT\nJuly 15, 24, 1975. The first international partnership in space.",
+            "block_bbox": [
+              134,
+              555,
+              317,
+              578
+            ],
+            "block_id": 10,
+            "block_order": 11,
+            "group_id": 10
+          },
+          {
+            "block_label": "text",
+            "block_content": "SPACE SHUTTLE",
+            "block_bbox": [
+              133,
+              585,
+              188,
+              600
+            ],
+            "block_id": 11,
+            "block_order": 12,
+            "group_id": 11
+          },
+          {
+            "block_label": "text",
+            "block_content": "1991 STS-1, STS-2/1992 STS-3, STS-4, STS-5/1993 STS-4, STS-2, STS-6, STS-9/1994 STS-4/1995 STS-4/C, STS-4/D, STS-4/G, STS-5/A, STS-11/B, STS-5/C, STS-6/D, STS-5/B, STS-5/G, STS-5/F, STS-5/H, STS-6/I, STS-6/J, STS-6/K, STS-6/L, STS-6/L, STS-6/M, STS-6/N, STS-6/O, STS-6/P, STS-6/Q, STS-6/R, STS-6/S, STS-6/S, STS-6/S,",
+            "block_bbox": [
+              131,
+              603,
+              415,
+              738
+            ],
+            "block_id": 12,
+            "block_order": 13,
+            "group_id": 12
+          },
+          {
+            "block_label": "image",
+            "block_content": "Mercury Gemini Apollo Skylab Apollo/Soyuz Space Shuttle",
+            "block_bbox": [
+              471,
+              40,
+              1278,
+              761
+            ],
+            "block_id": 13,
+            "block_order": null,
+            "group_id": 13
+          }
+        ],
+        "layout_det_res": {
+          "input_path": null,
+          "page_index": null,
+          "boxes": [
+            {
+              "cls_id": 17,
+              "label": "paragraph_title",
+              "score": 0.5683263540267944,
+              "coordinate": [
+                130,
+                45,
+                479,
+                136
+              ],
+              "order": 1
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.8786187171936035,
+              "coordinate": [
+                130,
+                161,
+                465,
+                198
+              ],
+              "order": 2
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.4521636962890625,
+              "coordinate": [
+                134,
+                214,
+                170,
+                228
+              ],
+              "order": 3
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.7175020575523376,
+              "coordinate": [
+                133,
+                228,
+                291,
+                277
+              ],
+              "order": 4
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.3471510410308838,
+              "coordinate": [
+                134,
+                283,
+                163,
+                296
+              ],
+              "order": 5
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.829998254776001,
+              "coordinate": [
+                133,
+                297,
+                248,
+                378
+              ],
+              "order": 6
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.33978912234306335,
+              "coordinate": [
+                134,
+                384,
+                164,
+                398
+              ],
+              "order": 7
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.8144696354866028,
+              "coordinate": [
+                133,
+                397,
+                256,
+                488
+              ],
+              "order": 8
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.342440128326416,
+              "coordinate": [
+                134,
+                494,
+                163,
+                508
+              ],
+              "order": 9
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.683563768863678,
+              "coordinate": [
+                133,
+                504,
+                397,
+                549
+              ],
+              "order": 10
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.6042086482048035,
+              "coordinate": [
+                134,
+                555,
+                317,
+                578
+              ],
+              "order": 11
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.46728235483169556,
+              "coordinate": [
+                133,
+                585,
+                188,
+                600
+              ],
+              "order": 12
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.8137980699539185,
+              "coordinate": [
+                131,
+                603,
+                415,
+                738
+              ],
+              "order": 13
+            },
+            {
+              "cls_id": 14,
+              "label": "image",
+              "score": 0.8022320866584778,
+              "coordinate": [
+                471,
+                40,
+                1278,
+                761
+              ],
+              "order": null
+            }
+          ]
+        }
+      }
+    },
+    "blocks": [
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4:vl:0",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4",
+        "source": "paddleocr_vl",
+        "source_list_index": 0,
+        "model_block_id": 0,
+        "model_block_order": 1,
+        "label": "paragraph_title",
+        "content": "US SPACE TRAVEL\nA TIMELINE OF MANNED NASA FLIGHTS",
+        "bbox_image_pixels": [
+          130.0,
+          45.0,
+          479.0,
+          136.0
+        ],
+        "polygon_pdf_points": [
+          [
+            65.0,
+            22.5
+          ],
+          [
+            239.5,
+            22.5
+          ],
+          [
+            239.5,
+            68.0
+          ],
+          [
+            65.0,
+            68.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          65.0,
+          22.5,
+          239.5,
+          68.0
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4:vl:1",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4",
+        "source": "paddleocr_vl",
+        "source_list_index": 1,
+        "model_block_id": 1,
+        "model_block_order": 2,
+        "label": "text",
+        "content": "On July 21, 2011, the last Space Shuttle flight landed, ending 50 years of manned NASA flights. The US space program began in 1981 and resulted in 166 nearly continuous missions, costing an estimated $7 billion per year. Space travel continues through international partnerships and unmanned missions, but it remains to be seen what is next for American space exploration.",
+        "bbox_image_pixels": [
+          130.0,
+          161.0,
+          465.0,
+          198.0
+        ],
+        "polygon_pdf_points": [
+          [
+            65.0,
+            80.5
+          ],
+          [
+            232.5,
+            80.5
+          ],
+          [
+            232.5,
+            99.0
+          ],
+          [
+            65.0,
+            99.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          65.0,
+          80.5,
+          232.5,
+          99.0
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4:vl:2",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4",
+        "source": "paddleocr_vl",
+        "source_list_index": 2,
+        "model_block_id": 2,
+        "model_block_order": 3,
+        "label": "text",
+        "content": "MERCURY",
+        "bbox_image_pixels": [
+          134.0,
+          214.0,
+          170.0,
+          228.0
+        ],
+        "polygon_pdf_points": [
+          [
+            67.0,
+            107.0
+          ],
+          [
+            85.0,
+            107.0
+          ],
+          [
+            85.0,
+            114.0
+          ],
+          [
+            67.0,
+            114.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          67.0,
+          107.0,
+          85.0,
+          114.0
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4:vl:3",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4",
+        "source": "paddleocr_vl",
+        "source_list_index": 3,
+        "model_block_id": 3,
+        "model_block_order": 4,
+        "label": "text",
+        "content": "Mercury Redstone 3 (Freedom 7), May 5, 1931\nMercury Redstone 4 (Liberty Bell 7), July 24, 1961\nMercury Atlas 6 (Friendship 7), February 20, 1962\nMercury Atlas 7 (Aurora 7), May 24, 1962\nMercury Atlas 8 (Sigma 7), October 3, 1962\nMercury Atlas 9 (Faith 7), May 15-16, 1963",
+        "bbox_image_pixels": [
+          133.0,
+          228.0,
+          291.0,
+          277.0
+        ],
+        "polygon_pdf_points": [
+          [
+            66.5,
+            114.0
+          ],
+          [
+            145.5,
+            114.0
+          ],
+          [
+            145.5,
+            138.5
+          ],
+          [
+            66.5,
+            138.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          66.5,
+          114.0,
+          145.5,
+          138.5
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4:vl:4",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4",
+        "source": "paddleocr_vl",
+        "source_list_index": 4,
+        "model_block_id": 4,
+        "model_block_order": 5,
+        "label": "text",
+        "content": "GEMINI",
+        "bbox_image_pixels": [
+          134.0,
+          283.0,
+          163.0,
+          296.0
+        ],
+        "polygon_pdf_points": [
+          [
+            67.0,
+            141.5
+          ],
+          [
+            81.5,
+            141.5
+          ],
+          [
+            81.5,
+            148.0
+          ],
+          [
+            67.0,
+            148.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          67.0,
+          141.5,
+          81.5,
+          148.0
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4:vl:5",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4",
+        "source": "paddleocr_vl",
+        "source_list_index": 5,
+        "model_block_id": 5,
+        "model_block_order": 6,
+        "label": "text",
+        "content": "Gemini 3, March 23, 1965\nGemini IV, June 3-7, 1965\nGemini V, August 21-29, 1965\nGemini VII, December 4-18, 1965\nGemini VI, December 15-16, 1965\nGemini VIII, March 16, 1966\nGemini IX, June 3-6, 1966\nGemini X, July 18-21, 1966\nGemini XI, September 12-15, 1966\nGemini XII, November 11-15, 1966",
+        "bbox_image_pixels": [
+          133.0,
+          297.0,
+          248.0,
+          378.0
+        ],
+        "polygon_pdf_points": [
+          [
+            66.5,
+            148.5
+          ],
+          [
+            124.0,
+            148.5
+          ],
+          [
+            124.0,
+            189.0
+          ],
+          [
+            66.5,
+            189.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          66.5,
+          148.5,
+          124.0,
+          189.0
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4:vl:6",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4",
+        "source": "paddleocr_vl",
+        "source_list_index": 6,
+        "model_block_id": 6,
+        "model_block_order": 7,
+        "label": "text",
+        "content": "APOLLO",
+        "bbox_image_pixels": [
+          134.0,
+          384.0,
+          164.0,
+          398.0
+        ],
+        "polygon_pdf_points": [
+          [
+            67.0,
+            192.0
+          ],
+          [
+            82.0,
+            192.0
+          ],
+          [
+            82.0,
+            199.0
+          ],
+          [
+            67.0,
+            199.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          67.0,
+          192.0,
+          82.0,
+          199.0
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4:vl:7",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4",
+        "source": "paddleocr_vl",
+        "source_list_index": 7,
+        "model_block_id": 7,
+        "model_block_order": 8,
+        "label": "text",
+        "content": "Apollo 7, October 11–22, 1968\nApollo 8, December 21–22, 1968\nApollo 9, March 3–13, 1969\nApollo 10, May 18–26, 1969\nApollo 11, July 16–24, 1969\nApollo 12, November 14–24, 1969\nApollo 13, April 11–17, 1970\nApollo 14, January 31–February 9, 1971\nApollo 15, July 26–August 7, 1971\nApollo 16, April 16–27, 1972\nApollo 17, December 7–19, 1972",
+        "bbox_image_pixels": [
+          133.0,
+          397.0,
+          256.0,
+          488.0
+        ],
+        "polygon_pdf_points": [
+          [
+            66.5,
+            198.5
+          ],
+          [
+            128.0,
+            198.5
+          ],
+          [
+            128.0,
+            244.0
+          ],
+          [
+            66.5,
+            244.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          66.5,
+          198.5,
+          128.0,
+          244.0
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4:vl:8",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4",
+        "source": "paddleocr_vl",
+        "source_list_index": 8,
+        "model_block_id": 8,
+        "model_block_order": 9,
+        "label": "text",
+        "content": "SKYLAB",
+        "bbox_image_pixels": [
+          134.0,
+          494.0,
+          163.0,
+          508.0
+        ],
+        "polygon_pdf_points": [
+          [
+            67.0,
+            247.0
+          ],
+          [
+            81.5,
+            247.0
+          ],
+          [
+            81.5,
+            254.0
+          ],
+          [
+            67.0,
+            254.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          67.0,
+          247.0,
+          81.5,
+          254.0
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4:vl:9",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4",
+        "source": "paddleocr_vl",
+        "source_list_index": 9,
+        "model_block_id": 9,
+        "model_block_order": 10,
+        "label": "text",
+        "content": "Orbited the Earth from 1973 to 1979\nSkylab 2, May 25–June 22, 1973\nSkylab 3, July 28–September 25, 1973\nSkylab 4, November 16, 1973–February 9, 1974 (at 84 days, 1 hour, 15 minutes, and 31 seconds, Skylab 4 remains the longest US space flight to date)",
+        "bbox_image_pixels": [
+          133.0,
+          504.0,
+          397.0,
+          549.0
+        ],
+        "polygon_pdf_points": [
+          [
+            66.5,
+            252.0
+          ],
+          [
+            198.5,
+            252.0
+          ],
+          [
+            198.5,
+            274.5
+          ],
+          [
+            66.5,
+            274.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          66.5,
+          252.0,
+          198.5,
+          274.5
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4:vl:10",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4",
+        "source": "paddleocr_vl",
+        "source_list_index": 10,
+        "model_block_id": 10,
+        "model_block_order": 11,
+        "label": "text",
+        "content": "APOLLO/SOYUZ TEST PROJECT\nJuly 15, 24, 1975. The first international partnership in space.",
+        "bbox_image_pixels": [
+          134.0,
+          555.0,
+          317.0,
+          578.0
+        ],
+        "polygon_pdf_points": [
+          [
+            67.0,
+            277.5
+          ],
+          [
+            158.5,
+            277.5
+          ],
+          [
+            158.5,
+            289.0
+          ],
+          [
+            67.0,
+            289.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          67.0,
+          277.5,
+          158.5,
+          289.0
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4:vl:11",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4",
+        "source": "paddleocr_vl",
+        "source_list_index": 11,
+        "model_block_id": 11,
+        "model_block_order": 12,
+        "label": "text",
+        "content": "SPACE SHUTTLE",
+        "bbox_image_pixels": [
+          133.0,
+          585.0,
+          188.0,
+          600.0
+        ],
+        "polygon_pdf_points": [
+          [
+            66.5,
+            292.5
+          ],
+          [
+            94.0,
+            292.5
+          ],
+          [
+            94.0,
+            300.0
+          ],
+          [
+            66.5,
+            300.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          66.5,
+          292.5,
+          94.0,
+          300.0
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4:vl:12",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4",
+        "source": "paddleocr_vl",
+        "source_list_index": 12,
+        "model_block_id": 12,
+        "model_block_order": 13,
+        "label": "text",
+        "content": "1991 STS-1, STS-2/1992 STS-3, STS-4, STS-5/1993 STS-4, STS-2, STS-6, STS-9/1994 STS-4/1995 STS-4/C, STS-4/D, STS-4/G, STS-5/A, STS-11/B, STS-5/C, STS-6/D, STS-5/B, STS-5/G, STS-5/F, STS-5/H, STS-6/I, STS-6/J, STS-6/K, STS-6/L, STS-6/L, STS-6/M, STS-6/N, STS-6/O, STS-6/P, STS-6/Q, STS-6/R, STS-6/S, STS-6/S, STS-6/S,",
+        "bbox_image_pixels": [
+          131.0,
+          603.0,
+          415.0,
+          738.0
+        ],
+        "polygon_pdf_points": [
+          [
+            65.5,
+            301.5
+          ],
+          [
+            207.5,
+            301.5
+          ],
+          [
+            207.5,
+            369.0
+          ],
+          [
+            65.5,
+            369.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          65.5,
+          301.5,
+          207.5,
+          369.0
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4:vl:13",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4",
+        "source": "paddleocr_vl",
+        "source_list_index": 13,
+        "model_block_id": 13,
+        "model_block_order": null,
+        "label": "image",
+        "content": "Mercury Gemini Apollo Skylab Apollo/Soyuz Space Shuttle",
+        "bbox_image_pixels": [
+          471.0,
+          40.0,
+          1278.0,
+          761.0
+        ],
+        "polygon_pdf_points": [
+          [
+            235.5,
+            20.0
+          ],
+          [
+            639.0,
+            20.0
+          ],
+          [
+            639.0,
+            380.5
+          ],
+          [
+            235.5,
+            380.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          235.5,
+          20.0,
+          639.0,
+          380.5
+        ]
+      }
+    ],
+    "block_count": 14,
+    "character_count": 2068,
+    "input_image": {
+      "width": 1440,
+      "height": 810,
+      "color_order": "BGR",
+      "coordinate_system": "rendered_page_image_pixels"
+    },
+    "elapsed_seconds": 6386.271760799922,
+    "coordinate_status": "ok"
+  },
+  "review": {
+    "review_page_number": 1,
+    "status": "ok",
+    "drawn_count": 14,
+    "warnings": [],
+    "json_path": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/page_00004.json",
+    "path": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/review_vl.pdf"
+  },
+  "elapsed_seconds": 6386.691875600023
+}

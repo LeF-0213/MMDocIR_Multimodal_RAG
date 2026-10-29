@@ -1,0 +1,1914 @@
+{
+  "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40",
+  "id_origin": "project_generated",
+  "document_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2",
+  "document_name": "competitiveoutcomes-091006065143-phpapp01_95",
+  "page_number": 40,
+  "page_numbering": "pdf_viewer_1_based",
+  "page_index": 39,
+  "source_sha256": "964fc4748a7698dd5af398a714f97cf430ff93f8646b75021c43bfb392fae870",
+  "status": "ok",
+  "geometry": {
+    "coordinate_system": "pymupdf_unrotated_page_points",
+    "origin": "top_left_of_unrotated_page",
+    "unit": "point_1/72_inch",
+    "rotation_degrees": 0,
+    "mediabox": [
+      0.0,
+      0.0,
+      768.0,
+      576.0
+    ],
+    "cropbox": [
+      0.0,
+      0.0,
+      768.0,
+      576.0
+    ],
+    "rotated_page_rect": [
+      0.0,
+      0.0,
+      768.0,
+      576.0
+    ]
+  },
+  "native": {
+    "status": "empty",
+    "text": "",
+    "raw": {
+      "width": 768.0,
+      "height": 576.0,
+      "blocks": []
+    },
+    "extraction_flags": 195,
+    "sort": false
+  },
+  "images": {
+    "status": "ok",
+    "options": {
+      "hashes": true,
+      "xrefs": true
+    },
+    "digest_algorithm": "md5",
+    "digest_encoding": "hex",
+    "items": [
+      {
+        "number": 0,
+        "bbox": [
+          0.0,
+          0.0,
+          768.0,
+          576.0
+        ],
+        "transform": [
+          768.0,
+          0.0,
+          -0.0,
+          576.0,
+          0.0,
+          0.0
+        ],
+        "width": 1024,
+        "height": 768,
+        "colorspace": 3,
+        "cs-name": "DeviceRGB",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 133295,
+        "digest": "97740330b29e3e1aca0def80bf73920e",
+        "has-mask": false,
+        "xref": 121
+      }
+    ]
+  },
+  "render": {
+    "status": "ok",
+    "dpi": 144,
+    "width": 1536,
+    "height": 1152,
+    "coordinate_system": "rendered_page_image_pixels",
+    "origin": "top_left",
+    "unit": "pixel",
+    "render_color_order": "RGB",
+    "input_color_order": "BGR",
+    "annotation_included": true,
+    "pixmap_origin_pixels": [
+      0,
+      0
+    ],
+    "pixel_to_pdf_matrix": [
+      0.5,
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.0
+    ]
+  },
+  "page_image": {
+    "path": "documents/ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2/page_00040.png",
+    "sha256": "91d4316f40220a44547ce05fccbb1d9bbb03e5dfd6f66013687cd84280661e86"
+  },
+  "parsing": {
+    "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40",
+    "source": "pp_structure_v3",
+    "status": "ok",
+    "raw": {
+      "res": {
+        "input_path": null,
+        "page_index": null,
+        "page_count": null,
+        "width": 1536,
+        "height": 1152,
+        "model_settings": {
+          "use_doc_preprocessor": true,
+          "use_seal_recognition": false,
+          "use_table_recognition": true,
+          "use_formula_recognition": true,
+          "use_chart_recognition": true,
+          "use_region_detection": true,
+          "format_block_content": false,
+          "markdown_ignore_labels": []
+        },
+        "parsing_res_list": [
+          {
+            "block_label": "paragraph_title",
+            "block_content": "What about young phenoms and child prodigies?",
+            "block_bbox": [
+              87,
+              39,
+              1451,
+              104
+            ],
+            "block_id": 0,
+            "block_order": 1
+          },
+          {
+            "block_label": "image",
+            "block_content": "Bobby Fischer: International Chess Grand Master at 15\n",
+            "block_bbox": [
+              49,
+              115,
+              747,
+              575
+            ],
+            "block_id": 1,
+            "block_order": null
+          },
+          {
+            "block_label": "image",
+            "block_content": "The Beatles \n",
+            "block_bbox": [
+              50,
+              595,
+              497,
+              1139
+            ],
+            "block_id": 2,
+            "block_order": null
+          },
+          {
+            "block_label": "image",
+            "block_content": "Sports ted CHOSEN BASEBALL'S 34570HOMERUNS ONE 96BRYCEHARPER <FASTBALLS ByTOM VEROUCCI IS THE MOST EXCITING PRODIGY SINCELEBRON 16<YEARS OLD ",
+            "block_bbox": [
+              624,
+              648,
+              1033,
+              1127
+            ],
+            "block_id": 3,
+            "block_order": null
+          },
+          {
+            "block_label": "image",
+            "block_content": "Mozart: Child prodigy ",
+            "block_bbox": [
+              1150,
+              126,
+              1506,
+              637
+            ],
+            "block_id": 4,
+            "block_order": null
+          },
+          {
+            "block_label": "paragraph_title",
+            "block_content": "Bryce Harper:",
+            "block_bbox": [
+              1049,
+              795,
+              1268,
+              829
+            ],
+            "block_id": 5,
+            "block_order": 2
+          },
+          {
+            "block_label": "text",
+            "block_content": "• 16 yr. old baseball phenom • Longest distance home run ever hit at Tropicana Field • 570 ft home run during a high school game at age 15",
+            "block_bbox": [
+              1047,
+              837,
+              1497,
+              1061
+            ],
+            "block_id": 6,
+            "block_order": 3
+          }
+        ],
+        "doc_preprocessor_res": {
+          "input_path": null,
+          "page_index": null,
+          "model_settings": {
+            "use_doc_orientation_classify": false,
+            "use_doc_unwarping": false
+          },
+          "angle": -1
+        },
+        "layout_det_res": {
+          "input_path": null,
+          "page_index": null,
+          "boxes": [
+            {
+              "cls_id": 1,
+              "label": "image",
+              "score": 0.7957135438919067,
+              "coordinate": [
+                1150.9166259765625,
+                126.6605224609375,
+                1506.2064208984375,
+                637.2158203125
+              ]
+            },
+            {
+              "cls_id": 2,
+              "label": "text",
+              "score": 0.709624171257019,
+              "coordinate": [
+                1047.003662109375,
+                837.810302734375,
+                1497.0107421875,
+                1061.4744873046875
+              ]
+            },
+            {
+              "cls_id": 1,
+              "label": "image",
+              "score": 0.660582959651947,
+              "coordinate": [
+                49.698577880859375,
+                115.14569091796875,
+                747.4942626953125,
+                575.2040405273438
+              ]
+            },
+            {
+              "cls_id": 1,
+              "label": "image",
+              "score": 0.6395805478096008,
+              "coordinate": [
+                50.841278076171875,
+                595.3052978515625,
+                497.6107482910156,
+                1139.9552001953125
+              ]
+            },
+            {
+              "cls_id": 1,
+              "label": "image",
+              "score": 0.6220442056655884,
+              "coordinate": [
+                624.94873046875,
+                648.710205078125,
+                1033.31884765625,
+                1127.64404296875
+              ]
+            },
+            {
+              "cls_id": 0,
+              "label": "paragraph_title",
+              "score": 0.5635713934898376,
+              "coordinate": [
+                87.35223388671875,
+                39.57810974121094,
+                1451.355712890625,
+                104.73332214355469
+              ]
+            },
+            {
+              "cls_id": 0,
+              "label": "paragraph_title",
+              "score": 0.43615925312042236,
+              "coordinate": [
+                1049.442626953125,
+                795.4234619140625,
+                1268.160888671875,
+                829.8990478515625
+              ]
+            }
+          ]
+        },
+        "overall_ocr_res": {
+          "input_path": null,
+          "page_index": null,
+          "model_settings": {
+            "use_doc_preprocessor": false,
+            "use_textline_orientation": true
+          },
+          "dt_polys": [
+            [
+              [
+                82,
+                35
+              ],
+              [
+                1458,
+                37
+              ],
+              [
+                1458,
+                111
+              ],
+              [
+                82,
+                109
+              ]
+            ],
+            [
+              [
+                64,
+                119
+              ],
+              [
+                711,
+                119
+              ],
+              [
+                711,
+                156
+              ],
+              [
+                64,
+                156
+              ]
+            ],
+            [
+              [
+                63,
+                157
+              ],
+              [
+                265,
+                157
+              ],
+              [
+                265,
+                192
+              ],
+              [
+                63,
+                192
+              ]
+            ],
+            [
+              [
+                1163,
+                578
+              ],
+              [
+                1506,
+                581
+              ],
+              [
+                1506,
+                622
+              ],
+              [
+                1163,
+                619
+              ]
+            ],
+            [
+              [
+                142,
+                602
+              ],
+              [
+                325,
+                602
+              ],
+              [
+                325,
+                637
+              ],
+              [
+                142,
+                637
+              ]
+            ],
+            [
+              [
+                649,
+                652
+              ],
+              [
+                937,
+                654
+              ],
+              [
+                937,
+                709
+              ],
+              [
+                649,
+                707
+              ]
+            ],
+            [
+              [
+                882,
+                698
+              ],
+              [
+                1029,
+                698
+              ],
+              [
+                1029,
+                764
+              ],
+              [
+                882,
+                764
+              ]
+            ],
+            [
+              [
+                639,
+                768
+              ],
+              [
+                755,
+                768
+              ],
+              [
+                755,
+                792
+              ],
+              [
+                639,
+                792
+              ]
+            ],
+            [
+              [
+                920,
+                764
+              ],
+              [
+                1025,
+                764
+              ],
+              [
+                1025,
+                821
+              ],
+              [
+                920,
+                821
+              ]
+            ],
+            [
+              [
+                637,
+                788
+              ],
+              [
+                798,
+                788
+              ],
+              [
+                798,
+                841
+              ],
+              [
+                637,
+                841
+              ]
+            ],
+            [
+              [
+                1050,
+                793
+              ],
+              [
+                1267,
+                795
+              ],
+              [
+                1267,
+                833
+              ],
+              [
+                1050,
+                831
+              ]
+            ],
+            [
+              [
+                820,
+                805
+              ],
+              [
+                861,
+                805
+              ],
+              [
+                861,
+                834
+              ],
+              [
+                820,
+                834
+              ]
+            ],
+            [
+              [
+                920,
+                812
+              ],
+              [
+                1012,
+                812
+              ],
+              [
+                1012,
+                830
+              ],
+              [
+                920,
+                830
+              ]
+            ],
+            [
+              [
+                637,
+                834
+              ],
+              [
+                730,
+                834
+              ],
+              [
+                730,
+                888
+              ],
+              [
+                637,
+                888
+              ]
+            ],
+            [
+              [
+                920,
+                828
+              ],
+              [
+                1016,
+                828
+              ],
+              [
+                1016,
+                891
+              ],
+              [
+                920,
+                891
+              ]
+            ],
+            [
+              [
+                1049,
+                838
+              ],
+              [
+                1493,
+                838
+              ],
+              [
+                1493,
+                878
+              ],
+              [
+                1049,
+                878
+              ]
+            ],
+            [
+              [
+                641,
+                885
+              ],
+              [
+                750,
+                885
+              ],
+              [
+                750,
+                902
+              ],
+              [
+                641,
+                902
+              ]
+            ],
+            [
+              [
+                918,
+                887
+              ],
+              [
+                1011,
+                887
+              ],
+              [
+                1011,
+                908
+              ],
+              [
+                918,
+                908
+              ]
+            ],
+            [
+              [
+                1052,
+                886
+              ],
+              [
+                1495,
+                886
+              ],
+              [
+                1495,
+                923
+              ],
+              [
+                1052,
+                923
+              ]
+            ],
+            [
+              [
+                640,
+                901
+              ],
+              [
+                731,
+                901
+              ],
+              [
+                731,
+                918
+              ],
+              [
+                640,
+                918
+              ]
+            ],
+            [
+              [
+                918,
+                904
+              ],
+              [
+                1018,
+                904
+              ],
+              [
+                1018,
+                990
+              ],
+              [
+                918,
+                990
+              ]
+            ],
+            [
+              [
+                640,
+                917
+              ],
+              [
+                774,
+                917
+              ],
+              [
+                774,
+                934
+              ],
+              [
+                640,
+                934
+              ]
+            ],
+            [
+              [
+                640,
+                933
+              ],
+              [
+                743,
+                933
+              ],
+              [
+                743,
+                950
+              ],
+              [
+                640,
+                950
+              ]
+            ],
+            [
+              [
+                1068,
+                931
+              ],
+              [
+                1477,
+                931
+              ],
+              [
+                1477,
+                971
+              ],
+              [
+                1068,
+                971
+              ]
+            ],
+            [
+              [
+                639,
+                950
+              ],
+              [
+                727,
+                950
+              ],
+              [
+                727,
+                964
+              ],
+              [
+                639,
+                964
+              ]
+            ],
+            [
+              [
+                1051,
+                976
+              ],
+              [
+                1463,
+                979
+              ],
+              [
+                1463,
+                1017
+              ],
+              [
+                1051,
+                1014
+              ]
+            ],
+            [
+              [
+                920,
+                986
+              ],
+              [
+                1012,
+                986
+              ],
+              [
+                1012,
+                1007
+              ],
+              [
+                920,
+                1007
+              ]
+            ],
+            [
+              [
+                1069,
+                1023
+              ],
+              [
+                1497,
+                1023
+              ],
+              [
+                1497,
+                1063
+              ],
+              [
+                1069,
+                1063
+              ]
+            ]
+          ],
+          "text_det_params": {
+            "limit_side_len": 736,
+            "limit_type": "min",
+            "thresh": 0.3,
+            "max_side_limit": 4000,
+            "box_thresh": 0.6,
+            "unclip_ratio": 1.5
+          },
+          "text_type": "general",
+          "textline_orientation_angles": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "text_rec_score_thresh": 0.0,
+          "return_word_box": false,
+          "rec_texts": [
+            "What about young phenoms and child prodigies?",
+            "Bobby Fischer: International Chess Grand",
+            "Master at 15",
+            "Mozart: Child prodigy",
+            "The Beatles",
+            "Sports",
+            "ted",
+            "BASEBALL'S",
+            "570",
+            "CHOSEN",
+            "Bryce Harper:",
+            "34",
+            "HOMERUNS",
+            "ONE",
+            "96",
+            "• 16 yr. old baseball phenom",
+            "BRYCEHARPER",
+            "<FASTBALLS",
+            "• Longest distance home run",
+            "IS THE MOST",
+            "16",
+            "EXCITING PRODIGY",
+            "SINCELEBRON",
+            "ever hit at Tropicana Field",
+            "ByTOM VEROUCCI",
+            "• 570 ft home run during a",
+            "<YEARS OLD",
+            "high school game at age 15"
+          ],
+          "rec_scores": [
+            0.9928460121154785,
+            0.9998832941055298,
+            0.9999418258666992,
+            0.9948028326034546,
+            0.9999951720237732,
+            0.9977359771728516,
+            0.9988584518432617,
+            0.999545693397522,
+            0.9709434509277344,
+            0.999984085559845,
+            0.9999914765357971,
+            0.9999896287918091,
+            0.9999656677246094,
+            0.999841034412384,
+            0.9999819397926331,
+            0.998540461063385,
+            0.9999874234199524,
+            0.9621545076370239,
+            0.9995009899139404,
+            0.9195932149887085,
+            0.9999824166297913,
+            0.9700780510902405,
+            0.9999622106552124,
+            0.9999892711639404,
+            0.9479261040687561,
+            0.9994779229164124,
+            0.9563601613044739,
+            0.992766797542572
+          ],
+          "rec_polys": [
+            [
+              [
+                82,
+                35
+              ],
+              [
+                1458,
+                37
+              ],
+              [
+                1458,
+                111
+              ],
+              [
+                82,
+                109
+              ]
+            ],
+            [
+              [
+                64,
+                119
+              ],
+              [
+                711,
+                119
+              ],
+              [
+                711,
+                156
+              ],
+              [
+                64,
+                156
+              ]
+            ],
+            [
+              [
+                63,
+                157
+              ],
+              [
+                265,
+                157
+              ],
+              [
+                265,
+                192
+              ],
+              [
+                63,
+                192
+              ]
+            ],
+            [
+              [
+                1163,
+                578
+              ],
+              [
+                1506,
+                581
+              ],
+              [
+                1506,
+                622
+              ],
+              [
+                1163,
+                619
+              ]
+            ],
+            [
+              [
+                142,
+                602
+              ],
+              [
+                325,
+                602
+              ],
+              [
+                325,
+                637
+              ],
+              [
+                142,
+                637
+              ]
+            ],
+            [
+              [
+                649,
+                652
+              ],
+              [
+                937,
+                654
+              ],
+              [
+                937,
+                709
+              ],
+              [
+                649,
+                707
+              ]
+            ],
+            [
+              [
+                882,
+                698
+              ],
+              [
+                1029,
+                698
+              ],
+              [
+                1029,
+                764
+              ],
+              [
+                882,
+                764
+              ]
+            ],
+            [
+              [
+                639,
+                768
+              ],
+              [
+                755,
+                768
+              ],
+              [
+                755,
+                792
+              ],
+              [
+                639,
+                792
+              ]
+            ],
+            [
+              [
+                920,
+                764
+              ],
+              [
+                1025,
+                764
+              ],
+              [
+                1025,
+                821
+              ],
+              [
+                920,
+                821
+              ]
+            ],
+            [
+              [
+                637,
+                788
+              ],
+              [
+                798,
+                788
+              ],
+              [
+                798,
+                841
+              ],
+              [
+                637,
+                841
+              ]
+            ],
+            [
+              [
+                1050,
+                793
+              ],
+              [
+                1267,
+                795
+              ],
+              [
+                1267,
+                833
+              ],
+              [
+                1050,
+                831
+              ]
+            ],
+            [
+              [
+                820,
+                805
+              ],
+              [
+                861,
+                805
+              ],
+              [
+                861,
+                834
+              ],
+              [
+                820,
+                834
+              ]
+            ],
+            [
+              [
+                920,
+                812
+              ],
+              [
+                1012,
+                812
+              ],
+              [
+                1012,
+                830
+              ],
+              [
+                920,
+                830
+              ]
+            ],
+            [
+              [
+                637,
+                834
+              ],
+              [
+                730,
+                834
+              ],
+              [
+                730,
+                888
+              ],
+              [
+                637,
+                888
+              ]
+            ],
+            [
+              [
+                920,
+                828
+              ],
+              [
+                1016,
+                828
+              ],
+              [
+                1016,
+                891
+              ],
+              [
+                920,
+                891
+              ]
+            ],
+            [
+              [
+                1049,
+                838
+              ],
+              [
+                1493,
+                838
+              ],
+              [
+                1493,
+                878
+              ],
+              [
+                1049,
+                878
+              ]
+            ],
+            [
+              [
+                641,
+                885
+              ],
+              [
+                750,
+                885
+              ],
+              [
+                750,
+                902
+              ],
+              [
+                641,
+                902
+              ]
+            ],
+            [
+              [
+                918,
+                887
+              ],
+              [
+                1011,
+                887
+              ],
+              [
+                1011,
+                908
+              ],
+              [
+                918,
+                908
+              ]
+            ],
+            [
+              [
+                1052,
+                886
+              ],
+              [
+                1495,
+                886
+              ],
+              [
+                1495,
+                923
+              ],
+              [
+                1052,
+                923
+              ]
+            ],
+            [
+              [
+                640,
+                901
+              ],
+              [
+                731,
+                901
+              ],
+              [
+                731,
+                918
+              ],
+              [
+                640,
+                918
+              ]
+            ],
+            [
+              [
+                918,
+                904
+              ],
+              [
+                1018,
+                904
+              ],
+              [
+                1018,
+                990
+              ],
+              [
+                918,
+                990
+              ]
+            ],
+            [
+              [
+                640,
+                917
+              ],
+              [
+                774,
+                917
+              ],
+              [
+                774,
+                934
+              ],
+              [
+                640,
+                934
+              ]
+            ],
+            [
+              [
+                640,
+                933
+              ],
+              [
+                743,
+                933
+              ],
+              [
+                743,
+                950
+              ],
+              [
+                640,
+                950
+              ]
+            ],
+            [
+              [
+                1068,
+                931
+              ],
+              [
+                1477,
+                931
+              ],
+              [
+                1477,
+                971
+              ],
+              [
+                1068,
+                971
+              ]
+            ],
+            [
+              [
+                639,
+                950
+              ],
+              [
+                727,
+                950
+              ],
+              [
+                727,
+                964
+              ],
+              [
+                639,
+                964
+              ]
+            ],
+            [
+              [
+                1051,
+                976
+              ],
+              [
+                1463,
+                979
+              ],
+              [
+                1463,
+                1017
+              ],
+              [
+                1051,
+                1014
+              ]
+            ],
+            [
+              [
+                920,
+                986
+              ],
+              [
+                1012,
+                986
+              ],
+              [
+                1012,
+                1007
+              ],
+              [
+                920,
+                1007
+              ]
+            ],
+            [
+              [
+                1069,
+                1023
+              ],
+              [
+                1497,
+                1023
+              ],
+              [
+                1497,
+                1063
+              ],
+              [
+                1069,
+                1063
+              ]
+            ]
+          ],
+          "rec_boxes": [
+            [
+              82,
+              35,
+              1458,
+              111
+            ],
+            [
+              64,
+              119,
+              711,
+              156
+            ],
+            [
+              63,
+              157,
+              265,
+              192
+            ],
+            [
+              1163,
+              578,
+              1506,
+              622
+            ],
+            [
+              142,
+              602,
+              325,
+              637
+            ],
+            [
+              649,
+              652,
+              937,
+              709
+            ],
+            [
+              882,
+              698,
+              1029,
+              764
+            ],
+            [
+              639,
+              768,
+              755,
+              792
+            ],
+            [
+              920,
+              764,
+              1025,
+              821
+            ],
+            [
+              637,
+              788,
+              798,
+              841
+            ],
+            [
+              1050,
+              793,
+              1267,
+              833
+            ],
+            [
+              820,
+              805,
+              861,
+              834
+            ],
+            [
+              920,
+              812,
+              1012,
+              830
+            ],
+            [
+              637,
+              834,
+              730,
+              888
+            ],
+            [
+              920,
+              828,
+              1016,
+              891
+            ],
+            [
+              1049,
+              838,
+              1493,
+              878
+            ],
+            [
+              641,
+              885,
+              750,
+              902
+            ],
+            [
+              918,
+              887,
+              1011,
+              908
+            ],
+            [
+              1052,
+              886,
+              1495,
+              923
+            ],
+            [
+              640,
+              901,
+              731,
+              918
+            ],
+            [
+              918,
+              904,
+              1018,
+              990
+            ],
+            [
+              640,
+              917,
+              774,
+              934
+            ],
+            [
+              640,
+              933,
+              743,
+              950
+            ],
+            [
+              1068,
+              931,
+              1477,
+              971
+            ],
+            [
+              639,
+              950,
+              727,
+              964
+            ],
+            [
+              1051,
+              976,
+              1463,
+              1017
+            ],
+            [
+              920,
+              986,
+              1012,
+              1007
+            ],
+            [
+              1069,
+              1023,
+              1497,
+              1063
+            ]
+          ]
+        }
+      }
+    },
+    "blocks": [
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40:structure:0",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40",
+        "source": "pp_structure_v3",
+        "source_list_index": 0,
+        "model_block_id": 0,
+        "model_block_order": 1,
+        "label": "paragraph_title",
+        "content": "What about young phenoms and child prodigies?",
+        "bbox_image_pixels": [
+          87.0,
+          39.0,
+          1451.0,
+          104.0
+        ],
+        "polygon_pdf_points": [
+          [
+            43.5,
+            19.5
+          ],
+          [
+            725.5,
+            19.5
+          ],
+          [
+            725.5,
+            52.0
+          ],
+          [
+            43.5,
+            52.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          43.5,
+          19.5,
+          725.5,
+          52.0
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40:structure:1",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40",
+        "source": "pp_structure_v3",
+        "source_list_index": 1,
+        "model_block_id": 1,
+        "model_block_order": null,
+        "label": "image",
+        "content": "Bobby Fischer: International Chess Grand Master at 15\n",
+        "bbox_image_pixels": [
+          49.0,
+          115.0,
+          747.0,
+          575.0
+        ],
+        "polygon_pdf_points": [
+          [
+            24.5,
+            57.5
+          ],
+          [
+            373.5,
+            57.5
+          ],
+          [
+            373.5,
+            287.5
+          ],
+          [
+            24.5,
+            287.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          24.5,
+          57.5,
+          373.5,
+          287.5
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40:structure:2",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40",
+        "source": "pp_structure_v3",
+        "source_list_index": 2,
+        "model_block_id": 2,
+        "model_block_order": null,
+        "label": "image",
+        "content": "The Beatles \n",
+        "bbox_image_pixels": [
+          50.0,
+          595.0,
+          497.0,
+          1139.0
+        ],
+        "polygon_pdf_points": [
+          [
+            25.0,
+            297.5
+          ],
+          [
+            248.5,
+            297.5
+          ],
+          [
+            248.5,
+            569.5
+          ],
+          [
+            25.0,
+            569.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          25.0,
+          297.5,
+          248.5,
+          569.5
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40:structure:3",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40",
+        "source": "pp_structure_v3",
+        "source_list_index": 3,
+        "model_block_id": 3,
+        "model_block_order": null,
+        "label": "image",
+        "content": "Sports ted CHOSEN BASEBALL'S 34570HOMERUNS ONE 96BRYCEHARPER <FASTBALLS ByTOM VEROUCCI IS THE MOST EXCITING PRODIGY SINCELEBRON 16<YEARS OLD ",
+        "bbox_image_pixels": [
+          624.0,
+          648.0,
+          1033.0,
+          1127.0
+        ],
+        "polygon_pdf_points": [
+          [
+            312.0,
+            324.0
+          ],
+          [
+            516.5,
+            324.0
+          ],
+          [
+            516.5,
+            563.5
+          ],
+          [
+            312.0,
+            563.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          312.0,
+          324.0,
+          516.5,
+          563.5
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40:structure:4",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40",
+        "source": "pp_structure_v3",
+        "source_list_index": 4,
+        "model_block_id": 4,
+        "model_block_order": null,
+        "label": "image",
+        "content": "Mozart: Child prodigy ",
+        "bbox_image_pixels": [
+          1150.0,
+          126.0,
+          1506.0,
+          637.0
+        ],
+        "polygon_pdf_points": [
+          [
+            575.0,
+            63.0
+          ],
+          [
+            753.0,
+            63.0
+          ],
+          [
+            753.0,
+            318.5
+          ],
+          [
+            575.0,
+            318.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          575.0,
+          63.0,
+          753.0,
+          318.5
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40:structure:5",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40",
+        "source": "pp_structure_v3",
+        "source_list_index": 5,
+        "model_block_id": 5,
+        "model_block_order": 2,
+        "label": "paragraph_title",
+        "content": "Bryce Harper:",
+        "bbox_image_pixels": [
+          1049.0,
+          795.0,
+          1268.0,
+          829.0
+        ],
+        "polygon_pdf_points": [
+          [
+            524.5,
+            397.5
+          ],
+          [
+            634.0,
+            397.5
+          ],
+          [
+            634.0,
+            414.5
+          ],
+          [
+            524.5,
+            414.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          524.5,
+          397.5,
+          634.0,
+          414.5
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40:structure:6",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40",
+        "source": "pp_structure_v3",
+        "source_list_index": 6,
+        "model_block_id": 6,
+        "model_block_order": 3,
+        "label": "text",
+        "content": "• 16 yr. old baseball phenom • Longest distance home run ever hit at Tropicana Field • 570 ft home run during a high school game at age 15",
+        "bbox_image_pixels": [
+          1047.0,
+          837.0,
+          1497.0,
+          1061.0
+        ],
+        "polygon_pdf_points": [
+          [
+            523.5,
+            418.5
+          ],
+          [
+            748.5,
+            418.5
+          ],
+          [
+            748.5,
+            530.5
+          ],
+          [
+            523.5,
+            530.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          523.5,
+          418.5,
+          748.5,
+          530.5
+        ]
+      }
+    ],
+    "block_count": 7,
+    "character_count": 421,
+    "input_image": {
+      "width": 1536,
+      "height": 1152,
+      "color_order": "BGR",
+      "coordinate_system": "rendered_page_image_pixels"
+    },
+    "elapsed_seconds": 78.08876749989577,
+    "coordinate_status": "ok"
+  },
+  "review": {
+    "review_page_number": 3,
+    "status": "ok",
+    "drawn_count": 7,
+    "warnings": [],
+    "json_path": "documents/ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2/page_00040.json",
+    "path": "documents/ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2/review_structure.pdf"
+  },
+  "elapsed_seconds": 78.53860749979503
+}

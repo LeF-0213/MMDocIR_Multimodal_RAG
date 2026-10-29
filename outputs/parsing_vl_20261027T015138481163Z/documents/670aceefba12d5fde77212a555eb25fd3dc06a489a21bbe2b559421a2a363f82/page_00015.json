@@ -1,0 +1,299 @@
+{
+  "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p15",
+  "id_origin": "project_generated",
+  "document_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82",
+  "document_name": "0e94b4197b10096b1f4c699701570fbf",
+  "page_number": 15,
+  "page_numbering": "pdf_viewer_1_based",
+  "page_index": 14,
+  "source_sha256": "13ff22623b747d1facbb405369001c6d3793322b24a56365bb8cef89db2f903e",
+  "status": "ok",
+  "geometry": {
+    "coordinate_system": "pymupdf_unrotated_page_points",
+    "origin": "top_left_of_unrotated_page",
+    "unit": "point_1/72_inch",
+    "rotation_degrees": 0,
+    "mediabox": [
+      0.0,
+      0.0,
+      720.0,
+      405.0
+    ],
+    "cropbox": [
+      0.0,
+      0.0,
+      720.0,
+      405.0
+    ],
+    "rotated_page_rect": [
+      0.0,
+      0.0,
+      720.0,
+      405.0
+    ]
+  },
+  "native": {
+    "status": "empty",
+    "text": "",
+    "raw": {
+      "width": 720.0,
+      "height": 405.0,
+      "blocks": []
+    },
+    "extraction_flags": 195,
+    "sort": false
+  },
+  "images": {
+    "status": "ok",
+    "options": {
+      "hashes": true,
+      "xrefs": true
+    },
+    "digest_algorithm": "md5",
+    "digest_encoding": "hex",
+    "items": [
+      {
+        "number": 0,
+        "bbox": [
+          177.84251403808594,
+          11.059051513671875,
+          542.1574096679688,
+          393.94091796875
+        ],
+        "transform": [
+          364.3149108886719,
+          0.0,
+          -0.0,
+          382.8818664550781,
+          177.84251403808594,
+          11.059051513671875
+        ],
+        "width": 569,
+        "height": 598,
+        "colorspace": 3,
+        "cs-name": "DeviceRGB",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 86262,
+        "digest": "3d98fad1d87440aab51621d610423f18",
+        "has-mask": false,
+        "xref": 102
+      }
+    ]
+  },
+  "render": {
+    "status": "ok",
+    "dpi": 144,
+    "width": 1440,
+    "height": 810,
+    "coordinate_system": "rendered_page_image_pixels",
+    "origin": "top_left",
+    "unit": "pixel",
+    "render_color_order": "RGB",
+    "input_color_order": "BGR",
+    "annotation_included": true,
+    "pixmap_origin_pixels": [
+      0,
+      0
+    ],
+    "pixel_to_pdf_matrix": [
+      0.5,
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.0
+    ]
+  },
+  "page_image": {
+    "path": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/page_00015.png",
+    "sha256": "eaf93ed09f1feb4791ee2876b94cd69a3ae39dcb2279fad55813b19f4454c03f"
+  },
+  "parsing": {
+    "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p15",
+    "source": "paddleocr_vl",
+    "status": "ok",
+    "raw": {
+      "res": {
+        "input_path": null,
+        "page_index": null,
+        "page_count": null,
+        "width": 1440,
+        "height": 810,
+        "model_settings": {
+          "use_doc_preprocessor": false,
+          "use_layout_detection": true,
+          "use_chart_recognition": true,
+          "use_seal_recognition": false,
+          "use_ocr_for_image_block": true,
+          "format_block_content": false,
+          "merge_layout_blocks": true,
+          "markdown_ignore_labels": [],
+          "return_layout_polygon_points": false
+        },
+        "parsing_res_list": [
+          {
+            "block_label": "figure_title",
+            "block_content": "Export von Bananen in Tonnen von 1994-2005",
+            "block_bbox": [
+              464,
+              22,
+              967,
+              52
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0
+          },
+          {
+            "block_label": "chart",
+            "block_content": "Country | 1994 | 1995 | 1996 | 1997 | 1998 | 1999 | 2000 | 2001 | 2002 | 2003 | 2004 | 2005\nEcuador | 3100000 | 3900000 | 4100000 | 4800000 | 4400000 | 4500000 | 4600000 | 4700000 | 4800000 | 4900000 | 4700000 | 4600000\nPhilippinen | 1100000 | 1300000 | 1400000 | 1500000 | 1600000 | 1700000 | 1800000 | 1900000 | 2000000 | 2100000 | 2200000 | 2300000\nCosta Rica | 1700000 | 1900000 | 2000000 | 2100000 | 2200000 | 2300000 | 2400000 | 2500000 | 2600000 | 2700000 | 2800000 | 2900000\nKolumbien | 1500000 | 1600000 | 1700000 | 1800000 | 1900000 | 2000000 | 2100000 | 2200000 | 2300000 | 2400000 | 2500000 | 2600000\nGuatemala | 1000000 | 1100000 | 1200000 | 1300000 | 1400000 | 1500000 | 1600000 | 1700000 | 1800000 | 1900000 | 2000000 | 2100000\nBelg./Lux.bg. | 800000 | 900000 | 1000000 | 1100000 | 1200000 | 1300000 | 1400000 | 1500000 | 1600000 | 1700000 | 1800000 | 1900000\nHonduras | 600000 | 700000 | 800000 | 900000 | 1000000 | 1100000 | 1200000 | 1300000 | 1400000 | 1500000 | 1600000 | 1700000\nUSA | 400000 | 500000 | 600000 | 700000 | 800000 | 900000 | 1000000 | 1100000 | 1200000 | 1300000 | 1400000 | 1500000\nVer. Arab. Emir. | 200000 | 300000 | 400000 | 500000 | 600000 | 700000 | 800000 | 900000 | 1000000 | 1100000 | 1200000 | 1300000\nPanama | 200000 | 300000 | 400000 | 500000 | 600000 | 700000 | 800000 | 900000 | 1000000 | 1100000 | 1200000 | 1300000\nKamerun | 100000 | 150000 | 200000 | 250000 | 300000 | 350000 | 400000 | 450000 | 500000 | 550000 | 600000 | 650000",
+            "block_bbox": [
+              362,
+              38,
+              1082,
+              777
+            ],
+            "block_id": 1,
+            "block_order": null,
+            "group_id": 1
+          }
+        ],
+        "layout_det_res": {
+          "input_path": null,
+          "page_index": null,
+          "boxes": [
+            {
+              "cls_id": 7,
+              "label": "figure_title",
+              "score": 0.48845723271369934,
+              "coordinate": [
+                464,
+                22,
+                967,
+                52
+              ],
+              "order": null
+            },
+            {
+              "cls_id": 3,
+              "label": "chart",
+              "score": 0.8423134684562683,
+              "coordinate": [
+                362,
+                38,
+                1082,
+                777
+              ],
+              "order": null
+            }
+          ]
+        }
+      }
+    },
+    "blocks": [
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p15:vl:0",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p15",
+        "source": "paddleocr_vl",
+        "source_list_index": 0,
+        "model_block_id": 0,
+        "model_block_order": null,
+        "label": "figure_title",
+        "content": "Export von Bananen in Tonnen von 1994-2005",
+        "bbox_image_pixels": [
+          464.0,
+          22.0,
+          967.0,
+          52.0
+        ],
+        "polygon_pdf_points": [
+          [
+            232.0,
+            11.0
+          ],
+          [
+            483.5,
+            11.0
+          ],
+          [
+            483.5,
+            26.0
+          ],
+          [
+            232.0,
+            26.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          232.0,
+          11.0,
+          483.5,
+          26.0
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p15:vl:1",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p15",
+        "source": "paddleocr_vl",
+        "source_list_index": 1,
+        "model_block_id": 1,
+        "model_block_order": null,
+        "label": "chart",
+        "content": "Country | 1994 | 1995 | 1996 | 1997 | 1998 | 1999 | 2000 | 2001 | 2002 | 2003 | 2004 | 2005\nEcuador | 3100000 | 3900000 | 4100000 | 4800000 | 4400000 | 4500000 | 4600000 | 4700000 | 4800000 | 4900000 | 4700000 | 4600000\nPhilippinen | 1100000 | 1300000 | 1400000 | 1500000 | 1600000 | 1700000 | 1800000 | 1900000 | 2000000 | 2100000 | 2200000 | 2300000\nCosta Rica | 1700000 | 1900000 | 2000000 | 2100000 | 2200000 | 2300000 | 2400000 | 2500000 | 2600000 | 2700000 | 2800000 | 2900000\nKolumbien | 1500000 | 1600000 | 1700000 | 1800000 | 1900000 | 2000000 | 2100000 | 2200000 | 2300000 | 2400000 | 2500000 | 2600000\nGuatemala | 1000000 | 1100000 | 1200000 | 1300000 | 1400000 | 1500000 | 1600000 | 1700000 | 1800000 | 1900000 | 2000000 | 2100000\nBelg./Lux.bg. | 800000 | 900000 | 1000000 | 1100000 | 1200000 | 1300000 | 1400000 | 1500000 | 1600000 | 1700000 | 1800000 | 1900000\nHonduras | 600000 | 700000 | 800000 | 900000 | 1000000 | 1100000 | 1200000 | 1300000 | 1400000 | 1500000 | 1600000 | 1700000\nUSA | 400000 | 500000 | 600000 | 700000 | 800000 | 900000 | 1000000 | 1100000 | 1200000 | 1300000 | 1400000 | 1500000\nVer. Arab. Emir. | 200000 | 300000 | 400000 | 500000 | 600000 | 700000 | 800000 | 900000 | 1000000 | 1100000 | 1200000 | 1300000\nPanama | 200000 | 300000 | 400000 | 500000 | 600000 | 700000 | 800000 | 900000 | 1000000 | 1100000 | 1200000 | 1300000\nKamerun | 100000 | 150000 | 200000 | 250000 | 300000 | 350000 | 400000 | 450000 | 500000 | 550000 | 600000 | 650000",
+        "bbox_image_pixels": [
+          362.0,
+          38.0,
+          1082.0,
+          777.0
+        ],
+        "polygon_pdf_points": [
+          [
+            181.0,
+            19.0
+          ],
+          [
+            541.0,
+            19.0
+          ],
+          [
+            541.0,
+            388.5
+          ],
+          [
+            181.0,
+            388.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          181.0,
+          19.0,
+          541.0,
+          388.5
+        ]
+      }
+    ],
+    "block_count": 2,
+    "character_count": 1523,
+    "input_image": {
+      "width": 1440,
+      "height": 810,
+      "color_order": "BGR",
+      "coordinate_system": "rendered_page_image_pixels"
+    },
+    "elapsed_seconds": 1402.9956365998369,
+    "coordinate_status": "ok"
+  },
+  "review": {
+    "review_page_number": 5,
+    "status": "ok",
+    "drawn_count": 2,
+    "warnings": [],
+    "json_path": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/page_00015.json",
+    "path": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/review_vl.pdf"
+  },
+  "elapsed_seconds": 1403.2113143000752
+}

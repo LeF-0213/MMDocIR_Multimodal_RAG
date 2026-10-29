@@ -1,0 +1,3045 @@
+{
+  "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+  "id_origin": "project_generated",
+  "document_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a",
+  "document_name": "NUS-Business-School-BBA-Brochure-2024",
+  "page_number": 22,
+  "page_numbering": "pdf_viewer_1_based",
+  "page_index": 21,
+  "source_sha256": "482a559e9e2cae5a831c11565786ac274d67e0f5b1096927e7fdf1c25152358e",
+  "status": "ok",
+  "geometry": {
+    "coordinate_system": "pymupdf_unrotated_page_points",
+    "origin": "top_left_of_unrotated_page",
+    "unit": "point_1/72_inch",
+    "rotation_degrees": 0,
+    "mediabox": [
+      0.0,
+      0.0,
+      496.06298828125,
+      666.1420288085938
+    ],
+    "cropbox": [
+      0.0,
+      0.0,
+      496.06298828125,
+      666.1420288085938
+    ],
+    "rotated_page_rect": [
+      0.0,
+      0.0,
+      496.06298828125,
+      666.1420288085938
+    ]
+  },
+  "native": {
+    "status": "ok",
+    "text": "Get a taste of entrepreneurship at NUS Business \nSchool, where you get to take center stage in \none of our newer majors. Equip yourself with \nexpansive theoretical insights, empowering you to \nlead change effectively—whether you’re venturing \ninto an entrepreneurial startup or navigating the \nlandscape of a large multinational corporation. \nPrevious batches of students, who were just like \nyou, have already launched successful businesses in \nSingapore, with names like Carousell, Playmoolah, \nand Moovaz making an impact.\nFlip to Page 10, and you will discover the NUS \nOverseas Colleges (NOC) programme, aimed to \ncultivate your entrepreneurial spirit. Immerse \nyourself in this transformative experience — \nintern in a technology-based startup, while \nconcurrently pursuing part-time courses at \nreputable universities. It’s your opportunity to \nshape your entrepreneurial journey and make an \nimpact on a global scale.\nBryan and his colleagues \nfrom DNV ReWind gathering \nover a meal\nBryan and his team attending EoLIS 2023 \nConference @ Rotterdam, Netherlands\nHow has your experience in NOC been so far? \nAnd how has it impacted you?\nIt is difficult to understate how enriching and \ninstructive NOC has been with professional \nand personal impacts. With the former being \nto look beyond the usual fields most business \nstudents consider when job seeking (e.g., \nfinance, marketing, consulting) while the \nlatter being a future outside of Singapore; a \npossibility I would not have entertained if it \nwas not for NOC Norway.\n \nDo you have any advice for your juniors \napplying to NUS Business School and NOC?\nKeep an open mind and remember that some \nof the most valuable sources of learning \nhappens outside of the classrooms with \nprogrammes such as NOC which will do \nnothing but enrich your NUS experience.\nBRYAN VOON, Year 4 Business \nStudent who went for NOC, \nNorway.\nBE AN ENTREPRENEUR\n20",
+    "raw": {
+      "width": 496.06298828125,
+      "height": 666.1420288085938,
+      "blocks": [
+        {
+          "type": 0,
+          "number": 0,
+          "flags": 0,
+          "bbox": [
+            34.01570129394531,
+            101.7999038696289,
+            247.18067932128906,
+            227.48504638671875
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "Get a taste of entrepreneurship at NUS Business ",
+                  "origin": [
+                    34.01570129394531,
+                    110.21490478515625
+                  ],
+                  "bbox": [
+                    34.01570129394531,
+                    101.7999038696289,
+                    234.6976776123047,
+                    112.46490478515625
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                34.01570129394531,
+                101.7999038696289,
+                234.6976776123047,
+                112.46490478515625
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "School, where you get to take center stage in ",
+                  "origin": [
+                    34.01570129394531,
+                    121.7169189453125
+                  ],
+                  "bbox": [
+                    34.01570129394531,
+                    113.30191802978516,
+                    225.1189727783203,
+                    123.9669189453125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                34.01570129394531,
+                113.30191802978516,
+                225.1189727783203,
+                123.9669189453125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "one of our newer majors. Equip yourself with ",
+                  "origin": [
+                    34.01570129394531,
+                    133.21893310546875
+                  ],
+                  "bbox": [
+                    34.01570129394531,
+                    124.8039321899414,
+                    224.95066833496094,
+                    135.46893310546875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                34.01570129394531,
+                124.8039321899414,
+                224.95066833496094,
+                135.46893310546875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "expansive theoretical insights, empowering you to ",
+                  "origin": [
+                    34.01570129394531,
+                    144.720947265625
+                  ],
+                  "bbox": [
+                    34.01570129394531,
+                    136.3059539794922,
+                    245.00267028808594,
+                    146.970947265625
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                34.01570129394531,
+                136.3059539794922,
+                245.00267028808594,
+                146.970947265625
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "lead change effectively—whether you’re venturing ",
+                  "origin": [
+                    34.01570129394531,
+                    156.22296142578125
+                  ],
+                  "bbox": [
+                    34.01570129394531,
+                    147.80796813964844,
+                    247.18067932128906,
+                    158.47296142578125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                34.01570129394531,
+                147.80796813964844,
+                247.18067932128906,
+                158.47296142578125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "into an entrepreneurial startup or navigating the ",
+                  "origin": [
+                    34.01570129394531,
+                    167.7249755859375
+                  ],
+                  "bbox": [
+                    34.01570129394531,
+                    159.3099822998047,
+                    240.26866149902344,
+                    169.9749755859375
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                34.01570129394531,
+                159.3099822998047,
+                240.26866149902344,
+                169.9749755859375
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "landscape of a large multinational corporation. ",
+                  "origin": [
+                    34.01570129394531,
+                    179.22698974609375
+                  ],
+                  "bbox": [
+                    34.01570129394531,
+                    170.81199645996094,
+                    232.18667602539062,
+                    181.47698974609375
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                34.01570129394531,
+                170.81199645996094,
+                232.18667602539062,
+                181.47698974609375
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "Previous batches of students, who were just like ",
+                  "origin": [
+                    34.01570129394531,
+                    190.72900390625
+                  ],
+                  "bbox": [
+                    34.01570129394531,
+                    182.3140106201172,
+                    235.10269165039062,
+                    192.97900390625
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                34.01570129394531,
+                182.3140106201172,
+                235.10269165039062,
+                192.97900390625
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "you, have already launched successful businesses in ",
+                  "origin": [
+                    34.01570129394531,
+                    202.23101806640625
+                  ],
+                  "bbox": [
+                    34.01570129394531,
+                    193.81602478027344,
+                    245.4140625,
+                    204.48101806640625
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                34.01570129394531,
+                193.81602478027344,
+                245.4140625,
+                204.48101806640625
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "Singapore, with names like Carousell, Playmoolah, ",
+                  "origin": [
+                    34.01570129394531,
+                    213.7330322265625
+                  ],
+                  "bbox": [
+                    34.01570129394531,
+                    205.3180389404297,
+                    235.88565063476562,
+                    215.9830322265625
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                34.01570129394531,
+                205.3180389404297,
+                235.88565063476562,
+                215.9830322265625
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "and Moovaz making an impact.",
+                  "origin": [
+                    34.01570129394531,
+                    225.23504638671875
+                  ],
+                  "bbox": [
+                    34.01570129394531,
+                    216.82005310058594,
+                    160.2587127685547,
+                    227.48504638671875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                34.01570129394531,
+                216.82005310058594,
+                160.2587127685547,
+                227.48504638671875
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 1,
+          "flags": 0,
+          "bbox": [
+            254.031494140625,
+            101.83475494384766,
+            460.0595397949219,
+            204.515869140625
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "Flip to Page 10, and you will discover the NUS ",
+                  "origin": [
+                    254.031494140625,
+                    110.249755859375
+                  ],
+                  "bbox": [
+                    254.031494140625,
+                    101.83475494384766,
+                    446.2984619140625,
+                    112.499755859375
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                254.031494140625,
+                101.83475494384766,
+                446.2984619140625,
+                112.499755859375
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "Overseas Colleges (NOC) programme, aimed to ",
+                  "origin": [
+                    254.031494140625,
+                    121.75177001953125
+                  ],
+                  "bbox": [
+                    254.031494140625,
+                    113.3367691040039,
+                    450.5645446777344,
+                    124.00177001953125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                254.031494140625,
+                113.3367691040039,
+                450.5645446777344,
+                124.00177001953125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "cultivate your entrepreneurial spirit. Immerse ",
+                  "origin": [
+                    254.031494140625,
+                    133.2537841796875
+                  ],
+                  "bbox": [
+                    254.031494140625,
+                    124.83878326416016,
+                    443.5535583496094,
+                    135.5037841796875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                254.031494140625,
+                124.83878326416016,
+                443.5535583496094,
+                135.5037841796875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "yourself in this transformative experience — ",
+                  "origin": [
+                    254.031494140625,
+                    144.75579833984375
+                  ],
+                  "bbox": [
+                    254.031494140625,
+                    136.34080505371094,
+                    439.4765930175781,
+                    147.00579833984375
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                254.031494140625,
+                136.34080505371094,
+                439.4765930175781,
+                147.00579833984375
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "intern in a technology-based startup, while ",
+                  "origin": [
+                    254.031494140625,
+                    156.2578125
+                  ],
+                  "bbox": [
+                    254.031494140625,
+                    147.8428192138672,
+                    435.04852294921875,
+                    158.5078125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                254.031494140625,
+                147.8428192138672,
+                435.04852294921875,
+                158.5078125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "concurrently pursuing part-time courses at ",
+                  "origin": [
+                    254.031494140625,
+                    167.75982666015625
+                  ],
+                  "bbox": [
+                    254.031494140625,
+                    159.34483337402344,
+                    431.8716125488281,
+                    170.00982666015625
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                254.031494140625,
+                159.34483337402344,
+                431.8716125488281,
+                170.00982666015625
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "reputable universities. It’s your opportunity to ",
+                  "origin": [
+                    254.031494140625,
+                    179.2618408203125
+                  ],
+                  "bbox": [
+                    254.031494140625,
+                    170.8468475341797,
+                    446.613525390625,
+                    181.5118408203125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                254.031494140625,
+                170.8468475341797,
+                446.613525390625,
+                181.5118408203125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "shape your entrepreneurial journey and make an ",
+                  "origin": [
+                    254.031494140625,
+                    190.76385498046875
+                  ],
+                  "bbox": [
+                    254.031494140625,
+                    182.34886169433594,
+                    460.0595397949219,
+                    193.01385498046875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                254.031494140625,
+                182.34886169433594,
+                460.0595397949219,
+                193.01385498046875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "impact on a global scale.",
+                  "origin": [
+                    254.031494140625,
+                    202.265869140625
+                  ],
+                  "bbox": [
+                    254.031494140625,
+                    193.8508758544922,
+                    356.406494140625,
+                    204.515869140625
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                254.031494140625,
+                193.8508758544922,
+                356.406494140625,
+                204.515869140625
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 2,
+          "flags": 0,
+          "bbox": [
+            274.6807861328125,
+            241.67161560058594,
+            363.23681640625,
+            265.3771057128906
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 6.5,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 1988502,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "Bryan and his colleagues ",
+                  "origin": [
+                    274.6807861328125,
+                    247.74911499023438
+                  ],
+                  "bbox": [
+                    274.6807861328125,
+                    241.67161560058594,
+                    349.9443664550781,
+                    249.37411499023438
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                274.6807861328125,
+                241.67161560058594,
+                349.9443664550781,
+                249.37411499023438
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 6.5,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 1988502,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "from DNV ReWind gathering ",
+                  "origin": [
+                    274.6807861328125,
+                    255.7506103515625
+                  ],
+                  "bbox": [
+                    274.6807861328125,
+                    249.67311096191406,
+                    363.23681640625,
+                    257.3756103515625
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                274.6807861328125,
+                249.67311096191406,
+                363.23681640625,
+                257.3756103515625
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 6.5,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 1988502,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "over a meal",
+                  "origin": [
+                    274.6807861328125,
+                    263.7521057128906
+                  ],
+                  "bbox": [
+                    274.6807861328125,
+                    257.6745910644531,
+                    309.80035400390625,
+                    265.3771057128906
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                274.6807861328125,
+                257.6745910644531,
+                309.80035400390625,
+                265.3771057128906
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 3,
+          "flags": 0,
+          "bbox": [
+            297.144775390625,
+            571.7091064453125,
+            421.4762878417969,
+            587.4130859375
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 6.5,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 1988502,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "Bryan and his team attending EoLIS 2023 ",
+                  "origin": [
+                    297.144775390625,
+                    577.78662109375
+                  ],
+                  "bbox": [
+                    297.144775390625,
+                    571.7091064453125,
+                    421.4762878417969,
+                    579.41162109375
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                297.144775390625,
+                571.7091064453125,
+                421.4762878417969,
+                579.41162109375
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 6.5,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 1988502,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "Conference @ Rotterdam, Netherlands",
+                  "origin": [
+                    297.144775390625,
+                    585.7880859375
+                  ],
+                  "bbox": [
+                    297.144775390625,
+                    579.7105712890625,
+                    411.9283752441406,
+                    587.4130859375
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                297.144775390625,
+                579.7105712890625,
+                411.9283752441406,
+                587.4130859375
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 4,
+          "flags": 0,
+          "bbox": [
+            56.122398376464844,
+            356.3993225097656,
+            250.90040588378906,
+            565.0283203125
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 20,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "FrutigerLTStd-Bold",
+                  "color": 16224798,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "How has your experience in NOC been so far? ",
+                  "origin": [
+                    56.122398376464844,
+                    364.8143310546875
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    356.3993225097656,
+                    250.90040588378906,
+                    367.0643310546875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                356.3993225097656,
+                250.90040588378906,
+                367.0643310546875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 20,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "FrutigerLTStd-Bold",
+                  "color": 16224798,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "And how has it impacted you?",
+                  "origin": [
+                    56.122398376464844,
+                    375.81231689453125
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    367.3973083496094,
+                    183.96739196777344,
+                    378.06231689453125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                367.3973083496094,
+                183.96739196777344,
+                378.06231689453125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "It is difficult to understate how enriching and ",
+                  "origin": [
+                    56.122398376464844,
+                    386.810302734375
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    378.3952941894531,
+                    247.2103729248047,
+                    389.060302734375
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                378.3952941894531,
+                247.2103729248047,
+                389.060302734375
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "instructive NOC has been with professional ",
+                  "origin": [
+                    56.122398376464844,
+                    397.80828857421875
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    389.3932800292969,
+                    236.23037719726562,
+                    400.05828857421875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                389.3932800292969,
+                236.23037719726562,
+                400.05828857421875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "and personal impacts. With the former being ",
+                  "origin": [
+                    56.122398376464844,
+                    408.8062744140625
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    400.3912658691406,
+                    245.4013671875,
+                    411.0562744140625
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                400.3912658691406,
+                245.4013671875,
+                411.0562744140625
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "to look beyond the usual fields most business ",
+                  "origin": [
+                    56.122398376464844,
+                    419.80426025390625
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    411.3892517089844,
+                    246.56234741210938,
+                    422.05426025390625
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                411.3892517089844,
+                246.56234741210938,
+                422.05426025390625
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "students consider when job seeking (e.g., ",
+                  "origin": [
+                    56.122398376464844,
+                    430.8022766113281
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    422.38726806640625,
+                    229.31837463378906,
+                    433.0522766113281
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                422.38726806640625,
+                229.31837463378906,
+                433.0522766113281
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "finance, marketing, consulting) while the ",
+                  "origin": [
+                    56.122398376464844,
+                    441.80029296875
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    433.3852844238281,
+                    229.15638732910156,
+                    444.05029296875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                433.3852844238281,
+                229.15638732910156,
+                444.05029296875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "latter being a future outside of Singapore; a ",
+                  "origin": [
+                    56.122398376464844,
+                    452.79827880859375
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    444.3832702636719,
+                    242.48538208007812,
+                    455.04827880859375
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                444.3832702636719,
+                242.48538208007812,
+                455.04827880859375
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "possibility I would not have entertained if it ",
+                  "origin": [
+                    56.122398376464844,
+                    463.7962646484375
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    455.3812561035156,
+                    240.3883819580078,
+                    466.0462646484375
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                455.3812561035156,
+                240.3883819580078,
+                466.0462646484375
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "was not for NOC Norway.",
+                  "origin": [
+                    56.122398376464844,
+                    474.7942810058594
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    466.3792724609375,
+                    161.49440002441406,
+                    477.0442810058594
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                466.3792724609375,
+                161.49440002441406,
+                477.0442810058594
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": " ",
+                  "origin": [
+                    56.122398376464844,
+                    485.79229736328125
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    477.3772888183594,
+                    58.62439727783203,
+                    488.04229736328125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                477.3772888183594,
+                58.62439727783203,
+                488.04229736328125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 20,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "FrutigerLTStd-Bold",
+                  "color": 16224798,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "Do you have any advice for your juniors ",
+                  "origin": [
+                    56.122398376464844,
+                    496.790283203125
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    488.3752746582031,
+                    226.5103759765625,
+                    499.040283203125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                488.3752746582031,
+                226.5103759765625,
+                499.040283203125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 20,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "FrutigerLTStd-Bold",
+                  "color": 16224798,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "applying to NUS Business School and NOC?",
+                  "origin": [
+                    56.122398376464844,
+                    507.78826904296875
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    499.3732604980469,
+                    236.63540649414062,
+                    510.03826904296875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                499.3732604980469,
+                236.63540649414062,
+                510.03826904296875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "Keep an open mind and remember that some ",
+                  "origin": [
+                    56.122398376464844,
+                    518.7862548828125
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    510.3712463378906,
+                    248.43435668945312,
+                    521.0362548828125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                510.3712463378906,
+                248.43435668945312,
+                521.0362548828125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "of the most valuable sources of learning ",
+                  "origin": [
+                    56.122398376464844,
+                    529.7843017578125
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    521.3693237304688,
+                    225.1693878173828,
+                    532.0343017578125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                521.3693237304688,
+                225.1693878173828,
+                532.0343017578125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "happens outside of the classrooms with ",
+                  "origin": [
+                    56.122398376464844,
+                    540.7822875976562
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    532.3673095703125,
+                    222.0823516845703,
+                    543.0322875976562
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                532.3673095703125,
+                222.0823516845703,
+                543.0322875976562
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "programmes such as NOC which will do ",
+                  "origin": [
+                    56.122398376464844,
+                    551.7802734375
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    543.3652954101562,
+                    222.00140380859375,
+                    554.0302734375
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                543.3652954101562,
+                222.00140380859375,
+                554.0302734375
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "nothing but enrich your NUS experience.",
+                  "origin": [
+                    56.122398376464844,
+                    562.7783203125
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    554.3633422851562,
+                    224.98040771484375,
+                    565.0283203125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                554.3633422851562,
+                224.98040771484375,
+                565.0283203125
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 5,
+          "flags": 0,
+          "bbox": [
+            56.122398376464844,
+            300.6325378417969,
+            227.56288146972656,
+            339.88055419921875
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 11.0,
+                  "flags": 20,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "FrutigerLTStd-Black",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9539999961853027,
+                  "descender": -0.25,
+                  "text": "BRYAN VOON, Year 4 Business ",
+                  "origin": [
+                    56.122398376464844,
+                    311.12652587890625
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    300.6325378417969,
+                    227.56288146972656,
+                    313.87652587890625
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                300.6325378417969,
+                227.56288146972656,
+                313.87652587890625
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 11.0,
+                  "flags": 20,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "FrutigerLTStd-Black",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9539999961853027,
+                  "descender": -0.25,
+                  "text": "Student who went for NOC, ",
+                  "origin": [
+                    56.122398376464844,
+                    324.1285400390625
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    313.6345520019531,
+                    216.23841857910156,
+                    326.8785400390625
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                313.6345520019531,
+                216.23841857910156,
+                326.8785400390625
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 11.0,
+                  "flags": 20,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "FrutigerLTStd-Black",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9539999961853027,
+                  "descender": -0.25,
+                  "text": "Norway.",
+                  "origin": [
+                    56.122398376464844,
+                    337.13055419921875
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    326.6365661621094,
+                    102.83939361572266,
+                    339.88055419921875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                326.6365661621094,
+                102.83939361572266,
+                339.88055419921875
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 6,
+          "flags": 0,
+          "bbox": [
+            34.015899658203125,
+            43.93421173095703,
+            265.7868957519531,
+            71.189208984375
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 23.0,
+                  "flags": 20,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "FrutigerLTStd-Bold",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "BE AN ENTREPRENEUR",
+                  "origin": [
+                    34.015899658203125,
+                    65.439208984375
+                  ],
+                  "bbox": [
+                    34.015899658203125,
+                    43.93421173095703,
+                    265.7868957519531,
+                    71.189208984375
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                34.015899658203125,
+                43.93421173095703,
+                265.7868957519531,
+                71.189208984375
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 7,
+          "flags": 0,
+          "bbox": [
+            33.86149978637695,
+            636.0872802734375,
+            43.82346725463867,
+            647.7608032226562
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 9.000004768371582,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "20",
+                  "origin": [
+                    33.86149978637695,
+                    645.5004272460938
+                  ],
+                  "bbox": [
+                    33.86149978637695,
+                    636.0872802734375,
+                    43.82346725463867,
+                    647.7608032226562
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                0.9953963160514832,
+                -0.0958440899848938
+              ],
+              "bbox": [
+                33.86149978637695,
+                636.0872802734375,
+                43.82346725463867,
+                647.7608032226562
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "extraction_flags": 195,
+    "sort": false
+  },
+  "images": {
+    "status": "ok",
+    "options": {
+      "hashes": true,
+      "xrefs": true
+    },
+    "digest_algorithm": "md5",
+    "digest_encoding": "hex",
+    "items": [
+      {
+        "number": 0,
+        "bbox": [
+          0.0,
+          0.0,
+          438.0,
+          528.0
+        ],
+        "transform": [
+          438.0,
+          0.0,
+          0.0,
+          528.0,
+          0.0,
+          0.0
+        ],
+        "width": 438,
+        "height": 528,
+        "colorspace": 3,
+        "cs-name": "DeviceRGB",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 693792,
+        "digest": "7e96e4730a32683a1c37de5f2ee33c31",
+        "has-mask": false,
+        "xref": 0
+      },
+      {
+        "number": 1,
+        "bbox": [
+          0.0,
+          0.0,
+          304.0,
+          393.0
+        ],
+        "transform": [
+          304.0,
+          0.0,
+          0.0,
+          393.0,
+          0.0,
+          0.0
+        ],
+        "width": 304,
+        "height": 393,
+        "colorspace": 3,
+        "cs-name": "DeviceRGB",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 358416,
+        "digest": "f40c0e7f2efe3e8b59d360c80ae4a7af",
+        "has-mask": false,
+        "xref": 0
+      },
+      {
+        "number": 2,
+        "bbox": [
+          -9.604827880859375,
+          -19.54315185546875,
+          302.74017333984375,
+          391.1813659667969
+        ],
+        "transform": [
+          -312.3450012207031,
+          -0.0,
+          -0.0,
+          -410.7245178222656,
+          302.74017333984375,
+          391.1813659667969
+        ],
+        "width": 625,
+        "height": 822,
+        "colorspace": 3,
+        "cs-name": "ICCBased(RGB,sRGB IEC61966-2.1)",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 143713,
+        "digest": "4e98539875a51a939fb4f4e0f343a130",
+        "has-mask": true,
+        "xref": 937
+      },
+      {
+        "number": 4,
+        "bbox": [
+          265.32281494140625,
+          255.18360900878906,
+          453.5433044433594,
+          482.48638916015625
+        ],
+        "transform": [
+          188.22048950195312,
+          0.0,
+          -0.0,
+          227.3027801513672,
+          265.32281494140625,
+          255.18360900878906
+        ],
+        "width": 377,
+        "height": 455,
+        "colorspace": 3,
+        "cs-name": "ICCBased(RGB,sRGB IEC61966-2.1)",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 42260,
+        "digest": "c3e6611c79a33d2ba4cf89dadd45323b",
+        "has-mask": false,
+        "xref": 762
+      },
+      {
+        "number": 5,
+        "bbox": [
+          268.01995849609375,
+          431.62615966796875,
+          464.3135986328125,
+          569.439697265625
+        ],
+        "transform": [
+          196.29364013671875,
+          0.0,
+          -0.0,
+          137.8135528564453,
+          268.01995849609375,
+          431.62615966796875
+        ],
+        "width": 393,
+        "height": 276,
+        "colorspace": 3,
+        "cs-name": "ICCBased(RGB,sRGB IEC61966-2.1)",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 21967,
+        "digest": "d3ebd6f91a4e236d063631df7f5b70d2",
+        "has-mask": false,
+        "xref": 764
+      },
+      {
+        "number": 11,
+        "bbox": [
+          285.0,
+          34.0,
+          303.0,
+          80.0
+        ],
+        "transform": [
+          18.0,
+          0.0,
+          0.0,
+          46.0,
+          285.0,
+          34.0
+        ],
+        "width": 18,
+        "height": 46,
+        "colorspace": 3,
+        "cs-name": "DeviceRGB",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 2484,
+        "digest": "0ef25f5e79371836767d70a77b76fcd0",
+        "has-mask": false,
+        "xref": 0
+      },
+      {
+        "number": 12,
+        "bbox": [
+          0.0,
+          34.0,
+          286.0,
+          80.0
+        ],
+        "transform": [
+          286.0,
+          0.0,
+          0.0,
+          46.0,
+          0.0,
+          34.0
+        ],
+        "width": 286,
+        "height": 46,
+        "colorspace": 3,
+        "cs-name": "DeviceRGB",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 39468,
+        "digest": "0a3a029b23c62b7872e6dc9a858db444",
+        "has-mask": false,
+        "xref": 0
+      }
+    ]
+  },
+  "render": {
+    "status": "ok",
+    "dpi": 144,
+    "width": 993,
+    "height": 1333,
+    "coordinate_system": "rendered_page_image_pixels",
+    "origin": "top_left",
+    "unit": "pixel",
+    "render_color_order": "RGB",
+    "input_color_order": "BGR",
+    "annotation_included": true,
+    "pixmap_origin_pixels": [
+      0,
+      0
+    ],
+    "pixel_to_pdf_matrix": [
+      0.5,
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.0
+    ]
+  },
+  "page_image": {
+    "path": "documents/d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a/page_00022.png",
+    "sha256": "c106c9bfc29eac4c7f65b2f91a5e630f0a02f834f098fc96c9800e69b2b68161"
+  },
+  "parsing": {
+    "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+    "source": "paddleocr_vl",
+    "status": "ok",
+    "raw": {
+      "res": {
+        "input_path": null,
+        "page_index": null,
+        "page_count": null,
+        "width": 993,
+        "height": 1333,
+        "model_settings": {
+          "use_doc_preprocessor": false,
+          "use_layout_detection": true,
+          "use_chart_recognition": true,
+          "use_seal_recognition": false,
+          "use_ocr_for_image_block": true,
+          "format_block_content": false,
+          "merge_layout_blocks": true,
+          "markdown_ignore_labels": [],
+          "return_layout_polygon_points": false
+        },
+        "parsing_res_list": [
+          {
+            "block_label": "doc_title",
+            "block_content": "BE AN ENTREPRENEUR",
+            "block_bbox": [
+              67,
+              92,
+              534,
+              138
+            ],
+            "block_id": 0,
+            "block_order": 1,
+            "group_id": 0
+          },
+          {
+            "block_label": "text",
+            "block_content": "Get a taste of entrepreneurship at NUS Business School, where you get to take center stage in one of our newer majors. Equip yourself with expansive theoretical insights, empowering you to lead change effectively—whether you're venturing into an entrepreneurial startup or navigating the landscape of a large multinational corporation. Previous batches of students, who were just like you, have already launched successful businesses in Singapore, with names like Carousell, Playmoolah, and Moovaz making an impact.\n\nFlip to Page 10, and you will discover the NUS Overseas Colleges (NOC) programme, aimed to cultivate your entrepreneurial spirit. Immerse yourself in this transformative experience — intern in a technology-based startup, while concurrently pursuing part-time courses at reputable universities. It's your opportunity to shape your entrepreneurial journey and make an impact on a global scale.",
+            "block_bbox": [
+              62,
+              203,
+              490,
+              458
+            ],
+            "block_id": 1,
+            "block_order": 2,
+            "group_id": 1
+          },
+          {
+            "block_label": "text",
+            "block_content": "",
+            "block_bbox": [
+              503,
+              203,
+              919,
+              413
+            ],
+            "block_id": 2,
+            "block_order": 3,
+            "group_id": 1
+          },
+          {
+            "block_label": "image",
+            "block_content": "GG",
+            "block_bbox": [
+              23,
+              503,
+              113,
+              567
+            ],
+            "block_id": 3,
+            "block_order": null,
+            "group_id": 3
+          },
+          {
+            "block_label": "text",
+            "block_content": "BRYAN VOON, Year 4 Business Student who went for NOC, Norway.",
+            "block_bbox": [
+              107,
+              601,
+              452,
+              683
+            ],
+            "block_id": 4,
+            "block_order": 4,
+            "group_id": 4
+          },
+          {
+            "block_label": "text",
+            "block_content": "How has your experience in NOC been so far? And how has it impacted you?\nIt is difficult to understate how enriching and instructive NOC has been with professional and personal impacts. With the former being to look beyond the usual fields most business students consider when job seeking (e.g., finance, marketing, consulting) while the latter being a future outside of Singapore; a possibility I would not have entertained if it was not for NOC Norway.",
+            "block_bbox": [
+              107,
+              713,
+              498,
+              958
+            ],
+            "block_id": 5,
+            "block_order": 5,
+            "group_id": 5
+          },
+          {
+            "block_label": "text",
+            "block_content": "Do you have any advice for your juniors applying to NUS Business School and NOC? Keep an open mind and remember that some of the most valuable sources of learning happens outside of the classrooms with programmes such as NOC which will do nothing but enrich your NUS experience.",
+            "block_bbox": [
+              108,
+              979,
+              495,
+              1134
+            ],
+            "block_id": 6,
+            "block_order": 6,
+            "group_id": 6
+          },
+          {
+            "block_label": "vision_footnote",
+            "block_content": "Bryan and his colleagues from DNV ReWind gathering over a meal",
+            "block_bbox": [
+              546,
+              482,
+              725,
+              533
+            ],
+            "block_id": 7,
+            "block_order": null,
+            "group_id": 7
+          },
+          {
+            "block_label": "image",
+            "block_content": "over a meal\nReWind",
+            "block_bbox": [
+              534,
+              516,
+              927,
+              1127
+            ],
+            "block_id": 8,
+            "block_order": null,
+            "group_id": 8
+          },
+          {
+            "block_label": "vision_footnote",
+            "block_content": "Bryan and his team attending EoLIS 2023 Conference @ Rotterdam, Netherlands",
+            "block_bbox": [
+              591,
+              1142,
+              841,
+              1177
+            ],
+            "block_id": 9,
+            "block_order": null,
+            "group_id": 9
+          },
+          {
+            "block_label": "image",
+            "block_content": "ソ",
+            "block_bbox": [
+              483,
+              1166,
+              575,
+              1228
+            ],
+            "block_id": 10,
+            "block_order": null,
+            "group_id": 10
+          },
+          {
+            "block_label": "number",
+            "block_content": "20",
+            "block_bbox": [
+              65,
+              1274,
+              90,
+              1295
+            ],
+            "block_id": 11,
+            "block_order": 7,
+            "group_id": 11
+          }
+        ],
+        "layout_det_res": {
+          "input_path": null,
+          "page_index": null,
+          "boxes": [
+            {
+              "cls_id": 6,
+              "label": "doc_title",
+              "score": 0.880196750164032,
+              "coordinate": [
+                67,
+                92,
+                534,
+                138
+              ],
+              "order": 1
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.9568924307823181,
+              "coordinate": [
+                62,
+                203,
+                490,
+                458
+              ],
+              "order": 2
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.9531601667404175,
+              "coordinate": [
+                503,
+                203,
+                919,
+                413
+              ],
+              "order": 3
+            },
+            {
+              "cls_id": 14,
+              "label": "image",
+              "score": 0.7314729690551758,
+              "coordinate": [
+                23,
+                503,
+                113,
+                567
+              ],
+              "order": null
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.7934948205947876,
+              "coordinate": [
+                107,
+                601,
+                452,
+                683
+              ],
+              "order": 4
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.9151417016983032,
+              "coordinate": [
+                107,
+                713,
+                498,
+                958
+              ],
+              "order": 5
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.9475418329238892,
+              "coordinate": [
+                108,
+                979,
+                495,
+                1134
+              ],
+              "order": 6
+            },
+            {
+              "cls_id": 24,
+              "label": "vision_footnote",
+              "score": 0.9128619432449341,
+              "coordinate": [
+                546,
+                482,
+                725,
+                533
+              ],
+              "order": null
+            },
+            {
+              "cls_id": 14,
+              "label": "image",
+              "score": 0.9448209404945374,
+              "coordinate": [
+                534,
+                516,
+                927,
+                1127
+              ],
+              "order": null
+            },
+            {
+              "cls_id": 24,
+              "label": "vision_footnote",
+              "score": 0.8442336916923523,
+              "coordinate": [
+                591,
+                1142,
+                841,
+                1177
+              ],
+              "order": null
+            },
+            {
+              "cls_id": 14,
+              "label": "image",
+              "score": 0.6264430284500122,
+              "coordinate": [
+                483,
+                1166,
+                575,
+                1228
+              ],
+              "order": null
+            },
+            {
+              "cls_id": 16,
+              "label": "number",
+              "score": 0.769837498664856,
+              "coordinate": [
+                65,
+                1274,
+                90,
+                1295
+              ],
+              "order": 7
+            }
+          ]
+        }
+      }
+    },
+    "blocks": [
+      {
+        "element_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22:vl:0",
+        "id_origin": "project_generated",
+        "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+        "source": "paddleocr_vl",
+        "source_list_index": 0,
+        "model_block_id": 0,
+        "model_block_order": 1,
+        "label": "doc_title",
+        "content": "BE AN ENTREPRENEUR",
+        "bbox_image_pixels": [
+          67.0,
+          92.0,
+          534.0,
+          138.0
+        ],
+        "polygon_pdf_points": [
+          [
+            33.5,
+            46.0
+          ],
+          [
+            267.0,
+            46.0
+          ],
+          [
+            267.0,
+            69.0
+          ],
+          [
+            33.5,
+            69.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          33.5,
+          46.0,
+          267.0,
+          69.0
+        ]
+      },
+      {
+        "element_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22:vl:1",
+        "id_origin": "project_generated",
+        "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+        "source": "paddleocr_vl",
+        "source_list_index": 1,
+        "model_block_id": 1,
+        "model_block_order": 2,
+        "label": "text",
+        "content": "Get a taste of entrepreneurship at NUS Business School, where you get to take center stage in one of our newer majors. Equip yourself with expansive theoretical insights, empowering you to lead change effectively—whether you're venturing into an entrepreneurial startup or navigating the landscape of a large multinational corporation. Previous batches of students, who were just like you, have already launched successful businesses in Singapore, with names like Carousell, Playmoolah, and Moovaz making an impact.\n\nFlip to Page 10, and you will discover the NUS Overseas Colleges (NOC) programme, aimed to cultivate your entrepreneurial spirit. Immerse yourself in this transformative experience — intern in a technology-based startup, while concurrently pursuing part-time courses at reputable universities. It's your opportunity to shape your entrepreneurial journey and make an impact on a global scale.",
+        "bbox_image_pixels": [
+          62.0,
+          203.0,
+          490.0,
+          458.0
+        ],
+        "polygon_pdf_points": [
+          [
+            31.0,
+            101.5
+          ],
+          [
+            245.0,
+            101.5
+          ],
+          [
+            245.0,
+            229.0
+          ],
+          [
+            31.0,
+            229.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          31.0,
+          101.5,
+          245.0,
+          229.0
+        ]
+      },
+      {
+        "element_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22:vl:2",
+        "id_origin": "project_generated",
+        "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+        "source": "paddleocr_vl",
+        "source_list_index": 2,
+        "model_block_id": 2,
+        "model_block_order": 3,
+        "label": "text",
+        "content": "",
+        "bbox_image_pixels": [
+          503.0,
+          203.0,
+          919.0,
+          413.0
+        ],
+        "polygon_pdf_points": [
+          [
+            251.5,
+            101.5
+          ],
+          [
+            459.5,
+            101.5
+          ],
+          [
+            459.5,
+            206.5
+          ],
+          [
+            251.5,
+            206.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          251.5,
+          101.5,
+          459.5,
+          206.5
+        ]
+      },
+      {
+        "element_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22:vl:3",
+        "id_origin": "project_generated",
+        "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+        "source": "paddleocr_vl",
+        "source_list_index": 3,
+        "model_block_id": 3,
+        "model_block_order": null,
+        "label": "image",
+        "content": "GG",
+        "bbox_image_pixels": [
+          23.0,
+          503.0,
+          113.0,
+          567.0
+        ],
+        "polygon_pdf_points": [
+          [
+            11.5,
+            251.5
+          ],
+          [
+            56.5,
+            251.5
+          ],
+          [
+            56.5,
+            283.5
+          ],
+          [
+            11.5,
+            283.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          11.5,
+          251.5,
+          56.5,
+          283.5
+        ]
+      },
+      {
+        "element_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22:vl:4",
+        "id_origin": "project_generated",
+        "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+        "source": "paddleocr_vl",
+        "source_list_index": 4,
+        "model_block_id": 4,
+        "model_block_order": 4,
+        "label": "text",
+        "content": "BRYAN VOON, Year 4 Business Student who went for NOC, Norway.",
+        "bbox_image_pixels": [
+          107.0,
+          601.0,
+          452.0,
+          683.0
+        ],
+        "polygon_pdf_points": [
+          [
+            53.5,
+            300.5
+          ],
+          [
+            226.0,
+            300.5
+          ],
+          [
+            226.0,
+            341.5
+          ],
+          [
+            53.5,
+            341.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          53.5,
+          300.5,
+          226.0,
+          341.5
+        ]
+      },
+      {
+        "element_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22:vl:5",
+        "id_origin": "project_generated",
+        "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+        "source": "paddleocr_vl",
+        "source_list_index": 5,
+        "model_block_id": 5,
+        "model_block_order": 5,
+        "label": "text",
+        "content": "How has your experience in NOC been so far? And how has it impacted you?\nIt is difficult to understate how enriching and instructive NOC has been with professional and personal impacts. With the former being to look beyond the usual fields most business students consider when job seeking (e.g., finance, marketing, consulting) while the latter being a future outside of Singapore; a possibility I would not have entertained if it was not for NOC Norway.",
+        "bbox_image_pixels": [
+          107.0,
+          713.0,
+          498.0,
+          958.0
+        ],
+        "polygon_pdf_points": [
+          [
+            53.5,
+            356.5
+          ],
+          [
+            249.0,
+            356.5
+          ],
+          [
+            249.0,
+            479.0
+          ],
+          [
+            53.5,
+            479.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          53.5,
+          356.5,
+          249.0,
+          479.0
+        ]
+      },
+      {
+        "element_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22:vl:6",
+        "id_origin": "project_generated",
+        "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+        "source": "paddleocr_vl",
+        "source_list_index": 6,
+        "model_block_id": 6,
+        "model_block_order": 6,
+        "label": "text",
+        "content": "Do you have any advice for your juniors applying to NUS Business School and NOC? Keep an open mind and remember that some of the most valuable sources of learning happens outside of the classrooms with programmes such as NOC which will do nothing but enrich your NUS experience.",
+        "bbox_image_pixels": [
+          108.0,
+          979.0,
+          495.0,
+          1134.0
+        ],
+        "polygon_pdf_points": [
+          [
+            54.0,
+            489.5
+          ],
+          [
+            247.5,
+            489.5
+          ],
+          [
+            247.5,
+            567.0
+          ],
+          [
+            54.0,
+            567.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          54.0,
+          489.5,
+          247.5,
+          567.0
+        ]
+      },
+      {
+        "element_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22:vl:7",
+        "id_origin": "project_generated",
+        "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+        "source": "paddleocr_vl",
+        "source_list_index": 7,
+        "model_block_id": 7,
+        "model_block_order": null,
+        "label": "vision_footnote",
+        "content": "Bryan and his colleagues from DNV ReWind gathering over a meal",
+        "bbox_image_pixels": [
+          546.0,
+          482.0,
+          725.0,
+          533.0
+        ],
+        "polygon_pdf_points": [
+          [
+            273.0,
+            241.0
+          ],
+          [
+            362.5,
+            241.0
+          ],
+          [
+            362.5,
+            266.5
+          ],
+          [
+            273.0,
+            266.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          273.0,
+          241.0,
+          362.5,
+          266.5
+        ]
+      },
+      {
+        "element_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22:vl:8",
+        "id_origin": "project_generated",
+        "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+        "source": "paddleocr_vl",
+        "source_list_index": 8,
+        "model_block_id": 8,
+        "model_block_order": null,
+        "label": "image",
+        "content": "over a meal\nReWind",
+        "bbox_image_pixels": [
+          534.0,
+          516.0,
+          927.0,
+          1127.0
+        ],
+        "polygon_pdf_points": [
+          [
+            267.0,
+            258.0
+          ],
+          [
+            463.5,
+            258.0
+          ],
+          [
+            463.5,
+            563.5
+          ],
+          [
+            267.0,
+            563.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          267.0,
+          258.0,
+          463.5,
+          563.5
+        ]
+      },
+      {
+        "element_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22:vl:9",
+        "id_origin": "project_generated",
+        "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+        "source": "paddleocr_vl",
+        "source_list_index": 9,
+        "model_block_id": 9,
+        "model_block_order": null,
+        "label": "vision_footnote",
+        "content": "Bryan and his team attending EoLIS 2023 Conference @ Rotterdam, Netherlands",
+        "bbox_image_pixels": [
+          591.0,
+          1142.0,
+          841.0,
+          1177.0
+        ],
+        "polygon_pdf_points": [
+          [
+            295.5,
+            571.0
+          ],
+          [
+            420.5,
+            571.0
+          ],
+          [
+            420.5,
+            588.5
+          ],
+          [
+            295.5,
+            588.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          295.5,
+          571.0,
+          420.5,
+          588.5
+        ]
+      },
+      {
+        "element_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22:vl:10",
+        "id_origin": "project_generated",
+        "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+        "source": "paddleocr_vl",
+        "source_list_index": 10,
+        "model_block_id": 10,
+        "model_block_order": null,
+        "label": "image",
+        "content": "ソ",
+        "bbox_image_pixels": [
+          483.0,
+          1166.0,
+          575.0,
+          1228.0
+        ],
+        "polygon_pdf_points": [
+          [
+            241.5,
+            583.0
+          ],
+          [
+            287.5,
+            583.0
+          ],
+          [
+            287.5,
+            614.0
+          ],
+          [
+            241.5,
+            614.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          241.5,
+          583.0,
+          287.5,
+          614.0
+        ]
+      },
+      {
+        "element_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22:vl:11",
+        "id_origin": "project_generated",
+        "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+        "source": "paddleocr_vl",
+        "source_list_index": 11,
+        "model_block_id": 11,
+        "model_block_order": 7,
+        "label": "number",
+        "content": "20",
+        "bbox_image_pixels": [
+          65.0,
+          1274.0,
+          90.0,
+          1295.0
+        ],
+        "polygon_pdf_points": [
+          [
+            32.5,
+            637.0
+          ],
+          [
+            45.0,
+            637.0
+          ],
+          [
+            45.0,
+            647.5
+          ],
+          [
+            32.5,
+            647.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          32.5,
+          637.0,
+          45.0,
+          647.5
+        ]
+      }
+    ],
+    "block_count": 12,
+    "character_count": 1879,
+    "input_image": {
+      "width": 993,
+      "height": 1333,
+      "color_order": "BGR",
+      "coordinate_system": "rendered_page_image_pixels"
+    },
+    "elapsed_seconds": 448.9475670000538,
+    "coordinate_status": "ok"
+  },
+  "review": {
+    "review_page_number": 2,
+    "status": "ok",
+    "drawn_count": 12,
+    "warnings": [],
+    "json_path": "documents/d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a/page_00022.json",
+    "path": "documents/d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a/review_vl.pdf"
+  },
+  "elapsed_seconds": 449.26015910017304
+}

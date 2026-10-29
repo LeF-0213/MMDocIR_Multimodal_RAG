@@ -1,0 +1,25 @@
+{
+  "document_id": "f720ceb61ed6bba34910a9a02ea9d7df4767a4163c19a55b61300cb8e3b08c7a",
+  "id_origin": "project_generated_name_sha256",
+  "document_name": "91521110100M_4K_UHD_Display_User_Manual_V1.1",
+  "status": "ok",
+  "pages": [
+    {
+      "page_number": 8,
+      "page_id": "f720ceb61ed6bba34910a9a02ea9d7df4767a4163c19a55b61300cb8e3b08c7a:p8",
+      "status": "ok",
+      "json_path": "documents/f720ceb61ed6bba34910a9a02ea9d7df4767a4163c19a55b61300cb8e3b08c7a/page_00008.json",
+      "native_status": "ok",
+      "parser_status": "ok"
+    }
+  ],
+  "errors": [],
+  "source_url": "http://127.0.0.1:8080/raw/mmdocir_data/extracted/doc_pdfs/91521110100M_4K_UHD_Display_User_Manual_V1.1.pdf",
+  "source_sha256": "a3dfbac95e5c99ea9aa9fb830bd5f338d3278c7df28a775bc314acedc22b20d5",
+  "source_pdf": "documents/f720ceb61ed6bba34910a9a02ea9d7df4767a4163c19a55b61300cb8e3b08c7a/source.pdf",
+  "source_page_count": 40,
+  "requested_page_numbers": [
+    8
+  ],
+  "review_pdf": "documents/f720ceb61ed6bba34910a9a02ea9d7df4767a4163c19a55b61300cb8e3b08c7a/review_vl.pdf"
+}

@@ -1,0 +1,1201 @@
+{
+  "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p29",
+  "id_origin": "project_generated",
+  "document_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2",
+  "document_name": "competitiveoutcomes-091006065143-phpapp01_95",
+  "page_number": 29,
+  "page_numbering": "pdf_viewer_1_based",
+  "page_index": 28,
+  "source_sha256": "964fc4748a7698dd5af398a714f97cf430ff93f8646b75021c43bfb392fae870",
+  "status": "ok",
+  "geometry": {
+    "coordinate_system": "pymupdf_unrotated_page_points",
+    "origin": "top_left_of_unrotated_page",
+    "unit": "point_1/72_inch",
+    "rotation_degrees": 0,
+    "mediabox": [
+      0.0,
+      0.0,
+      768.0,
+      576.0
+    ],
+    "cropbox": [
+      0.0,
+      0.0,
+      768.0,
+      576.0
+    ],
+    "rotated_page_rect": [
+      0.0,
+      0.0,
+      768.0,
+      576.0
+    ]
+  },
+  "native": {
+    "status": "empty",
+    "text": "",
+    "raw": {
+      "width": 768.0,
+      "height": 576.0,
+      "blocks": []
+    },
+    "extraction_flags": 195,
+    "sort": false
+  },
+  "images": {
+    "status": "ok",
+    "options": {
+      "hashes": true,
+      "xrefs": true
+    },
+    "digest_algorithm": "md5",
+    "digest_encoding": "hex",
+    "items": [
+      {
+        "number": 0,
+        "bbox": [
+          0.0,
+          0.0,
+          768.0,
+          576.0
+        ],
+        "transform": [
+          768.0,
+          0.0,
+          -0.0,
+          576.0,
+          0.0,
+          0.0
+        ],
+        "width": 1024,
+        "height": 768,
+        "colorspace": 3,
+        "cs-name": "DeviceRGB",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 76732,
+        "digest": "177d4581885a0c265a88fb774855f764",
+        "has-mask": false,
+        "xref": 88
+      }
+    ]
+  },
+  "render": {
+    "status": "ok",
+    "dpi": 144,
+    "width": 1536,
+    "height": 1152,
+    "coordinate_system": "rendered_page_image_pixels",
+    "origin": "top_left",
+    "unit": "pixel",
+    "render_color_order": "RGB",
+    "input_color_order": "BGR",
+    "annotation_included": true,
+    "pixmap_origin_pixels": [
+      0,
+      0
+    ],
+    "pixel_to_pdf_matrix": [
+      0.5,
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.0
+    ]
+  },
+  "page_image": {
+    "path": "documents/ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2/page_00029.png",
+    "sha256": "8753367cbbb4b1e5f8e0a9085a27d35ab4cf995036e13c2795ee4b96da3add1a"
+  },
+  "parsing": {
+    "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p29",
+    "source": "pp_structure_v3",
+    "status": "ok",
+    "raw": {
+      "res": {
+        "input_path": null,
+        "page_index": null,
+        "page_count": null,
+        "width": 1536,
+        "height": 1152,
+        "model_settings": {
+          "use_doc_preprocessor": true,
+          "use_seal_recognition": false,
+          "use_table_recognition": true,
+          "use_formula_recognition": true,
+          "use_chart_recognition": true,
+          "use_region_detection": true,
+          "format_block_content": false,
+          "markdown_ignore_labels": []
+        },
+        "parsing_res_list": [
+          {
+            "block_label": "doc_title",
+            "block_content": "Focus v. variety in medical skills ",
+            "block_bbox": [
+              165,
+              24,
+              1361,
+              112
+            ],
+            "block_id": 0,
+            "block_order": 1
+          },
+          {
+            "block_label": "image",
+            "block_content": "Specialist ernce Student Resident 0-9years General Practitioners \n10-20 years \nOver 20 years ",
+            "block_bbox": [
+              137,
+              179,
+              1406,
+              787
+            ],
+            "block_id": 1,
+            "block_order": null
+          },
+          {
+            "block_label": "figure_title",
+            "block_content": "Instruction and Experience ",
+            "block_bbox": [
+              401,
+              799,
+              1003,
+              855
+            ],
+            "block_id": 2,
+            "block_order": null
+          },
+          {
+            "block_label": "figure_title",
+            "block_content": "Figure 4.Two trendsfor development of medicalperformance as a function ofexperience and instruction.\n",
+            "block_bbox": [
+              41,
+              903,
+              1457,
+              993
+            ],
+            "block_id": 3,
+            "block_order": null
+          },
+          {
+            "block_label": "text",
+            "block_content": "Butterworth, J. (NYU), Reppert, E. (NYU), 1960, Auscultatory acumen in the general medical population. Journal of the American Medical Association, 174, 32-34. Graph from Ericsson, K. A. (Florida State U.), 2004, Deliberate practice and the acquisition and maintenance of expert performance in medicine and related disciplines. Academic Medicine, 79, S70-S81",
+            "block_bbox": [
+              3,
+              1051,
+              1490,
+              1140
+            ],
+            "block_id": 4,
+            "block_order": 2
+          }
+        ],
+        "doc_preprocessor_res": {
+          "input_path": null,
+          "page_index": null,
+          "model_settings": {
+            "use_doc_orientation_classify": false,
+            "use_doc_unwarping": false
+          },
+          "angle": -1
+        },
+        "layout_det_res": {
+          "input_path": null,
+          "page_index": null,
+          "boxes": [
+            {
+              "cls_id": 6,
+              "label": "figure_title",
+              "score": 0.8209885954856873,
+              "coordinate": [
+                41.00970458984375,
+                903.764892578125,
+                1457.332275390625,
+                993.0518798828125
+              ]
+            },
+            {
+              "cls_id": 1,
+              "label": "image",
+              "score": 0.7894632816314697,
+              "coordinate": [
+                137.1192626953125,
+                179.6630859375,
+                1406.16845703125,
+                787.814453125
+              ]
+            },
+            {
+              "cls_id": 2,
+              "label": "text",
+              "score": 0.6224842071533203,
+              "coordinate": [
+                3.0257568359375,
+                1051.594970703125,
+                1490.784423828125,
+                1140.451416015625
+              ]
+            },
+            {
+              "cls_id": 6,
+              "label": "figure_title",
+              "score": 0.5823981761932373,
+              "coordinate": [
+                401.9420166015625,
+                799.0535888671875,
+                1003.7015380859375,
+                855.7371826171875
+              ]
+            },
+            {
+              "cls_id": 10,
+              "label": "doc_title",
+              "score": 0.5369816422462463,
+              "coordinate": [
+                165.90960693359375,
+                24.63321304321289,
+                1361.77783203125,
+                112.00540161132812
+              ]
+            }
+          ]
+        },
+        "overall_ocr_res": {
+          "input_path": null,
+          "page_index": null,
+          "model_settings": {
+            "use_doc_preprocessor": false,
+            "use_textline_orientation": true
+          },
+          "dt_polys": [
+            [
+              [
+                161,
+                22
+              ],
+              [
+                1373,
+                19
+              ],
+              [
+                1373,
+                114
+              ],
+              [
+                161,
+                117
+              ]
+            ],
+            [
+              [
+                656,
+                194
+              ],
+              [
+                854,
+                192
+              ],
+              [
+                854,
+                248
+              ],
+              [
+                656,
+                250
+              ]
+            ],
+            [
+              [
+                143,
+                352
+              ],
+              [
+                194,
+                353
+              ],
+              [
+                188,
+                649
+              ],
+              [
+                137,
+                648
+              ]
+            ],
+            [
+              [
+                392,
+                379
+              ],
+              [
+                570,
+                379
+              ],
+              [
+                570,
+                429
+              ],
+              [
+                392,
+                429
+              ]
+            ],
+            [
+              [
+                791,
+                425
+              ],
+              [
+                1236,
+                428
+              ],
+              [
+                1236,
+                473
+              ],
+              [
+                791,
+                470
+              ]
+            ],
+            [
+              [
+                218,
+                456
+              ],
+              [
+                374,
+                456
+              ],
+              [
+                374,
+                505
+              ],
+              [
+                218,
+                505
+              ]
+            ],
+            [
+              [
+                760,
+                562
+              ],
+              [
+                933,
+                566
+              ],
+              [
+                932,
+                619
+              ],
+              [
+                759,
+                615
+              ]
+            ],
+            [
+              [
+                943,
+                629
+              ],
+              [
+                1157,
+                629
+              ],
+              [
+                1157,
+                677
+              ],
+              [
+                943,
+                677
+              ]
+            ],
+            [
+              [
+                1158,
+                702
+              ],
+              [
+                1412,
+                705
+              ],
+              [
+                1412,
+                757
+              ],
+              [
+                1158,
+                754
+              ]
+            ],
+            [
+              [
+                404,
+                797
+              ],
+              [
+                1006,
+                803
+              ],
+              [
+                1006,
+                858
+              ],
+              [
+                404,
+                852
+              ]
+            ],
+            [
+              [
+                44,
+                904
+              ],
+              [
+                1465,
+                905
+              ],
+              [
+                1465,
+                952
+              ],
+              [
+                44,
+                951
+              ]
+            ],
+            [
+              [
+                47,
+                957
+              ],
+              [
+                474,
+                955
+              ],
+              [
+                474,
+                995
+              ],
+              [
+                47,
+                997
+              ]
+            ],
+            [
+              [
+                13,
+                1055
+              ],
+              [
+                1429,
+                1055
+              ],
+              [
+                1429,
+                1079
+              ],
+              [
+                13,
+                1079
+              ]
+            ],
+            [
+              [
+                11,
+                1084
+              ],
+              [
+                1489,
+                1084
+              ],
+              [
+                1489,
+                1111
+              ],
+              [
+                11,
+                1111
+              ]
+            ],
+            [
+              [
+                13,
+                1116
+              ],
+              [
+                863,
+                1116
+              ],
+              [
+                863,
+                1140
+              ],
+              [
+                13,
+                1140
+              ]
+            ]
+          ],
+          "text_det_params": {
+            "limit_side_len": 736,
+            "limit_type": "min",
+            "thresh": 0.3,
+            "max_side_limit": 4000,
+            "box_thresh": 0.6,
+            "unclip_ratio": 1.5
+          },
+          "text_type": "general",
+          "textline_orientation_angles": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "text_rec_score_thresh": 0.0,
+          "return_word_box": false,
+          "rec_texts": [
+            "Focus v. variety in medical skills",
+            "Specialist",
+            "ernce",
+            "Resident",
+            "General Practitioners",
+            "Student",
+            "0-9years",
+            "10-20 years",
+            "Over 20 years",
+            "Instruction and Experience",
+            "Figure 4.Two trendsfor development of medicalperformance as a function ofex-",
+            "perience and instruction.",
+            "Butterworth, J. (NYU), Reppert, E. (NYU), 1960, Auscultatory acumen in the general medical population. Journal of the American Medical",
+            "Association, 174, 32-34. Graph from Ericsson, K. A. (Florida State U.), 2004, Deliberate practice and the acquisition and maintenance of expert",
+            "performance in medicine and related disciplines. Academic Medicine, 79, S70-S81"
+          ],
+          "rec_scores": [
+            0.9985584020614624,
+            0.9999958872795105,
+            0.8979684710502625,
+            0.9999951124191284,
+            0.9996951818466187,
+            0.9999960660934448,
+            0.999072790145874,
+            0.9687368869781494,
+            0.9983702898025513,
+            0.9969971179962158,
+            0.9845319986343384,
+            0.989159345626831,
+            0.994166910648346,
+            0.9957244396209717,
+            0.9971534609794617
+          ],
+          "rec_polys": [
+            [
+              [
+                161,
+                22
+              ],
+              [
+                1373,
+                19
+              ],
+              [
+                1373,
+                114
+              ],
+              [
+                161,
+                117
+              ]
+            ],
+            [
+              [
+                656,
+                194
+              ],
+              [
+                854,
+                192
+              ],
+              [
+                854,
+                248
+              ],
+              [
+                656,
+                250
+              ]
+            ],
+            [
+              [
+                143,
+                352
+              ],
+              [
+                194,
+                353
+              ],
+              [
+                188,
+                649
+              ],
+              [
+                137,
+                648
+              ]
+            ],
+            [
+              [
+                392,
+                379
+              ],
+              [
+                570,
+                379
+              ],
+              [
+                570,
+                429
+              ],
+              [
+                392,
+                429
+              ]
+            ],
+            [
+              [
+                791,
+                425
+              ],
+              [
+                1236,
+                428
+              ],
+              [
+                1236,
+                473
+              ],
+              [
+                791,
+                470
+              ]
+            ],
+            [
+              [
+                218,
+                456
+              ],
+              [
+                374,
+                456
+              ],
+              [
+                374,
+                505
+              ],
+              [
+                218,
+                505
+              ]
+            ],
+            [
+              [
+                760,
+                562
+              ],
+              [
+                933,
+                566
+              ],
+              [
+                932,
+                619
+              ],
+              [
+                759,
+                615
+              ]
+            ],
+            [
+              [
+                943,
+                629
+              ],
+              [
+                1157,
+                629
+              ],
+              [
+                1157,
+                677
+              ],
+              [
+                943,
+                677
+              ]
+            ],
+            [
+              [
+                1158,
+                702
+              ],
+              [
+                1412,
+                705
+              ],
+              [
+                1412,
+                757
+              ],
+              [
+                1158,
+                754
+              ]
+            ],
+            [
+              [
+                404,
+                797
+              ],
+              [
+                1006,
+                803
+              ],
+              [
+                1006,
+                858
+              ],
+              [
+                404,
+                852
+              ]
+            ],
+            [
+              [
+                44,
+                904
+              ],
+              [
+                1465,
+                905
+              ],
+              [
+                1465,
+                952
+              ],
+              [
+                44,
+                951
+              ]
+            ],
+            [
+              [
+                47,
+                957
+              ],
+              [
+                474,
+                955
+              ],
+              [
+                474,
+                995
+              ],
+              [
+                47,
+                997
+              ]
+            ],
+            [
+              [
+                13,
+                1055
+              ],
+              [
+                1429,
+                1055
+              ],
+              [
+                1429,
+                1079
+              ],
+              [
+                13,
+                1079
+              ]
+            ],
+            [
+              [
+                11,
+                1084
+              ],
+              [
+                1489,
+                1084
+              ],
+              [
+                1489,
+                1111
+              ],
+              [
+                11,
+                1111
+              ]
+            ],
+            [
+              [
+                13,
+                1116
+              ],
+              [
+                863,
+                1116
+              ],
+              [
+                863,
+                1140
+              ],
+              [
+                13,
+                1140
+              ]
+            ]
+          ],
+          "rec_boxes": [
+            [
+              161,
+              19,
+              1373,
+              117
+            ],
+            [
+              656,
+              192,
+              854,
+              250
+            ],
+            [
+              137,
+              352,
+              194,
+              649
+            ],
+            [
+              392,
+              379,
+              570,
+              429
+            ],
+            [
+              791,
+              425,
+              1236,
+              473
+            ],
+            [
+              218,
+              456,
+              374,
+              505
+            ],
+            [
+              759,
+              562,
+              933,
+              619
+            ],
+            [
+              943,
+              629,
+              1157,
+              677
+            ],
+            [
+              1158,
+              702,
+              1412,
+              757
+            ],
+            [
+              404,
+              797,
+              1006,
+              858
+            ],
+            [
+              44,
+              904,
+              1465,
+              952
+            ],
+            [
+              47,
+              955,
+              474,
+              997
+            ],
+            [
+              13,
+              1055,
+              1429,
+              1079
+            ],
+            [
+              11,
+              1084,
+              1489,
+              1111
+            ],
+            [
+              13,
+              1116,
+              863,
+              1140
+            ]
+          ]
+        }
+      }
+    },
+    "blocks": [
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p29:structure:0",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p29",
+        "source": "pp_structure_v3",
+        "source_list_index": 0,
+        "model_block_id": 0,
+        "model_block_order": 1,
+        "label": "doc_title",
+        "content": "Focus v. variety in medical skills ",
+        "bbox_image_pixels": [
+          165.0,
+          24.0,
+          1361.0,
+          112.0
+        ],
+        "polygon_pdf_points": [
+          [
+            82.5,
+            12.0
+          ],
+          [
+            680.5,
+            12.0
+          ],
+          [
+            680.5,
+            56.0
+          ],
+          [
+            82.5,
+            56.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          82.5,
+          12.0,
+          680.5,
+          56.0
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p29:structure:1",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p29",
+        "source": "pp_structure_v3",
+        "source_list_index": 1,
+        "model_block_id": 1,
+        "model_block_order": null,
+        "label": "image",
+        "content": "Specialist ernce Student Resident 0-9years General Practitioners \n10-20 years \nOver 20 years ",
+        "bbox_image_pixels": [
+          137.0,
+          179.0,
+          1406.0,
+          787.0
+        ],
+        "polygon_pdf_points": [
+          [
+            68.5,
+            89.5
+          ],
+          [
+            703.0,
+            89.5
+          ],
+          [
+            703.0,
+            393.5
+          ],
+          [
+            68.5,
+            393.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          68.5,
+          89.5,
+          703.0,
+          393.5
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p29:structure:2",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p29",
+        "source": "pp_structure_v3",
+        "source_list_index": 2,
+        "model_block_id": 2,
+        "model_block_order": null,
+        "label": "figure_title",
+        "content": "Instruction and Experience ",
+        "bbox_image_pixels": [
+          401.0,
+          799.0,
+          1003.0,
+          855.0
+        ],
+        "polygon_pdf_points": [
+          [
+            200.5,
+            399.5
+          ],
+          [
+            501.5,
+            399.5
+          ],
+          [
+            501.5,
+            427.5
+          ],
+          [
+            200.5,
+            427.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          200.5,
+          399.5,
+          501.5,
+          427.5
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p29:structure:3",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p29",
+        "source": "pp_structure_v3",
+        "source_list_index": 3,
+        "model_block_id": 3,
+        "model_block_order": null,
+        "label": "figure_title",
+        "content": "Figure 4.Two trendsfor development of medicalperformance as a function ofexperience and instruction.\n",
+        "bbox_image_pixels": [
+          41.0,
+          903.0,
+          1457.0,
+          993.0
+        ],
+        "polygon_pdf_points": [
+          [
+            20.5,
+            451.5
+          ],
+          [
+            728.5,
+            451.5
+          ],
+          [
+            728.5,
+            496.5
+          ],
+          [
+            20.5,
+            496.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          20.5,
+          451.5,
+          728.5,
+          496.5
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p29:structure:4",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p29",
+        "source": "pp_structure_v3",
+        "source_list_index": 4,
+        "model_block_id": 4,
+        "model_block_order": 2,
+        "label": "text",
+        "content": "Butterworth, J. (NYU), Reppert, E. (NYU), 1960, Auscultatory acumen in the general medical population. Journal of the American Medical Association, 174, 32-34. Graph from Ericsson, K. A. (Florida State U.), 2004, Deliberate practice and the acquisition and maintenance of expert performance in medicine and related disciplines. Academic Medicine, 79, S70-S81",
+        "bbox_image_pixels": [
+          3.0,
+          1051.0,
+          1490.0,
+          1140.0
+        ],
+        "polygon_pdf_points": [
+          [
+            1.5,
+            525.5
+          ],
+          [
+            745.0,
+            525.5
+          ],
+          [
+            745.0,
+            570.0
+          ],
+          [
+            1.5,
+            570.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          1.5,
+          525.5,
+          745.0,
+          570.0
+        ]
+      }
+    ],
+    "block_count": 5,
+    "character_count": 610,
+    "input_image": {
+      "width": 1536,
+      "height": 1152,
+      "color_order": "BGR",
+      "coordinate_system": "rendered_page_image_pixels"
+    },
+    "elapsed_seconds": 90.63227590010501,
+    "coordinate_status": "ok"
+  },
+  "review": {
+    "review_page_number": 2,
+    "status": "ok",
+    "drawn_count": 5,
+    "warnings": [],
+    "json_path": "documents/ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2/page_00029.json",
+    "path": "documents/ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2/review_structure.pdf"
+  },
+  "elapsed_seconds": 90.80855869990773
+}

@@ -1,0 +1,43 @@
+{
+  "document_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2",
+  "id_origin": "project_generated_name_sha256",
+  "document_name": "competitiveoutcomes-091006065143-phpapp01_95",
+  "status": "ok",
+  "pages": [
+    {
+      "page_number": 16,
+      "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p16",
+      "status": "ok",
+      "json_path": "documents/ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2/page_00016.json",
+      "native_status": "empty",
+      "parser_status": "ok"
+    },
+    {
+      "page_number": 29,
+      "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p29",
+      "status": "ok",
+      "json_path": "documents/ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2/page_00029.json",
+      "native_status": "empty",
+      "parser_status": "ok"
+    },
+    {
+      "page_number": 40,
+      "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40",
+      "status": "ok",
+      "json_path": "documents/ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2/page_00040.json",
+      "native_status": "empty",
+      "parser_status": "ok"
+    }
+  ],
+  "errors": [],
+  "source_url": "http://127.0.0.1:8080/raw/mmdocir_data/extracted/doc_pdfs/competitiveoutcomes-091006065143-phpapp01_95.pdf",
+  "source_sha256": "964fc4748a7698dd5af398a714f97cf430ff93f8646b75021c43bfb392fae870",
+  "source_pdf": "documents/ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2/source.pdf",
+  "source_page_count": 48,
+  "requested_page_numbers": [
+    16,
+    29,
+    40
+  ],
+  "review_pdf": "documents/ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2/review_structure.pdf"
+}

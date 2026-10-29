@@ -1,0 +1,900 @@
+{
+  "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p10",
+  "id_origin": "project_generated",
+  "document_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82",
+  "document_name": "0e94b4197b10096b1f4c699701570fbf",
+  "page_number": 10,
+  "page_numbering": "pdf_viewer_1_based",
+  "page_index": 9,
+  "source_sha256": "13ff22623b747d1facbb405369001c6d3793322b24a56365bb8cef89db2f903e",
+  "status": "ok",
+  "geometry": {
+    "coordinate_system": "pymupdf_unrotated_page_points",
+    "origin": "top_left_of_unrotated_page",
+    "unit": "point_1/72_inch",
+    "rotation_degrees": 0,
+    "mediabox": [
+      0.0,
+      0.0,
+      720.0,
+      405.0
+    ],
+    "cropbox": [
+      0.0,
+      0.0,
+      720.0,
+      405.0
+    ],
+    "rotated_page_rect": [
+      0.0,
+      0.0,
+      720.0,
+      405.0
+    ]
+  },
+  "native": {
+    "status": "empty",
+    "text": "",
+    "raw": {
+      "width": 720.0,
+      "height": 405.0,
+      "blocks": []
+    },
+    "extraction_flags": 195,
+    "sort": false
+  },
+  "images": {
+    "status": "ok",
+    "options": {
+      "hashes": true,
+      "xrefs": true
+    },
+    "digest_algorithm": "md5",
+    "digest_encoding": "hex",
+    "items": [
+      {
+        "number": 0,
+        "bbox": [
+          191.25,
+          77.625,
+          528.75,
+          327.375
+        ],
+        "transform": [
+          337.5,
+          0.0,
+          -0.0,
+          249.75,
+          191.25,
+          77.625
+        ],
+        "width": 450,
+        "height": 333,
+        "colorspace": 3,
+        "cs-name": "DeviceRGB",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 37536,
+        "digest": "182461ca09f3e6497c6ca82df1fb1a24",
+        "has-mask": false,
+        "xref": 72
+      }
+    ]
+  },
+  "render": {
+    "status": "ok",
+    "dpi": 144,
+    "width": 1440,
+    "height": 810,
+    "coordinate_system": "rendered_page_image_pixels",
+    "origin": "top_left",
+    "unit": "pixel",
+    "render_color_order": "RGB",
+    "input_color_order": "BGR",
+    "annotation_included": true,
+    "pixmap_origin_pixels": [
+      0,
+      0
+    ],
+    "pixel_to_pdf_matrix": [
+      0.5,
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.0
+    ]
+  },
+  "page_image": {
+    "path": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/page_00010.png",
+    "sha256": "db5489fc2a4e81581606568c0c822c71f9c6fde58d6672aebf0f9c09101ce426"
+  },
+  "parsing": {
+    "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p10",
+    "source": "pp_structure_v3",
+    "status": "ok",
+    "raw": {
+      "res": {
+        "input_path": null,
+        "page_index": null,
+        "page_count": null,
+        "width": 1440,
+        "height": 810,
+        "model_settings": {
+          "use_doc_preprocessor": true,
+          "use_seal_recognition": false,
+          "use_table_recognition": true,
+          "use_formula_recognition": true,
+          "use_chart_recognition": true,
+          "use_region_detection": true,
+          "format_block_content": false,
+          "markdown_ignore_labels": []
+        },
+        "parsing_res_list": [
+          {
+            "block_label": "image",
+            "block_content": "Tracking the West Nile Virus Height is Based on Approximate Distance Number of Confirmed \nfrom the Mississippi Human Cases \nRiver (miles)Shortest prism = 00-375Tallest prism = 661\n375-750\n750-1125\n1125-1500",
+            "block_bbox": [
+              380,
+              160,
+              1060,
+              653
+            ],
+            "block_id": 0,
+            "block_order": null
+          }
+        ],
+        "doc_preprocessor_res": {
+          "input_path": null,
+          "page_index": null,
+          "model_settings": {
+            "use_doc_orientation_classify": false,
+            "use_doc_unwarping": false
+          },
+          "angle": -1
+        },
+        "layout_det_res": {
+          "input_path": null,
+          "page_index": null,
+          "boxes": [
+            {
+              "cls_id": 1,
+              "label": "image",
+              "score": 0.9448206424713135,
+              "coordinate": [
+                380.76251220703125,
+                160.53021240234375,
+                1060.83154296875,
+                653.3532104492188
+              ]
+            }
+          ]
+        },
+        "overall_ocr_res": {
+          "input_path": null,
+          "page_index": null,
+          "model_settings": {
+            "use_doc_preprocessor": false,
+            "use_textline_orientation": true
+          },
+          "dt_polys": [
+            [
+              [
+                583,
+                160
+              ],
+              [
+                927,
+                162
+              ],
+              [
+                927,
+                211
+              ],
+              [
+                583,
+                208
+              ]
+            ],
+            [
+              [
+                556,
+                217
+              ],
+              [
+                968,
+                220
+              ],
+              [
+                968,
+                267
+              ],
+              [
+                556,
+                264
+              ]
+            ],
+            [
+              [
+                393,
+                469
+              ],
+              [
+                562,
+                467
+              ],
+              [
+                562,
+                488
+              ],
+              [
+                393,
+                490
+              ]
+            ],
+            [
+              [
+                849,
+                478
+              ],
+              [
+                1048,
+                478
+              ],
+              [
+                1048,
+                498
+              ],
+              [
+                849,
+                498
+              ]
+            ],
+            [
+              [
+                383,
+                491
+              ],
+              [
+                574,
+                491
+              ],
+              [
+                574,
+                508
+              ],
+              [
+                383,
+                508
+              ]
+            ],
+            [
+              [
+                854,
+                499
+              ],
+              [
+                1036,
+                499
+              ],
+              [
+                1036,
+                519
+              ],
+              [
+                854,
+                519
+              ]
+            ],
+            [
+              [
+                417,
+                512
+              ],
+              [
+                542,
+                512
+              ],
+              [
+                542,
+                530
+              ],
+              [
+                417,
+                530
+              ]
+            ],
+            [
+              [
+                891,
+                520
+              ],
+              [
+                1005,
+                520
+              ],
+              [
+                1005,
+                541
+              ],
+              [
+                891,
+                541
+              ]
+            ],
+            [
+              [
+                406,
+                545
+              ],
+              [
+                539,
+                545
+              ],
+              [
+                539,
+                562
+              ],
+              [
+                406,
+                562
+              ]
+            ],
+            [
+              [
+                890,
+                547
+              ],
+              [
+                944,
+                547
+              ],
+              [
+                944,
+                565
+              ],
+              [
+                890,
+                565
+              ]
+            ],
+            [
+              [
+                406,
+                562
+              ],
+              [
+                541,
+                562
+              ],
+              [
+                541,
+                579
+              ],
+              [
+                406,
+                579
+              ]
+            ],
+            [
+              [
+                891,
+                571
+              ],
+              [
+                961,
+                571
+              ],
+              [
+                961,
+                589
+              ],
+              [
+                891,
+                589
+              ]
+            ],
+            [
+              [
+                891,
+                595
+              ],
+              [
+                970,
+                595
+              ],
+              [
+                970,
+                614
+              ],
+              [
+                891,
+                614
+              ]
+            ],
+            [
+              [
+                892,
+                621
+              ],
+              [
+                978,
+                621
+              ],
+              [
+                978,
+                638
+              ],
+              [
+                892,
+                638
+              ]
+            ]
+          ],
+          "text_det_params": {
+            "limit_side_len": 736,
+            "limit_type": "min",
+            "thresh": 0.3,
+            "max_side_limit": 4000,
+            "box_thresh": 0.6,
+            "unclip_ratio": 1.5
+          },
+          "text_type": "general",
+          "textline_orientation_angles": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "text_rec_score_thresh": 0.0,
+          "return_word_box": false,
+          "rec_texts": [
+            "Tracking the",
+            "West Nile Virus",
+            "Height is Based on",
+            "Approximate Distance",
+            "Number of Confirmed",
+            "from the Mississippi",
+            "Human Cases",
+            "River (miles)",
+            "Shortest prism = 0",
+            "0-375",
+            "Tallest prism = 661",
+            "375-750",
+            "750-1125",
+            "1125-1500"
+          ],
+          "rec_scores": [
+            0.9999129772186279,
+            0.9883617162704468,
+            0.9943814873695374,
+            0.9999837875366211,
+            0.9999875426292419,
+            0.9999514818191528,
+            0.9999936819076538,
+            0.9984411001205444,
+            0.995415449142456,
+            0.9995607137680054,
+            0.9888888001441956,
+            0.9888364672660828,
+            0.9962942600250244,
+            0.9999419450759888
+          ],
+          "rec_polys": [
+            [
+              [
+                583,
+                160
+              ],
+              [
+                927,
+                162
+              ],
+              [
+                927,
+                211
+              ],
+              [
+                583,
+                208
+              ]
+            ],
+            [
+              [
+                556,
+                217
+              ],
+              [
+                968,
+                220
+              ],
+              [
+                968,
+                267
+              ],
+              [
+                556,
+                264
+              ]
+            ],
+            [
+              [
+                393,
+                469
+              ],
+              [
+                562,
+                467
+              ],
+              [
+                562,
+                488
+              ],
+              [
+                393,
+                490
+              ]
+            ],
+            [
+              [
+                849,
+                478
+              ],
+              [
+                1048,
+                478
+              ],
+              [
+                1048,
+                498
+              ],
+              [
+                849,
+                498
+              ]
+            ],
+            [
+              [
+                383,
+                491
+              ],
+              [
+                574,
+                491
+              ],
+              [
+                574,
+                508
+              ],
+              [
+                383,
+                508
+              ]
+            ],
+            [
+              [
+                854,
+                499
+              ],
+              [
+                1036,
+                499
+              ],
+              [
+                1036,
+                519
+              ],
+              [
+                854,
+                519
+              ]
+            ],
+            [
+              [
+                417,
+                512
+              ],
+              [
+                542,
+                512
+              ],
+              [
+                542,
+                530
+              ],
+              [
+                417,
+                530
+              ]
+            ],
+            [
+              [
+                891,
+                520
+              ],
+              [
+                1005,
+                520
+              ],
+              [
+                1005,
+                541
+              ],
+              [
+                891,
+                541
+              ]
+            ],
+            [
+              [
+                406,
+                545
+              ],
+              [
+                539,
+                545
+              ],
+              [
+                539,
+                562
+              ],
+              [
+                406,
+                562
+              ]
+            ],
+            [
+              [
+                890,
+                547
+              ],
+              [
+                944,
+                547
+              ],
+              [
+                944,
+                565
+              ],
+              [
+                890,
+                565
+              ]
+            ],
+            [
+              [
+                406,
+                562
+              ],
+              [
+                541,
+                562
+              ],
+              [
+                541,
+                579
+              ],
+              [
+                406,
+                579
+              ]
+            ],
+            [
+              [
+                891,
+                571
+              ],
+              [
+                961,
+                571
+              ],
+              [
+                961,
+                589
+              ],
+              [
+                891,
+                589
+              ]
+            ],
+            [
+              [
+                891,
+                595
+              ],
+              [
+                970,
+                595
+              ],
+              [
+                970,
+                614
+              ],
+              [
+                891,
+                614
+              ]
+            ],
+            [
+              [
+                892,
+                621
+              ],
+              [
+                978,
+                621
+              ],
+              [
+                978,
+                638
+              ],
+              [
+                892,
+                638
+              ]
+            ]
+          ],
+          "rec_boxes": [
+            [
+              583,
+              160,
+              927,
+              211
+            ],
+            [
+              556,
+              217,
+              968,
+              267
+            ],
+            [
+              393,
+              467,
+              562,
+              490
+            ],
+            [
+              849,
+              478,
+              1048,
+              498
+            ],
+            [
+              383,
+              491,
+              574,
+              508
+            ],
+            [
+              854,
+              499,
+              1036,
+              519
+            ],
+            [
+              417,
+              512,
+              542,
+              530
+            ],
+            [
+              891,
+              520,
+              1005,
+              541
+            ],
+            [
+              406,
+              545,
+              539,
+              562
+            ],
+            [
+              890,
+              547,
+              944,
+              565
+            ],
+            [
+              406,
+              562,
+              541,
+              579
+            ],
+            [
+              891,
+              571,
+              961,
+              589
+            ],
+            [
+              891,
+              595,
+              970,
+              614
+            ],
+            [
+              892,
+              621,
+              978,
+              638
+            ]
+          ]
+        }
+      }
+    },
+    "blocks": [
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p10:structure:0",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p10",
+        "source": "pp_structure_v3",
+        "source_list_index": 0,
+        "model_block_id": 0,
+        "model_block_order": null,
+        "label": "image",
+        "content": "Tracking the West Nile Virus Height is Based on Approximate Distance Number of Confirmed \nfrom the Mississippi Human Cases \nRiver (miles)Shortest prism = 00-375Tallest prism = 661\n375-750\n750-1125\n1125-1500",
+        "bbox_image_pixels": [
+          380.0,
+          160.0,
+          1060.0,
+          653.0
+        ],
+        "polygon_pdf_points": [
+          [
+            190.0,
+            80.0
+          ],
+          [
+            530.0,
+            80.0
+          ],
+          [
+            530.0,
+            326.5
+          ],
+          [
+            190.0,
+            326.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          190.0,
+          80.0,
+          530.0,
+          326.5
+        ]
+      }
+    ],
+    "block_count": 1,
+    "character_count": 206,
+    "input_image": {
+      "width": 1440,
+      "height": 810,
+      "color_order": "BGR",
+      "coordinate_system": "rendered_page_image_pixels"
+    },
+    "elapsed_seconds": 48.01439379993826,
+    "coordinate_status": "ok"
+  },
+  "review": {
+    "review_page_number": 4,
+    "status": "ok",
+    "drawn_count": 1,
+    "warnings": [],
+    "json_path": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/page_00010.json",
+    "path": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/review_structure.pdf"
+  },
+  "elapsed_seconds": 48.229015700053424
+}

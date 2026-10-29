@@ -1,0 +1,43 @@
+{
+  "document_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36",
+  "id_origin": "project_generated_name_sha256",
+  "document_name": "3M_2018_10K",
+  "status": "ok",
+  "pages": [
+    {
+      "page_number": 8,
+      "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p8",
+      "status": "ok",
+      "json_path": "documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/page_00008.json",
+      "native_status": "ok",
+      "parser_status": "ok"
+    },
+    {
+      "page_number": 9,
+      "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p9",
+      "status": "ok",
+      "json_path": "documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/page_00009.json",
+      "native_status": "ok",
+      "parser_status": "ok"
+    },
+    {
+      "page_number": 15,
+      "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p15",
+      "status": "ok",
+      "json_path": "documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/page_00015.json",
+      "native_status": "ok",
+      "parser_status": "ok"
+    }
+  ],
+  "errors": [],
+  "source_url": "http://127.0.0.1:8080/raw/mmdocir_data/extracted/doc_pdfs/3M_2018_10K.pdf",
+  "source_sha256": "faf10c53fc6f1a8aa346ec3db79145e3ae6fbb3753c8064924e174d0a973934d",
+  "source_pdf": "documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/source.pdf",
+  "source_page_count": 160,
+  "requested_page_numbers": [
+    8,
+    9,
+    15
+  ],
+  "review_pdf": "documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/review_structure.pdf"
+}

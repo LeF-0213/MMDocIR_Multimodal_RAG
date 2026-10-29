@@ -1,0 +1,34 @@
+{
+  "document_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a",
+  "id_origin": "project_generated_name_sha256",
+  "document_name": "NUS-Business-School-BBA-Brochure-2024",
+  "status": "ok",
+  "pages": [
+    {
+      "page_number": 9,
+      "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p9",
+      "status": "ok",
+      "json_path": "documents/d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a/page_00009.json",
+      "native_status": "ok",
+      "parser_status": "ok"
+    },
+    {
+      "page_number": 22,
+      "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+      "status": "ok",
+      "json_path": "documents/d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a/page_00022.json",
+      "native_status": "ok",
+      "parser_status": "ok"
+    }
+  ],
+  "errors": [],
+  "source_url": "http://127.0.0.1:8080/raw/mmdocir_data/extracted/doc_pdfs/NUS-Business-School-BBA-Brochure-2024.pdf",
+  "source_sha256": "482a559e9e2cae5a831c11565786ac274d67e0f5b1096927e7fdf1c25152358e",
+  "source_pdf": "documents/d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a/source.pdf",
+  "source_page_count": 24,
+  "requested_page_numbers": [
+    9,
+    22
+  ],
+  "review_pdf": "documents/d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a/review_structure.pdf"
+}

@@ -1,0 +1,5182 @@
+{
+  "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+  "id_origin": "project_generated",
+  "document_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a",
+  "document_name": "NUS-Business-School-BBA-Brochure-2024",
+  "page_number": 22,
+  "page_numbering": "pdf_viewer_1_based",
+  "page_index": 21,
+  "source_sha256": "482a559e9e2cae5a831c11565786ac274d67e0f5b1096927e7fdf1c25152358e",
+  "status": "ok",
+  "geometry": {
+    "coordinate_system": "pymupdf_unrotated_page_points",
+    "origin": "top_left_of_unrotated_page",
+    "unit": "point_1/72_inch",
+    "rotation_degrees": 0,
+    "mediabox": [
+      0.0,
+      0.0,
+      496.06298828125,
+      666.1420288085938
+    ],
+    "cropbox": [
+      0.0,
+      0.0,
+      496.06298828125,
+      666.1420288085938
+    ],
+    "rotated_page_rect": [
+      0.0,
+      0.0,
+      496.06298828125,
+      666.1420288085938
+    ]
+  },
+  "native": {
+    "status": "ok",
+    "text": "Get a taste of entrepreneurship at NUS Business \nSchool, where you get to take center stage in \none of our newer majors. Equip yourself with \nexpansive theoretical insights, empowering you to \nlead change effectively—whether you’re venturing \ninto an entrepreneurial startup or navigating the \nlandscape of a large multinational corporation. \nPrevious batches of students, who were just like \nyou, have already launched successful businesses in \nSingapore, with names like Carousell, Playmoolah, \nand Moovaz making an impact.\nFlip to Page 10, and you will discover the NUS \nOverseas Colleges (NOC) programme, aimed to \ncultivate your entrepreneurial spirit. Immerse \nyourself in this transformative experience — \nintern in a technology-based startup, while \nconcurrently pursuing part-time courses at \nreputable universities. It’s your opportunity to \nshape your entrepreneurial journey and make an \nimpact on a global scale.\nBryan and his colleagues \nfrom DNV ReWind gathering \nover a meal\nBryan and his team attending EoLIS 2023 \nConference @ Rotterdam, Netherlands\nHow has your experience in NOC been so far? \nAnd how has it impacted you?\nIt is difficult to understate how enriching and \ninstructive NOC has been with professional \nand personal impacts. With the former being \nto look beyond the usual fields most business \nstudents consider when job seeking (e.g., \nfinance, marketing, consulting) while the \nlatter being a future outside of Singapore; a \npossibility I would not have entertained if it \nwas not for NOC Norway.\n \nDo you have any advice for your juniors \napplying to NUS Business School and NOC?\nKeep an open mind and remember that some \nof the most valuable sources of learning \nhappens outside of the classrooms with \nprogrammes such as NOC which will do \nnothing but enrich your NUS experience.\nBRYAN VOON, Year 4 Business \nStudent who went for NOC, \nNorway.\nBE AN ENTREPRENEUR\n20",
+    "raw": {
+      "width": 496.06298828125,
+      "height": 666.1420288085938,
+      "blocks": [
+        {
+          "type": 0,
+          "number": 0,
+          "flags": 0,
+          "bbox": [
+            34.01570129394531,
+            101.7999038696289,
+            247.18067932128906,
+            227.48504638671875
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "Get a taste of entrepreneurship at NUS Business ",
+                  "origin": [
+                    34.01570129394531,
+                    110.21490478515625
+                  ],
+                  "bbox": [
+                    34.01570129394531,
+                    101.7999038696289,
+                    234.6976776123047,
+                    112.46490478515625
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                34.01570129394531,
+                101.7999038696289,
+                234.6976776123047,
+                112.46490478515625
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "School, where you get to take center stage in ",
+                  "origin": [
+                    34.01570129394531,
+                    121.7169189453125
+                  ],
+                  "bbox": [
+                    34.01570129394531,
+                    113.30191802978516,
+                    225.1189727783203,
+                    123.9669189453125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                34.01570129394531,
+                113.30191802978516,
+                225.1189727783203,
+                123.9669189453125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "one of our newer majors. Equip yourself with ",
+                  "origin": [
+                    34.01570129394531,
+                    133.21893310546875
+                  ],
+                  "bbox": [
+                    34.01570129394531,
+                    124.8039321899414,
+                    224.95066833496094,
+                    135.46893310546875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                34.01570129394531,
+                124.8039321899414,
+                224.95066833496094,
+                135.46893310546875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "expansive theoretical insights, empowering you to ",
+                  "origin": [
+                    34.01570129394531,
+                    144.720947265625
+                  ],
+                  "bbox": [
+                    34.01570129394531,
+                    136.3059539794922,
+                    245.00267028808594,
+                    146.970947265625
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                34.01570129394531,
+                136.3059539794922,
+                245.00267028808594,
+                146.970947265625
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "lead change effectively—whether you’re venturing ",
+                  "origin": [
+                    34.01570129394531,
+                    156.22296142578125
+                  ],
+                  "bbox": [
+                    34.01570129394531,
+                    147.80796813964844,
+                    247.18067932128906,
+                    158.47296142578125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                34.01570129394531,
+                147.80796813964844,
+                247.18067932128906,
+                158.47296142578125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "into an entrepreneurial startup or navigating the ",
+                  "origin": [
+                    34.01570129394531,
+                    167.7249755859375
+                  ],
+                  "bbox": [
+                    34.01570129394531,
+                    159.3099822998047,
+                    240.26866149902344,
+                    169.9749755859375
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                34.01570129394531,
+                159.3099822998047,
+                240.26866149902344,
+                169.9749755859375
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "landscape of a large multinational corporation. ",
+                  "origin": [
+                    34.01570129394531,
+                    179.22698974609375
+                  ],
+                  "bbox": [
+                    34.01570129394531,
+                    170.81199645996094,
+                    232.18667602539062,
+                    181.47698974609375
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                34.01570129394531,
+                170.81199645996094,
+                232.18667602539062,
+                181.47698974609375
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "Previous batches of students, who were just like ",
+                  "origin": [
+                    34.01570129394531,
+                    190.72900390625
+                  ],
+                  "bbox": [
+                    34.01570129394531,
+                    182.3140106201172,
+                    235.10269165039062,
+                    192.97900390625
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                34.01570129394531,
+                182.3140106201172,
+                235.10269165039062,
+                192.97900390625
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "you, have already launched successful businesses in ",
+                  "origin": [
+                    34.01570129394531,
+                    202.23101806640625
+                  ],
+                  "bbox": [
+                    34.01570129394531,
+                    193.81602478027344,
+                    245.4140625,
+                    204.48101806640625
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                34.01570129394531,
+                193.81602478027344,
+                245.4140625,
+                204.48101806640625
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "Singapore, with names like Carousell, Playmoolah, ",
+                  "origin": [
+                    34.01570129394531,
+                    213.7330322265625
+                  ],
+                  "bbox": [
+                    34.01570129394531,
+                    205.3180389404297,
+                    235.88565063476562,
+                    215.9830322265625
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                34.01570129394531,
+                205.3180389404297,
+                235.88565063476562,
+                215.9830322265625
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "and Moovaz making an impact.",
+                  "origin": [
+                    34.01570129394531,
+                    225.23504638671875
+                  ],
+                  "bbox": [
+                    34.01570129394531,
+                    216.82005310058594,
+                    160.2587127685547,
+                    227.48504638671875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                34.01570129394531,
+                216.82005310058594,
+                160.2587127685547,
+                227.48504638671875
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 1,
+          "flags": 0,
+          "bbox": [
+            254.031494140625,
+            101.83475494384766,
+            460.0595397949219,
+            204.515869140625
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "Flip to Page 10, and you will discover the NUS ",
+                  "origin": [
+                    254.031494140625,
+                    110.249755859375
+                  ],
+                  "bbox": [
+                    254.031494140625,
+                    101.83475494384766,
+                    446.2984619140625,
+                    112.499755859375
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                254.031494140625,
+                101.83475494384766,
+                446.2984619140625,
+                112.499755859375
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "Overseas Colleges (NOC) programme, aimed to ",
+                  "origin": [
+                    254.031494140625,
+                    121.75177001953125
+                  ],
+                  "bbox": [
+                    254.031494140625,
+                    113.3367691040039,
+                    450.5645446777344,
+                    124.00177001953125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                254.031494140625,
+                113.3367691040039,
+                450.5645446777344,
+                124.00177001953125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "cultivate your entrepreneurial spirit. Immerse ",
+                  "origin": [
+                    254.031494140625,
+                    133.2537841796875
+                  ],
+                  "bbox": [
+                    254.031494140625,
+                    124.83878326416016,
+                    443.5535583496094,
+                    135.5037841796875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                254.031494140625,
+                124.83878326416016,
+                443.5535583496094,
+                135.5037841796875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "yourself in this transformative experience — ",
+                  "origin": [
+                    254.031494140625,
+                    144.75579833984375
+                  ],
+                  "bbox": [
+                    254.031494140625,
+                    136.34080505371094,
+                    439.4765930175781,
+                    147.00579833984375
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                254.031494140625,
+                136.34080505371094,
+                439.4765930175781,
+                147.00579833984375
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "intern in a technology-based startup, while ",
+                  "origin": [
+                    254.031494140625,
+                    156.2578125
+                  ],
+                  "bbox": [
+                    254.031494140625,
+                    147.8428192138672,
+                    435.04852294921875,
+                    158.5078125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                254.031494140625,
+                147.8428192138672,
+                435.04852294921875,
+                158.5078125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "concurrently pursuing part-time courses at ",
+                  "origin": [
+                    254.031494140625,
+                    167.75982666015625
+                  ],
+                  "bbox": [
+                    254.031494140625,
+                    159.34483337402344,
+                    431.8716125488281,
+                    170.00982666015625
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                254.031494140625,
+                159.34483337402344,
+                431.8716125488281,
+                170.00982666015625
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "reputable universities. It’s your opportunity to ",
+                  "origin": [
+                    254.031494140625,
+                    179.2618408203125
+                  ],
+                  "bbox": [
+                    254.031494140625,
+                    170.8468475341797,
+                    446.613525390625,
+                    181.5118408203125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                254.031494140625,
+                170.8468475341797,
+                446.613525390625,
+                181.5118408203125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "shape your entrepreneurial journey and make an ",
+                  "origin": [
+                    254.031494140625,
+                    190.76385498046875
+                  ],
+                  "bbox": [
+                    254.031494140625,
+                    182.34886169433594,
+                    460.0595397949219,
+                    193.01385498046875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                254.031494140625,
+                182.34886169433594,
+                460.0595397949219,
+                193.01385498046875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "impact on a global scale.",
+                  "origin": [
+                    254.031494140625,
+                    202.265869140625
+                  ],
+                  "bbox": [
+                    254.031494140625,
+                    193.8508758544922,
+                    356.406494140625,
+                    204.515869140625
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                254.031494140625,
+                193.8508758544922,
+                356.406494140625,
+                204.515869140625
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 2,
+          "flags": 0,
+          "bbox": [
+            274.6807861328125,
+            241.67161560058594,
+            363.23681640625,
+            265.3771057128906
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 6.5,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 1988502,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "Bryan and his colleagues ",
+                  "origin": [
+                    274.6807861328125,
+                    247.74911499023438
+                  ],
+                  "bbox": [
+                    274.6807861328125,
+                    241.67161560058594,
+                    349.9443664550781,
+                    249.37411499023438
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                274.6807861328125,
+                241.67161560058594,
+                349.9443664550781,
+                249.37411499023438
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 6.5,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 1988502,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "from DNV ReWind gathering ",
+                  "origin": [
+                    274.6807861328125,
+                    255.7506103515625
+                  ],
+                  "bbox": [
+                    274.6807861328125,
+                    249.67311096191406,
+                    363.23681640625,
+                    257.3756103515625
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                274.6807861328125,
+                249.67311096191406,
+                363.23681640625,
+                257.3756103515625
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 6.5,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 1988502,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "over a meal",
+                  "origin": [
+                    274.6807861328125,
+                    263.7521057128906
+                  ],
+                  "bbox": [
+                    274.6807861328125,
+                    257.6745910644531,
+                    309.80035400390625,
+                    265.3771057128906
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                274.6807861328125,
+                257.6745910644531,
+                309.80035400390625,
+                265.3771057128906
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 3,
+          "flags": 0,
+          "bbox": [
+            297.144775390625,
+            571.7091064453125,
+            421.4762878417969,
+            587.4130859375
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 6.5,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 1988502,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "Bryan and his team attending EoLIS 2023 ",
+                  "origin": [
+                    297.144775390625,
+                    577.78662109375
+                  ],
+                  "bbox": [
+                    297.144775390625,
+                    571.7091064453125,
+                    421.4762878417969,
+                    579.41162109375
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                297.144775390625,
+                571.7091064453125,
+                421.4762878417969,
+                579.41162109375
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 6.5,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 1988502,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "Conference @ Rotterdam, Netherlands",
+                  "origin": [
+                    297.144775390625,
+                    585.7880859375
+                  ],
+                  "bbox": [
+                    297.144775390625,
+                    579.7105712890625,
+                    411.9283752441406,
+                    587.4130859375
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                297.144775390625,
+                579.7105712890625,
+                411.9283752441406,
+                587.4130859375
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 4,
+          "flags": 0,
+          "bbox": [
+            56.122398376464844,
+            356.3993225097656,
+            250.90040588378906,
+            565.0283203125
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 20,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "FrutigerLTStd-Bold",
+                  "color": 16224798,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "How has your experience in NOC been so far? ",
+                  "origin": [
+                    56.122398376464844,
+                    364.8143310546875
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    356.3993225097656,
+                    250.90040588378906,
+                    367.0643310546875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                356.3993225097656,
+                250.90040588378906,
+                367.0643310546875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 20,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "FrutigerLTStd-Bold",
+                  "color": 16224798,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "And how has it impacted you?",
+                  "origin": [
+                    56.122398376464844,
+                    375.81231689453125
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    367.3973083496094,
+                    183.96739196777344,
+                    378.06231689453125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                367.3973083496094,
+                183.96739196777344,
+                378.06231689453125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "It is difficult to understate how enriching and ",
+                  "origin": [
+                    56.122398376464844,
+                    386.810302734375
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    378.3952941894531,
+                    247.2103729248047,
+                    389.060302734375
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                378.3952941894531,
+                247.2103729248047,
+                389.060302734375
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "instructive NOC has been with professional ",
+                  "origin": [
+                    56.122398376464844,
+                    397.80828857421875
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    389.3932800292969,
+                    236.23037719726562,
+                    400.05828857421875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                389.3932800292969,
+                236.23037719726562,
+                400.05828857421875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "and personal impacts. With the former being ",
+                  "origin": [
+                    56.122398376464844,
+                    408.8062744140625
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    400.3912658691406,
+                    245.4013671875,
+                    411.0562744140625
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                400.3912658691406,
+                245.4013671875,
+                411.0562744140625
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "to look beyond the usual fields most business ",
+                  "origin": [
+                    56.122398376464844,
+                    419.80426025390625
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    411.3892517089844,
+                    246.56234741210938,
+                    422.05426025390625
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                411.3892517089844,
+                246.56234741210938,
+                422.05426025390625
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "students consider when job seeking (e.g., ",
+                  "origin": [
+                    56.122398376464844,
+                    430.8022766113281
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    422.38726806640625,
+                    229.31837463378906,
+                    433.0522766113281
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                422.38726806640625,
+                229.31837463378906,
+                433.0522766113281
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "finance, marketing, consulting) while the ",
+                  "origin": [
+                    56.122398376464844,
+                    441.80029296875
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    433.3852844238281,
+                    229.15638732910156,
+                    444.05029296875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                433.3852844238281,
+                229.15638732910156,
+                444.05029296875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "latter being a future outside of Singapore; a ",
+                  "origin": [
+                    56.122398376464844,
+                    452.79827880859375
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    444.3832702636719,
+                    242.48538208007812,
+                    455.04827880859375
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                444.3832702636719,
+                242.48538208007812,
+                455.04827880859375
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "possibility I would not have entertained if it ",
+                  "origin": [
+                    56.122398376464844,
+                    463.7962646484375
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    455.3812561035156,
+                    240.3883819580078,
+                    466.0462646484375
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                455.3812561035156,
+                240.3883819580078,
+                466.0462646484375
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "was not for NOC Norway.",
+                  "origin": [
+                    56.122398376464844,
+                    474.7942810058594
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    466.3792724609375,
+                    161.49440002441406,
+                    477.0442810058594
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                466.3792724609375,
+                161.49440002441406,
+                477.0442810058594
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": " ",
+                  "origin": [
+                    56.122398376464844,
+                    485.79229736328125
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    477.3772888183594,
+                    58.62439727783203,
+                    488.04229736328125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                477.3772888183594,
+                58.62439727783203,
+                488.04229736328125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 20,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "FrutigerLTStd-Bold",
+                  "color": 16224798,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "Do you have any advice for your juniors ",
+                  "origin": [
+                    56.122398376464844,
+                    496.790283203125
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    488.3752746582031,
+                    226.5103759765625,
+                    499.040283203125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                488.3752746582031,
+                226.5103759765625,
+                499.040283203125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 20,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "FrutigerLTStd-Bold",
+                  "color": 16224798,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "applying to NUS Business School and NOC?",
+                  "origin": [
+                    56.122398376464844,
+                    507.78826904296875
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    499.3732604980469,
+                    236.63540649414062,
+                    510.03826904296875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                499.3732604980469,
+                236.63540649414062,
+                510.03826904296875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "Keep an open mind and remember that some ",
+                  "origin": [
+                    56.122398376464844,
+                    518.7862548828125
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    510.3712463378906,
+                    248.43435668945312,
+                    521.0362548828125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                510.3712463378906,
+                248.43435668945312,
+                521.0362548828125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "of the most valuable sources of learning ",
+                  "origin": [
+                    56.122398376464844,
+                    529.7843017578125
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    521.3693237304688,
+                    225.1693878173828,
+                    532.0343017578125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                521.3693237304688,
+                225.1693878173828,
+                532.0343017578125
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "happens outside of the classrooms with ",
+                  "origin": [
+                    56.122398376464844,
+                    540.7822875976562
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    532.3673095703125,
+                    222.0823516845703,
+                    543.0322875976562
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                532.3673095703125,
+                222.0823516845703,
+                543.0322875976562
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "programmes such as NOC which will do ",
+                  "origin": [
+                    56.122398376464844,
+                    551.7802734375
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    543.3652954101562,
+                    222.00140380859375,
+                    554.0302734375
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                543.3652954101562,
+                222.00140380859375,
+                554.0302734375
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 9.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "nothing but enrich your NUS experience.",
+                  "origin": [
+                    56.122398376464844,
+                    562.7783203125
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    554.3633422851562,
+                    224.98040771484375,
+                    565.0283203125
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                554.3633422851562,
+                224.98040771484375,
+                565.0283203125
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 5,
+          "flags": 0,
+          "bbox": [
+            56.122398376464844,
+            300.6325378417969,
+            227.56288146972656,
+            339.88055419921875
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 11.0,
+                  "flags": 20,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "FrutigerLTStd-Black",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9539999961853027,
+                  "descender": -0.25,
+                  "text": "BRYAN VOON, Year 4 Business ",
+                  "origin": [
+                    56.122398376464844,
+                    311.12652587890625
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    300.6325378417969,
+                    227.56288146972656,
+                    313.87652587890625
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                300.6325378417969,
+                227.56288146972656,
+                313.87652587890625
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 11.0,
+                  "flags": 20,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "FrutigerLTStd-Black",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9539999961853027,
+                  "descender": -0.25,
+                  "text": "Student who went for NOC, ",
+                  "origin": [
+                    56.122398376464844,
+                    324.1285400390625
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    313.6345520019531,
+                    216.23841857910156,
+                    326.8785400390625
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                313.6345520019531,
+                216.23841857910156,
+                326.8785400390625
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 11.0,
+                  "flags": 20,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "FrutigerLTStd-Black",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9539999961853027,
+                  "descender": -0.25,
+                  "text": "Norway.",
+                  "origin": [
+                    56.122398376464844,
+                    337.13055419921875
+                  ],
+                  "bbox": [
+                    56.122398376464844,
+                    326.6365661621094,
+                    102.83939361572266,
+                    339.88055419921875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.122398376464844,
+                326.6365661621094,
+                102.83939361572266,
+                339.88055419921875
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 6,
+          "flags": 0,
+          "bbox": [
+            34.015899658203125,
+            43.93421173095703,
+            265.7868957519531,
+            71.189208984375
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 23.0,
+                  "flags": 20,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "FrutigerLTStd-Bold",
+                  "color": 16777215,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "BE AN ENTREPRENEUR",
+                  "origin": [
+                    34.015899658203125,
+                    65.439208984375
+                  ],
+                  "bbox": [
+                    34.015899658203125,
+                    43.93421173095703,
+                    265.7868957519531,
+                    71.189208984375
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                34.015899658203125,
+                43.93421173095703,
+                265.7868957519531,
+                71.189208984375
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 7,
+          "flags": 0,
+          "bbox": [
+            33.86149978637695,
+            636.0872802734375,
+            43.82346725463867,
+            647.7608032226562
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 9.000004768371582,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "FrutigerLTStd-Roman",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.9350000023841858,
+                  "descender": -0.25,
+                  "text": "20",
+                  "origin": [
+                    33.86149978637695,
+                    645.5004272460938
+                  ],
+                  "bbox": [
+                    33.86149978637695,
+                    636.0872802734375,
+                    43.82346725463867,
+                    647.7608032226562
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                0.9953963160514832,
+                -0.0958440899848938
+              ],
+              "bbox": [
+                33.86149978637695,
+                636.0872802734375,
+                43.82346725463867,
+                647.7608032226562
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "extraction_flags": 195,
+    "sort": false
+  },
+  "images": {
+    "status": "ok",
+    "options": {
+      "hashes": true,
+      "xrefs": true
+    },
+    "digest_algorithm": "md5",
+    "digest_encoding": "hex",
+    "items": [
+      {
+        "number": 0,
+        "bbox": [
+          0.0,
+          0.0,
+          438.0,
+          528.0
+        ],
+        "transform": [
+          438.0,
+          0.0,
+          0.0,
+          528.0,
+          0.0,
+          0.0
+        ],
+        "width": 438,
+        "height": 528,
+        "colorspace": 3,
+        "cs-name": "DeviceRGB",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 693792,
+        "digest": "7e96e4730a32683a1c37de5f2ee33c31",
+        "has-mask": false,
+        "xref": 0
+      },
+      {
+        "number": 1,
+        "bbox": [
+          0.0,
+          0.0,
+          304.0,
+          393.0
+        ],
+        "transform": [
+          304.0,
+          0.0,
+          0.0,
+          393.0,
+          0.0,
+          0.0
+        ],
+        "width": 304,
+        "height": 393,
+        "colorspace": 3,
+        "cs-name": "DeviceRGB",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 358416,
+        "digest": "f40c0e7f2efe3e8b59d360c80ae4a7af",
+        "has-mask": false,
+        "xref": 0
+      },
+      {
+        "number": 2,
+        "bbox": [
+          -9.604827880859375,
+          -19.54315185546875,
+          302.74017333984375,
+          391.1813659667969
+        ],
+        "transform": [
+          -312.3450012207031,
+          -0.0,
+          -0.0,
+          -410.7245178222656,
+          302.74017333984375,
+          391.1813659667969
+        ],
+        "width": 625,
+        "height": 822,
+        "colorspace": 3,
+        "cs-name": "ICCBased(RGB,sRGB IEC61966-2.1)",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 143713,
+        "digest": "4e98539875a51a939fb4f4e0f343a130",
+        "has-mask": true,
+        "xref": 937
+      },
+      {
+        "number": 4,
+        "bbox": [
+          265.32281494140625,
+          255.18360900878906,
+          453.5433044433594,
+          482.48638916015625
+        ],
+        "transform": [
+          188.22048950195312,
+          0.0,
+          -0.0,
+          227.3027801513672,
+          265.32281494140625,
+          255.18360900878906
+        ],
+        "width": 377,
+        "height": 455,
+        "colorspace": 3,
+        "cs-name": "ICCBased(RGB,sRGB IEC61966-2.1)",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 42260,
+        "digest": "c3e6611c79a33d2ba4cf89dadd45323b",
+        "has-mask": false,
+        "xref": 762
+      },
+      {
+        "number": 5,
+        "bbox": [
+          268.01995849609375,
+          431.62615966796875,
+          464.3135986328125,
+          569.439697265625
+        ],
+        "transform": [
+          196.29364013671875,
+          0.0,
+          -0.0,
+          137.8135528564453,
+          268.01995849609375,
+          431.62615966796875
+        ],
+        "width": 393,
+        "height": 276,
+        "colorspace": 3,
+        "cs-name": "ICCBased(RGB,sRGB IEC61966-2.1)",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 21967,
+        "digest": "d3ebd6f91a4e236d063631df7f5b70d2",
+        "has-mask": false,
+        "xref": 764
+      },
+      {
+        "number": 11,
+        "bbox": [
+          285.0,
+          34.0,
+          303.0,
+          80.0
+        ],
+        "transform": [
+          18.0,
+          0.0,
+          0.0,
+          46.0,
+          285.0,
+          34.0
+        ],
+        "width": 18,
+        "height": 46,
+        "colorspace": 3,
+        "cs-name": "DeviceRGB",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 2484,
+        "digest": "0ef25f5e79371836767d70a77b76fcd0",
+        "has-mask": false,
+        "xref": 0
+      },
+      {
+        "number": 12,
+        "bbox": [
+          0.0,
+          34.0,
+          286.0,
+          80.0
+        ],
+        "transform": [
+          286.0,
+          0.0,
+          0.0,
+          46.0,
+          0.0,
+          34.0
+        ],
+        "width": 286,
+        "height": 46,
+        "colorspace": 3,
+        "cs-name": "DeviceRGB",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 39468,
+        "digest": "0a3a029b23c62b7872e6dc9a858db444",
+        "has-mask": false,
+        "xref": 0
+      }
+    ]
+  },
+  "render": {
+    "status": "ok",
+    "dpi": 144,
+    "width": 993,
+    "height": 1333,
+    "coordinate_system": "rendered_page_image_pixels",
+    "origin": "top_left",
+    "unit": "pixel",
+    "render_color_order": "RGB",
+    "input_color_order": "BGR",
+    "annotation_included": true,
+    "pixmap_origin_pixels": [
+      0,
+      0
+    ],
+    "pixel_to_pdf_matrix": [
+      0.5,
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.0
+    ]
+  },
+  "page_image": {
+    "path": "documents/d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a/page_00022.png",
+    "sha256": "c106c9bfc29eac4c7f65b2f91a5e630f0a02f834f098fc96c9800e69b2b68161"
+  },
+  "parsing": {
+    "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+    "source": "pp_structure_v3",
+    "status": "ok",
+    "raw": {
+      "res": {
+        "input_path": null,
+        "page_index": null,
+        "page_count": null,
+        "width": 993,
+        "height": 1333,
+        "model_settings": {
+          "use_doc_preprocessor": true,
+          "use_seal_recognition": false,
+          "use_table_recognition": true,
+          "use_formula_recognition": true,
+          "use_chart_recognition": true,
+          "use_region_detection": true,
+          "format_block_content": false,
+          "markdown_ignore_labels": []
+        },
+        "parsing_res_list": [
+          {
+            "block_label": "image",
+            "block_content": "",
+            "block_bbox": [
+              23,
+              503,
+              111,
+              563
+            ],
+            "block_id": 0,
+            "block_order": null
+          },
+          {
+            "block_label": "text",
+            "block_content": "BRYAN VOON, Year 4 Business Student who went for NOC,Norway.\n",
+            "block_bbox": [
+              108,
+              601,
+              449,
+              679
+            ],
+            "block_id": 1,
+            "block_order": 1
+          },
+          {
+            "block_label": "text",
+            "block_content": "How has your experience in NOC been so far?And how has it impacted you?\nIt is difficult to understate how enriching and instructive NOC has been with professional and personal impacts. With the former being to look beyond the usual fields most business students consider when job seeking (e.g.,finance, marketing, consulting) while the latter being a future outside of Singapore; a possibility I would not have entertained if it was not for NOC Norway.\n",
+            "block_bbox": [
+              108,
+              712,
+              496,
+              953
+            ],
+            "block_id": 2,
+            "block_order": 2
+          },
+          {
+            "block_label": "text",
+            "block_content": "Do you have any advice for your juniors applying to NUS Business School and NOC?Keep an open mind and remember that some of the most valuable sources of learning happens outside of the classrooms with programmes such as NOC which will do nothing but enrich your NUS experience.",
+            "block_bbox": [
+              108,
+              977,
+              493,
+              1131
+            ],
+            "block_id": 3,
+            "block_order": 3
+          },
+          {
+            "block_label": "paragraph_title",
+            "block_content": "BE AN ENTREPRENEUR ",
+            "block_bbox": [
+              68,
+              93,
+              530,
+              132
+            ],
+            "block_id": 4,
+            "block_order": 4
+          },
+          {
+            "block_label": "text",
+            "block_content": "Get a taste of entrepreneurship at NUS Business School, where you get to take center stage in one of our newer majors. Equip yourself with expansive theoretical insights, empowering you to lead change effectively—whether you're venturing into an entrepreneurial startup or navigating the landscape of a large multinational corporation.Previous batches of students, who were just like you, have already launched successful businesses in Singapore, with names like Carousell, Playmoolah,and Moovaz making an impact.\n",
+            "block_bbox": [
+              62,
+              203,
+              486,
+              451
+            ],
+            "block_id": 5,
+            "block_order": 5
+          },
+          {
+            "block_label": "text",
+            "block_content": "Flip to Page 10, and you will discover the NUS Overseas Colleges (NOC) programme, aimed to cultivate your entrepreneurial spirit. Immerse yourself in this transformative experience —intern in a technology-based startup, while concurrently pursuing part-time courses at reputable universities. It's your opportunity to shape your entrepreneurial journey and make an impact on a global scale.\n",
+            "block_bbox": [
+              502,
+              202,
+              913,
+              407
+            ],
+            "block_id": 6,
+            "block_order": 6
+          },
+          {
+            "block_label": "image",
+            "block_content": "Bryan and his colleagues \n\nfrom DNV ReWind gathering \n\nover a meal \n\nReWind \n",
+            "block_bbox": [
+              534,
+              480,
+              929,
+              1132
+            ],
+            "block_id": 7,
+            "block_order": null
+          },
+          {
+            "block_label": "text",
+            "block_content": "Bryan and his team attending EoLIS 2023Conference @ Rotterdam, Netherlands ",
+            "block_bbox": [
+              591,
+              1142,
+              838,
+              1173
+            ],
+            "block_id": 8,
+            "block_order": 7
+          },
+          {
+            "block_label": "number",
+            "block_content": "20",
+            "block_bbox": [
+              66,
+              1274,
+              86,
+              1291
+            ],
+            "block_id": 9,
+            "block_order": 8
+          }
+        ],
+        "doc_preprocessor_res": {
+          "input_path": null,
+          "page_index": null,
+          "model_settings": {
+            "use_doc_orientation_classify": false,
+            "use_doc_unwarping": false
+          },
+          "angle": -1
+        },
+        "layout_det_res": {
+          "input_path": null,
+          "page_index": null,
+          "boxes": [
+            {
+              "cls_id": 2,
+              "label": "text",
+              "score": 0.9859977960586548,
+              "coordinate": [
+                62.76206970214844,
+                203.00616455078125,
+                486.72174072265625,
+                451.84820556640625
+              ]
+            },
+            {
+              "cls_id": 2,
+              "label": "text",
+              "score": 0.9835351705551147,
+              "coordinate": [
+                502.3226013183594,
+                202.67613220214844,
+                913.3673095703125,
+                407.2149658203125
+              ]
+            },
+            {
+              "cls_id": 1,
+              "label": "image",
+              "score": 0.9307367205619812,
+              "coordinate": [
+                534.90234375,
+                480.7342529296875,
+                929.0390625,
+                1132.0267333984375
+              ]
+            },
+            {
+              "cls_id": 3,
+              "label": "number",
+              "score": 0.8933048844337463,
+              "coordinate": [
+                66.43460083007812,
+                1274.333740234375,
+                86.73634338378906,
+                1291.201416015625
+              ]
+            },
+            {
+              "cls_id": 2,
+              "label": "text",
+              "score": 0.8719362020492554,
+              "coordinate": [
+                108.088623046875,
+                712.2623291015625,
+                496.76007080078125,
+                953.7135009765625
+              ]
+            },
+            {
+              "cls_id": 2,
+              "label": "text",
+              "score": 0.8453601002693176,
+              "coordinate": [
+                108.88600158691406,
+                977.619873046875,
+                493.135498046875,
+                1131.09521484375
+              ]
+            },
+            {
+              "cls_id": 2,
+              "label": "text",
+              "score": 0.686987578868866,
+              "coordinate": [
+                108.01199340820312,
+                601.3109130859375,
+                449.1503601074219,
+                679.0003662109375
+              ]
+            },
+            {
+              "cls_id": 1,
+              "label": "image",
+              "score": 0.5866542458534241,
+              "coordinate": [
+                23.468421936035156,
+                503.1286315917969,
+                111.53206634521484,
+                563.884765625
+              ]
+            },
+            {
+              "cls_id": 2,
+              "label": "text",
+              "score": 0.5784090161323547,
+              "coordinate": [
+                591.09326171875,
+                1142.5570068359375,
+                838.489013671875,
+                1173.5267333984375
+              ]
+            },
+            {
+              "cls_id": 0,
+              "label": "paragraph_title",
+              "score": 0.5761115550994873,
+              "coordinate": [
+                68.03401184082031,
+                93.15255737304688,
+                530.2049560546875,
+                132.27825927734375
+              ]
+            }
+          ]
+        },
+        "overall_ocr_res": {
+          "input_path": null,
+          "page_index": null,
+          "model_settings": {
+            "use_doc_preprocessor": false,
+            "use_textline_orientation": true
+          },
+          "dt_polys": [
+            [
+              [
+                67,
+                94
+              ],
+              [
+                532,
+                94
+              ],
+              [
+                532,
+                134
+              ],
+              [
+                67,
+                134
+              ]
+            ],
+            [
+              [
+                66,
+                203
+              ],
+              [
+                465,
+                203
+              ],
+              [
+                465,
+                223
+              ],
+              [
+                66,
+                223
+              ]
+            ],
+            [
+              [
+                507,
+                203
+              ],
+              [
+                889,
+                203
+              ],
+              [
+                889,
+                223
+              ],
+              [
+                507,
+                223
+              ]
+            ],
+            [
+              [
+                66,
+                227
+              ],
+              [
+                445,
+                227
+              ],
+              [
+                445,
+                247
+              ],
+              [
+                66,
+                247
+              ]
+            ],
+            [
+              [
+                507,
+                227
+              ],
+              [
+                897,
+                227
+              ],
+              [
+                897,
+                247
+              ],
+              [
+                507,
+                247
+              ]
+            ],
+            [
+              [
+                66,
+                250
+              ],
+              [
+                445,
+                250
+              ],
+              [
+                445,
+                270
+              ],
+              [
+                66,
+                270
+              ]
+            ],
+            [
+              [
+                506,
+                251
+              ],
+              [
+                883,
+                251
+              ],
+              [
+                883,
+                271
+              ],
+              [
+                506,
+                271
+              ]
+            ],
+            [
+              [
+                66,
+                273
+              ],
+              [
+                486,
+                273
+              ],
+              [
+                486,
+                293
+              ],
+              [
+                66,
+                293
+              ]
+            ],
+            [
+              [
+                505,
+                274
+              ],
+              [
+                876,
+                274
+              ],
+              [
+                876,
+                294
+              ],
+              [
+                505,
+                294
+              ]
+            ],
+            [
+              [
+                65,
+                295
+              ],
+              [
+                491,
+                296
+              ],
+              [
+                490,
+                316
+              ],
+              [
+                65,
+                315
+              ]
+            ],
+            [
+              [
+                506,
+                297
+              ],
+              [
+                866,
+                297
+              ],
+              [
+                866,
+                316
+              ],
+              [
+                506,
+                316
+              ]
+            ],
+            [
+              [
+                65,
+                317
+              ],
+              [
+                476,
+                318
+              ],
+              [
+                476,
+                339
+              ],
+              [
+                65,
+                338
+              ]
+            ],
+            [
+              [
+                505,
+                318
+              ],
+              [
+                861,
+                319
+              ],
+              [
+                861,
+                340
+              ],
+              [
+                504,
+                339
+              ]
+            ],
+            [
+              [
+                67,
+                343
+              ],
+              [
+                459,
+                343
+              ],
+              [
+                459,
+                360
+              ],
+              [
+                67,
+                360
+              ]
+            ],
+            [
+              [
+                506,
+                343
+              ],
+              [
+                889,
+                343
+              ],
+              [
+                889,
+                363
+              ],
+              [
+                506,
+                363
+              ]
+            ],
+            [
+              [
+                66,
+                365
+              ],
+              [
+                466,
+                365
+              ],
+              [
+                466,
+                385
+              ],
+              [
+                66,
+                385
+              ]
+            ],
+            [
+              [
+                506,
+                366
+              ],
+              [
+                915,
+                366
+              ],
+              [
+                915,
+                386
+              ],
+              [
+                506,
+                386
+              ]
+            ],
+            [
+              [
+                65,
+                388
+              ],
+              [
+                487,
+                388
+              ],
+              [
+                487,
+                408
+              ],
+              [
+                65,
+                408
+              ]
+            ],
+            [
+              [
+                506,
+                389
+              ],
+              [
+                714,
+                389
+              ],
+              [
+                714,
+                409
+              ],
+              [
+                506,
+                409
+              ]
+            ],
+            [
+              [
+                66,
+                411
+              ],
+              [
+                466,
+                411
+              ],
+              [
+                466,
+                430
+              ],
+              [
+                66,
+                430
+              ]
+            ],
+            [
+              [
+                67,
+                435
+              ],
+              [
+                319,
+                435
+              ],
+              [
+                319,
+                452
+              ],
+              [
+                67,
+                452
+              ]
+            ],
+            [
+              [
+                548,
+                483
+              ],
+              [
+                697,
+                483
+              ],
+              [
+                697,
+                497
+              ],
+              [
+                548,
+                497
+              ]
+            ],
+            [
+              [
+                546,
+                498
+              ],
+              [
+                724,
+                499
+              ],
+              [
+                724,
+                516
+              ],
+              [
+                546,
+                515
+              ]
+            ],
+            [
+              [
+                549,
+                518
+              ],
+              [
+                620,
+                518
+              ],
+              [
+                620,
+                529
+              ],
+              [
+                549,
+                529
+              ]
+            ],
+            [
+              [
+                110,
+                601
+              ],
+              [
+                448,
+                601
+              ],
+              [
+                448,
+                624
+              ],
+              [
+                110,
+                624
+              ]
+            ],
+            [
+              [
+                110,
+                629
+              ],
+              [
+                425,
+                629
+              ],
+              [
+                425,
+                652
+              ],
+              [
+                110,
+                652
+              ]
+            ],
+            [
+              [
+                109,
+                655
+              ],
+              [
+                206,
+                655
+              ],
+              [
+                206,
+                679
+              ],
+              [
+                109,
+                679
+              ]
+            ],
+            [
+              [
+                110,
+                714
+              ],
+              [
+                498,
+                714
+              ],
+              [
+                498,
+                734
+              ],
+              [
+                110,
+                734
+              ]
+            ],
+            [
+              [
+                111,
+                736
+              ],
+              [
+                369,
+                736
+              ],
+              [
+                369,
+                756
+              ],
+              [
+                111,
+                756
+              ]
+            ],
+            [
+              [
+                110,
+                758
+              ],
+              [
+                490,
+                758
+              ],
+              [
+                490,
+                778
+              ],
+              [
+                110,
+                778
+              ]
+            ],
+            [
+              [
+                110,
+                780
+              ],
+              [
+                468,
+                780
+              ],
+              [
+                468,
+                799
+              ],
+              [
+                110,
+                799
+              ]
+            ],
+            [
+              [
+                110,
+                802
+              ],
+              [
+                485,
+                802
+              ],
+              [
+                485,
+                822
+              ],
+              [
+                110,
+                822
+              ]
+            ],
+            [
+              [
+                110,
+                824
+              ],
+              [
+                488,
+                824
+              ],
+              [
+                488,
+                844
+              ],
+              [
+                110,
+                844
+              ]
+            ],
+            [
+              [
+                109,
+                845
+              ],
+              [
+                453,
+                846
+              ],
+              [
+                453,
+                867
+              ],
+              [
+                109,
+                866
+              ]
+            ],
+            [
+              [
+                110,
+                868
+              ],
+              [
+                454,
+                868
+              ],
+              [
+                454,
+                888
+              ],
+              [
+                110,
+                888
+              ]
+            ],
+            [
+              [
+                862,
+                875
+              ],
+              [
+                896,
+                873
+              ],
+              [
+                897,
+                886
+              ],
+              [
+                863,
+                889
+              ]
+            ],
+            [
+              [
+                109,
+                889
+              ],
+              [
+                481,
+                890
+              ],
+              [
+                480,
+                911
+              ],
+              [
+                109,
+                909
+              ]
+            ],
+            [
+              [
+                109,
+                911
+              ],
+              [
+                477,
+                910
+              ],
+              [
+                478,
+                931
+              ],
+              [
+                109,
+                932
+              ]
+            ],
+            [
+              [
+                110,
+                934
+              ],
+              [
+                323,
+                934
+              ],
+              [
+                323,
+                954
+              ],
+              [
+                110,
+                954
+              ]
+            ],
+            [
+              [
+                111,
+                978
+              ],
+              [
+                448,
+                978
+              ],
+              [
+                448,
+                998
+              ],
+              [
+                111,
+                998
+              ]
+            ],
+            [
+              [
+                110,
+                1000
+              ],
+              [
+                474,
+                998
+              ],
+              [
+                475,
+                1019
+              ],
+              [
+                110,
+                1021
+              ]
+            ],
+            [
+              [
+                110,
+                1023
+              ],
+              [
+                492,
+                1023
+              ],
+              [
+                492,
+                1042
+              ],
+              [
+                110,
+                1042
+              ]
+            ],
+            [
+              [
+                110,
+                1044
+              ],
+              [
+                446,
+                1044
+              ],
+              [
+                446,
+                1064
+              ],
+              [
+                110,
+                1064
+              ]
+            ],
+            [
+              [
+                110,
+                1066
+              ],
+              [
+                441,
+                1066
+              ],
+              [
+                441,
+                1086
+              ],
+              [
+                110,
+                1086
+              ]
+            ],
+            [
+              [
+                110,
+                1088
+              ],
+              [
+                440,
+                1088
+              ],
+              [
+                440,
+                1108
+              ],
+              [
+                110,
+                1108
+              ]
+            ],
+            [
+              [
+                111,
+                1112
+              ],
+              [
+                449,
+                1112
+              ],
+              [
+                449,
+                1129
+              ],
+              [
+                111,
+                1129
+              ]
+            ],
+            [
+              [
+                591,
+                1143
+              ],
+              [
+                840,
+                1142
+              ],
+              [
+                840,
+                1158
+              ],
+              [
+                591,
+                1159
+              ]
+            ],
+            [
+              [
+                476,
+                1157
+              ],
+              [
+                578,
+                1157
+              ],
+              [
+                578,
+                1232
+              ],
+              [
+                476,
+                1232
+              ]
+            ],
+            [
+              [
+                592,
+                1159
+              ],
+              [
+                823,
+                1159
+              ],
+              [
+                823,
+                1173
+              ],
+              [
+                592,
+                1173
+              ]
+            ],
+            [
+              [
+                63,
+                1271
+              ],
+              [
+                91,
+                1271
+              ],
+              [
+                91,
+                1296
+              ],
+              [
+                63,
+                1296
+              ]
+            ]
+          ],
+          "text_det_params": {
+            "limit_side_len": 736,
+            "limit_type": "min",
+            "thresh": 0.3,
+            "max_side_limit": 4000,
+            "box_thresh": 0.6,
+            "unclip_ratio": 1.5
+          },
+          "text_type": "general",
+          "textline_orientation_angles": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "text_rec_score_thresh": 0.0,
+          "return_word_box": false,
+          "rec_texts": [
+            "BE AN ENTREPRENEUR",
+            "Get a taste of entrepreneurship at NUS Business",
+            "Flip to Page 10, and you will discover the NUS",
+            "School, where you get to take center stage in",
+            "Overseas Colleges (NOC) programme, aimed to",
+            "one of our newer majors. Equip yourself with",
+            "cultivate your entrepreneurial spirit. Immerse",
+            "expansive theoretical insights, empowering you to",
+            "yourself in this transformative experience —",
+            "lead change effectively—whether you're venturing",
+            "intern in a technology-based startup, while",
+            "into an entrepreneurial startup or navigating the",
+            "concurrently pursuing part-time courses at",
+            "landscape of a large multinational corporation.",
+            "reputable universities. It's your opportunity to",
+            "Previous batches of students, who were just like",
+            "shape your entrepreneurial journey and make an",
+            "you, have already launched successful businesses in",
+            "impact on a global scale.",
+            "Singapore, with names like Carousell, Playmoolah,",
+            "and Moovaz making an impact.",
+            "Bryan and his colleagues",
+            "from DNV ReWind gathering",
+            "over a meal",
+            "BRYAN VOON, Year 4 Business",
+            "Student who went for NOC,",
+            "Norway.",
+            "How has your experience in NOC been so far?",
+            "And how has it impacted you?",
+            "It is difficult to understate how enriching and",
+            "instructive NOC has been with professional",
+            "and personal impacts. With the former being",
+            "to look beyond the usual fields most business",
+            "students consider when job seeking (e.g.,",
+            "finance, marketing, consulting) while the",
+            "ReWind",
+            "latter being a future outside of Singapore; a",
+            "possibility I would not have entertained if it",
+            "was not for NOC Norway.",
+            "Do you have any advice for your juniors",
+            "applying to NUS Business School and NOC?",
+            "Keep an open mind and remember that some",
+            "of the most valuable sources of learning",
+            "happens outside of the classrooms with",
+            "programmes such as NOC which will do",
+            "nothing but enrich your NUS experience.",
+            "Bryan and his team attending EoLIS 2023",
+            "万",
+            "Conference @ Rotterdam, Netherlands",
+            "20"
+          ],
+          "rec_scores": [
+            0.999033510684967,
+            0.9996210336685181,
+            0.9979323744773865,
+            0.9999891519546509,
+            0.9994717240333557,
+            0.9996537566184998,
+            0.9997880458831787,
+            0.9999709725379944,
+            0.9931075572967529,
+            0.9958130717277527,
+            0.9999834299087524,
+            0.990747332572937,
+            0.9999728202819824,
+            0.9925768971443176,
+            0.9999507069587708,
+            0.9999892711639404,
+            0.9999229311943054,
+            0.9924521446228027,
+            0.9999749064445496,
+            0.9903327822685242,
+            0.9872270822525024,
+            0.9999911189079285,
+            0.9999696612358093,
+            0.999294638633728,
+            0.9997450709342957,
+            0.9988281726837158,
+            0.9999558329582214,
+            0.9997665286064148,
+            0.9999732375144958,
+            0.999979555606842,
+            0.9996355772018433,
+            0.9869548678398132,
+            0.9998612999916077,
+            0.9962418675422668,
+            0.9848870038986206,
+            0.9993392825126648,
+            0.9936246871948242,
+            0.9903350472450256,
+            0.9998101592063904,
+            0.9881668090820312,
+            0.9981712102890015,
+            0.999987006187439,
+            0.9940662384033203,
+            0.9999839663505554,
+            0.9981517791748047,
+            0.9998899698257446,
+            0.9916970729827881,
+            0.15869750082492828,
+            0.9999440908432007,
+            0.9999978542327881
+          ],
+          "rec_polys": [
+            [
+              [
+                67,
+                94
+              ],
+              [
+                532,
+                94
+              ],
+              [
+                532,
+                134
+              ],
+              [
+                67,
+                134
+              ]
+            ],
+            [
+              [
+                66,
+                203
+              ],
+              [
+                465,
+                203
+              ],
+              [
+                465,
+                223
+              ],
+              [
+                66,
+                223
+              ]
+            ],
+            [
+              [
+                507,
+                203
+              ],
+              [
+                889,
+                203
+              ],
+              [
+                889,
+                223
+              ],
+              [
+                507,
+                223
+              ]
+            ],
+            [
+              [
+                66,
+                227
+              ],
+              [
+                445,
+                227
+              ],
+              [
+                445,
+                247
+              ],
+              [
+                66,
+                247
+              ]
+            ],
+            [
+              [
+                507,
+                227
+              ],
+              [
+                897,
+                227
+              ],
+              [
+                897,
+                247
+              ],
+              [
+                507,
+                247
+              ]
+            ],
+            [
+              [
+                66,
+                250
+              ],
+              [
+                445,
+                250
+              ],
+              [
+                445,
+                270
+              ],
+              [
+                66,
+                270
+              ]
+            ],
+            [
+              [
+                506,
+                251
+              ],
+              [
+                883,
+                251
+              ],
+              [
+                883,
+                271
+              ],
+              [
+                506,
+                271
+              ]
+            ],
+            [
+              [
+                66,
+                273
+              ],
+              [
+                486,
+                273
+              ],
+              [
+                486,
+                293
+              ],
+              [
+                66,
+                293
+              ]
+            ],
+            [
+              [
+                505,
+                274
+              ],
+              [
+                876,
+                274
+              ],
+              [
+                876,
+                294
+              ],
+              [
+                505,
+                294
+              ]
+            ],
+            [
+              [
+                65,
+                295
+              ],
+              [
+                491,
+                296
+              ],
+              [
+                490,
+                316
+              ],
+              [
+                65,
+                315
+              ]
+            ],
+            [
+              [
+                506,
+                297
+              ],
+              [
+                866,
+                297
+              ],
+              [
+                866,
+                316
+              ],
+              [
+                506,
+                316
+              ]
+            ],
+            [
+              [
+                65,
+                317
+              ],
+              [
+                476,
+                318
+              ],
+              [
+                476,
+                339
+              ],
+              [
+                65,
+                338
+              ]
+            ],
+            [
+              [
+                505,
+                318
+              ],
+              [
+                861,
+                319
+              ],
+              [
+                861,
+                340
+              ],
+              [
+                504,
+                339
+              ]
+            ],
+            [
+              [
+                67,
+                343
+              ],
+              [
+                459,
+                343
+              ],
+              [
+                459,
+                360
+              ],
+              [
+                67,
+                360
+              ]
+            ],
+            [
+              [
+                506,
+                343
+              ],
+              [
+                889,
+                343
+              ],
+              [
+                889,
+                363
+              ],
+              [
+                506,
+                363
+              ]
+            ],
+            [
+              [
+                66,
+                365
+              ],
+              [
+                466,
+                365
+              ],
+              [
+                466,
+                385
+              ],
+              [
+                66,
+                385
+              ]
+            ],
+            [
+              [
+                506,
+                366
+              ],
+              [
+                915,
+                366
+              ],
+              [
+                915,
+                386
+              ],
+              [
+                506,
+                386
+              ]
+            ],
+            [
+              [
+                65,
+                388
+              ],
+              [
+                487,
+                388
+              ],
+              [
+                487,
+                408
+              ],
+              [
+                65,
+                408
+              ]
+            ],
+            [
+              [
+                506,
+                389
+              ],
+              [
+                714,
+                389
+              ],
+              [
+                714,
+                409
+              ],
+              [
+                506,
+                409
+              ]
+            ],
+            [
+              [
+                66,
+                411
+              ],
+              [
+                466,
+                411
+              ],
+              [
+                466,
+                430
+              ],
+              [
+                66,
+                430
+              ]
+            ],
+            [
+              [
+                67,
+                435
+              ],
+              [
+                319,
+                435
+              ],
+              [
+                319,
+                452
+              ],
+              [
+                67,
+                452
+              ]
+            ],
+            [
+              [
+                548,
+                483
+              ],
+              [
+                697,
+                483
+              ],
+              [
+                697,
+                497
+              ],
+              [
+                548,
+                497
+              ]
+            ],
+            [
+              [
+                546,
+                498
+              ],
+              [
+                724,
+                499
+              ],
+              [
+                724,
+                516
+              ],
+              [
+                546,
+                515
+              ]
+            ],
+            [
+              [
+                549,
+                518
+              ],
+              [
+                620,
+                518
+              ],
+              [
+                620,
+                529
+              ],
+              [
+                549,
+                529
+              ]
+            ],
+            [
+              [
+                110,
+                601
+              ],
+              [
+                448,
+                601
+              ],
+              [
+                448,
+                624
+              ],
+              [
+                110,
+                624
+              ]
+            ],
+            [
+              [
+                110,
+                629
+              ],
+              [
+                425,
+                629
+              ],
+              [
+                425,
+                652
+              ],
+              [
+                110,
+                652
+              ]
+            ],
+            [
+              [
+                109,
+                655
+              ],
+              [
+                206,
+                655
+              ],
+              [
+                206,
+                679
+              ],
+              [
+                109,
+                679
+              ]
+            ],
+            [
+              [
+                110,
+                714
+              ],
+              [
+                498,
+                714
+              ],
+              [
+                498,
+                734
+              ],
+              [
+                110,
+                734
+              ]
+            ],
+            [
+              [
+                111,
+                736
+              ],
+              [
+                369,
+                736
+              ],
+              [
+                369,
+                756
+              ],
+              [
+                111,
+                756
+              ]
+            ],
+            [
+              [
+                110,
+                758
+              ],
+              [
+                490,
+                758
+              ],
+              [
+                490,
+                778
+              ],
+              [
+                110,
+                778
+              ]
+            ],
+            [
+              [
+                110,
+                780
+              ],
+              [
+                468,
+                780
+              ],
+              [
+                468,
+                799
+              ],
+              [
+                110,
+                799
+              ]
+            ],
+            [
+              [
+                110,
+                802
+              ],
+              [
+                485,
+                802
+              ],
+              [
+                485,
+                822
+              ],
+              [
+                110,
+                822
+              ]
+            ],
+            [
+              [
+                110,
+                824
+              ],
+              [
+                488,
+                824
+              ],
+              [
+                488,
+                844
+              ],
+              [
+                110,
+                844
+              ]
+            ],
+            [
+              [
+                109,
+                845
+              ],
+              [
+                453,
+                846
+              ],
+              [
+                453,
+                867
+              ],
+              [
+                109,
+                866
+              ]
+            ],
+            [
+              [
+                110,
+                868
+              ],
+              [
+                454,
+                868
+              ],
+              [
+                454,
+                888
+              ],
+              [
+                110,
+                888
+              ]
+            ],
+            [
+              [
+                862,
+                875
+              ],
+              [
+                896,
+                873
+              ],
+              [
+                897,
+                886
+              ],
+              [
+                863,
+                889
+              ]
+            ],
+            [
+              [
+                109,
+                889
+              ],
+              [
+                481,
+                890
+              ],
+              [
+                480,
+                911
+              ],
+              [
+                109,
+                909
+              ]
+            ],
+            [
+              [
+                109,
+                911
+              ],
+              [
+                477,
+                910
+              ],
+              [
+                478,
+                931
+              ],
+              [
+                109,
+                932
+              ]
+            ],
+            [
+              [
+                110,
+                934
+              ],
+              [
+                323,
+                934
+              ],
+              [
+                323,
+                954
+              ],
+              [
+                110,
+                954
+              ]
+            ],
+            [
+              [
+                111,
+                978
+              ],
+              [
+                448,
+                978
+              ],
+              [
+                448,
+                998
+              ],
+              [
+                111,
+                998
+              ]
+            ],
+            [
+              [
+                110,
+                1000
+              ],
+              [
+                474,
+                998
+              ],
+              [
+                475,
+                1019
+              ],
+              [
+                110,
+                1021
+              ]
+            ],
+            [
+              [
+                110,
+                1023
+              ],
+              [
+                492,
+                1023
+              ],
+              [
+                492,
+                1042
+              ],
+              [
+                110,
+                1042
+              ]
+            ],
+            [
+              [
+                110,
+                1044
+              ],
+              [
+                446,
+                1044
+              ],
+              [
+                446,
+                1064
+              ],
+              [
+                110,
+                1064
+              ]
+            ],
+            [
+              [
+                110,
+                1066
+              ],
+              [
+                441,
+                1066
+              ],
+              [
+                441,
+                1086
+              ],
+              [
+                110,
+                1086
+              ]
+            ],
+            [
+              [
+                110,
+                1088
+              ],
+              [
+                440,
+                1088
+              ],
+              [
+                440,
+                1108
+              ],
+              [
+                110,
+                1108
+              ]
+            ],
+            [
+              [
+                111,
+                1112
+              ],
+              [
+                449,
+                1112
+              ],
+              [
+                449,
+                1129
+              ],
+              [
+                111,
+                1129
+              ]
+            ],
+            [
+              [
+                591,
+                1143
+              ],
+              [
+                840,
+                1142
+              ],
+              [
+                840,
+                1158
+              ],
+              [
+                591,
+                1159
+              ]
+            ],
+            [
+              [
+                476,
+                1157
+              ],
+              [
+                578,
+                1157
+              ],
+              [
+                578,
+                1232
+              ],
+              [
+                476,
+                1232
+              ]
+            ],
+            [
+              [
+                592,
+                1159
+              ],
+              [
+                823,
+                1159
+              ],
+              [
+                823,
+                1173
+              ],
+              [
+                592,
+                1173
+              ]
+            ],
+            [
+              [
+                63,
+                1271
+              ],
+              [
+                91,
+                1271
+              ],
+              [
+                91,
+                1296
+              ],
+              [
+                63,
+                1296
+              ]
+            ]
+          ],
+          "rec_boxes": [
+            [
+              67,
+              94,
+              532,
+              134
+            ],
+            [
+              66,
+              203,
+              465,
+              223
+            ],
+            [
+              507,
+              203,
+              889,
+              223
+            ],
+            [
+              66,
+              227,
+              445,
+              247
+            ],
+            [
+              507,
+              227,
+              897,
+              247
+            ],
+            [
+              66,
+              250,
+              445,
+              270
+            ],
+            [
+              506,
+              251,
+              883,
+              271
+            ],
+            [
+              66,
+              273,
+              486,
+              293
+            ],
+            [
+              505,
+              274,
+              876,
+              294
+            ],
+            [
+              65,
+              295,
+              491,
+              316
+            ],
+            [
+              506,
+              297,
+              866,
+              316
+            ],
+            [
+              65,
+              317,
+              476,
+              339
+            ],
+            [
+              504,
+              318,
+              861,
+              340
+            ],
+            [
+              67,
+              343,
+              459,
+              360
+            ],
+            [
+              506,
+              343,
+              889,
+              363
+            ],
+            [
+              66,
+              365,
+              466,
+              385
+            ],
+            [
+              506,
+              366,
+              915,
+              386
+            ],
+            [
+              65,
+              388,
+              487,
+              408
+            ],
+            [
+              506,
+              389,
+              714,
+              409
+            ],
+            [
+              66,
+              411,
+              466,
+              430
+            ],
+            [
+              67,
+              435,
+              319,
+              452
+            ],
+            [
+              548,
+              483,
+              697,
+              497
+            ],
+            [
+              546,
+              498,
+              724,
+              516
+            ],
+            [
+              549,
+              518,
+              620,
+              529
+            ],
+            [
+              110,
+              601,
+              448,
+              624
+            ],
+            [
+              110,
+              629,
+              425,
+              652
+            ],
+            [
+              109,
+              655,
+              206,
+              679
+            ],
+            [
+              110,
+              714,
+              498,
+              734
+            ],
+            [
+              111,
+              736,
+              369,
+              756
+            ],
+            [
+              110,
+              758,
+              490,
+              778
+            ],
+            [
+              110,
+              780,
+              468,
+              799
+            ],
+            [
+              110,
+              802,
+              485,
+              822
+            ],
+            [
+              110,
+              824,
+              488,
+              844
+            ],
+            [
+              109,
+              845,
+              453,
+              867
+            ],
+            [
+              110,
+              868,
+              454,
+              888
+            ],
+            [
+              862,
+              873,
+              897,
+              889
+            ],
+            [
+              109,
+              889,
+              481,
+              911
+            ],
+            [
+              109,
+              910,
+              478,
+              932
+            ],
+            [
+              110,
+              934,
+              323,
+              954
+            ],
+            [
+              111,
+              978,
+              448,
+              998
+            ],
+            [
+              110,
+              998,
+              475,
+              1021
+            ],
+            [
+              110,
+              1023,
+              492,
+              1042
+            ],
+            [
+              110,
+              1044,
+              446,
+              1064
+            ],
+            [
+              110,
+              1066,
+              441,
+              1086
+            ],
+            [
+              110,
+              1088,
+              440,
+              1108
+            ],
+            [
+              111,
+              1112,
+              449,
+              1129
+            ],
+            [
+              591,
+              1142,
+              840,
+              1159
+            ],
+            [
+              476,
+              1157,
+              578,
+              1232
+            ],
+            [
+              592,
+              1159,
+              823,
+              1173
+            ],
+            [
+              63,
+              1271,
+              91,
+              1296
+            ]
+          ]
+        }
+      }
+    },
+    "blocks": [
+      {
+        "element_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22:structure:0",
+        "id_origin": "project_generated",
+        "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+        "source": "pp_structure_v3",
+        "source_list_index": 0,
+        "model_block_id": 0,
+        "model_block_order": null,
+        "label": "image",
+        "content": "",
+        "bbox_image_pixels": [
+          23.0,
+          503.0,
+          111.0,
+          563.0
+        ],
+        "polygon_pdf_points": [
+          [
+            11.5,
+            251.5
+          ],
+          [
+            55.5,
+            251.5
+          ],
+          [
+            55.5,
+            281.5
+          ],
+          [
+            11.5,
+            281.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          11.5,
+          251.5,
+          55.5,
+          281.5
+        ]
+      },
+      {
+        "element_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22:structure:1",
+        "id_origin": "project_generated",
+        "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+        "source": "pp_structure_v3",
+        "source_list_index": 1,
+        "model_block_id": 1,
+        "model_block_order": 1,
+        "label": "text",
+        "content": "BRYAN VOON, Year 4 Business Student who went for NOC,Norway.\n",
+        "bbox_image_pixels": [
+          108.0,
+          601.0,
+          449.0,
+          679.0
+        ],
+        "polygon_pdf_points": [
+          [
+            54.0,
+            300.5
+          ],
+          [
+            224.5,
+            300.5
+          ],
+          [
+            224.5,
+            339.5
+          ],
+          [
+            54.0,
+            339.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          54.0,
+          300.5,
+          224.5,
+          339.5
+        ]
+      },
+      {
+        "element_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22:structure:2",
+        "id_origin": "project_generated",
+        "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+        "source": "pp_structure_v3",
+        "source_list_index": 2,
+        "model_block_id": 2,
+        "model_block_order": 2,
+        "label": "text",
+        "content": "How has your experience in NOC been so far?And how has it impacted you?\nIt is difficult to understate how enriching and instructive NOC has been with professional and personal impacts. With the former being to look beyond the usual fields most business students consider when job seeking (e.g.,finance, marketing, consulting) while the latter being a future outside of Singapore; a possibility I would not have entertained if it was not for NOC Norway.\n",
+        "bbox_image_pixels": [
+          108.0,
+          712.0,
+          496.0,
+          953.0
+        ],
+        "polygon_pdf_points": [
+          [
+            54.0,
+            356.0
+          ],
+          [
+            248.0,
+            356.0
+          ],
+          [
+            248.0,
+            476.5
+          ],
+          [
+            54.0,
+            476.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          54.0,
+          356.0,
+          248.0,
+          476.5
+        ]
+      },
+      {
+        "element_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22:structure:3",
+        "id_origin": "project_generated",
+        "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+        "source": "pp_structure_v3",
+        "source_list_index": 3,
+        "model_block_id": 3,
+        "model_block_order": 3,
+        "label": "text",
+        "content": "Do you have any advice for your juniors applying to NUS Business School and NOC?Keep an open mind and remember that some of the most valuable sources of learning happens outside of the classrooms with programmes such as NOC which will do nothing but enrich your NUS experience.",
+        "bbox_image_pixels": [
+          108.0,
+          977.0,
+          493.0,
+          1131.0
+        ],
+        "polygon_pdf_points": [
+          [
+            54.0,
+            488.5
+          ],
+          [
+            246.5,
+            488.5
+          ],
+          [
+            246.5,
+            565.5
+          ],
+          [
+            54.0,
+            565.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          54.0,
+          488.5,
+          246.5,
+          565.5
+        ]
+      },
+      {
+        "element_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22:structure:4",
+        "id_origin": "project_generated",
+        "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+        "source": "pp_structure_v3",
+        "source_list_index": 4,
+        "model_block_id": 4,
+        "model_block_order": 4,
+        "label": "paragraph_title",
+        "content": "BE AN ENTREPRENEUR ",
+        "bbox_image_pixels": [
+          68.0,
+          93.0,
+          530.0,
+          132.0
+        ],
+        "polygon_pdf_points": [
+          [
+            34.0,
+            46.5
+          ],
+          [
+            265.0,
+            46.5
+          ],
+          [
+            265.0,
+            66.0
+          ],
+          [
+            34.0,
+            66.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          34.0,
+          46.5,
+          265.0,
+          66.0
+        ]
+      },
+      {
+        "element_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22:structure:5",
+        "id_origin": "project_generated",
+        "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+        "source": "pp_structure_v3",
+        "source_list_index": 5,
+        "model_block_id": 5,
+        "model_block_order": 5,
+        "label": "text",
+        "content": "Get a taste of entrepreneurship at NUS Business School, where you get to take center stage in one of our newer majors. Equip yourself with expansive theoretical insights, empowering you to lead change effectively—whether you're venturing into an entrepreneurial startup or navigating the landscape of a large multinational corporation.Previous batches of students, who were just like you, have already launched successful businesses in Singapore, with names like Carousell, Playmoolah,and Moovaz making an impact.\n",
+        "bbox_image_pixels": [
+          62.0,
+          203.0,
+          486.0,
+          451.0
+        ],
+        "polygon_pdf_points": [
+          [
+            31.0,
+            101.5
+          ],
+          [
+            243.0,
+            101.5
+          ],
+          [
+            243.0,
+            225.5
+          ],
+          [
+            31.0,
+            225.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          31.0,
+          101.5,
+          243.0,
+          225.5
+        ]
+      },
+      {
+        "element_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22:structure:6",
+        "id_origin": "project_generated",
+        "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+        "source": "pp_structure_v3",
+        "source_list_index": 6,
+        "model_block_id": 6,
+        "model_block_order": 6,
+        "label": "text",
+        "content": "Flip to Page 10, and you will discover the NUS Overseas Colleges (NOC) programme, aimed to cultivate your entrepreneurial spirit. Immerse yourself in this transformative experience —intern in a technology-based startup, while concurrently pursuing part-time courses at reputable universities. It's your opportunity to shape your entrepreneurial journey and make an impact on a global scale.\n",
+        "bbox_image_pixels": [
+          502.0,
+          202.0,
+          913.0,
+          407.0
+        ],
+        "polygon_pdf_points": [
+          [
+            251.0,
+            101.0
+          ],
+          [
+            456.5,
+            101.0
+          ],
+          [
+            456.5,
+            203.5
+          ],
+          [
+            251.0,
+            203.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          251.0,
+          101.0,
+          456.5,
+          203.5
+        ]
+      },
+      {
+        "element_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22:structure:7",
+        "id_origin": "project_generated",
+        "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+        "source": "pp_structure_v3",
+        "source_list_index": 7,
+        "model_block_id": 7,
+        "model_block_order": null,
+        "label": "image",
+        "content": "Bryan and his colleagues \n\nfrom DNV ReWind gathering \n\nover a meal \n\nReWind \n",
+        "bbox_image_pixels": [
+          534.0,
+          480.0,
+          929.0,
+          1132.0
+        ],
+        "polygon_pdf_points": [
+          [
+            267.0,
+            240.0
+          ],
+          [
+            464.5,
+            240.0
+          ],
+          [
+            464.5,
+            566.0
+          ],
+          [
+            267.0,
+            566.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          267.0,
+          240.0,
+          464.5,
+          566.0
+        ]
+      },
+      {
+        "element_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22:structure:8",
+        "id_origin": "project_generated",
+        "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+        "source": "pp_structure_v3",
+        "source_list_index": 8,
+        "model_block_id": 8,
+        "model_block_order": 7,
+        "label": "text",
+        "content": "Bryan and his team attending EoLIS 2023Conference @ Rotterdam, Netherlands ",
+        "bbox_image_pixels": [
+          591.0,
+          1142.0,
+          838.0,
+          1173.0
+        ],
+        "polygon_pdf_points": [
+          [
+            295.5,
+            571.0
+          ],
+          [
+            419.0,
+            571.0
+          ],
+          [
+            419.0,
+            586.5
+          ],
+          [
+            295.5,
+            586.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          295.5,
+          571.0,
+          419.0,
+          586.5
+        ]
+      },
+      {
+        "element_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22:structure:9",
+        "id_origin": "project_generated",
+        "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+        "source": "pp_structure_v3",
+        "source_list_index": 9,
+        "model_block_id": 9,
+        "model_block_order": 8,
+        "label": "number",
+        "content": "20",
+        "bbox_image_pixels": [
+          66.0,
+          1274.0,
+          86.0,
+          1291.0
+        ],
+        "polygon_pdf_points": [
+          [
+            33.0,
+            637.0
+          ],
+          [
+            43.0,
+            637.0
+          ],
+          [
+            43.0,
+            645.5
+          ],
+          [
+            33.0,
+            645.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          33.0,
+          637.0,
+          43.0,
+          645.5
+        ]
+      }
+    ],
+    "block_count": 10,
+    "character_count": 1861,
+    "input_image": {
+      "width": 993,
+      "height": 1333,
+      "color_order": "BGR",
+      "coordinate_system": "rendered_page_image_pixels"
+    },
+    "elapsed_seconds": 107.22841830016114,
+    "coordinate_status": "ok"
+  },
+  "review": {
+    "review_page_number": 2,
+    "status": "ok",
+    "drawn_count": 10,
+    "warnings": [],
+    "json_path": "documents/d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a/page_00022.json",
+    "path": "documents/d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a/review_structure.pdf"
+  },
+  "elapsed_seconds": 107.56378209986724
+}

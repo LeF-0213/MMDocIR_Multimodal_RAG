@@ -1,0 +1,61 @@
+{
+  "document_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82",
+  "id_origin": "project_generated_name_sha256",
+  "document_name": "0e94b4197b10096b1f4c699701570fbf",
+  "status": "ok",
+  "pages": [
+    {
+      "page_number": 4,
+      "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4",
+      "status": "ok",
+      "json_path": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/page_00004.json",
+      "native_status": "empty",
+      "parser_status": "ok"
+    },
+    {
+      "page_number": 6,
+      "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6",
+      "status": "ok",
+      "json_path": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/page_00006.json",
+      "native_status": "empty",
+      "parser_status": "ok"
+    },
+    {
+      "page_number": 8,
+      "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p8",
+      "status": "ok",
+      "json_path": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/page_00008.json",
+      "native_status": "ok",
+      "parser_status": "ok"
+    },
+    {
+      "page_number": 10,
+      "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p10",
+      "status": "ok",
+      "json_path": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/page_00010.json",
+      "native_status": "empty",
+      "parser_status": "ok"
+    },
+    {
+      "page_number": 15,
+      "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p15",
+      "status": "ok",
+      "json_path": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/page_00015.json",
+      "native_status": "empty",
+      "parser_status": "ok"
+    }
+  ],
+  "errors": [],
+  "source_url": "http://127.0.0.1:8080/raw/mmdocir_data/extracted/doc_pdfs/0e94b4197b10096b1f4c699701570fbf.pdf",
+  "source_sha256": "13ff22623b747d1facbb405369001c6d3793322b24a56365bb8cef89db2f903e",
+  "source_pdf": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/source.pdf",
+  "source_page_count": 15,
+  "requested_page_numbers": [
+    4,
+    6,
+    8,
+    10,
+    15
+  ],
+  "review_pdf": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/review_structure.pdf"
+}

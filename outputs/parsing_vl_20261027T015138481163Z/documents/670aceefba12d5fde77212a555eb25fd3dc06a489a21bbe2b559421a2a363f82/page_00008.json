@@ -1,0 +1,1005 @@
+{
+  "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p8",
+  "id_origin": "project_generated",
+  "document_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82",
+  "document_name": "0e94b4197b10096b1f4c699701570fbf",
+  "page_number": 8,
+  "page_numbering": "pdf_viewer_1_based",
+  "page_index": 7,
+  "source_sha256": "13ff22623b747d1facbb405369001c6d3793322b24a56365bb8cef89db2f903e",
+  "status": "ok",
+  "geometry": {
+    "coordinate_system": "pymupdf_unrotated_page_points",
+    "origin": "top_left_of_unrotated_page",
+    "unit": "point_1/72_inch",
+    "rotation_degrees": 0,
+    "mediabox": [
+      0.0,
+      0.0,
+      720.0,
+      405.0
+    ],
+    "cropbox": [
+      0.0,
+      0.0,
+      720.0,
+      405.0
+    ],
+    "rotated_page_rect": [
+      0.0,
+      0.0,
+      720.0,
+      405.0
+    ]
+  },
+  "native": {
+    "status": "ok",
+    "text": "Gestalt Principles of Visual Perception\nClosure.  We tend to perceive objects such as shapes, \nletters, pictures, etc., as being whole when they are not complete. \nSpecifically, when parts of a whole picture are missing, our \nperception fills in the visual gap. \nContinuity. Elements of objects tend to be grouped \ntogether, and therefore integrated into perceptual wholes if they \nare aligned within an object. In cases where there is an intersection \nbetween objects, individuals tend to perceive the two objects as \ntwo single uninterrupted entities. ",
+    "raw": {
+      "width": 720.0,
+      "height": 405.0,
+      "blocks": [
+        {
+          "type": 0,
+          "number": 0,
+          "flags": 0,
+          "bbox": [
+            31.29330825805664,
+            33.66095733642578,
+            598.3975219726562,
+            76.28495788574219
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 32.0,
+                  "flags": 20,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "PlayfairDisplay-Bold",
+                  "color": 16080481,
+                  "alpha": 255,
+                  "ascender": 1.0820000171661377,
+                  "descender": -0.25,
+                  "text": "Gestalt Principles of Visual Perception",
+                  "origin": [
+                    31.29330825805664,
+                    68.28495788574219
+                  ],
+                  "bbox": [
+                    31.29330825805664,
+                    33.66095733642578,
+                    598.3975219726562,
+                    76.28495788574219
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                31.29330825805664,
+                33.66095733642578,
+                598.3975219726562,
+                76.28495788574219
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 1,
+          "flags": 0,
+          "bbox": [
+            31.29330825805664,
+            100.28606414794922,
+            313.9398193359375,
+            118.28606414794922
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 18.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Lato-Regular",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.8050000071525574,
+                  "descender": -0.19499999284744263,
+                  "text": "Closure.  ",
+                  "origin": [
+                    31.29330825805664,
+                    114.77606201171875
+                  ],
+                  "bbox": [
+                    31.29330825805664,
+                    100.28606414794922,
+                    103.50930786132812,
+                    118.28606414794922
+                  ]
+                },
+                {
+                  "size": 11.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Lato-Regular",
+                  "color": 6187372,
+                  "alpha": 255,
+                  "ascender": 0.8050000071525574,
+                  "descender": -0.19499999284744263,
+                  "text": "We tend to perceive objects such as shapes, ",
+                  "origin": [
+                    103.50984191894531,
+                    114.77606201171875
+                  ],
+                  "bbox": [
+                    103.50984191894531,
+                    105.92105865478516,
+                    313.9398193359375,
+                    116.92105865478516
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                31.29330825805664,
+                100.28606414794922,
+                313.9398193359375,
+                118.28606414794922
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 2,
+          "flags": 0,
+          "bbox": [
+            31.29330825805664,
+            123.95105743408203,
+            343.28631591796875,
+            164.95106506347656
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 11.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Lato-Regular",
+                  "color": 6187372,
+                  "alpha": 255,
+                  "ascender": 0.8050000071525574,
+                  "descender": -0.19499999284744263,
+                  "text": "letters, pictures, etc., as being whole when they are not complete. ",
+                  "origin": [
+                    31.29330825805664,
+                    132.80606079101562
+                  ],
+                  "bbox": [
+                    31.29330825805664,
+                    123.95105743408203,
+                    343.28631591796875,
+                    134.95106506347656
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                31.29330825805664,
+                123.95105743408203,
+                343.28631591796875,
+                134.95106506347656
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 11.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Lato-Regular",
+                  "color": 6187372,
+                  "alpha": 255,
+                  "ascender": 0.8050000071525574,
+                  "descender": -0.19499999284744263,
+                  "text": "Specifically, when parts of a whole picture are missing, our ",
+                  "origin": [
+                    31.29330825805664,
+                    147.80606079101562
+                  ],
+                  "bbox": [
+                    31.29330825805664,
+                    138.95106506347656,
+                    310.1543273925781,
+                    149.95106506347656
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                31.29330825805664,
+                138.95106506347656,
+                310.1543273925781,
+                149.95106506347656
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 11.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Lato-Regular",
+                  "color": 6187372,
+                  "alpha": 255,
+                  "ascender": 0.8050000071525574,
+                  "descender": -0.19499999284744263,
+                  "text": "perception fills in the visual gap. ",
+                  "origin": [
+                    31.29330825805664,
+                    162.80606079101562
+                  ],
+                  "bbox": [
+                    31.29330825805664,
+                    153.95106506347656,
+                    185.6013641357422,
+                    164.95106506347656
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                31.29330825805664,
+                153.95106506347656,
+                185.6013641357422,
+                164.95106506347656
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 3,
+          "flags": 0,
+          "bbox": [
+            366.9626159667969,
+            100.28606414794922,
+            647.2902221679688,
+            118.28606414794922
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 18.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Lato-Regular",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.8050000071525574,
+                  "descender": -0.19499999284744263,
+                  "text": "Continuity. ",
+                  "origin": [
+                    366.9626159667969,
+                    114.77606201171875
+                  ],
+                  "bbox": [
+                    366.9626159667969,
+                    100.28606414794922,
+                    458.474609375,
+                    118.28606414794922
+                  ]
+                },
+                {
+                  "size": 11.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Lato-Regular",
+                  "color": 6187372,
+                  "alpha": 255,
+                  "ascender": 0.8050000071525574,
+                  "descender": -0.19499999284744263,
+                  "text": "Elements of objects tend to be grouped ",
+                  "origin": [
+                    458.47528076171875,
+                    114.77606201171875
+                  ],
+                  "bbox": [
+                    458.47528076171875,
+                    105.92105865478516,
+                    647.2902221679688,
+                    116.92105865478516
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                366.9626159667969,
+                100.28606414794922,
+                647.2902221679688,
+                118.28606414794922
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 4,
+          "flags": 0,
+          "bbox": [
+            366.9626159667969,
+            123.95105743408203,
+            687.0956420898438,
+            179.95106506347656
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 11.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Lato-Regular",
+                  "color": 6187372,
+                  "alpha": 255,
+                  "ascender": 0.8050000071525574,
+                  "descender": -0.19499999284744263,
+                  "text": "together, and therefore integrated into perceptual wholes if they ",
+                  "origin": [
+                    366.9626159667969,
+                    132.80606079101562
+                  ],
+                  "bbox": [
+                    366.9626159667969,
+                    123.95105743408203,
+                    678.0646362304688,
+                    134.95106506347656
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                366.9626159667969,
+                123.95105743408203,
+                678.0646362304688,
+                134.95106506347656
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 11.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Lato-Regular",
+                  "color": 6187372,
+                  "alpha": 255,
+                  "ascender": 0.8050000071525574,
+                  "descender": -0.19499999284744263,
+                  "text": "are aligned within an object. In cases where there is an intersection ",
+                  "origin": [
+                    366.9626159667969,
+                    147.80606079101562
+                  ],
+                  "bbox": [
+                    366.9626159667969,
+                    138.95106506347656,
+                    687.0956420898438,
+                    149.95106506347656
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                366.9626159667969,
+                138.95106506347656,
+                687.0956420898438,
+                149.95106506347656
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 11.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Lato-Regular",
+                  "color": 6187372,
+                  "alpha": 255,
+                  "ascender": 0.8050000071525574,
+                  "descender": -0.19499999284744263,
+                  "text": "between objects, individuals tend to perceive the two objects as ",
+                  "origin": [
+                    366.9626159667969,
+                    162.80606079101562
+                  ],
+                  "bbox": [
+                    366.9626159667969,
+                    153.95106506347656,
+                    672.7736206054688,
+                    164.95106506347656
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                366.9626159667969,
+                153.95106506347656,
+                672.7736206054688,
+                164.95106506347656
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 11.0,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "Lato-Regular",
+                  "color": 6187372,
+                  "alpha": 255,
+                  "ascender": 0.8050000071525574,
+                  "descender": -0.19499999284744263,
+                  "text": "two single uninterrupted entities. ",
+                  "origin": [
+                    366.9626159667969,
+                    177.80606079101562
+                  ],
+                  "bbox": [
+                    366.9626159667969,
+                    168.95106506347656,
+                    528.6956176757812,
+                    179.95106506347656
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                366.9626159667969,
+                168.95106506347656,
+                528.6956176757812,
+                179.95106506347656
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "extraction_flags": 195,
+    "sort": false
+  },
+  "images": {
+    "status": "ok",
+    "options": {
+      "hashes": true,
+      "xrefs": true
+    },
+    "digest_algorithm": "md5",
+    "digest_encoding": "hex",
+    "items": [
+      {
+        "number": 5,
+        "bbox": [
+          64.52952575683594,
+          205.96852111816406,
+          309.1712646484375,
+          338.94488525390625
+        ],
+        "transform": [
+          244.64173889160156,
+          0.0,
+          -0.0,
+          132.9763641357422,
+          64.52952575683594,
+          205.96852111816406
+        ],
+        "width": 528,
+        "height": 287,
+        "colorspace": 3,
+        "cs-name": "DeviceRGB",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 10121,
+        "digest": "354b6512f439de31d19b1d3f940bb8f4",
+        "has-mask": false,
+        "xref": 59
+      },
+      {
+        "number": 6,
+        "bbox": [
+          490.9212646484375,
+          234.95669555664062,
+          565.1712646484375,
+          309.9566955566406
+        ],
+        "transform": [
+          74.25,
+          0.0,
+          -0.0,
+          75.0,
+          490.9212646484375,
+          234.95669555664062
+        ],
+        "width": 99,
+        "height": 100,
+        "colorspace": 3,
+        "cs-name": "DeviceRGB",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 2858,
+        "digest": "51da48ac7ffa94688327ef17c915900a",
+        "has-mask": false,
+        "xref": 60
+      }
+    ]
+  },
+  "render": {
+    "status": "ok",
+    "dpi": 144,
+    "width": 1440,
+    "height": 810,
+    "coordinate_system": "rendered_page_image_pixels",
+    "origin": "top_left",
+    "unit": "pixel",
+    "render_color_order": "RGB",
+    "input_color_order": "BGR",
+    "annotation_included": true,
+    "pixmap_origin_pixels": [
+      0,
+      0
+    ],
+    "pixel_to_pdf_matrix": [
+      0.5,
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.0
+    ]
+  },
+  "page_image": {
+    "path": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/page_00008.png",
+    "sha256": "e7720371017204277fe4f331e892eb87adc578770d8f3bf6e773530ed748b512"
+  },
+  "parsing": {
+    "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p8",
+    "source": "paddleocr_vl",
+    "status": "ok",
+    "raw": {
+      "res": {
+        "input_path": null,
+        "page_index": null,
+        "page_count": null,
+        "width": 1440,
+        "height": 810,
+        "model_settings": {
+          "use_doc_preprocessor": false,
+          "use_layout_detection": true,
+          "use_chart_recognition": true,
+          "use_seal_recognition": false,
+          "use_ocr_for_image_block": true,
+          "format_block_content": false,
+          "merge_layout_blocks": true,
+          "markdown_ignore_labels": [],
+          "return_layout_polygon_points": false
+        },
+        "parsing_res_list": [
+          {
+            "block_label": "doc_title",
+            "block_content": "Gestalt Principles of Visual Perception",
+            "block_bbox": [
+              60,
+              82,
+              1201,
+              152
+            ],
+            "block_id": 0,
+            "block_order": 1,
+            "group_id": 0
+          },
+          {
+            "block_label": "text",
+            "block_content": "Closure. We tend to perceive objects such as shapes, letters, pictures, etc., as being whole when they are not complete. Specifically, when parts of a whole picture are missing, our perception fills in the visual gap.\nContinuity. Elements of objects tend to be grouped together, and therefore integrated into perceptual wholes if they are aligned within an object. In cases where there is an intersection between objects, individuals tend to perceive the two objects as two single uninterrupted entities.",
+            "block_bbox": [
+              54,
+              203,
+              687,
+              337
+            ],
+            "block_id": 1,
+            "block_order": 2,
+            "group_id": 1
+          },
+          {
+            "block_label": "text",
+            "block_content": "",
+            "block_bbox": [
+              728,
+              200,
+              1377,
+              365
+            ],
+            "block_id": 2,
+            "block_order": 3,
+            "group_id": 1
+          },
+          {
+            "block_label": "image",
+            "block_content": "○[[",
+            "block_bbox": [
+              129,
+              412,
+              618,
+              678
+            ],
+            "block_id": 3,
+            "block_order": null,
+            "group_id": 3
+          },
+          {
+            "block_label": "image",
+            "block_content": "9999",
+            "block_bbox": [
+              985,
+              476,
+              1124,
+              610
+            ],
+            "block_id": 4,
+            "block_order": null,
+            "group_id": 4
+          }
+        ],
+        "layout_det_res": {
+          "input_path": null,
+          "page_index": null,
+          "boxes": [
+            {
+              "cls_id": 6,
+              "label": "doc_title",
+              "score": 0.6673274636268616,
+              "coordinate": [
+                60,
+                82,
+                1201,
+                152
+              ],
+              "order": 1
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.7933619618415833,
+              "coordinate": [
+                54,
+                203,
+                687,
+                337
+              ],
+              "order": 2
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.8602105379104614,
+              "coordinate": [
+                728,
+                200,
+                1377,
+                365
+              ],
+              "order": 3
+            },
+            {
+              "cls_id": 14,
+              "label": "image",
+              "score": 0.8536467552185059,
+              "coordinate": [
+                129,
+                412,
+                618,
+                678
+              ],
+              "order": null
+            },
+            {
+              "cls_id": 14,
+              "label": "image",
+              "score": 0.7654862403869629,
+              "coordinate": [
+                985,
+                476,
+                1124,
+                610
+              ],
+              "order": null
+            }
+          ]
+        }
+      }
+    },
+    "blocks": [
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p8:vl:0",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p8",
+        "source": "paddleocr_vl",
+        "source_list_index": 0,
+        "model_block_id": 0,
+        "model_block_order": 1,
+        "label": "doc_title",
+        "content": "Gestalt Principles of Visual Perception",
+        "bbox_image_pixels": [
+          60.0,
+          82.0,
+          1201.0,
+          152.0
+        ],
+        "polygon_pdf_points": [
+          [
+            30.0,
+            41.0
+          ],
+          [
+            600.5,
+            41.0
+          ],
+          [
+            600.5,
+            76.0
+          ],
+          [
+            30.0,
+            76.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          30.0,
+          41.0,
+          600.5,
+          76.0
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p8:vl:1",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p8",
+        "source": "paddleocr_vl",
+        "source_list_index": 1,
+        "model_block_id": 1,
+        "model_block_order": 2,
+        "label": "text",
+        "content": "Closure. We tend to perceive objects such as shapes, letters, pictures, etc., as being whole when they are not complete. Specifically, when parts of a whole picture are missing, our perception fills in the visual gap.\nContinuity. Elements of objects tend to be grouped together, and therefore integrated into perceptual wholes if they are aligned within an object. In cases where there is an intersection between objects, individuals tend to perceive the two objects as two single uninterrupted entities.",
+        "bbox_image_pixels": [
+          54.0,
+          203.0,
+          687.0,
+          337.0
+        ],
+        "polygon_pdf_points": [
+          [
+            27.0,
+            101.5
+          ],
+          [
+            343.5,
+            101.5
+          ],
+          [
+            343.5,
+            168.5
+          ],
+          [
+            27.0,
+            168.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          27.0,
+          101.5,
+          343.5,
+          168.5
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p8:vl:2",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p8",
+        "source": "paddleocr_vl",
+        "source_list_index": 2,
+        "model_block_id": 2,
+        "model_block_order": 3,
+        "label": "text",
+        "content": "",
+        "bbox_image_pixels": [
+          728.0,
+          200.0,
+          1377.0,
+          365.0
+        ],
+        "polygon_pdf_points": [
+          [
+            364.0,
+            100.0
+          ],
+          [
+            688.5,
+            100.0
+          ],
+          [
+            688.5,
+            182.5
+          ],
+          [
+            364.0,
+            182.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          364.0,
+          100.0,
+          688.5,
+          182.5
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p8:vl:3",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p8",
+        "source": "paddleocr_vl",
+        "source_list_index": 3,
+        "model_block_id": 3,
+        "model_block_order": null,
+        "label": "image",
+        "content": "○[[",
+        "bbox_image_pixels": [
+          129.0,
+          412.0,
+          618.0,
+          678.0
+        ],
+        "polygon_pdf_points": [
+          [
+            64.5,
+            206.0
+          ],
+          [
+            309.0,
+            206.0
+          ],
+          [
+            309.0,
+            339.0
+          ],
+          [
+            64.5,
+            339.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          64.5,
+          206.0,
+          309.0,
+          339.0
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p8:vl:4",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p8",
+        "source": "paddleocr_vl",
+        "source_list_index": 4,
+        "model_block_id": 4,
+        "model_block_order": null,
+        "label": "image",
+        "content": "9999",
+        "bbox_image_pixels": [
+          985.0,
+          476.0,
+          1124.0,
+          610.0
+        ],
+        "polygon_pdf_points": [
+          [
+            492.5,
+            238.0
+          ],
+          [
+            562.0,
+            238.0
+          ],
+          [
+            562.0,
+            305.0
+          ],
+          [
+            492.5,
+            305.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          492.5,
+          238.0,
+          562.0,
+          305.0
+        ]
+      }
+    ],
+    "block_count": 5,
+    "character_count": 550,
+    "input_image": {
+      "width": 1440,
+      "height": 810,
+      "color_order": "BGR",
+      "coordinate_system": "rendered_page_image_pixels"
+    },
+    "elapsed_seconds": 160.80671370006166,
+    "coordinate_status": "ok"
+  },
+  "review": {
+    "review_page_number": 3,
+    "status": "ok",
+    "drawn_count": 5,
+    "warnings": [],
+    "json_path": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/page_00008.json",
+    "path": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/review_vl.pdf"
+  },
+  "elapsed_seconds": 161.02216409984976
+}

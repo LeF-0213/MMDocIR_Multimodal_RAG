@@ -1,0 +1,971 @@
+{
+  "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6",
+  "id_origin": "project_generated",
+  "document_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82",
+  "document_name": "0e94b4197b10096b1f4c699701570fbf",
+  "page_number": 6,
+  "page_numbering": "pdf_viewer_1_based",
+  "page_index": 5,
+  "source_sha256": "13ff22623b747d1facbb405369001c6d3793322b24a56365bb8cef89db2f903e",
+  "status": "ok",
+  "geometry": {
+    "coordinate_system": "pymupdf_unrotated_page_points",
+    "origin": "top_left_of_unrotated_page",
+    "unit": "point_1/72_inch",
+    "rotation_degrees": 0,
+    "mediabox": [
+      0.0,
+      0.0,
+      720.0,
+      405.0
+    ],
+    "cropbox": [
+      0.0,
+      0.0,
+      720.0,
+      405.0
+    ],
+    "rotated_page_rect": [
+      0.0,
+      0.0,
+      720.0,
+      405.0
+    ]
+  },
+  "native": {
+    "status": "empty",
+    "text": "",
+    "raw": {
+      "width": 720.0,
+      "height": 405.0,
+      "blocks": []
+    },
+    "extraction_flags": 195,
+    "sort": false
+  },
+  "images": {
+    "status": "ok",
+    "options": {
+      "hashes": true,
+      "xrefs": true
+    },
+    "digest_algorithm": "md5",
+    "digest_encoding": "hex",
+    "items": [
+      {
+        "number": 0,
+        "bbox": [
+          121.9891128540039,
+          12.090545654296875,
+          598.0108032226562,
+          392.9093933105469
+        ],
+        "transform": [
+          476.02166748046875,
+          0.0,
+          -0.0,
+          380.81884765625,
+          121.9891128540039,
+          12.090545654296875
+        ],
+        "width": 1350,
+        "height": 1080,
+        "colorspace": 3,
+        "cs-name": "DeviceRGB",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 330227,
+        "digest": "c035878466a65cdce9e90200fc7d693b",
+        "has-mask": false,
+        "xref": 47
+      }
+    ]
+  },
+  "render": {
+    "status": "ok",
+    "dpi": 144,
+    "width": 1440,
+    "height": 810,
+    "coordinate_system": "rendered_page_image_pixels",
+    "origin": "top_left",
+    "unit": "pixel",
+    "render_color_order": "RGB",
+    "input_color_order": "BGR",
+    "annotation_included": true,
+    "pixmap_origin_pixels": [
+      0,
+      0
+    ],
+    "pixel_to_pdf_matrix": [
+      0.5,
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.0
+    ]
+  },
+  "page_image": {
+    "path": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/page_00006.png",
+    "sha256": "cdd44b2b96b8cbbb8e22b96e7f2114acf5579ec7950b1354af32e9d51288359b"
+  },
+  "parsing": {
+    "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6",
+    "source": "paddleocr_vl",
+    "status": "ok",
+    "raw": {
+      "res": {
+        "input_path": null,
+        "page_index": null,
+        "page_count": null,
+        "width": 1440,
+        "height": 810,
+        "model_settings": {
+          "use_doc_preprocessor": false,
+          "use_layout_detection": true,
+          "use_chart_recognition": true,
+          "use_seal_recognition": false,
+          "use_ocr_for_image_block": true,
+          "format_block_content": false,
+          "merge_layout_blocks": true,
+          "markdown_ignore_labels": [],
+          "return_layout_polygon_points": false
+        },
+        "parsing_res_list": [
+          {
+            "block_label": "chart",
+            "block_content": "Item | Value\n1 |  \n2 |  \n3 |  \n4 |  \n5 |  \n6 |  \n7 |  \n8 |  \n9 |  \n10 |  \n11 |  \n12 |  \n13 |  \n14 |  \n15 |  \n16 |  \n17 |  \n18 |  \n19 |  \n20 |  \n21 |  \n22 |  \n23 |  \n24 |  \n25 |  \n26 |  \n27 |  \n28 |  \n29 |  \n30 |  \n31 |  \n32 |  \n33 |  \n34 |  \n35 |  \n36 |  \n37 |  \n38 |  \n39 |  \n40 |  \n41 |  \n42 |  \n43 |  \n44 |  \n45 |  \n46 |  \n47 |  \n48 |  \n49 |  \n50 |  \n51 |  \n52 |  \n53 |  \n54 |  \n55 |  \n56 |  \n57 |  \n58 | SPITNK\n59 | Vengy-Sed Sullit\n60 | Vostok\n61 | X-15\n62 |  \n63 |  \n64 |  \n65 |  \n66 |  \n67 |  \n68 |  \n69 |  \n70 |  \n71 |  \n72 |  \n73 |  \n74 |  \n75 |  \n76 |  \n77 |  \n78 |  \n79 |  \n80 |  \n81 |  \n82 |  \n83 |  \n84 |  \n85 |  \n86 |  \n87 |  \n88 |  \n89 |  \n90 |  \n91 |  \n92 |  \n93 |  \n94 |  \n95 |  \n96 |  \n97 |  \n98 |  \n99 |  \n100 |  \n101 |  \n102 |  \n103 |  \n104 |  \n105 |  \n106 |  \n107 |  \n108 |  \n109 |  \n110 |  \n111 |  \n112 |  \n113 |  \n114 |  \n115 |  \n116 |  \n117 |  \n118 |  \n119 |  \n120 |  \n121 |  \n122 |  \n123 |  \n124 |  \n125 |  \n126 |  \n127 |  \n128 |  \n129 |  \n130 |  \n131 |  \n132 |  \n133 |  \n134 |  \n135 |  \n136 |  \n137 |  \n138 |  \n139 |  \n140 |  \n141 |  \n142 |  \n143 |  \n144 |  \n145 |  \n146 |  \n147 |  \n148 |  \n149 |  \n150 |  \n151 |  \n152 |  \n153 |  \n154 |  \n155 |  \n156 |  \n157 |  \n158 |  \n159 |  \n160 |  \n161 |  \n162 |  \n163 |  \n164 |  \n165 |  \n166 |  \n167 |  \n168 |  \n169 |  \n170 |  \n171 |  \n172 |  \n173 |  \n174 |  \n175 |  \n176 |  \n177 |  \n178 |  \n179 |  \n180 |  \n181 |  \n182 |  \n183 |  \n184 |  \n185 |  \n186 |  \n187 |  \n188 |  \n189 |  \n190 |  \n191 |  \n192 |  \n193 |  \n194 |  \n195 |  \n196 |  \n197 |  \n198 |  \n199 |  \n200 |  \n201 |  \n202 |  \n203 |  \n204 |  \n205 |  \n206 |  \n207 |  \n208 |  \n209 |  \n210 |  \n211 |  \n212 |  \n213 |  \n214 |  \n215 |  \n216 |  \n217 |  \n218 |  \n219 |  \n220 |  \n221 |  \n222 |  \n223 |  \n224 |  \n225 |  \n226 |  \n227 |  \n228 |  \n229 |  \n230 |  \n231 |  \n232 |  \n233 |  \n234 |  \n235 |  \n236 |  \n237 |  \n238 |  \n239 |  \n240 |  \n241 |  \n242 |  \n243 |  \n244 |  \n245 |  \n246 |  \n247 |  \n248 |  \n249 |  \n250 |  \n251 |  \n252 |  \n253 |  \n254 |  \n255 |  \n256 |  \n257 |  \n258 |  \n259 |  \n260 |  \n261 |  \n262 |  \n263 |  \n264 |  \n265 |  \n266 |  \n267 |  \n268 |  \n269 |  \n270 |  \n271 |  \n272 |  \n273 |  \n274 |  \n275 |  \n276 |  \n277 |  \n278 |  \n279 |  \n280 |  \n281 |  \n282 |  \n283 |  \n284 |  \n285 |  \n286 |  \n287 |  \n288 |  \n289 |  \n290 |  \n291 |  \n292 |  \n293 |  \n294 |  \n295 |  \n296 |  \n297 |  \n298 |  \n299 |  \n300 |  \n301 |  \n302 |  \n303 |  \n304 |  \n305 |  \n306 |  \n307 |  \n308 |  \n309 |  \n310 |  \n311 |  \n312 |  \n313 |  \n314 |  \n315 |  \n316 |  \n317 |  \n318 |  \n319 |  \n320 |  \n321 |  \n322 |  \n323 |  \n324 |  \n325 |  \n326 |  \n327 |  \n328 |  \n329 |  \n330 |  \n331 |  \n332 |  \n333 |  \n334 |  \n335 |  \n336 |  \n337 |  \n338 |  \n339 |  \n340 |  \n341 |  \n342 |  \n343 |  \n344 |  \n345 |  \n346 |  \n347 |  \n348 |  \n349 |  \n350 |  \n351 |  \n352 |  \n353 |  \n354 |  \n355 |  \n356 |  \n357 |  \n358 |  \n359 |  \n360 |  \n361 |  \n362 |  \n363 |  \n364 |  \n365 |  \n366 |  \n367 |  \n368 |  \n369 |  \n370 |  \n371 |  \n372 |  \n373 |  \n374 |  \n375 |  \n376 |  \n377 |  \n378 |  \n379 |  \n380 |  \n381 |  \n382 |  \n383 |  \n384 |  \n385 |  \n386 |  \n387 |  \n388 |  \n389 |  \n390 |  \n391 |  \n392 |  \n393 |  \n394 |  \n395 |  \n396 |  \n397 |  \n398 |  \n399 |  \n400 |  \n401 |  \n402 |  \n403 |  \n404 |  \n405 |  \n406 |  \n407 |  \n408 |  \n409 |  \n410 |  \n411 |  \n412 |  \n413 |  \n414 |  \n415 |  \n416 |  \n417 |  \n418 |  \n419 |  \n420 |  \n421 |  \n422 |  \n423 |  \n424 |  \n425 |  \n426 |  \n427 |  \n428 |  \n429 |  \n430 |  \n431 |  \n432 |  \n433 |  \n434 |  \n435 |  \n436 |  \n437 |  \n438 |  \n439 |  \n440 |  \n441 |  \n442 |  \n443 |  \n444 |  \n445 |  \n446 |  \n447 |  \n448 |  \n449 |  \n450 |  \n451 |  \n452 |  \n453 |  \n454 |  \n455 |  \n456 |  \n457 |  \n458 |  \n459 |  \n460 |  \n461 |  \n462 |  \n463 |  \n464 |  \n465 |  \n466 |  \n467 |  \n468 |  \n469 |  \n470 |  \n471 |  \n472 |  \n473 |  \n474 |  \n475 |  \n476 |  \n477 |  \n478 |  \n479 |  \n480 |  \n481 |  \n482 |  \n483 |  \n484 |  \n485 |  \n486 |  \n487 |  \n488 |  \n489 |  \n490 |  \n491 |  \n492 |  \n493 |  \n494 |  \n495 |  \n496 |  \n497 |  \n498 |  \n499 |  \n500 |  \n501 |  \n502 |  \n503 |  \n504 |  \n505 |  \n506 |  \n507 |  \n508 |  \n509 |  \n510 |  \n511 |  \n512 |  \n513 |  \n514 |  \n515 |  \n516 |  \n517 |  \n518 |  \n519 |  \n520 |  \n521 |  \n522 |  \n523 |  \n524 |  \n525 |  \n526 |  \n527 |  \n528 |  \n529 |  \n530 |  \n531 |  \n532 |  \n533 |  \n534 |  \n535 |  \n536 |  \n537 |  \n538 |  \n539 |  \n540 |  \n541 |  \n542 |  \n543 |  \n544 |  \n545 |  \n546 |  \n547 |  \n548 |  \n549 |  \n550 |  \n551 |  \n552 |  \n553 |  \n554 |  \n555 |  \n556 |  \n557 |  \n558 |  \n559 |  \n560 |  \n561 |  \n562 |  \n563 |  \n564 |  \n565 |  \n566 |  \n567 |  \n568 |  \n569 |  \n570 |  \n571 |  \n572 |  \n573 |  \n574 |  \n575 |  \n576 |  \n577 |  \n578 |  \n579 |  \n580 |  \n581 |  \n582 |  \n583 |  \n584 |  \n585 |  \n586 |  \n587 |  \n588 |  \n589 |  \n590 |  \n591 |  \n592 |  \n593 |  \n594 |  \n595 |  \n596 |  \n597 |  \n598 |  \n599 |  \n600 |  \n601 |  \n602 |  \n603 |  \n604 |  \n605 |  \n606 |  \n607 |  \n608 |  \n609 |  \n610 |  \n611 |  \n612 |  \n613 |  \n614 |  \n615 |  \n616 |  \n617 |  \n618 |  \n619 |  \n620 |  \n621 |  \n622 |  \n623 |  \n624 |  \n625 |  \n626 |  \n627 |  \n628 |  \n629 |  \n630 |  \n631 |  \n632 |  \n633 |  \n634 |  \n635 |  \n636 |  \n637 |  \n638 |  \n639 |  \n640 |  \n641 |  \n642 |  \n643 |  \n644 |  \n645 |  \n646 |  \n647 |  \n648 |  \n649 |  \n650 |  \n651 |  \n652 |  \n653 |  \n654 |  \n655 |  \n656 |  \n657 |  \n658 |  \n659 |  \n660 |  \n661 |  \n662 |  \n663 |  \n664 |  \n665 |  \n666 |  \n667 |  \n668 |  \n669 |  \n670 |  \n671 |  \n672 |  \n673 |  \n674 |  \n675 |  \n676 |  \n677 |  \n678 |  \n679 |  \n680 |  \n681 |  \n682 |  \n683 |  \n684 |  \n685 |  \n686 |  \n687 |  \n688 |  \n689 |  \n690 |  \n691 |  \n692 |  \n693 |  \n694 |  \n695 |  \n696 |  \n697 |  \n698",
+            "block_bbox": [
+              244,
+              24,
+              1205,
+              552
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0
+          },
+          {
+            "block_label": "paragraph_title",
+            "block_content": "Sony markets Betamax\nAtari markets Pong home console",
+            "block_bbox": [
+              1166,
+              588,
+              1195,
+              763
+            ],
+            "block_id": 1,
+            "block_order": 1,
+            "group_id": 1
+          },
+          {
+            "block_label": "vertical_text",
+            "block_content": "Solzhenitsyn exiled India's first nuclear bomb test\nNixon resigns after Watergate Scandal Ella Grasso elected as female governor",
+            "block_bbox": [
+              1084,
+              587,
+              1143,
+              788
+            ],
+            "block_id": 2,
+            "block_order": 2,
+            "group_id": 2
+          },
+          {
+            "block_label": "vertical_text",
+            "block_content": "(heart failure) Intel 4004\nKhruschev dies first microprocessor\nHP-35, first scientific pocket calculator\nNixon visits China and Russia\nSALT I marks beginning of DETENTE\nFischer beats Spassky in Chess Match\nMunich Olympic Terrorism\nLBU dies (heart failure) Oil Crisis\nTu-144 crashes at Paris Air Show\nBillie Jean King beats Bobbie Riggs",
+            "block_bbox": [
+              947,
+              587,
+              1079,
+              786
+            ],
+            "block_id": 3,
+            "block_order": 3,
+            "group_id": 3
+          },
+          {
+            "block_label": "vertical_text",
+            "block_content": "Nuclear Non-Proliferation Treaty\n3 Jets bound for NY Hijacked\n4 Kent State war protesters killed",
+            "block_bbox": [
+              877,
+              574,
+              921,
+              764
+            ],
+            "block_id": 4,
+            "block_order": 4,
+            "group_id": 4
+          },
+          {
+            "block_label": "vertical_text",
+            "block_content": "MLK Assassinated\nTrousers RFK Assassinated\naccepted for Women's everyday wear 3\nEisenhower dies (heart failure)",
+            "block_bbox": [
+              791,
+              576,
+              854,
+              780
+            ],
+            "block_id": 5,
+            "block_order": 5,
+            "group_id": 5
+          },
+          {
+            "block_label": "vertical_text",
+            "block_content": "First Super Bowl\nStalin's daughter defects to the U.S.\nInterracial marriage legalized for U.S.\nCzech reform (stopped by Warsaw\nPact invasion & occupation thru 1990)",
+            "block_bbox": [
+              719,
+              574,
+              794,
+              785
+            ],
+            "block_id": 6,
+            "block_order": 6,
+            "group_id": 6
+          },
+          {
+            "block_label": "vertical_text",
+            "block_content": "Malcom X Assassinated\nSergei Korolev dies after surgery\nColor TV becomes popular",
+            "block_bbox": [
+              653,
+              571,
+              703,
+              756
+            ],
+            "block_id": 7,
+            "block_order": 7,
+            "group_id": 7
+          },
+          {
+            "block_label": "vertical_text",
+            "block_content": "U.S. Civil Rights Act\nChina's first nuclear bomb test\n(joins U.S., U.S.S.R., U.K. & France)\nWinston Churchill dies (stroke)\nU.S. invades Dominican Republic",
+            "block_bbox": [
+              585,
+              573,
+              653,
+              779
+            ],
+            "block_id": 8,
+            "block_order": 8,
+            "group_id": 8
+          },
+          {
+            "block_label": "vertical_text",
+            "block_content": "Nuclear\nTest Ban signed by US, USSR & UK\nJFK proposes cooperation on Apollo\n(UN speech) JFK Assassinated",
+            "block_bbox": [
+              523,
+              578,
+              579,
+              788
+            ],
+            "block_id": 9,
+            "block_order": 9,
+            "group_id": 9
+          },
+          {
+            "block_label": "vertical_text",
+            "block_content": "Castro overthrows Batista in Cuba\nSSBN George Washington launched\nHawaii becomes fiftieth state\nFrance's first nuclear bomb test\nJupiter IRBMs deployed in Italy\nU-2 Pilot Gary Powers shot down\nNedelin Sino-Soviet Split\nLaunch Pad Disaster (kept secret)\nJFK proposes Bay of Pigs Fiasco commitment to land on the Moon\nFallout Shelters/Berlin Wall constructed\nJupiter IRBMs 50MT Tsar Bomba\ndeployed in Turkey detonated",
+            "block_bbox": [
+              321,
+              568,
+              488,
+              785
+            ],
+            "block_id": 10,
+            "block_order": 10,
+            "group_id": 10
+          },
+          {
+            "block_label": "vertical_text",
+            "block_content": "U.K.'s first hydrogen bomb test\nSAC starts 24/7 nuke bomber alert\n(continuous until 1991)\n\nUSSR unilateral nuke test moratorium",
+            "block_bbox": [
+              243,
+              577,
+              286,
+              780
+            ],
+            "block_id": 11,
+            "block_order": 11,
+            "group_id": 11
+          }
+        ],
+        "layout_det_res": {
+          "input_path": null,
+          "page_index": null,
+          "boxes": [
+            {
+              "cls_id": 3,
+              "label": "chart",
+              "score": 0.8651353120803833,
+              "coordinate": [
+                244,
+                24,
+                1205,
+                552
+              ],
+              "order": null
+            },
+            {
+              "cls_id": 17,
+              "label": "paragraph_title",
+              "score": 0.4619424045085907,
+              "coordinate": [
+                1166,
+                588,
+                1195,
+                763
+              ],
+              "order": 1
+            },
+            {
+              "cls_id": 23,
+              "label": "vertical_text",
+              "score": 0.44241300225257874,
+              "coordinate": [
+                1084,
+                587,
+                1143,
+                788
+              ],
+              "order": 2
+            },
+            {
+              "cls_id": 23,
+              "label": "vertical_text",
+              "score": 0.5543234348297119,
+              "coordinate": [
+                947,
+                587,
+                1079,
+                786
+              ],
+              "order": 3
+            },
+            {
+              "cls_id": 23,
+              "label": "vertical_text",
+              "score": 0.3826432228088379,
+              "coordinate": [
+                877,
+                574,
+                921,
+                764
+              ],
+              "order": 4
+            },
+            {
+              "cls_id": 23,
+              "label": "vertical_text",
+              "score": 0.3826252222061157,
+              "coordinate": [
+                791,
+                576,
+                854,
+                780
+              ],
+              "order": 5
+            },
+            {
+              "cls_id": 23,
+              "label": "vertical_text",
+              "score": 0.5565417408943176,
+              "coordinate": [
+                719,
+                574,
+                794,
+                785
+              ],
+              "order": 6
+            },
+            {
+              "cls_id": 23,
+              "label": "vertical_text",
+              "score": 0.35810157656669617,
+              "coordinate": [
+                653,
+                571,
+                703,
+                756
+              ],
+              "order": 7
+            },
+            {
+              "cls_id": 23,
+              "label": "vertical_text",
+              "score": 0.46483346819877625,
+              "coordinate": [
+                585,
+                573,
+                653,
+                779
+              ],
+              "order": 8
+            },
+            {
+              "cls_id": 23,
+              "label": "vertical_text",
+              "score": 0.3904096782207489,
+              "coordinate": [
+                523,
+                578,
+                579,
+                788
+              ],
+              "order": 9
+            },
+            {
+              "cls_id": 23,
+              "label": "vertical_text",
+              "score": 0.3442397713661194,
+              "coordinate": [
+                424,
+                585,
+                488,
+                788
+              ],
+              "order": 10
+            },
+            {
+              "cls_id": 23,
+              "label": "vertical_text",
+              "score": 0.30180302262306213,
+              "coordinate": [
+                321,
+                568,
+                488,
+                785
+              ],
+              "order": 11
+            },
+            {
+              "cls_id": 23,
+              "label": "vertical_text",
+              "score": 0.3425157964229584,
+              "coordinate": [
+                243,
+                577,
+                286,
+                780
+              ],
+              "order": 12
+            }
+          ]
+        }
+      }
+    },
+    "blocks": [
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6:vl:0",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6",
+        "source": "paddleocr_vl",
+        "source_list_index": 0,
+        "model_block_id": 0,
+        "model_block_order": null,
+        "label": "chart",
+        "content": "Item | Value\n1 |  \n2 |  \n3 |  \n4 |  \n5 |  \n6 |  \n7 |  \n8 |  \n9 |  \n10 |  \n11 |  \n12 |  \n13 |  \n14 |  \n15 |  \n16 |  \n17 |  \n18 |  \n19 |  \n20 |  \n21 |  \n22 |  \n23 |  \n24 |  \n25 |  \n26 |  \n27 |  \n28 |  \n29 |  \n30 |  \n31 |  \n32 |  \n33 |  \n34 |  \n35 |  \n36 |  \n37 |  \n38 |  \n39 |  \n40 |  \n41 |  \n42 |  \n43 |  \n44 |  \n45 |  \n46 |  \n47 |  \n48 |  \n49 |  \n50 |  \n51 |  \n52 |  \n53 |  \n54 |  \n55 |  \n56 |  \n57 |  \n58 | SPITNK\n59 | Vengy-Sed Sullit\n60 | Vostok\n61 | X-15\n62 |  \n63 |  \n64 |  \n65 |  \n66 |  \n67 |  \n68 |  \n69 |  \n70 |  \n71 |  \n72 |  \n73 |  \n74 |  \n75 |  \n76 |  \n77 |  \n78 |  \n79 |  \n80 |  \n81 |  \n82 |  \n83 |  \n84 |  \n85 |  \n86 |  \n87 |  \n88 |  \n89 |  \n90 |  \n91 |  \n92 |  \n93 |  \n94 |  \n95 |  \n96 |  \n97 |  \n98 |  \n99 |  \n100 |  \n101 |  \n102 |  \n103 |  \n104 |  \n105 |  \n106 |  \n107 |  \n108 |  \n109 |  \n110 |  \n111 |  \n112 |  \n113 |  \n114 |  \n115 |  \n116 |  \n117 |  \n118 |  \n119 |  \n120 |  \n121 |  \n122 |  \n123 |  \n124 |  \n125 |  \n126 |  \n127 |  \n128 |  \n129 |  \n130 |  \n131 |  \n132 |  \n133 |  \n134 |  \n135 |  \n136 |  \n137 |  \n138 |  \n139 |  \n140 |  \n141 |  \n142 |  \n143 |  \n144 |  \n145 |  \n146 |  \n147 |  \n148 |  \n149 |  \n150 |  \n151 |  \n152 |  \n153 |  \n154 |  \n155 |  \n156 |  \n157 |  \n158 |  \n159 |  \n160 |  \n161 |  \n162 |  \n163 |  \n164 |  \n165 |  \n166 |  \n167 |  \n168 |  \n169 |  \n170 |  \n171 |  \n172 |  \n173 |  \n174 |  \n175 |  \n176 |  \n177 |  \n178 |  \n179 |  \n180 |  \n181 |  \n182 |  \n183 |  \n184 |  \n185 |  \n186 |  \n187 |  \n188 |  \n189 |  \n190 |  \n191 |  \n192 |  \n193 |  \n194 |  \n195 |  \n196 |  \n197 |  \n198 |  \n199 |  \n200 |  \n201 |  \n202 |  \n203 |  \n204 |  \n205 |  \n206 |  \n207 |  \n208 |  \n209 |  \n210 |  \n211 |  \n212 |  \n213 |  \n214 |  \n215 |  \n216 |  \n217 |  \n218 |  \n219 |  \n220 |  \n221 |  \n222 |  \n223 |  \n224 |  \n225 |  \n226 |  \n227 |  \n228 |  \n229 |  \n230 |  \n231 |  \n232 |  \n233 |  \n234 |  \n235 |  \n236 |  \n237 |  \n238 |  \n239 |  \n240 |  \n241 |  \n242 |  \n243 |  \n244 |  \n245 |  \n246 |  \n247 |  \n248 |  \n249 |  \n250 |  \n251 |  \n252 |  \n253 |  \n254 |  \n255 |  \n256 |  \n257 |  \n258 |  \n259 |  \n260 |  \n261 |  \n262 |  \n263 |  \n264 |  \n265 |  \n266 |  \n267 |  \n268 |  \n269 |  \n270 |  \n271 |  \n272 |  \n273 |  \n274 |  \n275 |  \n276 |  \n277 |  \n278 |  \n279 |  \n280 |  \n281 |  \n282 |  \n283 |  \n284 |  \n285 |  \n286 |  \n287 |  \n288 |  \n289 |  \n290 |  \n291 |  \n292 |  \n293 |  \n294 |  \n295 |  \n296 |  \n297 |  \n298 |  \n299 |  \n300 |  \n301 |  \n302 |  \n303 |  \n304 |  \n305 |  \n306 |  \n307 |  \n308 |  \n309 |  \n310 |  \n311 |  \n312 |  \n313 |  \n314 |  \n315 |  \n316 |  \n317 |  \n318 |  \n319 |  \n320 |  \n321 |  \n322 |  \n323 |  \n324 |  \n325 |  \n326 |  \n327 |  \n328 |  \n329 |  \n330 |  \n331 |  \n332 |  \n333 |  \n334 |  \n335 |  \n336 |  \n337 |  \n338 |  \n339 |  \n340 |  \n341 |  \n342 |  \n343 |  \n344 |  \n345 |  \n346 |  \n347 |  \n348 |  \n349 |  \n350 |  \n351 |  \n352 |  \n353 |  \n354 |  \n355 |  \n356 |  \n357 |  \n358 |  \n359 |  \n360 |  \n361 |  \n362 |  \n363 |  \n364 |  \n365 |  \n366 |  \n367 |  \n368 |  \n369 |  \n370 |  \n371 |  \n372 |  \n373 |  \n374 |  \n375 |  \n376 |  \n377 |  \n378 |  \n379 |  \n380 |  \n381 |  \n382 |  \n383 |  \n384 |  \n385 |  \n386 |  \n387 |  \n388 |  \n389 |  \n390 |  \n391 |  \n392 |  \n393 |  \n394 |  \n395 |  \n396 |  \n397 |  \n398 |  \n399 |  \n400 |  \n401 |  \n402 |  \n403 |  \n404 |  \n405 |  \n406 |  \n407 |  \n408 |  \n409 |  \n410 |  \n411 |  \n412 |  \n413 |  \n414 |  \n415 |  \n416 |  \n417 |  \n418 |  \n419 |  \n420 |  \n421 |  \n422 |  \n423 |  \n424 |  \n425 |  \n426 |  \n427 |  \n428 |  \n429 |  \n430 |  \n431 |  \n432 |  \n433 |  \n434 |  \n435 |  \n436 |  \n437 |  \n438 |  \n439 |  \n440 |  \n441 |  \n442 |  \n443 |  \n444 |  \n445 |  \n446 |  \n447 |  \n448 |  \n449 |  \n450 |  \n451 |  \n452 |  \n453 |  \n454 |  \n455 |  \n456 |  \n457 |  \n458 |  \n459 |  \n460 |  \n461 |  \n462 |  \n463 |  \n464 |  \n465 |  \n466 |  \n467 |  \n468 |  \n469 |  \n470 |  \n471 |  \n472 |  \n473 |  \n474 |  \n475 |  \n476 |  \n477 |  \n478 |  \n479 |  \n480 |  \n481 |  \n482 |  \n483 |  \n484 |  \n485 |  \n486 |  \n487 |  \n488 |  \n489 |  \n490 |  \n491 |  \n492 |  \n493 |  \n494 |  \n495 |  \n496 |  \n497 |  \n498 |  \n499 |  \n500 |  \n501 |  \n502 |  \n503 |  \n504 |  \n505 |  \n506 |  \n507 |  \n508 |  \n509 |  \n510 |  \n511 |  \n512 |  \n513 |  \n514 |  \n515 |  \n516 |  \n517 |  \n518 |  \n519 |  \n520 |  \n521 |  \n522 |  \n523 |  \n524 |  \n525 |  \n526 |  \n527 |  \n528 |  \n529 |  \n530 |  \n531 |  \n532 |  \n533 |  \n534 |  \n535 |  \n536 |  \n537 |  \n538 |  \n539 |  \n540 |  \n541 |  \n542 |  \n543 |  \n544 |  \n545 |  \n546 |  \n547 |  \n548 |  \n549 |  \n550 |  \n551 |  \n552 |  \n553 |  \n554 |  \n555 |  \n556 |  \n557 |  \n558 |  \n559 |  \n560 |  \n561 |  \n562 |  \n563 |  \n564 |  \n565 |  \n566 |  \n567 |  \n568 |  \n569 |  \n570 |  \n571 |  \n572 |  \n573 |  \n574 |  \n575 |  \n576 |  \n577 |  \n578 |  \n579 |  \n580 |  \n581 |  \n582 |  \n583 |  \n584 |  \n585 |  \n586 |  \n587 |  \n588 |  \n589 |  \n590 |  \n591 |  \n592 |  \n593 |  \n594 |  \n595 |  \n596 |  \n597 |  \n598 |  \n599 |  \n600 |  \n601 |  \n602 |  \n603 |  \n604 |  \n605 |  \n606 |  \n607 |  \n608 |  \n609 |  \n610 |  \n611 |  \n612 |  \n613 |  \n614 |  \n615 |  \n616 |  \n617 |  \n618 |  \n619 |  \n620 |  \n621 |  \n622 |  \n623 |  \n624 |  \n625 |  \n626 |  \n627 |  \n628 |  \n629 |  \n630 |  \n631 |  \n632 |  \n633 |  \n634 |  \n635 |  \n636 |  \n637 |  \n638 |  \n639 |  \n640 |  \n641 |  \n642 |  \n643 |  \n644 |  \n645 |  \n646 |  \n647 |  \n648 |  \n649 |  \n650 |  \n651 |  \n652 |  \n653 |  \n654 |  \n655 |  \n656 |  \n657 |  \n658 |  \n659 |  \n660 |  \n661 |  \n662 |  \n663 |  \n664 |  \n665 |  \n666 |  \n667 |  \n668 |  \n669 |  \n670 |  \n671 |  \n672 |  \n673 |  \n674 |  \n675 |  \n676 |  \n677 |  \n678 |  \n679 |  \n680 |  \n681 |  \n682 |  \n683 |  \n684 |  \n685 |  \n686 |  \n687 |  \n688 |  \n689 |  \n690 |  \n691 |  \n692 |  \n693 |  \n694 |  \n695 |  \n696 |  \n697 |  \n698",
+        "bbox_image_pixels": [
+          244.0,
+          24.0,
+          1205.0,
+          552.0
+        ],
+        "polygon_pdf_points": [
+          [
+            122.0,
+            12.0
+          ],
+          [
+            602.5,
+            12.0
+          ],
+          [
+            602.5,
+            276.0
+          ],
+          [
+            122.0,
+            276.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          122.0,
+          12.0,
+          602.5,
+          276.0
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6:vl:1",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6",
+        "source": "paddleocr_vl",
+        "source_list_index": 1,
+        "model_block_id": 1,
+        "model_block_order": 1,
+        "label": "paragraph_title",
+        "content": "Sony markets Betamax\nAtari markets Pong home console",
+        "bbox_image_pixels": [
+          1166.0,
+          588.0,
+          1195.0,
+          763.0
+        ],
+        "polygon_pdf_points": [
+          [
+            583.0,
+            294.0
+          ],
+          [
+            597.5,
+            294.0
+          ],
+          [
+            597.5,
+            381.5
+          ],
+          [
+            583.0,
+            381.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          583.0,
+          294.0,
+          597.5,
+          381.5
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6:vl:2",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6",
+        "source": "paddleocr_vl",
+        "source_list_index": 2,
+        "model_block_id": 2,
+        "model_block_order": 2,
+        "label": "vertical_text",
+        "content": "Solzhenitsyn exiled India's first nuclear bomb test\nNixon resigns after Watergate Scandal Ella Grasso elected as female governor",
+        "bbox_image_pixels": [
+          1084.0,
+          587.0,
+          1143.0,
+          788.0
+        ],
+        "polygon_pdf_points": [
+          [
+            542.0,
+            293.5
+          ],
+          [
+            571.5,
+            293.5
+          ],
+          [
+            571.5,
+            394.0
+          ],
+          [
+            542.0,
+            394.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          542.0,
+          293.5,
+          571.5,
+          394.0
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6:vl:3",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6",
+        "source": "paddleocr_vl",
+        "source_list_index": 3,
+        "model_block_id": 3,
+        "model_block_order": 3,
+        "label": "vertical_text",
+        "content": "(heart failure) Intel 4004\nKhruschev dies first microprocessor\nHP-35, first scientific pocket calculator\nNixon visits China and Russia\nSALT I marks beginning of DETENTE\nFischer beats Spassky in Chess Match\nMunich Olympic Terrorism\nLBU dies (heart failure) Oil Crisis\nTu-144 crashes at Paris Air Show\nBillie Jean King beats Bobbie Riggs",
+        "bbox_image_pixels": [
+          947.0,
+          587.0,
+          1079.0,
+          786.0
+        ],
+        "polygon_pdf_points": [
+          [
+            473.5,
+            293.5
+          ],
+          [
+            539.5,
+            293.5
+          ],
+          [
+            539.5,
+            393.0
+          ],
+          [
+            473.5,
+            393.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          473.5,
+          293.5,
+          539.5,
+          393.0
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6:vl:4",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6",
+        "source": "paddleocr_vl",
+        "source_list_index": 4,
+        "model_block_id": 4,
+        "model_block_order": 4,
+        "label": "vertical_text",
+        "content": "Nuclear Non-Proliferation Treaty\n3 Jets bound for NY Hijacked\n4 Kent State war protesters killed",
+        "bbox_image_pixels": [
+          877.0,
+          574.0,
+          921.0,
+          764.0
+        ],
+        "polygon_pdf_points": [
+          [
+            438.5,
+            287.0
+          ],
+          [
+            460.5,
+            287.0
+          ],
+          [
+            460.5,
+            382.0
+          ],
+          [
+            438.5,
+            382.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          438.5,
+          287.0,
+          460.5,
+          382.0
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6:vl:5",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6",
+        "source": "paddleocr_vl",
+        "source_list_index": 5,
+        "model_block_id": 5,
+        "model_block_order": 5,
+        "label": "vertical_text",
+        "content": "MLK Assassinated\nTrousers RFK Assassinated\naccepted for Women's everyday wear 3\nEisenhower dies (heart failure)",
+        "bbox_image_pixels": [
+          791.0,
+          576.0,
+          854.0,
+          780.0
+        ],
+        "polygon_pdf_points": [
+          [
+            395.5,
+            288.0
+          ],
+          [
+            427.0,
+            288.0
+          ],
+          [
+            427.0,
+            390.0
+          ],
+          [
+            395.5,
+            390.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          395.5,
+          288.0,
+          427.0,
+          390.0
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6:vl:6",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6",
+        "source": "paddleocr_vl",
+        "source_list_index": 6,
+        "model_block_id": 6,
+        "model_block_order": 6,
+        "label": "vertical_text",
+        "content": "First Super Bowl\nStalin's daughter defects to the U.S.\nInterracial marriage legalized for U.S.\nCzech reform (stopped by Warsaw\nPact invasion & occupation thru 1990)",
+        "bbox_image_pixels": [
+          719.0,
+          574.0,
+          794.0,
+          785.0
+        ],
+        "polygon_pdf_points": [
+          [
+            359.5,
+            287.0
+          ],
+          [
+            397.0,
+            287.0
+          ],
+          [
+            397.0,
+            392.5
+          ],
+          [
+            359.5,
+            392.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          359.5,
+          287.0,
+          397.0,
+          392.5
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6:vl:7",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6",
+        "source": "paddleocr_vl",
+        "source_list_index": 7,
+        "model_block_id": 7,
+        "model_block_order": 7,
+        "label": "vertical_text",
+        "content": "Malcom X Assassinated\nSergei Korolev dies after surgery\nColor TV becomes popular",
+        "bbox_image_pixels": [
+          653.0,
+          571.0,
+          703.0,
+          756.0
+        ],
+        "polygon_pdf_points": [
+          [
+            326.5,
+            285.5
+          ],
+          [
+            351.5,
+            285.5
+          ],
+          [
+            351.5,
+            378.0
+          ],
+          [
+            326.5,
+            378.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          326.5,
+          285.5,
+          351.5,
+          378.0
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6:vl:8",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6",
+        "source": "paddleocr_vl",
+        "source_list_index": 8,
+        "model_block_id": 8,
+        "model_block_order": 8,
+        "label": "vertical_text",
+        "content": "U.S. Civil Rights Act\nChina's first nuclear bomb test\n(joins U.S., U.S.S.R., U.K. & France)\nWinston Churchill dies (stroke)\nU.S. invades Dominican Republic",
+        "bbox_image_pixels": [
+          585.0,
+          573.0,
+          653.0,
+          779.0
+        ],
+        "polygon_pdf_points": [
+          [
+            292.5,
+            286.5
+          ],
+          [
+            326.5,
+            286.5
+          ],
+          [
+            326.5,
+            389.5
+          ],
+          [
+            292.5,
+            389.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          292.5,
+          286.5,
+          326.5,
+          389.5
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6:vl:9",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6",
+        "source": "paddleocr_vl",
+        "source_list_index": 9,
+        "model_block_id": 9,
+        "model_block_order": 9,
+        "label": "vertical_text",
+        "content": "Nuclear\nTest Ban signed by US, USSR & UK\nJFK proposes cooperation on Apollo\n(UN speech) JFK Assassinated",
+        "bbox_image_pixels": [
+          523.0,
+          578.0,
+          579.0,
+          788.0
+        ],
+        "polygon_pdf_points": [
+          [
+            261.5,
+            289.0
+          ],
+          [
+            289.5,
+            289.0
+          ],
+          [
+            289.5,
+            394.0
+          ],
+          [
+            261.5,
+            394.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          261.5,
+          289.0,
+          289.5,
+          394.0
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6:vl:10",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6",
+        "source": "paddleocr_vl",
+        "source_list_index": 10,
+        "model_block_id": 10,
+        "model_block_order": 10,
+        "label": "vertical_text",
+        "content": "Castro overthrows Batista in Cuba\nSSBN George Washington launched\nHawaii becomes fiftieth state\nFrance's first nuclear bomb test\nJupiter IRBMs deployed in Italy\nU-2 Pilot Gary Powers shot down\nNedelin Sino-Soviet Split\nLaunch Pad Disaster (kept secret)\nJFK proposes Bay of Pigs Fiasco commitment to land on the Moon\nFallout Shelters/Berlin Wall constructed\nJupiter IRBMs 50MT Tsar Bomba\ndeployed in Turkey detonated",
+        "bbox_image_pixels": [
+          321.0,
+          568.0,
+          488.0,
+          785.0
+        ],
+        "polygon_pdf_points": [
+          [
+            160.5,
+            284.0
+          ],
+          [
+            244.0,
+            284.0
+          ],
+          [
+            244.0,
+            392.5
+          ],
+          [
+            160.5,
+            392.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          160.5,
+          284.0,
+          244.0,
+          392.5
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6:vl:11",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6",
+        "source": "paddleocr_vl",
+        "source_list_index": 11,
+        "model_block_id": 11,
+        "model_block_order": 11,
+        "label": "vertical_text",
+        "content": "U.K.'s first hydrogen bomb test\nSAC starts 24/7 nuke bomber alert\n(continuous until 1991)\n\nUSSR unilateral nuke test moratorium",
+        "bbox_image_pixels": [
+          243.0,
+          577.0,
+          286.0,
+          780.0
+        ],
+        "polygon_pdf_points": [
+          [
+            121.5,
+            288.5
+          ],
+          [
+            143.0,
+            288.5
+          ],
+          [
+            143.0,
+            390.0
+          ],
+          [
+            121.5,
+            390.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          121.5,
+          288.5,
+          143.0,
+          390.0
+        ]
+      }
+    ],
+    "block_count": 12,
+    "character_count": 7279,
+    "input_image": {
+      "width": 1440,
+      "height": 810,
+      "color_order": "BGR",
+      "coordinate_system": "rendered_page_image_pixels"
+    },
+    "elapsed_seconds": 7525.940982100088,
+    "coordinate_status": "ok"
+  },
+  "review": {
+    "review_page_number": 2,
+    "status": "ok",
+    "drawn_count": 12,
+    "warnings": [],
+    "json_path": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/page_00006.json",
+    "path": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/review_vl.pdf"
+  },
+  "elapsed_seconds": 7526.28635589988
+}

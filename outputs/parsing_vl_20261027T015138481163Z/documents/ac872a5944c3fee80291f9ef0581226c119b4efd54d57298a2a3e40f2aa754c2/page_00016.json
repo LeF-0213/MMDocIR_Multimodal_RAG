@@ -1,0 +1,695 @@
+{
+  "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p16",
+  "id_origin": "project_generated",
+  "document_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2",
+  "document_name": "competitiveoutcomes-091006065143-phpapp01_95",
+  "page_number": 16,
+  "page_numbering": "pdf_viewer_1_based",
+  "page_index": 15,
+  "source_sha256": "964fc4748a7698dd5af398a714f97cf430ff93f8646b75021c43bfb392fae870",
+  "status": "ok",
+  "geometry": {
+    "coordinate_system": "pymupdf_unrotated_page_points",
+    "origin": "top_left_of_unrotated_page",
+    "unit": "point_1/72_inch",
+    "rotation_degrees": 0,
+    "mediabox": [
+      0.0,
+      0.0,
+      768.0,
+      576.0
+    ],
+    "cropbox": [
+      0.0,
+      0.0,
+      768.0,
+      576.0
+    ],
+    "rotated_page_rect": [
+      0.0,
+      0.0,
+      768.0,
+      576.0
+    ]
+  },
+  "native": {
+    "status": "empty",
+    "text": "",
+    "raw": {
+      "width": 768.0,
+      "height": 576.0,
+      "blocks": []
+    },
+    "extraction_flags": 195,
+    "sort": false
+  },
+  "images": {
+    "status": "ok",
+    "options": {
+      "hashes": true,
+      "xrefs": true
+    },
+    "digest_algorithm": "md5",
+    "digest_encoding": "hex",
+    "items": [
+      {
+        "number": 0,
+        "bbox": [
+          0.0,
+          0.0,
+          768.0,
+          576.0
+        ],
+        "transform": [
+          768.0,
+          0.0,
+          -0.0,
+          576.0,
+          0.0,
+          0.0
+        ],
+        "width": 1024,
+        "height": 768,
+        "colorspace": 3,
+        "cs-name": "DeviceRGB",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 111763,
+        "digest": "c6056b0e2eff598945ef3a78218384b2",
+        "has-mask": false,
+        "xref": 49
+      }
+    ]
+  },
+  "render": {
+    "status": "ok",
+    "dpi": 144,
+    "width": 1536,
+    "height": 1152,
+    "coordinate_system": "rendered_page_image_pixels",
+    "origin": "top_left",
+    "unit": "pixel",
+    "render_color_order": "RGB",
+    "input_color_order": "BGR",
+    "annotation_included": true,
+    "pixmap_origin_pixels": [
+      0,
+      0
+    ],
+    "pixel_to_pdf_matrix": [
+      0.5,
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.0
+    ]
+  },
+  "page_image": {
+    "path": "documents/ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2/page_00016.png",
+    "sha256": "34325ec413bc49996ecd1267ceb4c5f233ed244f1dd6747b03a21aa9261d67d6"
+  },
+  "parsing": {
+    "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p16",
+    "source": "paddleocr_vl",
+    "status": "ok",
+    "raw": {
+      "res": {
+        "input_path": null,
+        "page_index": null,
+        "page_count": null,
+        "width": 1536,
+        "height": 1152,
+        "model_settings": {
+          "use_doc_preprocessor": false,
+          "use_layout_detection": true,
+          "use_chart_recognition": true,
+          "use_seal_recognition": false,
+          "use_ocr_for_image_block": true,
+          "format_block_content": false,
+          "merge_layout_blocks": true,
+          "markdown_ignore_labels": [],
+          "return_layout_polygon_points": false
+        },
+        "parsing_res_list": [
+          {
+            "block_label": "paragraph_title",
+            "block_content": "Core physical ability differences reflect accumulated practice",
+            "block_bbox": [
+              98,
+              51,
+              1444,
+              241
+            ],
+            "block_id": 0,
+            "block_order": 1,
+            "group_id": 0
+          },
+          {
+            "block_label": "chart",
+            "block_content": "Single Hands Log-Accumulated Practice (Hours) | Log-Interstroke Interval (ms)\n2.7 | 2.38\n3.2 | 2.34\n3.3 | 2.30\n3.4 | 2.28\n3.6 | 2.21\n3.7 | 2.15\n3.8 | 2.20\n4.0 | 2.18\n4.1 | 2.12\n4.2 | 2.06\n4.2 | 2.04\n4.3 | 2.05\n4.4 | 2.02\n4.5 | 2.00\n4.6 | 1.98",
+            "block_bbox": [
+              13,
+              280,
+              491,
+              917
+            ],
+            "block_id": 1,
+            "block_order": null,
+            "group_id": 1
+          },
+          {
+            "block_label": "chart",
+            "block_content": "Log-Accumulated Practice (Hours) | r\n2.8 | 2.39\n3.1 | 2.35\n3.2 | 2.35\n3.3 | 2.35\n3.4 | 2.35\n3.5 | 2.30\n3.6 | 2.28\n3.7 | 2.12\n3.8 | 2.18\n4.0 | 2.12\n4.1 | 2.08\n4.1 | 2.05\n4.1 | 2.02\n4.2 | 2.12\n4.2 | 2.09\n4.2 | 2.06\n4.3 | 2.13\n4.3 | 2.10\n4.4 | 2.14\n4.4 | 2.02\n4.5 | 1.93",
+            "block_bbox": [
+              531,
+              285,
+              979,
+              896
+            ],
+            "block_id": 2,
+            "block_order": null,
+            "group_id": 2
+          },
+          {
+            "block_label": "vision_footnote",
+            "block_content": "Mirror Image Movements",
+            "block_bbox": [
+              571,
+              894,
+              962,
+              932
+            ],
+            "block_id": 3,
+            "block_order": null,
+            "group_id": 3
+          },
+          {
+            "block_label": "chart",
+            "block_content": "Log-Accumulated Practice (Hours) | Value\n2.6 | 2.6\n3.0 | 2.48\n3.2 | 2.75\n3.2 | 2.67\n3.3 | 2.32\n3.4 | 2.5\n3.6 | 2.42\n3.7 | 2.45\n3.8 | 2.35\n4.0 | 2.32\n4.1 | 2.28\n4.1 | 2.25\n4.2 | 2.22\n4.2 | 2.18\n4.2 | 2.15\n4.3 | 2.21\n4.4 | 2.12\n4.4 | 2.11\n4.5 | 2.12",
+            "block_bbox": [
+              1072,
+              287,
+              1511,
+              869
+            ],
+            "block_id": 4,
+            "block_order": null,
+            "group_id": 4
+          },
+          {
+            "block_label": "vision_footnote",
+            "block_content": "Different Movements",
+            "block_bbox": [
+              1152,
+              898,
+              1476,
+              936
+            ],
+            "block_id": 5,
+            "block_order": null,
+            "group_id": 5
+          },
+          {
+            "block_label": "text",
+            "block_content": "Experts are dark circles. Amateurs are empty circles.",
+            "block_bbox": [
+              131,
+              953,
+              1399,
+              1010
+            ],
+            "block_id": 6,
+            "block_order": 2,
+            "group_id": 6
+          },
+          {
+            "block_label": "footer",
+            "block_content": "Ericsson (U. Colorado), Krampe, Tesche-Romer (Max Plank Institute - Berlin), 1993, The role of deliberate practice in the acquisition of expert performance, Psychological Review, 100, p. 385",
+            "block_bbox": [
+              7,
+              1071,
+              1472,
+              1151
+            ],
+            "block_id": 7,
+            "block_order": null,
+            "group_id": 7
+          }
+        ],
+        "layout_det_res": {
+          "input_path": null,
+          "page_index": null,
+          "boxes": [
+            {
+              "cls_id": 17,
+              "label": "paragraph_title",
+              "score": 0.8858631253242493,
+              "coordinate": [
+                98,
+                51,
+                1444,
+                241
+              ],
+              "order": 1
+            },
+            {
+              "cls_id": 3,
+              "label": "chart",
+              "score": 0.9315978288650513,
+              "coordinate": [
+                13,
+                280,
+                491,
+                917
+              ],
+              "order": null
+            },
+            {
+              "cls_id": 3,
+              "label": "chart",
+              "score": 0.89384526014328,
+              "coordinate": [
+                531,
+                285,
+                979,
+                896
+              ],
+              "order": null
+            },
+            {
+              "cls_id": 24,
+              "label": "vision_footnote",
+              "score": 0.46103665232658386,
+              "coordinate": [
+                571,
+                894,
+                962,
+                932
+              ],
+              "order": null
+            },
+            {
+              "cls_id": 3,
+              "label": "chart",
+              "score": 0.8704724311828613,
+              "coordinate": [
+                1072,
+                287,
+                1511,
+                869
+              ],
+              "order": null
+            },
+            {
+              "cls_id": 24,
+              "label": "vision_footnote",
+              "score": 0.5076781511306763,
+              "coordinate": [
+                1152,
+                898,
+                1476,
+                936
+              ],
+              "order": null
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.7214431762695312,
+              "coordinate": [
+                131,
+                953,
+                1399,
+                1010
+              ],
+              "order": 2
+            },
+            {
+              "cls_id": 8,
+              "label": "footer",
+              "score": 0.614617109298706,
+              "coordinate": [
+                7,
+                1071,
+                1472,
+                1151
+              ],
+              "order": null
+            }
+          ]
+        }
+      }
+    },
+    "blocks": [
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p16:vl:0",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p16",
+        "source": "paddleocr_vl",
+        "source_list_index": 0,
+        "model_block_id": 0,
+        "model_block_order": 1,
+        "label": "paragraph_title",
+        "content": "Core physical ability differences reflect accumulated practice",
+        "bbox_image_pixels": [
+          98.0,
+          51.0,
+          1444.0,
+          241.0
+        ],
+        "polygon_pdf_points": [
+          [
+            49.0,
+            25.5
+          ],
+          [
+            722.0,
+            25.5
+          ],
+          [
+            722.0,
+            120.5
+          ],
+          [
+            49.0,
+            120.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          49.0,
+          25.5,
+          722.0,
+          120.5
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p16:vl:1",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p16",
+        "source": "paddleocr_vl",
+        "source_list_index": 1,
+        "model_block_id": 1,
+        "model_block_order": null,
+        "label": "chart",
+        "content": "Single Hands Log-Accumulated Practice (Hours) | Log-Interstroke Interval (ms)\n2.7 | 2.38\n3.2 | 2.34\n3.3 | 2.30\n3.4 | 2.28\n3.6 | 2.21\n3.7 | 2.15\n3.8 | 2.20\n4.0 | 2.18\n4.1 | 2.12\n4.2 | 2.06\n4.2 | 2.04\n4.3 | 2.05\n4.4 | 2.02\n4.5 | 2.00\n4.6 | 1.98",
+        "bbox_image_pixels": [
+          13.0,
+          280.0,
+          491.0,
+          917.0
+        ],
+        "polygon_pdf_points": [
+          [
+            6.5,
+            140.0
+          ],
+          [
+            245.5,
+            140.0
+          ],
+          [
+            245.5,
+            458.5
+          ],
+          [
+            6.5,
+            458.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          6.5,
+          140.0,
+          245.5,
+          458.5
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p16:vl:2",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p16",
+        "source": "paddleocr_vl",
+        "source_list_index": 2,
+        "model_block_id": 2,
+        "model_block_order": null,
+        "label": "chart",
+        "content": "Log-Accumulated Practice (Hours) | r\n2.8 | 2.39\n3.1 | 2.35\n3.2 | 2.35\n3.3 | 2.35\n3.4 | 2.35\n3.5 | 2.30\n3.6 | 2.28\n3.7 | 2.12\n3.8 | 2.18\n4.0 | 2.12\n4.1 | 2.08\n4.1 | 2.05\n4.1 | 2.02\n4.2 | 2.12\n4.2 | 2.09\n4.2 | 2.06\n4.3 | 2.13\n4.3 | 2.10\n4.4 | 2.14\n4.4 | 2.02\n4.5 | 1.93",
+        "bbox_image_pixels": [
+          531.0,
+          285.0,
+          979.0,
+          896.0
+        ],
+        "polygon_pdf_points": [
+          [
+            265.5,
+            142.5
+          ],
+          [
+            489.5,
+            142.5
+          ],
+          [
+            489.5,
+            448.0
+          ],
+          [
+            265.5,
+            448.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          265.5,
+          142.5,
+          489.5,
+          448.0
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p16:vl:3",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p16",
+        "source": "paddleocr_vl",
+        "source_list_index": 3,
+        "model_block_id": 3,
+        "model_block_order": null,
+        "label": "vision_footnote",
+        "content": "Mirror Image Movements",
+        "bbox_image_pixels": [
+          571.0,
+          894.0,
+          962.0,
+          932.0
+        ],
+        "polygon_pdf_points": [
+          [
+            285.5,
+            447.0
+          ],
+          [
+            481.0,
+            447.0
+          ],
+          [
+            481.0,
+            466.0
+          ],
+          [
+            285.5,
+            466.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          285.5,
+          447.0,
+          481.0,
+          466.0
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p16:vl:4",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p16",
+        "source": "paddleocr_vl",
+        "source_list_index": 4,
+        "model_block_id": 4,
+        "model_block_order": null,
+        "label": "chart",
+        "content": "Log-Accumulated Practice (Hours) | Value\n2.6 | 2.6\n3.0 | 2.48\n3.2 | 2.75\n3.2 | 2.67\n3.3 | 2.32\n3.4 | 2.5\n3.6 | 2.42\n3.7 | 2.45\n3.8 | 2.35\n4.0 | 2.32\n4.1 | 2.28\n4.1 | 2.25\n4.2 | 2.22\n4.2 | 2.18\n4.2 | 2.15\n4.3 | 2.21\n4.4 | 2.12\n4.4 | 2.11\n4.5 | 2.12",
+        "bbox_image_pixels": [
+          1072.0,
+          287.0,
+          1511.0,
+          869.0
+        ],
+        "polygon_pdf_points": [
+          [
+            536.0,
+            143.5
+          ],
+          [
+            755.5,
+            143.5
+          ],
+          [
+            755.5,
+            434.5
+          ],
+          [
+            536.0,
+            434.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          536.0,
+          143.5,
+          755.5,
+          434.5
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p16:vl:5",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p16",
+        "source": "paddleocr_vl",
+        "source_list_index": 5,
+        "model_block_id": 5,
+        "model_block_order": null,
+        "label": "vision_footnote",
+        "content": "Different Movements",
+        "bbox_image_pixels": [
+          1152.0,
+          898.0,
+          1476.0,
+          936.0
+        ],
+        "polygon_pdf_points": [
+          [
+            576.0,
+            449.0
+          ],
+          [
+            738.0,
+            449.0
+          ],
+          [
+            738.0,
+            468.0
+          ],
+          [
+            576.0,
+            468.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          576.0,
+          449.0,
+          738.0,
+          468.0
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p16:vl:6",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p16",
+        "source": "paddleocr_vl",
+        "source_list_index": 6,
+        "model_block_id": 6,
+        "model_block_order": 2,
+        "label": "text",
+        "content": "Experts are dark circles. Amateurs are empty circles.",
+        "bbox_image_pixels": [
+          131.0,
+          953.0,
+          1399.0,
+          1010.0
+        ],
+        "polygon_pdf_points": [
+          [
+            65.5,
+            476.5
+          ],
+          [
+            699.5,
+            476.5
+          ],
+          [
+            699.5,
+            505.0
+          ],
+          [
+            65.5,
+            505.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          65.5,
+          476.5,
+          699.5,
+          505.0
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p16:vl:7",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p16",
+        "source": "paddleocr_vl",
+        "source_list_index": 7,
+        "model_block_id": 7,
+        "model_block_order": null,
+        "label": "footer",
+        "content": "Ericsson (U. Colorado), Krampe, Tesche-Romer (Max Plank Institute - Berlin), 1993, The role of deliberate practice in the acquisition of expert performance, Psychological Review, 100, p. 385",
+        "bbox_image_pixels": [
+          7.0,
+          1071.0,
+          1472.0,
+          1151.0
+        ],
+        "polygon_pdf_points": [
+          [
+            3.5,
+            535.5
+          ],
+          [
+            736.0,
+            535.5
+          ],
+          [
+            736.0,
+            575.5
+          ],
+          [
+            3.5,
+            575.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          3.5,
+          535.5,
+          736.0,
+          575.5
+        ]
+      }
+    ],
+    "block_count": 8,
+    "character_count": 1102,
+    "input_image": {
+      "width": 1536,
+      "height": 1152,
+      "color_order": "BGR",
+      "coordinate_system": "rendered_page_image_pixels"
+    },
+    "elapsed_seconds": 588.8419457999989,
+    "coordinate_status": "ok"
+  },
+  "review": {
+    "review_page_number": 1,
+    "status": "ok",
+    "drawn_count": 8,
+    "warnings": [],
+    "json_path": "documents/ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2/page_00016.json",
+    "path": "documents/ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2/review_vl.pdf"
+  },
+  "elapsed_seconds": 589.1107767000794
+}

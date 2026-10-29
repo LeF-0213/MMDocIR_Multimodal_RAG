@@ -1,0 +1,61 @@
+{
+  "document_id": "2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298",
+  "id_origin": "project_generated_name_sha256",
+  "document_name": "NYSE_TM_2021",
+  "status": "ok",
+  "pages": [
+    {
+      "page_number": 2,
+      "page_id": "2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298:p2",
+      "status": "ok",
+      "json_path": "documents/2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298/page_00002.json",
+      "native_status": "ok",
+      "parser_status": "ok"
+    },
+    {
+      "page_number": 7,
+      "page_id": "2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298:p7",
+      "status": "ok",
+      "json_path": "documents/2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298/page_00007.json",
+      "native_status": "ok",
+      "parser_status": "ok"
+    },
+    {
+      "page_number": 21,
+      "page_id": "2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298:p21",
+      "status": "ok",
+      "json_path": "documents/2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298/page_00021.json",
+      "native_status": "ok",
+      "parser_status": "ok"
+    },
+    {
+      "page_number": 32,
+      "page_id": "2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298:p32",
+      "status": "ok",
+      "json_path": "documents/2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298/page_00032.json",
+      "native_status": "ok",
+      "parser_status": "ok"
+    },
+    {
+      "page_number": 34,
+      "page_id": "2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298:p34",
+      "status": "ok",
+      "json_path": "documents/2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298/page_00034.json",
+      "native_status": "ok",
+      "parser_status": "ok"
+    }
+  ],
+  "errors": [],
+  "source_url": "http://127.0.0.1:8080/raw/mmdocir_data/extracted/doc_pdfs/NYSE_TM_2021.pdf",
+  "source_sha256": "8d5aa53f0299e7994d1e18c1e89e5f564151ebfdb571e983f7d42894c48f06c0",
+  "source_pdf": "documents/2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298/source.pdf",
+  "source_page_count": 54,
+  "requested_page_numbers": [
+    2,
+    7,
+    21,
+    32,
+    34
+  ],
+  "review_pdf": "documents/2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298/review_structure.pdf"
+}

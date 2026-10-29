@@ -1,0 +1,827 @@
+{
+  "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40",
+  "id_origin": "project_generated",
+  "document_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2",
+  "document_name": "competitiveoutcomes-091006065143-phpapp01_95",
+  "page_number": 40,
+  "page_numbering": "pdf_viewer_1_based",
+  "page_index": 39,
+  "source_sha256": "964fc4748a7698dd5af398a714f97cf430ff93f8646b75021c43bfb392fae870",
+  "status": "ok",
+  "geometry": {
+    "coordinate_system": "pymupdf_unrotated_page_points",
+    "origin": "top_left_of_unrotated_page",
+    "unit": "point_1/72_inch",
+    "rotation_degrees": 0,
+    "mediabox": [
+      0.0,
+      0.0,
+      768.0,
+      576.0
+    ],
+    "cropbox": [
+      0.0,
+      0.0,
+      768.0,
+      576.0
+    ],
+    "rotated_page_rect": [
+      0.0,
+      0.0,
+      768.0,
+      576.0
+    ]
+  },
+  "native": {
+    "status": "empty",
+    "text": "",
+    "raw": {
+      "width": 768.0,
+      "height": 576.0,
+      "blocks": []
+    },
+    "extraction_flags": 195,
+    "sort": false
+  },
+  "images": {
+    "status": "ok",
+    "options": {
+      "hashes": true,
+      "xrefs": true
+    },
+    "digest_algorithm": "md5",
+    "digest_encoding": "hex",
+    "items": [
+      {
+        "number": 0,
+        "bbox": [
+          0.0,
+          0.0,
+          768.0,
+          576.0
+        ],
+        "transform": [
+          768.0,
+          0.0,
+          -0.0,
+          576.0,
+          0.0,
+          0.0
+        ],
+        "width": 1024,
+        "height": 768,
+        "colorspace": 3,
+        "cs-name": "DeviceRGB",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 133295,
+        "digest": "97740330b29e3e1aca0def80bf73920e",
+        "has-mask": false,
+        "xref": 121
+      }
+    ]
+  },
+  "render": {
+    "status": "ok",
+    "dpi": 144,
+    "width": 1536,
+    "height": 1152,
+    "coordinate_system": "rendered_page_image_pixels",
+    "origin": "top_left",
+    "unit": "pixel",
+    "render_color_order": "RGB",
+    "input_color_order": "BGR",
+    "annotation_included": true,
+    "pixmap_origin_pixels": [
+      0,
+      0
+    ],
+    "pixel_to_pdf_matrix": [
+      0.5,
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.0
+    ]
+  },
+  "page_image": {
+    "path": "documents/ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2/page_00040.png",
+    "sha256": "91d4316f40220a44547ce05fccbb1d9bbb03e5dfd6f66013687cd84280661e86"
+  },
+  "parsing": {
+    "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40",
+    "source": "paddleocr_vl",
+    "status": "ok",
+    "raw": {
+      "res": {
+        "input_path": null,
+        "page_index": null,
+        "page_count": null,
+        "width": 1536,
+        "height": 1152,
+        "model_settings": {
+          "use_doc_preprocessor": false,
+          "use_layout_detection": true,
+          "use_chart_recognition": true,
+          "use_seal_recognition": false,
+          "use_ocr_for_image_block": true,
+          "format_block_content": false,
+          "merge_layout_blocks": true,
+          "markdown_ignore_labels": [],
+          "return_layout_polygon_points": false
+        },
+        "parsing_res_list": [
+          {
+            "block_label": "text",
+            "block_content": "What about young phenoms and child prodigies?",
+            "block_bbox": [
+              83,
+              38,
+              1459,
+              108
+            ],
+            "block_id": 0,
+            "block_order": 1,
+            "group_id": 0
+          },
+          {
+            "block_label": "image",
+            "block_content": "Bobby Fischer: International Chess Grand Master at 15",
+            "block_bbox": [
+              52,
+              116,
+              747,
+              574
+            ],
+            "block_id": 1,
+            "block_order": null,
+            "group_id": 1
+          },
+          {
+            "block_label": "image",
+            "block_content": "The Beatles",
+            "block_bbox": [
+              51,
+              593,
+              494,
+              1136
+            ],
+            "block_id": 2,
+            "block_order": null,
+            "group_id": 2
+          },
+          {
+            "block_label": "image",
+            "block_content": "SPORTS2\nIllusited\nBASEBALL'S\nCHOSEN 34 HOME RUNS\nONE\nBRYCE HARPER IS THE MOST\nEXCITING PRODIGY SINCE LEBRON\nBY TOM VERDUCCI\n57G\nHOME RUNS\n96\nFASTBALLS\nYEARS OLD",
+            "block_bbox": [
+              626,
+              648,
+              1035,
+              1127
+            ],
+            "block_id": 3,
+            "block_order": null,
+            "group_id": 3
+          },
+          {
+            "block_label": "image",
+            "block_content": "",
+            "block_bbox": [
+              1151,
+              126,
+              1506,
+              579
+            ],
+            "block_id": 4,
+            "block_order": null,
+            "group_id": 4
+          },
+          {
+            "block_label": "vision_footnote",
+            "block_content": "Mozart: Child prodigy",
+            "block_bbox": [
+              1163,
+              580,
+              1508,
+              625
+            ],
+            "block_id": 5,
+            "block_order": null,
+            "group_id": 5
+          },
+          {
+            "block_label": "text",
+            "block_content": "Bryce Harper:",
+            "block_bbox": [
+              1049,
+              793,
+              1271,
+              835
+            ],
+            "block_id": 6,
+            "block_order": 2,
+            "group_id": 6
+          },
+          {
+            "block_label": "text",
+            "block_content": "• 16 yr. old baseball phenom",
+            "block_bbox": [
+              1049,
+              838,
+              1497,
+              881
+            ],
+            "block_id": 7,
+            "block_order": 3,
+            "group_id": 7
+          },
+          {
+            "block_label": "text",
+            "block_content": "• Longest distance home run ever hit at Tropicana Field",
+            "block_bbox": [
+              1048,
+              886,
+              1498,
+              973
+            ],
+            "block_id": 8,
+            "block_order": 4,
+            "group_id": 8
+          },
+          {
+            "block_label": "text",
+            "block_content": "• 570 ft home run during a high school game at age 15",
+            "block_bbox": [
+              1048,
+              978,
+              1502,
+              1067
+            ],
+            "block_id": 9,
+            "block_order": 5,
+            "group_id": 9
+          }
+        ],
+        "layout_det_res": {
+          "input_path": null,
+          "page_index": null,
+          "boxes": [
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.580051600933075,
+              "coordinate": [
+                83,
+                38,
+                1459,
+                108
+              ],
+              "order": 1
+            },
+            {
+              "cls_id": 14,
+              "label": "image",
+              "score": 0.9696851968765259,
+              "coordinate": [
+                52,
+                116,
+                747,
+                574
+              ],
+              "order": null
+            },
+            {
+              "cls_id": 14,
+              "label": "image",
+              "score": 0.9527611136436462,
+              "coordinate": [
+                51,
+                593,
+                494,
+                1136
+              ],
+              "order": null
+            },
+            {
+              "cls_id": 14,
+              "label": "image",
+              "score": 0.9508390426635742,
+              "coordinate": [
+                626,
+                648,
+                1035,
+                1127
+              ],
+              "order": null
+            },
+            {
+              "cls_id": 14,
+              "label": "image",
+              "score": 0.934168815612793,
+              "coordinate": [
+                1151,
+                126,
+                1506,
+                579
+              ],
+              "order": null
+            },
+            {
+              "cls_id": 24,
+              "label": "vision_footnote",
+              "score": 0.8673832416534424,
+              "coordinate": [
+                1163,
+                580,
+                1508,
+                625
+              ],
+              "order": null
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.7433671355247498,
+              "coordinate": [
+                1049,
+                793,
+                1271,
+                835
+              ],
+              "order": 2
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.8650123476982117,
+              "coordinate": [
+                1049,
+                838,
+                1497,
+                881
+              ],
+              "order": 3
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.9140922427177429,
+              "coordinate": [
+                1048,
+                886,
+                1498,
+                973
+              ],
+              "order": 4
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.9137380719184875,
+              "coordinate": [
+                1048,
+                978,
+                1502,
+                1067
+              ],
+              "order": 5
+            }
+          ]
+        }
+      }
+    },
+    "blocks": [
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40:vl:0",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40",
+        "source": "paddleocr_vl",
+        "source_list_index": 0,
+        "model_block_id": 0,
+        "model_block_order": 1,
+        "label": "text",
+        "content": "What about young phenoms and child prodigies?",
+        "bbox_image_pixels": [
+          83.0,
+          38.0,
+          1459.0,
+          108.0
+        ],
+        "polygon_pdf_points": [
+          [
+            41.5,
+            19.0
+          ],
+          [
+            729.5,
+            19.0
+          ],
+          [
+            729.5,
+            54.0
+          ],
+          [
+            41.5,
+            54.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          41.5,
+          19.0,
+          729.5,
+          54.0
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40:vl:1",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40",
+        "source": "paddleocr_vl",
+        "source_list_index": 1,
+        "model_block_id": 1,
+        "model_block_order": null,
+        "label": "image",
+        "content": "Bobby Fischer: International Chess Grand Master at 15",
+        "bbox_image_pixels": [
+          52.0,
+          116.0,
+          747.0,
+          574.0
+        ],
+        "polygon_pdf_points": [
+          [
+            26.0,
+            58.0
+          ],
+          [
+            373.5,
+            58.0
+          ],
+          [
+            373.5,
+            287.0
+          ],
+          [
+            26.0,
+            287.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          26.0,
+          58.0,
+          373.5,
+          287.0
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40:vl:2",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40",
+        "source": "paddleocr_vl",
+        "source_list_index": 2,
+        "model_block_id": 2,
+        "model_block_order": null,
+        "label": "image",
+        "content": "The Beatles",
+        "bbox_image_pixels": [
+          51.0,
+          593.0,
+          494.0,
+          1136.0
+        ],
+        "polygon_pdf_points": [
+          [
+            25.5,
+            296.5
+          ],
+          [
+            247.0,
+            296.5
+          ],
+          [
+            247.0,
+            568.0
+          ],
+          [
+            25.5,
+            568.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          25.5,
+          296.5,
+          247.0,
+          568.0
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40:vl:3",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40",
+        "source": "paddleocr_vl",
+        "source_list_index": 3,
+        "model_block_id": 3,
+        "model_block_order": null,
+        "label": "image",
+        "content": "SPORTS2\nIllusited\nBASEBALL'S\nCHOSEN 34 HOME RUNS\nONE\nBRYCE HARPER IS THE MOST\nEXCITING PRODIGY SINCE LEBRON\nBY TOM VERDUCCI\n57G\nHOME RUNS\n96\nFASTBALLS\nYEARS OLD",
+        "bbox_image_pixels": [
+          626.0,
+          648.0,
+          1035.0,
+          1127.0
+        ],
+        "polygon_pdf_points": [
+          [
+            313.0,
+            324.0
+          ],
+          [
+            517.5,
+            324.0
+          ],
+          [
+            517.5,
+            563.5
+          ],
+          [
+            313.0,
+            563.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          313.0,
+          324.0,
+          517.5,
+          563.5
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40:vl:4",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40",
+        "source": "paddleocr_vl",
+        "source_list_index": 4,
+        "model_block_id": 4,
+        "model_block_order": null,
+        "label": "image",
+        "content": "",
+        "bbox_image_pixels": [
+          1151.0,
+          126.0,
+          1506.0,
+          579.0
+        ],
+        "polygon_pdf_points": [
+          [
+            575.5,
+            63.0
+          ],
+          [
+            753.0,
+            63.0
+          ],
+          [
+            753.0,
+            289.5
+          ],
+          [
+            575.5,
+            289.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          575.5,
+          63.0,
+          753.0,
+          289.5
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40:vl:5",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40",
+        "source": "paddleocr_vl",
+        "source_list_index": 5,
+        "model_block_id": 5,
+        "model_block_order": null,
+        "label": "vision_footnote",
+        "content": "Mozart: Child prodigy",
+        "bbox_image_pixels": [
+          1163.0,
+          580.0,
+          1508.0,
+          625.0
+        ],
+        "polygon_pdf_points": [
+          [
+            581.5,
+            290.0
+          ],
+          [
+            754.0,
+            290.0
+          ],
+          [
+            754.0,
+            312.5
+          ],
+          [
+            581.5,
+            312.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          581.5,
+          290.0,
+          754.0,
+          312.5
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40:vl:6",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40",
+        "source": "paddleocr_vl",
+        "source_list_index": 6,
+        "model_block_id": 6,
+        "model_block_order": 2,
+        "label": "text",
+        "content": "Bryce Harper:",
+        "bbox_image_pixels": [
+          1049.0,
+          793.0,
+          1271.0,
+          835.0
+        ],
+        "polygon_pdf_points": [
+          [
+            524.5,
+            396.5
+          ],
+          [
+            635.5,
+            396.5
+          ],
+          [
+            635.5,
+            417.5
+          ],
+          [
+            524.5,
+            417.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          524.5,
+          396.5,
+          635.5,
+          417.5
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40:vl:7",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40",
+        "source": "paddleocr_vl",
+        "source_list_index": 7,
+        "model_block_id": 7,
+        "model_block_order": 3,
+        "label": "text",
+        "content": "• 16 yr. old baseball phenom",
+        "bbox_image_pixels": [
+          1049.0,
+          838.0,
+          1497.0,
+          881.0
+        ],
+        "polygon_pdf_points": [
+          [
+            524.5,
+            419.0
+          ],
+          [
+            748.5,
+            419.0
+          ],
+          [
+            748.5,
+            440.5
+          ],
+          [
+            524.5,
+            440.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          524.5,
+          419.0,
+          748.5,
+          440.5
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40:vl:8",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40",
+        "source": "paddleocr_vl",
+        "source_list_index": 8,
+        "model_block_id": 8,
+        "model_block_order": 4,
+        "label": "text",
+        "content": "• Longest distance home run ever hit at Tropicana Field",
+        "bbox_image_pixels": [
+          1048.0,
+          886.0,
+          1498.0,
+          973.0
+        ],
+        "polygon_pdf_points": [
+          [
+            524.0,
+            443.0
+          ],
+          [
+            749.0,
+            443.0
+          ],
+          [
+            749.0,
+            486.5
+          ],
+          [
+            524.0,
+            486.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          524.0,
+          443.0,
+          749.0,
+          486.5
+        ]
+      },
+      {
+        "element_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40:vl:9",
+        "id_origin": "project_generated",
+        "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40",
+        "source": "paddleocr_vl",
+        "source_list_index": 9,
+        "model_block_id": 9,
+        "model_block_order": 5,
+        "label": "text",
+        "content": "• 570 ft home run during a high school game at age 15",
+        "bbox_image_pixels": [
+          1048.0,
+          978.0,
+          1502.0,
+          1067.0
+        ],
+        "polygon_pdf_points": [
+          [
+            524.0,
+            489.0
+          ],
+          [
+            751.0,
+            489.0
+          ],
+          [
+            751.0,
+            533.5
+          ],
+          [
+            524.0,
+            533.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          524.0,
+          489.0,
+          751.0,
+          533.5
+        ]
+      }
+    ],
+    "block_count": 10,
+    "character_count": 439,
+    "input_image": {
+      "width": 1536,
+      "height": 1152,
+      "color_order": "BGR",
+      "coordinate_system": "rendered_page_image_pixels"
+    },
+    "elapsed_seconds": 377.880389300175,
+    "coordinate_status": "ok"
+  },
+  "review": {
+    "review_page_number": 3,
+    "status": "ok",
+    "drawn_count": 10,
+    "warnings": [],
+    "json_path": "documents/ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2/page_00040.json",
+    "path": "documents/ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2/review_vl.pdf"
+  },
+  "elapsed_seconds": 378.158038900001
+}

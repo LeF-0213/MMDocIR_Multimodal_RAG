@@ -1,0 +1,2912 @@
+{
+  "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7",
+  "id_origin": "project_generated",
+  "document_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36",
+  "document_name": "3M_2018_10K",
+  "page_number": 7,
+  "page_numbering": "pdf_viewer_1_based",
+  "page_index": 6,
+  "source_sha256": "faf10c53fc6f1a8aa346ec3db79145e3ae6fbb3753c8064924e174d0a973934d",
+  "status": "ok",
+  "geometry": {
+    "coordinate_system": "pymupdf_unrotated_page_points",
+    "origin": "top_left_of_unrotated_page",
+    "unit": "point_1/72_inch",
+    "rotation_degrees": 0,
+    "mediabox": [
+      0.0,
+      0.0,
+      612.0,
+      792.0
+    ],
+    "cropbox": [
+      0.0,
+      0.0,
+      612.0,
+      792.0
+    ],
+    "rotated_page_rect": [
+      0.0,
+      0.0,
+      612.0,
+      792.0
+    ]
+  },
+  "native": {
+    "status": "ok",
+    "text": "Table of Contents \n \nResearch and Patents\n \nResearch and product development constitutes an important part of 3M’s activities and has been a major driver of 3M’s sales and profit growth. Research,\ndevelopment and related expenses totaled $1.821 billion in 2018, $1.870 billion in 2017 and $1.764 billion in 2016. Research and development, covering\nbasic scientific research and the application of scientific advances in the development of new and improved products and their uses, totaled $1.253 billion\nin 2018, $1.352 billion in 2017 and $1.248 billion in 2016. Related expenses primarily include technical support; internally developed patent costs, which\ninclude costs and fees incurred to prepare, file, secure and maintain patents; amortization of externally acquired patents and externally acquired in-process\nresearch and development; and gains/losses associated with certain corporate approved investments in R&D-related ventures, such as equity method effects\nand impairments.\n \nThe Company’s products are sold around the world under various trademarks. The Company also owns, or holds licenses to use, numerous U.S. and foreign\npatents. The Company’s research and development activities generate a steady stream of inventions that are covered by new patents. Patents applicable to\nspecific products extend for varying periods according to the date of patent application filing or patent grant and the legal term of patents in the various\ncountries where patent protection is obtained. The actual protection afforded by a patent, which can vary from country to country, depends upon the type of\npatent, the scope of its coverage and the availability of legal remedies in the country.\n \nThe Company believes that its patents provide an important competitive advantage in many of its businesses. In general, no single patent or group of\nrelated patents is in itself essential to the Company as a whole or to any of the Company’s business segments.\n \nRaw Materials\n \nIn 2018, the Company experienced raw material price inflation across most material markets worldwide. In response, the Company continued to deploy\nproductivity projects to minimize the impact of raw material inflation and market supply challenges, including input management, reformulations, and\nmulti-sourcing activities. These succeeded in partially offsetting the overall raw material headwinds experienced throughout the year. To date, the\nCompany is receiving sufficient quantities of all raw materials to meet its reasonably foreseeable production requirements. It is difficult to predict future\nshortages of raw materials or the impact any such shortages would have. 3M has avoided disruption to its manufacturing operations through careful\nmanagement of existing raw material inventories, strategic relationships with key suppliers, and development and qualification of additional supply sources.\n3M manages spend category price risks through negotiated supply contracts, price protection agreements and commodity price swaps.\n \nEnvironmental Law Compliance\n \n3M’s manufacturing operations are affected by national, state and local environmental laws around the world. 3M has made, and plans to continue making,\nnecessary expenditures for compliance with applicable laws. 3M is also involved in remediation actions relating to environmental matters from past\noperations at certain sites (refer to “Environmental Matters and Litigation” in Note 16, Commitments and Contingencies).\n \nEnvironmental expenditures relating to existing conditions caused by past operations that do not contribute to current or future revenues are expensed.\nReserves for liabilities for anticipated remediation costs are recorded on an undiscounted basis when they are probable and reasonably estimable, generally\nno later than the completion of feasibility studies, the Company’s commitment to a plan of action, or approval by regulatory agencies. Environmental\nexpenditures for capital projects that contribute to current or future operations generally are capitalized and depreciated over their estimated useful lives.\n \nIn 2018, 3M expended approximately $27 million for capital projects related to protecting the environment. This amount excludes expenditures for\nremediation actions relating to existing matters caused by past operations that do not contribute to current or future revenues, which are expensed. Capital\nexpenditures for environmental purposes have included pollution control devices — such as wastewater treatment plant improvements, scrubbers,\ncontainment structures, solvent recovery units and thermal oxidizers — at new and existing facilities constructed or upgraded in the normal course of\nbusiness. Consistent with the Company’s emphasis on environmental responsibility, capital expenditures (other than for remediation projects) for known\nprojects are presently expected to be approximately $75 million over the next two years for new or expanded programs to build facilities or modify\nmanufacturing processes to minimize waste and reduce emissions.\n \n7\n ",
+    "raw": {
+      "width": 612.0,
+      "height": 792.0,
+      "blocks": [
+        {
+          "type": 0,
+          "number": 0,
+          "flags": 0,
+          "bbox": [
+            56.70000076293945,
+            19.74951171875,
+            114.43440246582031,
+            28.387401580810547
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 353217,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "Table of Contents ",
+                  "origin": [
+                    56.70000076293945,
+                    26.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    19.74951171875,
+                    114.43440246582031,
+                    28.387401580810547
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                19.74951171875,
+                114.43440246582031,
+                28.387401580810547
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 1,
+          "flags": 0,
+          "bbox": [
+            56.70000076293945,
+            52.74951171875,
+            544.0437622070312,
+            492.18719482421875
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": " ",
+                  "origin": [
+                    56.70000076293945,
+                    59.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    52.74951171875,
+                    58.6343994140625,
+                    61.38740158081055
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                52.74951171875,
+                58.6343994140625,
+                61.38740158081055
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 20,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "TimesNewRomanPS-BoldMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "Research and Patents",
+                  "origin": [
+                    56.70000076293945,
+                    68.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    61.74951171875,
+                    128.54205322265625,
+                    70.38740539550781
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                61.74951171875,
+                128.54205322265625,
+                70.38740539550781
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": " ",
+                  "origin": [
+                    56.70000076293945,
+                    77.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    70.74951171875,
+                    58.6343994140625,
+                    79.38740539550781
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                70.74951171875,
+                58.6343994140625,
+                79.38740539550781
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "Research and product development constitutes an important part of 3M’s activities and has been a major driver of 3M’s sales and profit growth. Research,",
+                  "origin": [
+                    56.70000076293945,
+                    86.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    79.74951171875,
+                    537.518798828125,
+                    88.38740539550781
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                79.74951171875,
+                537.518798828125,
+                88.38740539550781
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "development and related expenses totaled $1.821 billion in 2018, $1.870 billion in 2017 and $1.764 billion in 2016. Research and development, covering",
+                  "origin": [
+                    56.70000076293945,
+                    95.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    88.74951171875,
+                    534.625,
+                    97.38740539550781
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                88.74951171875,
+                534.625,
+                97.38740539550781
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "basic scientific research and the application of scientific advances in the development of new and improved products and their uses, totaled $1.253 billion",
+                  "origin": [
+                    56.70000076293945,
+                    104.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    97.74951171875,
+                    536.4437866210938,
+                    106.38740539550781
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                97.74951171875,
+                536.4437866210938,
+                106.38740539550781
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "in 2018, $1.352 billion in 2017 and $1.248 billion in 2016. Related expenses primarily include technical support; internally developed patent costs, which",
+                  "origin": [
+                    56.70000076293945,
+                    113.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    106.74951171875,
+                    536.5469360351562,
+                    115.38740539550781
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                106.74951171875,
+                536.5469360351562,
+                115.38740539550781
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "include costs and fees incurred to prepare, file, secure and maintain patents; amortization of externally acquired patents and externally acquired in-process",
+                  "origin": [
+                    56.70000076293945,
+                    122.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    115.74951171875,
+                    537.70458984375,
+                    124.38740539550781
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                115.74951171875,
+                537.70458984375,
+                124.38740539550781
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "research and development; and gains/losses associated with certain corporate approved investments in R&D-related ventures, such as equity method effects",
+                  "origin": [
+                    56.70000076293945,
+                    131.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    124.74951171875,
+                    542.2420654296875,
+                    133.3874053955078
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                124.74951171875,
+                542.2420654296875,
+                133.3874053955078
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "and impairments.",
+                  "origin": [
+                    56.70000076293945,
+                    140.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    133.74951171875,
+                    110.81565856933594,
+                    142.3874053955078
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                133.74951171875,
+                110.81565856933594,
+                142.3874053955078
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": " ",
+                  "origin": [
+                    56.70000076293945,
+                    149.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    142.74951171875,
+                    58.6343994140625,
+                    151.3874053955078
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                142.74951171875,
+                58.6343994140625,
+                151.3874053955078
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "The Company’s products are sold around the world under various trademarks. The Company also owns, or holds licenses to use, numerous U.S. and foreign",
+                  "origin": [
+                    56.70000076293945,
+                    158.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    151.74951171875,
+                    543.8406982421875,
+                    160.3874053955078
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                151.74951171875,
+                543.8406982421875,
+                160.3874053955078
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "patents. The Company’s research and development activities generate a steady stream of inventions that are covered by new patents. Patents applicable to",
+                  "origin": [
+                    56.70000076293945,
+                    167.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    160.74951171875,
+                    536.1719360351562,
+                    169.3874053955078
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                160.74951171875,
+                536.1719360351562,
+                169.3874053955078
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "specific products extend for varying periods according to the date of patent application filing or patent grant and the legal term of patents in the various",
+                  "origin": [
+                    56.70000076293945,
+                    176.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    169.74951171875,
+                    528.4701538085938,
+                    178.3874053955078
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                169.74951171875,
+                528.4701538085938,
+                178.3874053955078
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "countries where patent protection is obtained. The actual protection afforded by a patent, which can vary from country to country, depends upon the type of",
+                  "origin": [
+                    56.70000076293945,
+                    185.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    178.74951171875,
+                    541.8989868164062,
+                    187.3874053955078
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                178.74951171875,
+                541.8989868164062,
+                187.3874053955078
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "patent, the scope of its coverage and the availability of legal remedies in the country.",
+                  "origin": [
+                    56.70000076293945,
+                    194.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    187.74951171875,
+                    321.24688720703125,
+                    196.3874053955078
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                187.74951171875,
+                321.24688720703125,
+                196.3874053955078
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": " ",
+                  "origin": [
+                    56.70000076293945,
+                    203.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    196.74951171875,
+                    58.6343994140625,
+                    205.3874053955078
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                196.74951171875,
+                58.6343994140625,
+                205.3874053955078
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "The Company believes that its patents provide an important competitive advantage in many of its businesses. In general, no single patent or group of",
+                  "origin": [
+                    56.70000076293945,
+                    212.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    205.74951171875,
+                    520.683349609375,
+                    214.3874053955078
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                205.74951171875,
+                520.683349609375,
+                214.3874053955078
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "related patents is in itself essential to the Company as a whole or to any of the Company’s business segments.",
+                  "origin": [
+                    56.70000076293945,
+                    221.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    214.74951171875,
+                    398.7500305175781,
+                    223.3874053955078
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                214.74951171875,
+                398.7500305175781,
+                223.3874053955078
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": " ",
+                  "origin": [
+                    56.70000076293945,
+                    230.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    223.74951171875,
+                    58.6343994140625,
+                    232.3874053955078
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                223.74951171875,
+                58.6343994140625,
+                232.3874053955078
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 20,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "TimesNewRomanPS-BoldMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "Raw Materials",
+                  "origin": [
+                    56.70000076293945,
+                    239.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    232.74951171875,
+                    105.81705474853516,
+                    241.3874053955078
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                232.74951171875,
+                105.81705474853516,
+                241.3874053955078
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": " ",
+                  "origin": [
+                    56.70000076293945,
+                    248.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    241.74951171875,
+                    58.6343994140625,
+                    250.3874053955078
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                241.74951171875,
+                58.6343994140625,
+                250.3874053955078
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "In 2018, the Company experienced raw material price inflation across most material markets worldwide. In response, the Company continued to deploy",
+                  "origin": [
+                    56.70000076293945,
+                    257.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    250.74951171875,
+                    530.171875,
+                    259.38739013671875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                250.74951171875,
+                530.171875,
+                259.38739013671875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "productivity projects to minimize the impact of raw material inflation and market supply challenges, including input management, reformulations, and",
+                  "origin": [
+                    56.70000076293945,
+                    266.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    259.74951171875,
+                    525.878173828125,
+                    268.38739013671875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                259.74951171875,
+                525.878173828125,
+                268.38739013671875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "multi-sourcing activities. These succeeded in partially offsetting the overall raw material headwinds experienced throughout the year. To date, the",
+                  "origin": [
+                    56.70000076293945,
+                    275.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    268.74951171875,
+                    511.9507751464844,
+                    277.38739013671875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                268.74951171875,
+                511.9507751464844,
+                277.38739013671875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "Company is receiving sufficient quantities of all raw materials to meet its reasonably foreseeable production requirements. It is difficult to predict future",
+                  "origin": [
+                    56.70000076293945,
+                    284.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    277.74951171875,
+                    532.0882568359375,
+                    286.38739013671875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                277.74951171875,
+                532.0882568359375,
+                286.38739013671875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "shortages of raw materials or the impact any such shortages would have. 3M has avoided disruption to its manufacturing operations through careful",
+                  "origin": [
+                    56.70000076293945,
+                    293.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    286.74951171875,
+                    516.9902954101562,
+                    295.38739013671875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                286.74951171875,
+                516.9902954101562,
+                295.38739013671875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "management of existing raw material inventories, strategic relationships with key suppliers, and development and qualification of additional supply sources.",
+                  "origin": [
+                    56.70000076293945,
+                    302.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    295.74951171875,
+                    544.0437622070312,
+                    304.38739013671875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                295.74951171875,
+                544.0437622070312,
+                304.38739013671875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "3M manages spend category price risks through negotiated supply contracts, price protection agreements and commodity price swaps.",
+                  "origin": [
+                    56.70000076293945,
+                    311.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    304.74951171875,
+                    474.9687805175781,
+                    313.38739013671875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                304.74951171875,
+                474.9687805175781,
+                313.38739013671875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": " ",
+                  "origin": [
+                    56.70000076293945,
+                    320.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    313.74951171875,
+                    58.6343994140625,
+                    322.38739013671875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                313.74951171875,
+                58.6343994140625,
+                322.38739013671875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 20,
+                  "bidi": 0,
+                  "char_flags": 24,
+                  "font": "TimesNewRomanPS-BoldMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "Environmental Law Compliance",
+                  "origin": [
+                    56.70000076293945,
+                    329.7001953125
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    322.74951171875,
+                    165.3570098876953,
+                    331.38739013671875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                322.74951171875,
+                165.3570098876953,
+                331.38739013671875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 6.600000381469727,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": " ",
+                  "origin": [
+                    56.70000076293945,
+                    337.5
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    331.61865234375,
+                    58.33679962158203,
+                    338.9276428222656
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                331.61865234375,
+                58.33679962158203,
+                338.9276428222656
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "3M’s manufacturing operations are affected by national, state and local environmental laws around the world. 3M has made, and plans to continue making,",
+                  "origin": [
+                    56.70000076293945,
+                    346.5
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    339.54931640625,
+                    540.800048828125,
+                    348.18719482421875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                339.54931640625,
+                540.800048828125,
+                348.18719482421875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "necessary expenditures for compliance with applicable laws. 3M is also involved in remediation actions relating to environmental matters from past",
+                  "origin": [
+                    56.70000076293945,
+                    355.5
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    348.54931640625,
+                    517.8246459960938,
+                    357.18719482421875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                348.54931640625,
+                517.8246459960938,
+                357.18719482421875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "operations at certain sites (refer to “Environmental Matters and Litigation” in Note 16, Commitments and Contingencies).",
+                  "origin": [
+                    56.70000076293945,
+                    364.5
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    357.54931640625,
+                    437.0750427246094,
+                    366.18719482421875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                357.54931640625,
+                437.0750427246094,
+                366.18719482421875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": " ",
+                  "origin": [
+                    56.70000076293945,
+                    373.5
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    366.54931640625,
+                    58.6343994140625,
+                    375.18719482421875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                366.54931640625,
+                58.6343994140625,
+                375.18719482421875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "Environmental expenditures relating to existing conditions caused by past operations that do not contribute to current or future revenues are expensed.",
+                  "origin": [
+                    56.70000076293945,
+                    382.5
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    375.54931640625,
+                    525.4437866210938,
+                    384.18719482421875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                375.54931640625,
+                525.4437866210938,
+                384.18719482421875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "Reserves for liabilities for anticipated remediation costs are recorded on an undiscounted basis when they are probable and reasonably estimable, generally",
+                  "origin": [
+                    56.70000076293945,
+                    391.5
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    384.54931640625,
+                    540.0718994140625,
+                    393.18719482421875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                384.54931640625,
+                540.0718994140625,
+                393.18719482421875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "no later than the completion of feasibility studies, the Company’s commitment to a plan of action, or approval by regulatory agencies. Environmental",
+                  "origin": [
+                    56.70000076293945,
+                    400.5
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    393.54931640625,
+                    522.6527709960938,
+                    402.18719482421875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                393.54931640625,
+                522.6527709960938,
+                402.18719482421875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "expenditures for capital projects that contribute to current or future operations generally are capitalized and depreciated over their estimated useful lives.",
+                  "origin": [
+                    56.70000076293945,
+                    409.5
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    402.54931640625,
+                    532.2969360351562,
+                    411.18719482421875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                402.54931640625,
+                532.2969360351562,
+                411.18719482421875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": " ",
+                  "origin": [
+                    56.70000076293945,
+                    418.5
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    411.54931640625,
+                    58.6343994140625,
+                    420.18719482421875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                411.54931640625,
+                58.6343994140625,
+                420.18719482421875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "In 2018, 3M expended approximately $27 million for capital projects related to protecting the environment. This amount excludes expenditures for",
+                  "origin": [
+                    56.70000076293945,
+                    427.5
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    420.54931640625,
+                    515.5083618164062,
+                    429.18719482421875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                420.54931640625,
+                515.5083618164062,
+                429.18719482421875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "remediation actions relating to existing matters caused by past operations that do not contribute to current or future revenues, which are expensed. Capital",
+                  "origin": [
+                    56.70000076293945,
+                    436.5
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    429.54931640625,
+                    536.4528198242188,
+                    438.18719482421875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                429.54931640625,
+                536.4528198242188,
+                438.18719482421875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "expenditures for environmental purposes have included pollution control devices — such as wastewater treatment plant improvements, scrubbers,",
+                  "origin": [
+                    56.70000076293945,
+                    445.5
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    438.54931640625,
+                    511.7750244140625,
+                    447.18719482421875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                438.54931640625,
+                511.7750244140625,
+                447.18719482421875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "containment structures, solvent recovery units and thermal oxidizers — at new and existing facilities constructed or upgraded in the normal course of",
+                  "origin": [
+                    56.70000076293945,
+                    454.5
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    447.54931640625,
+                    522.1646118164062,
+                    456.18719482421875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                447.54931640625,
+                522.1646118164062,
+                456.18719482421875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "business. Consistent with the Company’s emphasis on environmental responsibility, capital expenditures (other than for remediation projects) for known",
+                  "origin": [
+                    56.70000076293945,
+                    463.5
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    456.54931640625,
+                    533.21875,
+                    465.18719482421875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                456.54931640625,
+                533.21875,
+                465.18719482421875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "projects are presently expected to be approximately $75 million over the next two years for new or expanded programs to build facilities or modify",
+                  "origin": [
+                    56.70000076293945,
+                    472.5
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    465.54931640625,
+                    515.471923828125,
+                    474.18719482421875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                465.54931640625,
+                515.471923828125,
+                474.18719482421875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "manufacturing processes to minimize waste and reduce emissions.",
+                  "origin": [
+                    56.70000076293945,
+                    481.5
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    474.54931640625,
+                    263.63751220703125,
+                    483.18719482421875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                474.54931640625,
+                263.63751220703125,
+                483.18719482421875
+              ]
+            },
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": " ",
+                  "origin": [
+                    56.70000076293945,
+                    490.5
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    483.54931640625,
+                    58.6343994140625,
+                    492.18719482421875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                483.54931640625,
+                58.6343994140625,
+                492.18719482421875
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 2,
+          "flags": 0,
+          "bbox": [
+            295.5,
+            511.74951171875,
+            299.3688049316406,
+            520.3873901367188
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 7.800000190734863,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": "7",
+                  "origin": [
+                    295.5,
+                    518.7001953125
+                  ],
+                  "bbox": [
+                    295.5,
+                    511.74951171875,
+                    299.3688049316406,
+                    520.3873901367188
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                295.5,
+                511.74951171875,
+                299.3688049316406,
+                520.3873901367188
+              ]
+            }
+          ]
+        },
+        {
+          "type": 0,
+          "number": 3,
+          "flags": 0,
+          "bbox": [
+            56.70000076293945,
+            536.54541015625,
+            59.08080291748047,
+            547.1766357421875
+          ],
+          "lines": [
+            {
+              "spans": [
+                {
+                  "size": 9.600000381469727,
+                  "flags": 4,
+                  "bidi": 0,
+                  "char_flags": 16,
+                  "font": "TimesNewRomanPSMT",
+                  "color": 0,
+                  "alpha": 255,
+                  "ascender": 0.89111328125,
+                  "descender": -0.21630859375,
+                  "text": " ",
+                  "origin": [
+                    56.70000076293945,
+                    545.10009765625
+                  ],
+                  "bbox": [
+                    56.70000076293945,
+                    536.54541015625,
+                    59.08080291748047,
+                    547.1766357421875
+                  ]
+                }
+              ],
+              "wmode": 0,
+              "dir": [
+                1.0,
+                0.0
+              ],
+              "bbox": [
+                56.70000076293945,
+                536.54541015625,
+                59.08080291748047,
+                547.1766357421875
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "extraction_flags": 195,
+    "sort": false
+  },
+  "images": {
+    "status": "ok",
+    "options": {
+      "hashes": true,
+      "xrefs": true
+    },
+    "digest_algorithm": "md5",
+    "digest_encoding": "hex",
+    "items": []
+  },
+  "render": {
+    "status": "ok",
+    "dpi": 144,
+    "width": 1224,
+    "height": 1584,
+    "coordinate_system": "rendered_page_image_pixels",
+    "origin": "top_left",
+    "unit": "pixel",
+    "render_color_order": "RGB",
+    "input_color_order": "BGR",
+    "annotation_included": true,
+    "pixmap_origin_pixels": [
+      0,
+      0
+    ],
+    "pixel_to_pdf_matrix": [
+      0.5,
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.0
+    ]
+  },
+  "page_image": {
+    "path": "documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/page_00007.png",
+    "sha256": "9e81728ad14a9fcb270ed81417890da1110275d761f30bffb617fc1c7231cbd8"
+  },
+  "parsing": {
+    "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7",
+    "source": "paddleocr_vl",
+    "status": "ok",
+    "raw": {
+      "res": {
+        "input_path": null,
+        "page_index": null,
+        "page_count": null,
+        "width": 1224,
+        "height": 1584,
+        "model_settings": {
+          "use_doc_preprocessor": false,
+          "use_layout_detection": true,
+          "use_chart_recognition": true,
+          "use_seal_recognition": false,
+          "use_ocr_for_image_block": true,
+          "format_block_content": false,
+          "merge_layout_blocks": true,
+          "markdown_ignore_labels": [],
+          "return_layout_polygon_points": false
+        },
+        "parsing_res_list": [
+          {
+            "block_label": "header",
+            "block_content": "Table of Contents",
+            "block_bbox": [
+              110,
+              40,
+              228,
+              58
+            ],
+            "block_id": 0,
+            "block_order": null,
+            "group_id": 0
+          },
+          {
+            "block_label": "paragraph_title",
+            "block_content": "Research and Patents",
+            "block_bbox": [
+              110,
+              124,
+              261,
+              142
+            ],
+            "block_id": 1,
+            "block_order": 1,
+            "group_id": 1
+          },
+          {
+            "block_label": "text",
+            "block_content": "Research and product development constitutes an important part of 3M's activities and has been a major driver of 3M's sales and profit growth. Research, development and related expenses totaled $1.821 billion in 2018, $1.870 billion in 2017 and $1.764 billion in 2016. Research and development, covering basic scientific research and the application of scientific advances in the development of new and improved products and their uses, totaled $1.253 billion in 2018, $1.352 billion in 2017 and $1.248 billion in 2016. Related expenses primarily include technical support; internally developed patent costs, which include costs and fees incurred to prepare, file, secure and maintain patents; amortization of externally acquired patents and externally acquired in-process research and development; and gains/losses associated with certain corporate approved investments in R&D-related ventures, such as equity method effects and impairments.",
+            "block_bbox": [
+              108,
+              160,
+              1088,
+              287
+            ],
+            "block_id": 2,
+            "block_order": 2,
+            "group_id": 2
+          },
+          {
+            "block_label": "text",
+            "block_content": "The Company’s products are sold around the world under various trademarks. The Company also owns, or holds licenses to use, numerous U.S. and foreign patents. The Company’s research and development activities generate a steady stream of inventions that are covered by new patents. Patents applicable to specific products extend for varying periods according to the date of patent application filing or patent grant and the legal term of patents in the various countries where patent protection is obtained. The actual protection afforded by a patent, which can vary from country to country, depends upon the type of patent, the scope of its coverage and the availability of legal remedies in the country.",
+            "block_bbox": [
+              108,
+              304,
+              1093,
+              396
+            ],
+            "block_id": 3,
+            "block_order": 3,
+            "group_id": 3
+          },
+          {
+            "block_label": "text",
+            "block_content": "The Company believes that its patents provide an important competitive advantage in many of its businesses. In general, no single patent or group of related patents is in itself essential to the Company as a whole or to any of the Company's business segments.",
+            "block_bbox": [
+              108,
+              411,
+              1047,
+              449
+            ],
+            "block_id": 4,
+            "block_order": 4,
+            "group_id": 4
+          },
+          {
+            "block_label": "paragraph_title",
+            "block_content": "Raw Materials",
+            "block_bbox": [
+              110,
+              465,
+              215,
+              484
+            ],
+            "block_id": 5,
+            "block_order": 5,
+            "group_id": 5
+          },
+          {
+            "block_label": "text",
+            "block_content": "In 2018, the Company experienced raw material price inflation across most material markets worldwide. In response, the Company continued to deploy productivity projects to minimize the impact of raw material inflation and market supply challenges, including input management, reformulations, and multi-sourcing activities. These succeeded in partially offsetting the overall raw material headwinds experienced throughout the year. To date, the Company is receiving sufficient quantities of all raw materials to meet its reasonably foreseeable production requirements. It is difficult to predict future shortages of raw materials or the impact of any such shortages would have. 3M has avoided disruption to its manufacturing operations through careful management of existing raw material inventories, strategic relationships with key suppliers, and development and qualification of additional supply sources. 3M manages spend category price risks through negotiated supply contracts, price protection agreements and commodity price swaps.",
+            "block_bbox": [
+              108,
+              502,
+              1091,
+              631
+            ],
+            "block_id": 6,
+            "block_order": 6,
+            "group_id": 6
+          },
+          {
+            "block_label": "paragraph_title",
+            "block_content": "Environmental Law Compliance",
+            "block_bbox": [
+              110,
+              645,
+              334,
+              665
+            ],
+            "block_id": 7,
+            "block_order": 7,
+            "group_id": 7
+          },
+          {
+            "block_label": "text",
+            "block_content": "3M's manufacturing operations are affected by national, state and local environmental laws around the world. 3M has made, and plans to continue making necessary expenditures for compliance with applicable laws. 3M is also involved in remediation actions relating to environmental matters from past operations at certain sites (refer to \"Environmental Matters and Litigation\" in Note 16, Commitments and Contingencies).",
+            "block_bbox": [
+              108,
+              680,
+              1084,
+              736
+            ],
+            "block_id": 8,
+            "block_order": 8,
+            "group_id": 8
+          },
+          {
+            "block_label": "text",
+            "block_content": "Environmental expenditures relating to existing conditions caused by past operations that do not contribute to current or future revenues are expensed. Reserves for liabilities for anticipated remediation costs are recorded on an undiscounted basis when they are probable and reasonably estimable, generally no later than the completion of feasibility studies, the Company's commitment to a plan of action, or approval by regulatory agencies. Environmental expenditures for capital projects that contribute to current or future operations generally are capitalized and depreciated over their estimated useful lives.",
+            "block_bbox": [
+              109,
+              752,
+              1084,
+              826
+            ],
+            "block_id": 9,
+            "block_order": 9,
+            "group_id": 9
+          },
+          {
+            "block_label": "text",
+            "block_content": "In 2018, 3M expended approximately $27 million for capital projects related to protecting the environment. This amount excludes expenditures for remediation actions relating to existing matters caused by past operations that do not contribute to current or future revenues, which are expensed. Capital expenditures for environmental purposes have included pollution control devices — such as wastewater treatment plant improvements, scrubbers, containment structures, solvent recovery units and thermal oxidizers — at new and existing facilities constructed or upgraded in the normal course of business. Consistent with the Company's emphasis on environmental responsibility, capital expenditures (other than for remediation projects) for known projects are presently expected to be approximately $75 million over the next two years for new or expanded programs to build facilities or modify manufacturing processes to minimize waste and reduce emissions.",
+            "block_bbox": [
+              108,
+              842,
+              1078,
+              970
+            ],
+            "block_id": 10,
+            "block_order": 10,
+            "group_id": 10
+          },
+          {
+            "block_label": "number",
+            "block_content": "7",
+            "block_bbox": [
+              590,
+              1024,
+              601,
+              1040
+            ],
+            "block_id": 11,
+            "block_order": 11,
+            "group_id": 11
+          }
+        ],
+        "layout_det_res": {
+          "input_path": null,
+          "page_index": null,
+          "boxes": [
+            {
+              "cls_id": 12,
+              "label": "header",
+              "score": 0.8117586374282837,
+              "coordinate": [
+                110,
+                40,
+                228,
+                58
+              ],
+              "order": null
+            },
+            {
+              "cls_id": 17,
+              "label": "paragraph_title",
+              "score": 0.8361890316009521,
+              "coordinate": [
+                110,
+                124,
+                261,
+                142
+              ],
+              "order": 1
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.9464095234870911,
+              "coordinate": [
+                108,
+                160,
+                1088,
+                287
+              ],
+              "order": 2
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.9410946369171143,
+              "coordinate": [
+                108,
+                304,
+                1093,
+                396
+              ],
+              "order": 3
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.8867619037628174,
+              "coordinate": [
+                108,
+                411,
+                1047,
+                449
+              ],
+              "order": 4
+            },
+            {
+              "cls_id": 17,
+              "label": "paragraph_title",
+              "score": 0.834674596786499,
+              "coordinate": [
+                110,
+                465,
+                215,
+                484
+              ],
+              "order": 5
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.9503111839294434,
+              "coordinate": [
+                108,
+                502,
+                1091,
+                631
+              ],
+              "order": 6
+            },
+            {
+              "cls_id": 17,
+              "label": "paragraph_title",
+              "score": 0.8316989541053772,
+              "coordinate": [
+                110,
+                645,
+                334,
+                665
+              ],
+              "order": 7
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.9223824143409729,
+              "coordinate": [
+                108,
+                680,
+                1084,
+                736
+              ],
+              "order": 8
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.939308762550354,
+              "coordinate": [
+                109,
+                752,
+                1084,
+                826
+              ],
+              "order": 9
+            },
+            {
+              "cls_id": 22,
+              "label": "text",
+              "score": 0.9603068828582764,
+              "coordinate": [
+                108,
+                842,
+                1078,
+                970
+              ],
+              "order": 10
+            },
+            {
+              "cls_id": 16,
+              "label": "number",
+              "score": 0.5980813503265381,
+              "coordinate": [
+                590,
+                1024,
+                601,
+                1040
+              ],
+              "order": 11
+            }
+          ]
+        }
+      }
+    },
+    "blocks": [
+      {
+        "element_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7:vl:0",
+        "id_origin": "project_generated",
+        "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7",
+        "source": "paddleocr_vl",
+        "source_list_index": 0,
+        "model_block_id": 0,
+        "model_block_order": null,
+        "label": "header",
+        "content": "Table of Contents",
+        "bbox_image_pixels": [
+          110.0,
+          40.0,
+          228.0,
+          58.0
+        ],
+        "polygon_pdf_points": [
+          [
+            55.0,
+            20.0
+          ],
+          [
+            114.0,
+            20.0
+          ],
+          [
+            114.0,
+            29.0
+          ],
+          [
+            55.0,
+            29.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          55.0,
+          20.0,
+          114.0,
+          29.0
+        ]
+      },
+      {
+        "element_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7:vl:1",
+        "id_origin": "project_generated",
+        "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7",
+        "source": "paddleocr_vl",
+        "source_list_index": 1,
+        "model_block_id": 1,
+        "model_block_order": 1,
+        "label": "paragraph_title",
+        "content": "Research and Patents",
+        "bbox_image_pixels": [
+          110.0,
+          124.0,
+          261.0,
+          142.0
+        ],
+        "polygon_pdf_points": [
+          [
+            55.0,
+            62.0
+          ],
+          [
+            130.5,
+            62.0
+          ],
+          [
+            130.5,
+            71.0
+          ],
+          [
+            55.0,
+            71.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          55.0,
+          62.0,
+          130.5,
+          71.0
+        ]
+      },
+      {
+        "element_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7:vl:2",
+        "id_origin": "project_generated",
+        "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7",
+        "source": "paddleocr_vl",
+        "source_list_index": 2,
+        "model_block_id": 2,
+        "model_block_order": 2,
+        "label": "text",
+        "content": "Research and product development constitutes an important part of 3M's activities and has been a major driver of 3M's sales and profit growth. Research, development and related expenses totaled $1.821 billion in 2018, $1.870 billion in 2017 and $1.764 billion in 2016. Research and development, covering basic scientific research and the application of scientific advances in the development of new and improved products and their uses, totaled $1.253 billion in 2018, $1.352 billion in 2017 and $1.248 billion in 2016. Related expenses primarily include technical support; internally developed patent costs, which include costs and fees incurred to prepare, file, secure and maintain patents; amortization of externally acquired patents and externally acquired in-process research and development; and gains/losses associated with certain corporate approved investments in R&D-related ventures, such as equity method effects and impairments.",
+        "bbox_image_pixels": [
+          108.0,
+          160.0,
+          1088.0,
+          287.0
+        ],
+        "polygon_pdf_points": [
+          [
+            54.0,
+            80.0
+          ],
+          [
+            544.0,
+            80.0
+          ],
+          [
+            544.0,
+            143.5
+          ],
+          [
+            54.0,
+            143.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          54.0,
+          80.0,
+          544.0,
+          143.5
+        ]
+      },
+      {
+        "element_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7:vl:3",
+        "id_origin": "project_generated",
+        "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7",
+        "source": "paddleocr_vl",
+        "source_list_index": 3,
+        "model_block_id": 3,
+        "model_block_order": 3,
+        "label": "text",
+        "content": "The Company’s products are sold around the world under various trademarks. The Company also owns, or holds licenses to use, numerous U.S. and foreign patents. The Company’s research and development activities generate a steady stream of inventions that are covered by new patents. Patents applicable to specific products extend for varying periods according to the date of patent application filing or patent grant and the legal term of patents in the various countries where patent protection is obtained. The actual protection afforded by a patent, which can vary from country to country, depends upon the type of patent, the scope of its coverage and the availability of legal remedies in the country.",
+        "bbox_image_pixels": [
+          108.0,
+          304.0,
+          1093.0,
+          396.0
+        ],
+        "polygon_pdf_points": [
+          [
+            54.0,
+            152.0
+          ],
+          [
+            546.5,
+            152.0
+          ],
+          [
+            546.5,
+            198.0
+          ],
+          [
+            54.0,
+            198.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          54.0,
+          152.0,
+          546.5,
+          198.0
+        ]
+      },
+      {
+        "element_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7:vl:4",
+        "id_origin": "project_generated",
+        "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7",
+        "source": "paddleocr_vl",
+        "source_list_index": 4,
+        "model_block_id": 4,
+        "model_block_order": 4,
+        "label": "text",
+        "content": "The Company believes that its patents provide an important competitive advantage in many of its businesses. In general, no single patent or group of related patents is in itself essential to the Company as a whole or to any of the Company's business segments.",
+        "bbox_image_pixels": [
+          108.0,
+          411.0,
+          1047.0,
+          449.0
+        ],
+        "polygon_pdf_points": [
+          [
+            54.0,
+            205.5
+          ],
+          [
+            523.5,
+            205.5
+          ],
+          [
+            523.5,
+            224.5
+          ],
+          [
+            54.0,
+            224.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          54.0,
+          205.5,
+          523.5,
+          224.5
+        ]
+      },
+      {
+        "element_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7:vl:5",
+        "id_origin": "project_generated",
+        "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7",
+        "source": "paddleocr_vl",
+        "source_list_index": 5,
+        "model_block_id": 5,
+        "model_block_order": 5,
+        "label": "paragraph_title",
+        "content": "Raw Materials",
+        "bbox_image_pixels": [
+          110.0,
+          465.0,
+          215.0,
+          484.0
+        ],
+        "polygon_pdf_points": [
+          [
+            55.0,
+            232.5
+          ],
+          [
+            107.5,
+            232.5
+          ],
+          [
+            107.5,
+            242.0
+          ],
+          [
+            55.0,
+            242.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          55.0,
+          232.5,
+          107.5,
+          242.0
+        ]
+      },
+      {
+        "element_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7:vl:6",
+        "id_origin": "project_generated",
+        "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7",
+        "source": "paddleocr_vl",
+        "source_list_index": 6,
+        "model_block_id": 6,
+        "model_block_order": 6,
+        "label": "text",
+        "content": "In 2018, the Company experienced raw material price inflation across most material markets worldwide. In response, the Company continued to deploy productivity projects to minimize the impact of raw material inflation and market supply challenges, including input management, reformulations, and multi-sourcing activities. These succeeded in partially offsetting the overall raw material headwinds experienced throughout the year. To date, the Company is receiving sufficient quantities of all raw materials to meet its reasonably foreseeable production requirements. It is difficult to predict future shortages of raw materials or the impact of any such shortages would have. 3M has avoided disruption to its manufacturing operations through careful management of existing raw material inventories, strategic relationships with key suppliers, and development and qualification of additional supply sources. 3M manages spend category price risks through negotiated supply contracts, price protection agreements and commodity price swaps.",
+        "bbox_image_pixels": [
+          108.0,
+          502.0,
+          1091.0,
+          631.0
+        ],
+        "polygon_pdf_points": [
+          [
+            54.0,
+            251.0
+          ],
+          [
+            545.5,
+            251.0
+          ],
+          [
+            545.5,
+            315.5
+          ],
+          [
+            54.0,
+            315.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          54.0,
+          251.0,
+          545.5,
+          315.5
+        ]
+      },
+      {
+        "element_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7:vl:7",
+        "id_origin": "project_generated",
+        "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7",
+        "source": "paddleocr_vl",
+        "source_list_index": 7,
+        "model_block_id": 7,
+        "model_block_order": 7,
+        "label": "paragraph_title",
+        "content": "Environmental Law Compliance",
+        "bbox_image_pixels": [
+          110.0,
+          645.0,
+          334.0,
+          665.0
+        ],
+        "polygon_pdf_points": [
+          [
+            55.0,
+            322.5
+          ],
+          [
+            167.0,
+            322.5
+          ],
+          [
+            167.0,
+            332.5
+          ],
+          [
+            55.0,
+            332.5
+          ]
+        ],
+        "bbox_pdf_points": [
+          55.0,
+          322.5,
+          167.0,
+          332.5
+        ]
+      },
+      {
+        "element_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7:vl:8",
+        "id_origin": "project_generated",
+        "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7",
+        "source": "paddleocr_vl",
+        "source_list_index": 8,
+        "model_block_id": 8,
+        "model_block_order": 8,
+        "label": "text",
+        "content": "3M's manufacturing operations are affected by national, state and local environmental laws around the world. 3M has made, and plans to continue making necessary expenditures for compliance with applicable laws. 3M is also involved in remediation actions relating to environmental matters from past operations at certain sites (refer to \"Environmental Matters and Litigation\" in Note 16, Commitments and Contingencies).",
+        "bbox_image_pixels": [
+          108.0,
+          680.0,
+          1084.0,
+          736.0
+        ],
+        "polygon_pdf_points": [
+          [
+            54.0,
+            340.0
+          ],
+          [
+            542.0,
+            340.0
+          ],
+          [
+            542.0,
+            368.0
+          ],
+          [
+            54.0,
+            368.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          54.0,
+          340.0,
+          542.0,
+          368.0
+        ]
+      },
+      {
+        "element_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7:vl:9",
+        "id_origin": "project_generated",
+        "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7",
+        "source": "paddleocr_vl",
+        "source_list_index": 9,
+        "model_block_id": 9,
+        "model_block_order": 9,
+        "label": "text",
+        "content": "Environmental expenditures relating to existing conditions caused by past operations that do not contribute to current or future revenues are expensed. Reserves for liabilities for anticipated remediation costs are recorded on an undiscounted basis when they are probable and reasonably estimable, generally no later than the completion of feasibility studies, the Company's commitment to a plan of action, or approval by regulatory agencies. Environmental expenditures for capital projects that contribute to current or future operations generally are capitalized and depreciated over their estimated useful lives.",
+        "bbox_image_pixels": [
+          109.0,
+          752.0,
+          1084.0,
+          826.0
+        ],
+        "polygon_pdf_points": [
+          [
+            54.5,
+            376.0
+          ],
+          [
+            542.0,
+            376.0
+          ],
+          [
+            542.0,
+            413.0
+          ],
+          [
+            54.5,
+            413.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          54.5,
+          376.0,
+          542.0,
+          413.0
+        ]
+      },
+      {
+        "element_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7:vl:10",
+        "id_origin": "project_generated",
+        "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7",
+        "source": "paddleocr_vl",
+        "source_list_index": 10,
+        "model_block_id": 10,
+        "model_block_order": 10,
+        "label": "text",
+        "content": "In 2018, 3M expended approximately $27 million for capital projects related to protecting the environment. This amount excludes expenditures for remediation actions relating to existing matters caused by past operations that do not contribute to current or future revenues, which are expensed. Capital expenditures for environmental purposes have included pollution control devices — such as wastewater treatment plant improvements, scrubbers, containment structures, solvent recovery units and thermal oxidizers — at new and existing facilities constructed or upgraded in the normal course of business. Consistent with the Company's emphasis on environmental responsibility, capital expenditures (other than for remediation projects) for known projects are presently expected to be approximately $75 million over the next two years for new or expanded programs to build facilities or modify manufacturing processes to minimize waste and reduce emissions.",
+        "bbox_image_pixels": [
+          108.0,
+          842.0,
+          1078.0,
+          970.0
+        ],
+        "polygon_pdf_points": [
+          [
+            54.0,
+            421.0
+          ],
+          [
+            539.0,
+            421.0
+          ],
+          [
+            539.0,
+            485.0
+          ],
+          [
+            54.0,
+            485.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          54.0,
+          421.0,
+          539.0,
+          485.0
+        ]
+      },
+      {
+        "element_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7:vl:11",
+        "id_origin": "project_generated",
+        "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p7",
+        "source": "paddleocr_vl",
+        "source_list_index": 11,
+        "model_block_id": 11,
+        "model_block_order": 11,
+        "label": "number",
+        "content": "7",
+        "bbox_image_pixels": [
+          590.0,
+          1024.0,
+          601.0,
+          1040.0
+        ],
+        "polygon_pdf_points": [
+          [
+            295.0,
+            512.0
+          ],
+          [
+            300.5,
+            512.0
+          ],
+          [
+            300.5,
+            520.0
+          ],
+          [
+            295.0,
+            520.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          295.0,
+          512.0,
+          300.5,
+          520.0
+        ]
+      }
+    ],
+    "block_count": 12,
+    "character_count": 5009,
+    "input_image": {
+      "width": 1224,
+      "height": 1584,
+      "color_order": "BGR",
+      "coordinate_system": "rendered_page_image_pixels"
+    },
+    "elapsed_seconds": 616.5987696999218,
+    "coordinate_status": "ok"
+  },
+  "review": {
+    "status": "not_in_current_selection",
+    "path": null,
+    "reason": "selection_corrected_to_8_9_15"
+  },
+  "elapsed_seconds": 616.8202375001274,
+  "historical_review": {
+    "review_page_number": 1,
+    "status": "ok",
+    "drawn_count": 12,
+    "warnings": [],
+    "json_path": "documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/page_00007.json",
+    "path": "documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/review_vl.pdf"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "document_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943",
+  "id_origin": "project_generated_name_sha256",
+  "document_name": "0b85477387a9d0cc33fca0f4becaa0e5",
+  "status": "ok",
+  "pages": [
+    {
+      "page_number": 1,
+      "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p1",
+      "status": "ok",
+      "json_path": "documents/3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943/page_00001.json",
+      "native_status": "ok",
+      "parser_status": "ok"
+    },
+    {
+      "page_number": 3,
+      "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p3",
+      "status": "ok",
+      "json_path": "documents/3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943/page_00003.json",
+      "native_status": "ok",
+      "parser_status": "ok"
+    },
+    {
+      "page_number": 11,
+      "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11",
+      "status": "ok",
+      "json_path": "documents/3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943/page_00011.json",
+      "native_status": "ok",
+      "parser_status": "ok"
+    }
+  ],
+  "errors": [],
+  "source_url": "http://127.0.0.1:8080/raw/mmdocir_data/extracted/doc_pdfs/0b85477387a9d0cc33fca0f4becaa0e5.pdf",
+  "source_sha256": "004b6c63f504f3868b678e04339be94361434e405ff2cf54fbf84e894a71183c",
+  "source_pdf": "documents/3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943/source.pdf",
+  "source_page_count": 16,
+  "requested_page_numbers": [
+    1,
+    3,
+    11
+  ],
+  "review_pdf": "documents/3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943/review_vl.pdf"
+}

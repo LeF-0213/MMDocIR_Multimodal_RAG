@@ -1,0 +1,299 @@
+{
+  "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p10",
+  "id_origin": "project_generated",
+  "document_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82",
+  "document_name": "0e94b4197b10096b1f4c699701570fbf",
+  "page_number": 10,
+  "page_numbering": "pdf_viewer_1_based",
+  "page_index": 9,
+  "source_sha256": "13ff22623b747d1facbb405369001c6d3793322b24a56365bb8cef89db2f903e",
+  "status": "ok",
+  "geometry": {
+    "coordinate_system": "pymupdf_unrotated_page_points",
+    "origin": "top_left_of_unrotated_page",
+    "unit": "point_1/72_inch",
+    "rotation_degrees": 0,
+    "mediabox": [
+      0.0,
+      0.0,
+      720.0,
+      405.0
+    ],
+    "cropbox": [
+      0.0,
+      0.0,
+      720.0,
+      405.0
+    ],
+    "rotated_page_rect": [
+      0.0,
+      0.0,
+      720.0,
+      405.0
+    ]
+  },
+  "native": {
+    "status": "empty",
+    "text": "",
+    "raw": {
+      "width": 720.0,
+      "height": 405.0,
+      "blocks": []
+    },
+    "extraction_flags": 195,
+    "sort": false
+  },
+  "images": {
+    "status": "ok",
+    "options": {
+      "hashes": true,
+      "xrefs": true
+    },
+    "digest_algorithm": "md5",
+    "digest_encoding": "hex",
+    "items": [
+      {
+        "number": 0,
+        "bbox": [
+          191.25,
+          77.625,
+          528.75,
+          327.375
+        ],
+        "transform": [
+          337.5,
+          0.0,
+          -0.0,
+          249.75,
+          191.25,
+          77.625
+        ],
+        "width": 450,
+        "height": 333,
+        "colorspace": 3,
+        "cs-name": "DeviceRGB",
+        "xres": 96,
+        "yres": 96,
+        "bpc": 8,
+        "size": 37536,
+        "digest": "182461ca09f3e6497c6ca82df1fb1a24",
+        "has-mask": false,
+        "xref": 72
+      }
+    ]
+  },
+  "render": {
+    "status": "ok",
+    "dpi": 144,
+    "width": 1440,
+    "height": 810,
+    "coordinate_system": "rendered_page_image_pixels",
+    "origin": "top_left",
+    "unit": "pixel",
+    "render_color_order": "RGB",
+    "input_color_order": "BGR",
+    "annotation_included": true,
+    "pixmap_origin_pixels": [
+      0,
+      0
+    ],
+    "pixel_to_pdf_matrix": [
+      0.5,
+      0.0,
+      0.0,
+      0.5,
+      0.0,
+      0.0
+    ]
+  },
+  "page_image": {
+    "path": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/page_00010.png",
+    "sha256": "db5489fc2a4e81581606568c0c822c71f9c6fde58d6672aebf0f9c09101ce426"
+  },
+  "parsing": {
+    "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p10",
+    "source": "paddleocr_vl",
+    "status": "ok",
+    "raw": {
+      "res": {
+        "input_path": null,
+        "page_index": null,
+        "page_count": null,
+        "width": 1440,
+        "height": 810,
+        "model_settings": {
+          "use_doc_preprocessor": false,
+          "use_layout_detection": true,
+          "use_chart_recognition": true,
+          "use_seal_recognition": false,
+          "use_ocr_for_image_block": true,
+          "format_block_content": false,
+          "merge_layout_blocks": true,
+          "markdown_ignore_labels": [],
+          "return_layout_polygon_points": false
+        },
+        "parsing_res_list": [
+          {
+            "block_label": "paragraph_title",
+            "block_content": "Tracking the West Nile Virus",
+            "block_bbox": [
+              556,
+              160,
+              972,
+              272
+            ],
+            "block_id": 0,
+            "block_order": 1,
+            "group_id": 0
+          },
+          {
+            "block_label": "image",
+            "block_content": "Tracking the West Nile Virus\nHeight is Based on Number of Confirmed Human Cases\nShortest prism = 0 Tallest prism = 661\nApproximate Distance from the Mississippi River (miles)\n0 - 375\n375 - 750\n750 - 1125\n1125 - 1500",
+            "block_bbox": [
+              379,
+              163,
+              1058,
+              654
+            ],
+            "block_id": 1,
+            "block_order": null,
+            "group_id": 1
+          }
+        ],
+        "layout_det_res": {
+          "input_path": null,
+          "page_index": null,
+          "boxes": [
+            {
+              "cls_id": 17,
+              "label": "paragraph_title",
+              "score": 0.6422718167304993,
+              "coordinate": [
+                556,
+                160,
+                972,
+                272
+              ],
+              "order": 1
+            },
+            {
+              "cls_id": 14,
+              "label": "image",
+              "score": 0.7615790367126465,
+              "coordinate": [
+                379,
+                163,
+                1058,
+                654
+              ],
+              "order": null
+            }
+          ]
+        }
+      }
+    },
+    "blocks": [
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p10:vl:0",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p10",
+        "source": "paddleocr_vl",
+        "source_list_index": 0,
+        "model_block_id": 0,
+        "model_block_order": 1,
+        "label": "paragraph_title",
+        "content": "Tracking the West Nile Virus",
+        "bbox_image_pixels": [
+          556.0,
+          160.0,
+          972.0,
+          272.0
+        ],
+        "polygon_pdf_points": [
+          [
+            278.0,
+            80.0
+          ],
+          [
+            486.0,
+            80.0
+          ],
+          [
+            486.0,
+            136.0
+          ],
+          [
+            278.0,
+            136.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          278.0,
+          80.0,
+          486.0,
+          136.0
+        ]
+      },
+      {
+        "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p10:vl:1",
+        "id_origin": "project_generated",
+        "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p10",
+        "source": "paddleocr_vl",
+        "source_list_index": 1,
+        "model_block_id": 1,
+        "model_block_order": null,
+        "label": "image",
+        "content": "Tracking the West Nile Virus\nHeight is Based on Number of Confirmed Human Cases\nShortest prism = 0 Tallest prism = 661\nApproximate Distance from the Mississippi River (miles)\n0 - 375\n375 - 750\n750 - 1125\n1125 - 1500",
+        "bbox_image_pixels": [
+          379.0,
+          163.0,
+          1058.0,
+          654.0
+        ],
+        "polygon_pdf_points": [
+          [
+            189.5,
+            81.5
+          ],
+          [
+            529.0,
+            81.5
+          ],
+          [
+            529.0,
+            327.0
+          ],
+          [
+            189.5,
+            327.0
+          ]
+        ],
+        "bbox_pdf_points": [
+          189.5,
+          81.5,
+          529.0,
+          327.0
+        ]
+      }
+    ],
+    "block_count": 2,
+    "character_count": 243,
+    "input_image": {
+      "width": 1440,
+      "height": 810,
+      "color_order": "BGR",
+      "coordinate_system": "rendered_page_image_pixels"
+    },
+    "elapsed_seconds": 170.3123854000587,
+    "coordinate_status": "ok"
+  },
+  "review": {
+    "review_page_number": 4,
+    "status": "ok",
+    "drawn_count": 2,
+    "warnings": [],
+    "json_path": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/page_00010.json",
+    "path": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/review_vl.pdf"
+  },
+  "elapsed_seconds": 170.47035209997557
+}

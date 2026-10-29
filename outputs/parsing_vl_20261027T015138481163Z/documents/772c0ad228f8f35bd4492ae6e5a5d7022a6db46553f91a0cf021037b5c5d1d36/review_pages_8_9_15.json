@@ -1,0 +1,113 @@
+{
+  "schema_version": "project.parsing.review_selection.v1",
+  "created_at_utc": "2026-10-28T05:04:01.524949+00:00",
+  "document_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36",
+  "document_name": "3M_2018_10K",
+  "source_sha256": "faf10c53fc6f1a8aa346ec3db79145e3ae6fbb3753c8064924e174d0a973934d",
+  "page_numbering": "pdf_viewer_1_based",
+  "current_selected_page_numbers": [
+    8,
+    9,
+    15
+  ],
+  "newly_parsed_page_numbers": [
+    9
+  ],
+  "reused_page_numbers": [
+    8,
+    15
+  ],
+  "historical_page_numbers_not_in_current_selection": [
+    7
+  ],
+  "review_pdf": "documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/review_vl.pdf",
+  "review_pdf_sha256": "979440799f383e0521abba8f3e3e51df7a2694f8af24960a96cd188a47161718",
+  "pages": [
+    {
+      "page_number": 8,
+      "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p8",
+      "inference": "reused",
+      "json_path": "documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/page_00008.json",
+      "json_sha256": "3290a77fbab00c1ca8857229b9365f5096501d30b107af1e75a376262ce8eebf",
+      "page_image": {
+        "path": "documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/page_00008.png",
+        "sha256": "dd950f405fae6563dcc2418df99f471e52f05e6085d7b73bf4e63b4db7646818"
+      },
+      "review": {
+        "review_page_number": 1,
+        "status": "ok",
+        "drawn_count": 6,
+        "warnings": [],
+        "json_path": "documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/page_00008.json",
+        "path": "documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/review_vl.pdf"
+      },
+      "execution_record": "run.json",
+      "status": "ok"
+    },
+    {
+      "page_number": 9,
+      "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p9",
+      "inference": "new",
+      "json_path": "documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/page_00009.json",
+      "json_sha256": "210777102a036d8e13f128963d1390f87493bdc9856632f519dc7fb38c353c80",
+      "page_image": {
+        "path": "documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/page_00009.png",
+        "sha256": "0b8c71bb1332ac41835a9da7f0cb3da0251811b9fb6ac1810ab004af999e15f5"
+      },
+      "review": {
+        "review_page_number": 2,
+        "status": "ok",
+        "drawn_count": 19,
+        "warnings": [],
+        "json_path": "documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/page_00009.json",
+        "path": "documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/review_vl.pdf"
+      },
+      "execution_record": "documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/page_00009_run.json",
+      "status": "ok"
+    },
+    {
+      "page_number": 15,
+      "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p15",
+      "inference": "reused",
+      "json_path": "documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/page_00015.json",
+      "json_sha256": "f5d4d54b1d028c66a347cdc35aa8a3d4b0db4c643fad900be0539c912848b74e",
+      "page_image": {
+        "path": "documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/page_00015.png",
+        "sha256": "eb87a5224f0ec429c57fb377c935e4b32d66f9cd67411b314728dfcab9ca84cf"
+      },
+      "review": {
+        "review_page_number": 3,
+        "status": "ok",
+        "drawn_count": 18,
+        "warnings": [],
+        "json_path": "documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/page_00015.json",
+        "path": "documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/review_vl.pdf"
+      },
+      "execution_record": "run.json",
+      "status": "ok"
+    }
+  ],
+  "validation": {
+    "source_hash_match": true,
+    "parser_settings_match": true,
+    "package_versions_match": true,
+    "code_hashes_match": true,
+    "rendered_png_hashes_match": true,
+    "pdf_annotations_match_json": true
+  },
+  "historical_document_files_sha256": {
+    "document.json": "ff2dd8e9043defc061b57c8b41e64bae4c230c20666f022872d89d7c871d56de",
+    "page_00007.json": "0f4a0b0abb88646310ac8c65d9fd2c97e375c5782f05247077ac151e837060da",
+    "page_00007.png": "9e81728ad14a9fcb270ed81417890da1110275d761f30bffb617fc1c7231cbd8",
+    "page_00008.json": "d93dbf646258815f00c64e646fc850fa385ab317b2ac232ea570acc5cf80af36",
+    "page_00008.png": "dd950f405fae6563dcc2418df99f471e52f05e6085d7b73bf4e63b4db7646818",
+    "page_00015.json": "82155b425acb8261a090a7a3efa7ec0ccb68c5ff02edf00824106ffc60abc4e7",
+    "page_00015.png": "eb87a5224f0ec429c57fb377c935e4b32d66f9cd67411b314728dfcab9ca84cf",
+    "review_vl.pdf": "fb925adc8fa6f8eea711407568fb4f5ee860d9cddf11a11b231e1599685af30a",
+    "source.pdf": "faf10c53fc6f1a8aa346ec3db79145e3ae6fbb3753c8064924e174d0a973934d"
+  },
+  "historical_run_and_summary_are_unchanged": true,
+  "quality_evaluation": "not_run",
+  "historical_model_outputs_preserved": true,
+  "historical_hashes_precede_review_metadata_update": true
+}
