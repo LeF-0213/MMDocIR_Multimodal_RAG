@@ -17,13 +17,13 @@ PDF의 텍스트·표·수식·그림을 원본 위치와 연결하고, 검색 �
 | 파싱 | PaddleOCR-VL v1.6 주 경로·PP-StructureV3 비교 경로, 좌표 연결·저장·실행 코드 |
 | 실행 연결 | VL의 `parser_options()`·`build_parser()` 인자를 `run.py`와 맞추고 공통 추론 모듈 사용 |
 | 검증 | 모델 없는 모의 결과·PDF 텍스트 추출·회전·CropBox 좌표 검증 수행 |
-| 실제 실행 | 기존 VL 실행의 27페이지 처리 기록: `ok` 26개·`partial` 1개. 처리 상태이며 품질 판정이 아님 |
+| 실제 실행 | 기존 VL 실행의 27페이지 처리 기록: `ok` 26개·`partial` 1개, CPU 약 13.6시간. 처리 상태이며 품질 판정이 아님 |
 | 추가 실행 | 3M 9페이지 VL 파싱 완료(`ok`). 기존 문서 폴더에 JSON·PNG를 추가하고 검토 PDF를 8·9·15페이지로 갱신 |
 | Structure 실행 | PP-StructureV3 27페이지(3M 8·9·15 포함) 처리 기록: `ok` 27개, CPU 약 3.4시간. 처리 상태이며 품질 판정이 아님 |
 | 품질 검토 | 2026-10-30 선정 27페이지의 이미지·JSON 정성 비교. 반복·원문에 없는 내용, 문장–bbox 불일치, 표 행·열 대응 오류 확인. 정확도 점수는 미측정 |
 | 남은 확인 | VL 영역 병합 옵션 비교, 반복·환각 식별, 문장 위치 복구와 표 구조 검증. 개선 재실행은 미수행 |
 | 규칙 검사 구현 | `parsing.validate_run`: 입력 해시·ID·좌표·반복·병합 그룹·표 격자 검사. 테스트 20개와 실제 54페이지 실행 확인. 원문 의미 정확도는 미측정 |
-| 이후 단계 | 청킹·임베딩·인덱스·검색·리랭킹·Recall@3 평가는 미구현 |
+| 이후 단계 | 청킹·임베딩·인덱스·검색·리랭킹·Recall@1·@3·@10 평가는 미구현 |
 
 이전 PyMuPDF 실행은 8개 문서·24페이지 기록이다. 현재 27페이지나 새 모델 파이프라인의 검증 결과로 취급하지 않는다.
 선정 목록은 [configs/selection.json](configs/selection.json), 문서별 관찰은 [DATA_SPEC.md](docs/DATA_SPEC.md)에 기록했다.
@@ -272,6 +272,42 @@ outputs/<실행명>/
 페이지 PNG에는 bbox를 덧그리지 않는다. bbox는 원본 페이지를 복사한 검토 PDF에 표시한다.
 표시 단위는 모델이 반환한 텍스트·표·수식·그림 등의 레이아웃 영역이다. 단어별·표 셀별 상자를 따로 그리는 기능은 포함하지 않는다.
 이미지 픽셀 좌표와 PDF 좌표는 페이지 JSON의 `parsing.blocks`에 함께 보존한다.
+
+### 페이지 JSON 필드와 ID·좌표 연결
+
+페이지 JSON의 최상위 필드는 위 흐름도의 단계별 결과에 대응한다.
+
+| 필드 | 만드는 단계 | 내용 |
+|---|---|---|
+| `geometry` | `pdf_parser.prepare_page()` | 회전·MediaBox·CropBox. 좌표 기준은 회전 전 PDF point |
+| `native`·`images` | `pdf_parser.prepare_page()` | PyMuPDF 텍스트층과 이미지 배치 |
+| `render`·`page_image` | `pdf_parser.prepare_page()`·`run.py` | 렌더링 DPI·크기, 픽셀→PDF 변환 행렬, PNG 경로·해시 |
+| `parsing.raw` | `model_result.py` | 모델 결과 전체. JSON 기본 타입으로만 바꾸고 내용은 고치지 않음 |
+| `parsing.blocks` | `model_result.py`·`pdf_parser.add_pdf_coordinates()` | `parsing_res_list`를 공통 필드로 옮긴 영역 목록과 PDF 좌표 |
+| `review` | `review_pdf.py` | 검토 PDF의 페이지 번호·표시한 영역 수·경고 |
+
+ID는 모두 프로젝트에서 만든 값이며 `id_origin`에 표시한다. 데이터셋 공식 ID와의 매핑은 미확인이다.
+
+```text
+document_id = SHA-256(문서명)
+page_id     = <document_id>:p<페이지 번호>
+element_id  = <page_id>:<vl|structure>:<모델 결과 목록 순번>
+```
+
+실제 VL 결과의 `3M_2018_10K` 9페이지 영역 하나다(`content`는 앞부분만 표시).
+
+```json
+{"element_id": "772c…:p9:vl:1", "source": "paddleocr_vl", "label": "table",
+ "content": "<table><tr><td>Name</td><td>Age</td>…",
+ "bbox_image_pixels": [111.0, 114.0, 1093.0, 484.0],
+ "bbox_pdf_points":   [55.5, 57.0, 546.5, 242.0]}
+```
+
+144 DPI 렌더링에서는 1 point가 2 pixel(144/72)이므로 두 bbox가 2배 관계다.
+회전이나 CropBox 원점이 있는 페이지는 `render.pixel_to_pdf_matrix`로 변환하므로 단순 배율과 다를 수 있다.
+`blocks`의 필드 이름은 두 파서가 같지만 내용 형식은 같지 않다. 예를 들어 표 `content`는
+VL이 `<table>…`, Structure가 `<html><body><table>…`로 시작하고, 라벨 이름도 파서마다 다를 수 있다.
+청킹 단계는 `parsing.blocks`를 입력으로 받고, `element_id`로 원본 페이지와 좌표를 거슬러 찾는다.
 
 ## 저장 결과의 규칙 검사
 
