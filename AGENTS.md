@@ -17,7 +17,7 @@ MMDocIR은 우선 검토할 데이터셋이다.
 
 ## Project Learning Plan
 
-- 상세 학습·연구 계획은 [docs/RAG_LEARNING_PLAN.md](docs/RAG_LEARNING_PLAN.md)를 참조한다.
+- 상세 학습·연구 계획은 [docs/planning/RAG_LEARNING_PLAN.md](docs/planning/RAG_LEARNING_PLAN.md)를 참조한다.
 - 기본 계획은 전달받은 「RAG 5단계 실무 실습 커리큘럼」의 내용으로 구성한다. 프로젝트별 방법·모델·설정·추가 실험은 대화에서 확인한 뒤 구체화하고, 기본 커리큘럼과 구분해 기록한다.
 - 시작 전 데이터 확인 항목의 실제 값이 부족하면 미확인으로 표시하고, 그 정보에 의존하는 구현·선정 전에 질문한다. 이미 확인된 값은 다시 묻지 않는다.
 - 전체 5단계를 진행하되 OCR·표·시각 자료 처리는 데이터와 실패 원인에 따라 선택하고, 적용·생략 이유와 검증 결과를 기록한다.
