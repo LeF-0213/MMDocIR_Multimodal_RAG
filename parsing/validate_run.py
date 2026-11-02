@@ -1,0 +1,199 @@
+"""
+기존 파싱 실행 폴더를 읽고 품질 검사 보고서를 만드는 실행 모듈이다.
+선정 목록의 문서·페이지만 읽어 3M의 과거 7페이지가 섞이는 일을 피한다.
+기본 실행은 콘솔 출력만 한다. --output 지정 시 입력 실행 폴더 밖에 새 JSON 하나를 만든다.
+모델 로딩·설치·네트워크 호출·기존 파일 덮어쓰기를 하지 않는다.
+"""
+
+# 표준 라이브러리: argparse는 CLI, json은 입력·보고서, hashlib는 파일 동일성을 처리한다.
+# sys는 실행 환경, Counter는 요약, datetime은 UTC 실행 시각을 기록한다.
+# Path는 경로·파일 접근을, perf_counter는 검사 소요 시간 측정을 맡는다.
+import argparse
+import hashlib
+import json
+import sys
+from collections import Counter
+from datetime import datetime, timezone
+from pathlib import Path
+from time import perf_counter
+
+# 내부 검사 모듈은 파일을 바꾸지 않고 페이지별 측정값·검토 항목을 반환한다.
+from .quality_checks import LIMITS, RULE_VERSION, inspect_page
+
+
+def file_hash(path):
+    """큰 PDF도 한 번에 메모리에 올리지 않도록 나누어 SHA-256을 계산한다."""
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def load_json(path):
+    """Python 기본값이 허용하는 비표준 NaN·Infinity도 거부한다."""
+    def reject(value):
+        raise ValueError(f"표준 JSON 숫자가 아닙니다: {value}")
+    return json.loads(path.read_text(encoding="utf-8"), parse_constant=reject)
+
+
+def inspect_run(root, selection_path, pdf_dir):
+    """현재 선정 목록을 기준으로 페이지를 검사하고 원본 참조·해시를 남긴다."""
+    if not root.is_dir():
+        raise ValueError("파싱 실행 폴더가 존재하지 않습니다.")
+    selection = load_json(selection_path)
+    if not isinstance(selection, dict):
+        raise ValueError("선정 목록은 객체여야 합니다.")
+    if selection.get("page_numbering") != "pdf_viewer_1_based":
+        raise ValueError("선정 목록의 페이지 번호 기준을 확인해야 합니다.")
+    documents = selection["documents"]
+    if not isinstance(documents, list) or not documents:
+        raise ValueError("선정 문서 목록이 비어 있거나 잘못됐습니다.")
+    results = []
+    seen_documents, seen_elements = set(), set()
+    for document in documents:
+        name = document["document_name"]
+        numbers = document["page_numbers"]
+        if (not isinstance(name, str) or not name or Path(name).name != name or name in (".", "..")
+                or "\\" in name or "/" in name):
+            raise ValueError("문서명은 경로가 아닌 파일명이어야 합니다.")
+        if name in seen_documents:
+            raise ValueError("선정 목록에 같은 문서가 중복됐습니다.")
+        seen_documents.add(name)
+        if (not isinstance(numbers, list) or not numbers
+                or any(type(n) is not int or n < 1 for n in numbers)
+                or len(numbers) != len(set(numbers))):
+            raise ValueError("페이지 번호에는 중복 없는 양의 정수가 필요합니다.")
+        doc_id = hashlib.sha256(name.encode("utf-8")).hexdigest()
+        try:
+            source_hash = file_hash(pdf_dir / f"{name}.pdf")
+            source_error = None
+        except OSError as exc:
+            source_hash, source_error = None, str(exc)
+
+        for number in sorted(numbers):
+            path = root / "documents" / doc_id / f"page_{number:05d}.json"
+            page_id = f"{doc_id}:p{number}"
+            report = {
+                "page_id": page_id, "processing_status": None,
+                "review_status": "needs_review", "block_count": None,
+                "tables": [], "findings": [],
+            }
+            try:
+                record = load_json(path)
+                report = inspect_page(record)
+                report["input_json_sha256"] = file_hash(path)
+                expected_png = path.with_suffix(".png").relative_to(root).as_posix()
+                if record["page_image"]["path"] != expected_png:
+                    report["findings"].append({
+                        "rule": "image_reference", "status": "confirmed_error",
+                        "element_id": None,
+                        "evidence": {"expected": expected_png,
+                                     "actual": record["page_image"]["path"]},
+                    })
+                ids = {b["element_id"] for b in record["parsing"]["blocks"]}
+                for eid in sorted(ids & seen_elements):
+                    report["findings"].append({
+                        "rule": "duplicate_id", "status": "confirmed_error",
+                        "element_id": eid,
+                        "evidence": {"reason": "다른 페이지에서도 사용된 ID"},
+                    })
+                seen_elements.update(ids)
+                expected = {
+                    "document_name": name, "document_id": doc_id,
+                    "page_number": number, "page_id": page_id,
+                    "page_numbering": "pdf_viewer_1_based",
+                    "page_index": number - 1,
+                }
+                for key, value in expected.items():
+                    if record.get(key) != value:
+                        report["findings"].append({
+                            "rule": "page_identity", "status": "confirmed_error",
+                            "element_id": None,
+                            "evidence": {"field": key, "expected": value,
+                                         "actual": record.get(key)},
+                        })
+                for label, actual, expected_hash, error in [
+                    ("source_hash", source_hash, record.get("source_sha256"), source_error),
+                    ("image_hash", None, record["page_image"]["sha256"], None),
+                ]:
+                    if label == "image_hash":
+                        try:
+                            actual = file_hash(path.with_suffix(".png"))
+                        except OSError as exc:
+                            error = str(exc)
+                    report[label] = actual
+                    if actual is None or actual != expected_hash:
+                        report["findings"].append({
+                            "rule": label,
+                            "status": "unresolved" if actual is None else "confirmed_error",
+                            "element_id": None,
+                            "evidence": {"expected": expected_hash, "actual": actual,
+                                         "reason": error},
+                        })
+            except (OSError, ValueError, KeyError, TypeError, AttributeError) as exc:
+                report["findings"].append({
+                    "rule": "page_inspection", "status": "unresolved",
+                    "element_id": None,
+                    "evidence": {"reason": str(exc)},
+                })
+            report.update({
+                "expected_page_id": page_id,
+                "document_name": name, "page_number": number,
+                "input_json": str(path),
+                "review_status": "needs_review" if report["findings"] else "not_reviewed",
+            })
+            results.append(report)
+    counts = Counter(
+        item["rule"] for page in results for item in page["findings"]
+    )
+    return {
+        "schema_version": "project.parsing_quality.v1",
+        "rule_version": RULE_VERSION, "limits": dict(LIMITS),
+        "input_run": str(root), "selection": str(selection_path),
+        "selection_sha256": file_hash(selection_path),
+        "pdf_directory": str(pdf_dir),
+        "summary": {
+            "page_count": len(results),
+            "pages_needing_review": sum(bool(p["findings"]) for p in results),
+            "finding_counts": dict(counts),
+            "quality_accuracy": None,
+        },
+        "pages": results,
+    }
+
+
+def main():
+    cli = argparse.ArgumentParser(description="저장된 파싱 결과의 규칙 검사")
+    cli.add_argument("--run-dir", type=Path, required=True)
+    cli.add_argument("--selection", type=Path, default=Path("configs/selection.json"))
+    cli.add_argument("--pdf-dir", type=Path, default=Path("data/doc_pdfs"))
+    cli.add_argument("--output", type=Path)
+    args = cli.parse_args()
+    root = args.run_dir.resolve()
+    if args.output and args.output.resolve().is_relative_to(root):
+        cli.error("검사 보고서는 입력 실행 폴더 밖에 저장해야 합니다.")
+    started = perf_counter()
+    try:
+        report = inspect_run(root, args.selection.resolve(), args.pdf_dir.resolve())
+        report["checked_at_utc"] = datetime.now(timezone.utc).isoformat()
+        report["python"] = sys.version
+        report["elapsed_seconds"] = perf_counter() - started
+        report["code_sha256"] = {
+            path.name: file_hash(path)
+            for path in (Path(__file__), Path(__file__).with_name("quality_checks.py"))
+        }
+        serialized = json.dumps(report, ensure_ascii=False, indent=2, allow_nan=False)
+        if args.output:
+            # x는 파일이 존재하면 실패한다. 부모 폴더를 자동 생성하지 않는다.
+            with args.output.open("x", encoding="utf-8") as stream:
+                stream.write(serialized + "\n")
+        print(json.dumps(report["summary"], ensure_ascii=False, indent=2))
+        if args.output:
+            print(f"보고서 저장: {args.output}")
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        cli.exit(2, f"검사 실행 실패: {exc}\n")
+
+
+if __name__ == "__main__":
+    main()
