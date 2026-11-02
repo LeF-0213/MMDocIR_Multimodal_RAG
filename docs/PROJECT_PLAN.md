@@ -7,6 +7,10 @@
 아래 단계는 현재 검색 연구의 실행 순서이며 기본 커리큘럼을 대체하지 않는다.
 계획·구현·실측을 구분하며 모델·방법·프레임워크 선택은 근거와 결과에 따라 변경할 수 있다.
 
+2026-11-02 기준 파싱의 정성 검토는 [PARSING_REVIEW.md](PARSING_REVIEW.md)에,
+그 절차를 파싱 뒤 공통 검사로 적용하는 설계는 [PARSING_VALIDATION_PLAN.md](PARSING_VALIDATION_PLAN.md)에 기록했다.
+검증 단계 구현·추가 모델 실행과 개선 효과 측정은 아직 수행하지 않았다.
+
 ## 현재 범위와 확인할 데이터
 
 - 입력과 관찰: [selection.json](../configs/selection.json), [DATA_SPEC.md](DATA_SPEC.md).
