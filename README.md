@@ -39,7 +39,7 @@ PDF의 텍스트·표·수식·그림을 원본 위치와 연결하고, 검색 �
 PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 기록과 이번 재실행을 구분한다.
 두 결과를 자동으로 합치거나 한 파서를 정답 판정기로 쓰지 않고 원본 PDF와 대조한다.
 
-[파서별 문제와 공통 파싱 문제](docs/parsing/PARSING_REVIEW.md)에 VL·Structure별 문제,
+[파서별 문제와 공통 파싱 문제](docs/parsing_log/PARSING_REVIEW.md)에 VL·Structure별 문제,
 두 파서의 공통 인식 문제, PDF 텍스트층 추출, 프로젝트 변환·저장의 제약을 나눠 정리했다.
 평가 범위·원본 근거·검토 한계·다음 실험도 함께 기록했다.
 2026-11-02 코드 확인에서 VL의 `merge_layout_blocks=True`와 병합 그룹을 확인했다.
@@ -49,7 +49,7 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 병합·반복 제거 함수를 샘플 입력으로 확인했다. 모델 재추론은 수행하지 않았다.
 실행 조건 기록과 규칙 검사는 구현됐고, 변경 전후의 품질 비교는 미구현이다.
 
-[파싱 품질 검증 단계 계획](docs/parsing/PARSING_VALIDATION_PLAN.md)은 위 검토 절차를 VL·Structure 뒤에 적용하는 설계안이다.
+[파싱 품질 검증 단계 계획](docs/parsing_log/PARSING_VALIDATION_PLAN.md)은 위 검토 절차를 VL·Structure 뒤에 적용하는 설계안이다.
 규칙 검사·원본 근거 정렬·선택적 시각 검토·재인식·청킹 전달 정책과 완료 기준을 정리했다.
 첫 규칙 검사 코드는 구현해 실행했고, 추가 모델 호출·문장 위치 복구·표 의미 대응 검증은 아직 미구현이다.
 
@@ -76,7 +76,7 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 │  │  └─ RAG_LEARNING_PLAN.md # 기본 학습 커리큘럼
 │  ├─ data/
 │  │  └─ DATA_SPEC.md     # 선정 문서·페이지·관찰 특성
-│  └─ parsing/
+│  └─ parsing_log/
 │     ├─ PARSING_REVIEW.md # 파서별·공통·텍스트층·저장 문제
 │     └─ PARSING_VALIDATION_PLAN.md # 품질 검증 구현 계획
 ├─ requirements.txt
@@ -366,7 +366,7 @@ VLM/API 검토는 선택지로 유지하며 현재 검사에는 사용하지 않
 
 ## 문서와 작업 방식
 
-문서는 `docs/planning/`의 계획, `docs/data/`의 데이터 명세, `docs/parsing/`의 파싱 검토·검증으로 나눈다.
+문서는 `docs/planning/`의 계획, `docs/data/`의 데이터 명세, `docs/parsing_log/`의 파싱 검토·검증으로 나눈다.
 학습 순서는 기본 학습 계획에서, 모델별 문제와 이미지 API·변경 효과 측정 상태는 파싱 문제 정리에서 확인한다.
 계획·정성 관찰·직접 실행한 검사 결과를 구분해 읽는다.
 
@@ -374,8 +374,8 @@ VLM/API 검토는 선택지로 유지하며 현재 검사에는 사용하지 않
 |---|---|
 | [PROJECT_PLAN.md](docs/planning/PROJECT_PLAN.md) | 모델·프레임워크 선정 근거, 내부 구조·대안, 세 채널 결합·리랭킹·평가 설계, 다음 실험 |
 | [DATA_SPEC.md](docs/data/DATA_SPEC.md) | 선정 문서·페이지·관찰 특성 |
-| [PARSING_REVIEW.md](docs/parsing/PARSING_REVIEW.md) | VL·Structure별 문제, 공통·텍스트층·저장 문제, 이미지 API, 변경 기록·효과 측정 상태 |
-| [PARSING_VALIDATION_PLAN.md](docs/parsing/PARSING_VALIDATION_PLAN.md) | 공통 품질 검증 단계의 입력·출력, 규칙·원본 대조·재인식, 지표·완료 기준 |
+| [PARSING_REVIEW.md](docs/parsing_log/PARSING_REVIEW.md) | VL·Structure별 문제, 공통·텍스트층·저장 문제, 이미지 API, 변경 기록·효과 측정 상태 |
+| [PARSING_VALIDATION_PLAN.md](docs/parsing_log/PARSING_VALIDATION_PLAN.md) | 공통 품질 검증 단계의 입력·출력, 규칙·원본 대조·재인식, 지표·완료 기준 |
 | [RAG_LEARNING_PLAN.md](docs/planning/RAG_LEARNING_PLAN.md) | 별도로 보존하는 기본 학습 커리큘럼 |
 | [AGENTS.md](AGENTS.md) | 탑다운 학습, 코드·주석·글쓰기, 파일 변경·커밋·푸시 규칙 |
 
