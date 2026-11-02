@@ -4,6 +4,8 @@ run.py가 전달한 BGR 페이지 이미지를 model_result.py의 저장 규칙�
 문자 OCR은 PP-OCRv6 medium, 수식 인식은 실행 시 지정한 모델을 사용한다.
 모델 원본 출력과 영역을 반환하며 PDF 좌표 변환·저장은 run.py에 맡긴다.
 모델 초기화 시 다운로드와 캐시 생성이 발생할 수 있다.
+생성자 설정은 parser_options(), 페이지별 predict 설정은 predict_options()가 정하며
+run.py는 같은 함수의 반환값을 run.json에 기록한다.
 
 옵션 근거는 설치된 PaddleOCR 3.7.0의 PPStructureV3 생성자와 predict다.
 https://github.com/PaddlePaddle/PaddleOCR/blob/v3.7.0/paddleocr/_pipelines/pp_structurev3.py
@@ -66,6 +68,14 @@ def parser_options(device: str, formula_model: str, cpu_threads: int = 4) -> dic
     }
 
 
+def predict_options() -> dict:
+    """페이지마다 predict()에 넘길 설정이다. run.py는 같은 함수로 run.json에 기록한다."""
+    # 표 셀 검출·OCR 결과 배정 같은 표 처리 옵션은 v3.7.0에서 predict 전용 인자다.
+    # 현재는 아무것도 넘기지 않아 라이브러리 기본값을 사용한다.
+    # 빈 딕셔너리는 "기본값을 확인했다"는 뜻이 아니며, 실제 기본값은 라이브러리 버전에 따른다.
+    return {}
+
+
 def build_parser(device: str, formula_model: str, cpu_threads: int = 4):
     """명시한 설정으로 모델을 로딩한다. 초기화 실패는 실행부에 전달한다."""
     # PaddleOCR의 PPStructureV3는 레이아웃·OCR·표·수식 모델을 연결한다.
@@ -77,4 +87,11 @@ def build_parser(device: str, formula_model: str, cpu_threads: int = 4):
 
 def parse_image(parser, image: np.ndarray, page_id: str) -> dict:
     """VL과 구분한 source·요소 ID로 원본 결과와 영역을 반환한다."""
-    return predict_page(parser, image, page_id, "pp_structure_v3", "structure")
+    return predict_page(
+        parser,
+        image,
+        page_id,
+        "pp_structure_v3",
+        "structure",
+        predict_options=predict_options(),
+    )
