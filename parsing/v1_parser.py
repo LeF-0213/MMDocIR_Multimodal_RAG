@@ -9,7 +9,9 @@ run.py가 이 모듈을 호출한다.
 모델 초기화 시 가중치 다운로드와 캐시 생성이 발생할 수 있다.
 
 추론·JSON 변환·블록 정리·오류·시간 기록은 model_result.py에 위임한다.
-설정 딕셔너리는 run.py의 실행 기록과 모델 초기화에 함께 사용한다.
+생성자 설정은 parser_options(), 페이지별 predict 설정은 predict_options()가 정한다.
+두 함수의 반환값을 run.py의 실행 기록과 실제 초기화·추론에 함께 사용해
+run.json에 남긴 설정과 실제로 적용한 설정이 어긋나지 않게 한다.
 
 설정 근거: PaddleOCR v3.7.0 생성자·predict와 공식 사용법.
 https://github.com/PaddlePaddle/PaddleOCR/blob/v3.7.0/paddleocr/_pipelines/paddleocr_vl.py
@@ -104,6 +106,19 @@ def parser_options(device: str, cpu_threads: int = 4) -> dict:
     }
 
 
+def predict_options() -> dict:
+    """페이지마다 predict()에 넘길 설정이다. run.py는 같은 함수로 run.json에 기록한다."""
+    # 반복 억제·생성 길이 같은 생성 설정은 v3.7.0에서 생성자가 아닌 predict 인자다.
+    # 이 설정을 바꿀 때는 이 함수만 고친다. 호출할 때마다 새 딕셔너리를 반환하므로
+    # 호출부에서 값을 바꿔도 다음 호출의 설정에 영향을 주지 않는다.
+    return {
+        # rect는 공식 predict 옵션이다. 현재 공통 bbox 스키마가 축 정렬 사각형이므로
+        # 영역을 원본 PDF 위에 표시할 수 있도록 사각형 bbox로 받는다.
+        # 휘어진 영역의 정밀한 윤곽을 그대로 보존하는 설정은 아니다.
+        "layout_shape_mode": "rect",
+    }
+
+
 def build_parser(device: str, cpu_threads: int = 4):
     """명시한 설정으로 모델을 한 번 로딩한다. 실패는 run.py에 전달한다."""
     options = parser_options(device, cpu_threads)
@@ -122,9 +137,6 @@ def normalize_blocks(raw: dict, page_id: str) -> list[dict]:
 
 def parse_image(parser, image: np.ndarray, page_id: str) -> dict:
     """원본 결과와 공통 블록을 반환한다. PDF 좌표는 run.py에서 추가한다."""
-    # rect는 공식 predict 옵션이다. 현재 공통 bbox 스키마가 축 정렬 사각형이므로
-    # 영역을 원본 PDF 위에 표시할 수 있도록 사각형 bbox로 받는다.
-    # 휘어진 영역의 정밀한 윤곽을 그대로 보존하는 설정은 아니다.
     # 원본 JSON은 함께 보존해 추가로 반환된 모델 필드가 사라지지 않게 한다.
     return predict_page(
         parser,
@@ -132,6 +144,6 @@ def parse_image(parser, image: np.ndarray, page_id: str) -> dict:
         page_id,
         "paddleocr_vl",
         "vl",
-        predict_options={"layout_shape_mode": "rect"},
+        predict_options=predict_options(),
     )
 

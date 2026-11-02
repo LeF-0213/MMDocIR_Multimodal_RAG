@@ -363,9 +363,9 @@ def main(argv: list[str] | None = None) -> int:
             p.name: sha256(p.read_bytes())
             for p in sorted(Path(__file__).parent.glob("*.py"))
         },
-        "predict_options": (
-            {"layout_shape_mode": "rect"} if args.parser == "vl" else {}
-        ),
+        # 어댑터의 parse_image()가 실제 추론에 넘기는 값과 같은 함수에서 가져온다.
+        # 값을 여기에 따로 적으면 어댑터만 고쳤을 때 기록이 실제 설정과 어긋난다.
+        "predict_options": adapter.predict_options(),
     }
 
     # 중단되어도 실행 조건은 남는다. 최종 결과는 별도 summary.json으로 저장한다.

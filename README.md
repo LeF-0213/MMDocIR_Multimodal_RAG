@@ -209,6 +209,8 @@ python -m pip install -r requirements.txt
 
 `parser_options(device, cpu_threads)`는 모델을 로딩하지 않고 설정 딕셔너리를 반환한다.
 `build_parser(device, cpu_threads)`는 이 설정으로 모델을 초기화한다.
+`predict_options()`는 페이지마다 `predict()`에 넘기는 설정을 반환한다. 반복 억제·생성 길이 같은 생성 설정과
+Structure의 표 처리 옵션은 생성자가 아닌 이 함수에서 정한다. `run.json`의 `predict_options`도 같은 함수의 반환값으로 기록한다.
 VL의 JSON 목록 변환과 시간 측정은 공통 모듈을 사용한다. 기존 결과의 정성 검토에서 결함을 확인했으며,
 정확도 측정과 개선 설정의 재실행은 아직 수행하지 않았다.
 
