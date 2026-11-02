@@ -17,9 +17,9 @@ PDF의 텍스트·표·수식·그림을 원본 위치와 연결하고, 검색 �
 | 파싱 | PaddleOCR-VL v1.6 주 경로·PP-StructureV3 비교 경로, 좌표 연결·저장·실행 코드 |
 | 실행 연결 | VL의 `parser_options()`·`build_parser()` 인자를 `run.py`와 맞추고 공통 추론 모듈 사용 |
 | 검증 | 모델 없는 모의 결과·PDF 텍스트 추출·회전·CropBox 좌표 검증 수행 |
-| 실제 실행 | 기존 VL 실행의 27페이지 처리 기록: `ok` 26개·`partial` 1개, CPU 약 13.6시간. 처리 상태이며 품질 판정이 아님 |
+| 실제 실행 | 기존 VL 실행의 27페이지 처리 기록: `ok` 26개·`partial` 1개. 처리 상태이며 품질 판정이 아님 |
 | 추가 실행 | 3M 9페이지 VL 파싱 완료(`ok`). 기존 문서 폴더에 JSON·PNG를 추가하고 검토 PDF를 8·9·15페이지로 갱신 |
-| Structure 실행 | PP-StructureV3 27페이지(3M 8·9·15 포함) 처리 기록: `ok` 27개, CPU 약 3.4시간. 처리 상태이며 품질 판정이 아님 |
+| Structure 실행 | PP-StructureV3 27페이지(3M 8·9·15 포함) 처리 기록: `ok` 27개. 처리 상태이며 품질 판정이 아님 |
 | 품질 검토 | 2026-10-30 선정 27페이지의 이미지·JSON 정성 비교. 반복·원문에 없는 내용, 문장–bbox 불일치, 표 행·열 대응 오류 확인. 정확도 점수는 미측정 |
 | 남은 확인 | VL 영역 병합 옵션 비교, 반복·환각 식별, 문장 위치 복구와 표 구조 검증. 개선 재실행은 미수행 |
 | 규칙 검사 구현 | `parsing.validate_run`: 입력 해시·ID·좌표·반복·병합 그룹·표 격자 검사. 테스트 20개와 실제 54페이지 실행 확인. 원문 의미 정확도는 미측정 |
@@ -34,6 +34,7 @@ PDF의 텍스트·표·수식·그림을 원본 위치와 연결하고, 검색 �
 추가 실행 조건은 `page_00009_run.json`, 현재 검토 대상은 `document.json`과 `review_pages_8_9_15.json`에 기록했다.
 실행 루트의 `run.json`·`summary.json`은 최초 실행 기록으로 보존하므로 추가 실행의 전체 요약으로 읽지 않는다.
 페이지 번호는 PDF 뷰어의 첫 페이지를 1로 센다. 실제 데이터셋 revision·공식 ID·관련성 라벨 매핑은 미확인이다.
+각 실행의 환경과 소요 시간은 실행 폴더의 `run.json`·`summary.json`에 기록했다.
 
 PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 기록과 이번 재실행을 구분한다.
 두 결과를 자동으로 합치거나 한 파서를 정답 판정기로 쓰지 않고 원본 PDF와 대조한다.
@@ -185,17 +186,22 @@ flowchart TD
 전체 실행이 끝나면 `summary.json`을 저장한다.
 PDF에서 직접 추출한 텍스트층과 모델 인식 결과는 따로 보존하며, 모델에는 페이지 이미지를 입력한다.
 
-## 실행 환경
+## 실행 준비
 
-- 개인 Coder 컨테이너: CPU 4코어·RAM 16GB. 공용 서버의 GPU·VRAM 할당은 미확인이다.
-- 모델 없는 검증 환경: Windows·PowerShell·Python 3.14.8.
-- 기존 VL 실제 실행 환경: Windows·Python 3.12.14·PaddleOCR 3.7.0·PaddleX 3.7.2·PaddlePaddle 3.3.1 CPU.
-- [requirements.txt](requirements.txt)에 의존성을 기록했다. GPU 실행은 미검증이며, GPU에는 대응 Paddle 패키지와 드라이버가 필요하다.
+필요한 패키지와 버전은 [requirements.txt](requirements.txt)에 기록했다. 다음 명령은 현재 Python 환경에 패키지를 설치하며,
+의존성 설치와 파싱 실행에는 같은 Python을 사용한다.
 
-아래 명령은 프로젝트 루트의 Bash 기준이다. Windows에서는 Git Bash나 WSL 환경에 맞춰 Python 경로를 확인한다.
-실제 파싱 전에 PDF 폴더를 제공하는 HTTP 서버와 추론 환경을 준비해야 한다.
-기존 PDF 주소는 `http://127.0.0.1:8080/raw/mmdocir_data/extracted/doc_pdfs/`이며,
-`127.0.0.1`은 실행 중인 컴퓨터·컨테이너 자신을 뜻한다.
+```bash
+python -m pip install -r requirements.txt
+```
+
+기록한 PaddlePaddle은 CPU 버전이다. GPU 실행은 검증하지 않았으며, GPU에는 대응 Paddle 패키지와 드라이버가 필요하다.
+설치 방식과 Python 지원 범위는 [PaddleOCR-VL 공식 실행 안내](https://www.paddleocr.ai/main/en/version3.x/pipeline_usage/PaddleOCR-VL.html)를 참고한다.
+
+파싱은 원본 PDF를 HTTP로 읽는다. 원본 PDF 폴더를 제공하는 HTTP 서버를 준비하고 그 폴더 URL을 `--base-url`에 지정한다.
+`--base-url`과 문서명을 합친 URL에서 PDF 파일을 직접 읽을 수 있어야 한다.
+로그인 화면이나 HTML 페이지를 반환하는 주소는 PDF 입력으로 사용할 수 없다.
+아래 명령은 프로젝트 루트에서 실행하며, `PDF_BASE_URL`에는 준비한 PDF 폴더 URL을 넣는다.
 
 ## 파싱 실행
 
@@ -206,13 +212,6 @@ PDF에서 직접 추출한 텍스트층과 모델 인식 결과는 따로 보존
 VL의 JSON 목록 변환과 시간 측정은 공통 모듈을 사용한다. 기존 결과의 정성 검토에서 결함을 확인했으며,
 정확도 측정과 개선 설정의 재실행은 아직 수행하지 않았다.
 
-필요한 패키지와 버전은 [requirements.txt](requirements.txt)에 기록했다.
-선택한 Python·운영체제·아키텍처에서 패키지를 지원하는지 확인하고, 의존성 준비와 파싱 실행에 같은 Python을 사용한다.
-
-PDF 서버도 먼저 준비한다. `--base-url`과 문서명을 합친 URL에서 PDF 파일을 직접 읽을 수 있어야 한다.
-로그인 화면이나 HTML 페이지를 반환하는 주소는 PDF 입력으로 사용할 수 없다.
-설치 방식과 Python 지원 범위는 [PaddleOCR-VL 공식 실행 안내](https://www.paddleocr.ai/main/en/version3.x/pipeline_usage/PaddleOCR-VL.html)를 참고한다.
-
 ### 실행 명령
 
 도움말은 모델 로딩·다운로드·결과 파일 생성을 하지 않는다.
@@ -222,11 +221,12 @@ python -B -m parsing.run --help
 ```
 
 주 파싱 경로의 실행 예시다. 모델 초기화 시 다운로드·캐시가 생길 수 있고, 원본 PDF를 HTTP로 읽어 새 출력 폴더를 만든다.
-같은 출력 폴더가 이미 있으면 덮어쓰지 않고 실패한다. CPU 예시는 처리 속도나 16GB 내 동작을 보장하지 않는다.
+같은 출력 폴더가 이미 있으면 덮어쓰지 않고 실패한다.
+`--device`(`cpu`, `gpu:0` 등)와 `--cpu-threads`(기본값 4)는 실행 환경에 맞춰 정한다.
 
 ```bash
 python -B -m parsing.run \
-  --base-url http://127.0.0.1:8080/raw/mmdocir_data/extracted/doc_pdfs/ \
+  --base-url "$PDF_BASE_URL" \
   --parser vl --device cpu --dpi 144 \
   --output-dir outputs/parsing_vl_01
 ```
@@ -239,9 +239,9 @@ PP-StructureV3는 다음 명령으로 실행한다. 문자 OCR은 PP-OCRv6 mediu
 
 ```bash
 python -B -m parsing.run \
-  --base-url http://127.0.0.1:8080/raw/mmdocir_data/extracted/doc_pdfs/ \
+  --base-url "$PDF_BASE_URL" \
   --parser structure --formula-model PP-FormulaNet_plus-L \
-  --device cpu --cpu-threads 4 --dpi 144
+  --device cpu --dpi 144
 ```
 
 ## 결과 확인
@@ -315,7 +315,7 @@ VL이 `<table>…`, Structure가 `<html><body><table>…`로 시작하고, 라�
 표준 라이브러리로 입력 해시·ID·좌표 변환, 반복·긴 번호 나열, VL 병합 그룹, HTML 표 격자를 검사한다.
 추론 파이프라인과 별도 실행하며 기존 raw·페이지 JSON·PNG·요약은 수정하지 않는다.
 
-프로젝트 루트의 Bash 기준 명령이다. 기본 실행은 요약을 콘솔에만 출력하고 파일·캐시를 생성하지 않는다.
+프로젝트 루트에서 실행한다. 기본 실행은 요약을 콘솔에만 출력하고 파일·캐시를 생성하지 않는다.
 
 ```bash
 python3 -B -m parsing.validate_run \
@@ -326,7 +326,7 @@ python3 -B -m parsing.validate_run \
 ```
 
 선정 목록 기본값은 `configs/selection.json`, 원본 PDF 폴더는 `data/doc_pdfs`다.
-다른 환경에서는 `--selection`, `--pdf-dir`로 지정한다. 원본 PDF가 없으면 해시 검증을 `unresolved`로 남긴다.
+다른 위치를 쓰려면 `--selection`, `--pdf-dir`로 지정한다. 원본 PDF가 없으면 해시 검증을 `unresolved`로 남긴다.
 3M의 현재 대상은 8·9·15페이지이며 과거 7페이지는 자동 포함하지 않는다.
 
 상세 보고서를 저장하려면 `--output outputs/quality_vl_01.json`을 추가한다. 이는 새 JSON 하나를 생성한다.
@@ -334,7 +334,7 @@ python3 -B -m parsing.validate_run \
 보고서에는 규칙 버전·임계값·검사 코드 해시·입력 해시·요소 ID·근거를 기록한다.
 종료 코드 0은 검사 실행 완료, 2는 실행 인자·보고서 저장 등 실행 오류를 뜻한다. 0이 품질 통과를 뜻하지 않는다.
 
-2026-11-02 macOS·Python 3.12.10에서 실제 파일로 실행한 결과다.
+2026-11-02 저장된 두 실행 결과에 검사를 실행한 결과다.
 
 | 경로 | 검사 페이지 | 검토 후보 페이지 | 검사 신호 |
 |---|---:|---:|---|
