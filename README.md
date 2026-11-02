@@ -71,7 +71,6 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 │  ├─ validate_run.py      # 검사 실행·입력 조회·별도 보고서 저장
 │  └─ __init__.py
 ├─ docs/
-│  ├─ README.md           # 목적별 문서 안내
 │  ├─ planning/
 │  │  ├─ PROJECT_PLAN.md  # 설계·기술 선정 근거·실험 계획
 │  │  └─ RAG_LEARNING_PLAN.md # 기본 학습 커리큘럼
@@ -367,11 +366,14 @@ VLM/API 검토는 선택지로 유지하며 현재 검사에는 사용하지 않
 
 ## 문서와 작업 방식
 
+문서는 `docs/planning/`의 계획, `docs/data/`의 데이터 명세, `docs/parsing/`의 파싱 검토·검증으로 나눈다.
+학습 순서는 기본 학습 계획에서, 모델별 문제와 이미지 API·변경 효과 측정 상태는 파싱 문제 정리에서 확인한다.
+계획·정성 관찰·직접 실행한 검사 결과를 구분해 읽는다.
+
 | 문서 | 역할 |
 |---|---|
 | [PROJECT_PLAN.md](docs/planning/PROJECT_PLAN.md) | 모델·프레임워크 선정 근거, 내부 구조·대안, 세 채널 결합·리랭킹·평가 설계, 다음 실험 |
 | [DATA_SPEC.md](docs/data/DATA_SPEC.md) | 선정 문서·페이지·관찰 특성 |
-| [문서 안내](docs/README.md) | 계획·데이터·파싱 문서를 목적별로 찾는 목차 |
 | [PARSING_REVIEW.md](docs/parsing/PARSING_REVIEW.md) | VL·Structure별 문제, 공통·텍스트층·저장 문제, 이미지 API, 변경 기록·효과 측정 상태 |
 | [PARSING_VALIDATION_PLAN.md](docs/parsing/PARSING_VALIDATION_PLAN.md) | 공통 품질 검증 단계의 입력·출력, 규칙·원본 대조·재인식, 지표·완료 기준 |
 | [RAG_LEARNING_PLAN.md](docs/planning/RAG_LEARNING_PLAN.md) | 별도로 보존하는 기본 학습 커리큘럼 |
