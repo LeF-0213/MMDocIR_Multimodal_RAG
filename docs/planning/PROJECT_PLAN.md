@@ -7,13 +7,13 @@
 아래 단계는 현재 검색 연구의 실행 순서이며 기본 커리큘럼을 대체하지 않는다.
 계획·구현·실측을 구분하며 모델·방법·프레임워크 선택은 근거와 결과에 따라 변경할 수 있다.
 
-2026-11-02 기준 파싱의 정성 검토는 [PARSING_REVIEW.md](PARSING_REVIEW.md)에,
-그 절차를 파싱 뒤 공통 검사로 적용하는 설계는 [PARSING_VALIDATION_PLAN.md](PARSING_VALIDATION_PLAN.md)에 기록했다.
+2026-11-02 기준 파싱의 정성 검토는 [PARSING_REVIEW.md](../parsing_log/PARSING_REVIEW.md)에,
+그 절차를 파싱 뒤 공통 검사로 적용하는 설계는 [PARSING_VALIDATION_PLAN.md](../parsing_log/PARSING_VALIDATION_PLAN.md)에 기록했다.
 첫 규칙 검사 단계는 구현해 실제 두 경로 54페이지에서 실행했다. 추가 모델 실행과 개선 효과 측정은 아직 수행하지 않았다.
 
 ## 현재 범위와 확인할 데이터
 
-- 입력과 관찰: [selection.json](../configs/selection.json), [DATA_SPEC.md](DATA_SPEC.md).
+- 입력과 관찰: [selection.json](../../configs/selection.json), [DATA_SPEC.md](../data/DATA_SPEC.md).
 - 현재 표본: 영어 PDF 9개 문서·27페이지. 특성별 목적 표본이며 전체 오류율의 무작위 표본이 아니다.
 - 전체 PDF로 확대할 때 특성별 선정과 무작위 검토를 병행한다. 자동 점검에서 정상인 페이지도 검토하고, 원본 비교는 문서별 페이지 순서대로 진행한다.
 - 데이터셋 revision·배포 스키마·공식 문서/페이지 ID·질의·관련성 라벨·평가 단위는 확인 후 고정한다. 현재 파일명만으로 공식 ID를 만들지 않는다.

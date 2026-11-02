@@ -26,7 +26,7 @@ PDF의 텍스트·표·수식·그림을 원본 위치와 연결하고, 검색 �
 | 이후 단계 | 청킹·임베딩·인덱스·검색·리랭킹·Recall@1·@3·@10 평가는 미구현 |
 
 이전 PyMuPDF 실행은 8개 문서·24페이지 기록이다. 현재 27페이지나 새 모델 파이프라인의 검증 결과로 취급하지 않는다.
-선정 목록은 [configs/selection.json](configs/selection.json), 문서별 관찰은 [DATA_SPEC.md](docs/DATA_SPEC.md)에 기록했다.
+선정 목록은 [configs/selection.json](configs/selection.json), 문서별 관찰은 [DATA_SPEC.md](docs/data/DATA_SPEC.md)에 기록했다.
 `3M_2018_10K`의 대상은 8·9·15페이지로 정정했다. 기존 VL 실행의 7·8·15페이지 기록은 보존하고,
 9페이지만 추가할 때는 [configs/selection_3m_page9.json](configs/selection_3m_page9.json)을 사용한다.
 추가 결과는 기존 실행의 `documents/<문서 ID>/`에 보관했다. 이 문서의 `review_vl.pdf`는
@@ -39,13 +39,17 @@ PDF의 텍스트·표·수식·그림을 원본 위치와 연결하고, 검색 �
 PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 기록과 이번 재실행을 구분한다.
 두 결과를 자동으로 합치거나 한 파서를 정답 판정기로 쓰지 않고 원본 PDF와 대조한다.
 
-[파싱 평가와 개선 실험](docs/PARSING_REVIEW.md)에 평가 범위·근거 파일·문서별 관찰,
-검토 방법과 한계, 모델 내부 흐름, 다음 실험을 정리했다.
+[파서별 문제와 공통 파싱 문제](docs/parsing_log/PARSING_REVIEW.md)에 VL·Structure별 문제,
+두 파서의 공통 인식 문제, PDF 텍스트층 추출, 프로젝트 변환·저장의 제약을 나눠 정리했다.
+평가 범위·원본 근거·검토 한계·다음 실험도 함께 기록했다.
 2026-11-02 코드 확인에서 VL의 `merge_layout_blocks=True`와 병합 그룹을 확인했다.
 라이브러리가 여러 영역 이미지를 합쳐 읽고 개별 bbox를 유지하는 동작은 문장–bbox 불일치의 유력한 발생 경로다.
 병합 비활성화의 개선 효과는 아직 검증하지 않았다. 기존 실행 JSON과 모델 코드는 변경하지 않았다.
+같은 날 macOS의 `.venv`에 PaddleOCR 3.7.0·PaddleX 3.7.2를 설치해 결과 객체의 이미지 접근·저장과
+병합·반복 제거 함수를 샘플 입력으로 확인했다. 모델 재추론은 수행하지 않았다.
+실행 조건 기록과 규칙 검사는 구현됐고, 변경 전후의 품질 비교는 미구현이다.
 
-[파싱 품질 검증 단계 계획](docs/PARSING_VALIDATION_PLAN.md)은 위 검토 절차를 VL·Structure 뒤에 적용하는 설계안이다.
+[파싱 품질 검증 단계 계획](docs/parsing_log/PARSING_VALIDATION_PLAN.md)은 위 검토 절차를 VL·Structure 뒤에 적용하는 설계안이다.
 규칙 검사·원본 근거 정렬·선택적 시각 검토·재인식·청킹 전달 정책과 완료 기준을 정리했다.
 첫 규칙 검사 코드는 구현해 실행했고, 추가 모델 호출·문장 위치 복구·표 의미 대응 검증은 아직 미구현이다.
 
@@ -67,11 +71,14 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 │  ├─ validate_run.py      # 검사 실행·입력 조회·별도 보고서 저장
 │  └─ __init__.py
 ├─ docs/
-│  ├─ DATA_SPEC.md
-│  ├─ PROJECT_PLAN.md      # 설계·기술 선정 근거·실험 계획
-│  ├─ PARSING_REVIEW.md    # 파싱 품질 관찰·평가 근거·개선 실험
-│  ├─ PARSING_VALIDATION_PLAN.md # 파싱 뒤 품질 검증 단계 구현 계획
-│  └─ RAG_LEARNING_PLAN.md # 기본 학습 커리큘럼
+│  ├─ planning/
+│  │  ├─ PROJECT_PLAN.md  # 설계·기술 선정 근거·실험 계획
+│  │  └─ RAG_LEARNING_PLAN.md # 기본 학습 커리큘럼
+│  ├─ data/
+│  │  └─ DATA_SPEC.md     # 선정 문서·페이지·관찰 특성
+│  └─ parsing_log/
+│     ├─ PARSING_REVIEW.md # 파서별·공통·텍스트층·저장 문제
+│     └─ PARSING_VALIDATION_PLAN.md # 품질 검증 구현 계획
 ├─ requirements.txt
 ├─ tests/test_parsing_quality.py # 규칙 경계·CLI·원본 보존 검증
 └─ outputs/
@@ -359,13 +366,17 @@ VLM/API 검토는 선택지로 유지하며 현재 검사에는 사용하지 않
 
 ## 문서와 작업 방식
 
+문서는 `docs/planning/`의 계획, `docs/data/`의 데이터 명세, `docs/parsing_log/`의 파싱 검토·검증으로 나눈다.
+학습 순서는 기본 학습 계획에서, 모델별 문제와 이미지 API·변경 효과 측정 상태는 파싱 문제 정리에서 확인한다.
+계획·정성 관찰·직접 실행한 검사 결과를 구분해 읽는다.
+
 | 문서 | 역할 |
 |---|---|
-| [PROJECT_PLAN.md](docs/PROJECT_PLAN.md) | 모델·프레임워크 선정 근거, 내부 구조·대안, 세 채널 결합·리랭킹·평가 설계, 다음 실험 |
-| [DATA_SPEC.md](docs/DATA_SPEC.md) | 선정 문서·페이지·관찰 특성 |
-| [PARSING_REVIEW.md](docs/PARSING_REVIEW.md) | 27페이지 정성 평가·구조 검사, 평가 방법·한계, 반복·위치·표 개선 실험 |
-| [PARSING_VALIDATION_PLAN.md](docs/PARSING_VALIDATION_PLAN.md) | 공통 품질 검증 단계의 입력·출력, 규칙·원본 대조·재인식, 지표·완료 기준 |
-| [RAG_LEARNING_PLAN.md](docs/RAG_LEARNING_PLAN.md) | 별도로 보존하는 기본 학습 커리큘럼 |
+| [PROJECT_PLAN.md](docs/planning/PROJECT_PLAN.md) | 모델·프레임워크 선정 근거, 내부 구조·대안, 세 채널 결합·리랭킹·평가 설계, 다음 실험 |
+| [DATA_SPEC.md](docs/data/DATA_SPEC.md) | 선정 문서·페이지·관찰 특성 |
+| [PARSING_REVIEW.md](docs/parsing_log/PARSING_REVIEW.md) | VL·Structure별 문제, 공통·텍스트층·저장 문제, 이미지 API, 변경 기록·효과 측정 상태 |
+| [PARSING_VALIDATION_PLAN.md](docs/parsing_log/PARSING_VALIDATION_PLAN.md) | 공통 품질 검증 단계의 입력·출력, 규칙·원본 대조·재인식, 지표·완료 기준 |
+| [RAG_LEARNING_PLAN.md](docs/planning/RAG_LEARNING_PLAN.md) | 별도로 보존하는 기본 학습 커리큘럼 |
 | [AGENTS.md](AGENTS.md) | 탑다운 학습, 코드·주석·글쓰기, 파일 변경·커밋·푸시 규칙 |
 
 현재 범위의 전체 코드를 먼저 보고 주석을 따라 이해·실행·수정한다.
