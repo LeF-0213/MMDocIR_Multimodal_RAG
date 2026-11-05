@@ -1,0 +1,37 @@
+{
+  "schema_version": "project.experiment.v1",
+  "project_root": "..",
+  "source_paths": ["main.py", "parsing", "experiments", "configs", "requirements.txt"],
+  "source_suffixes": [".py", ".json", ".txt"],
+  "git_timeout_seconds": 10,
+  "secret_environment_names": [],
+  "environment_packages": ["paddleocr", "paddlex", "paddlepaddle", "PyMuPDF", "numpy", "psutil"],
+  "memory": {
+    "interval_seconds": 0.1,
+    "include_children": true,
+    "gpu_device": null
+  },
+  "experiment": {
+    "purpose": "파싱 실행 조건과 결과·비용의 비교 기록",
+    "changed_variables": [],
+    "controlled_conditions": [],
+    "expected_effect": null
+  },
+  "pipeline_options": {},
+  "predict_options": {},
+  "model_bindings": [
+    {"parser": "vl", "role": "layout", "object_path": ["paddlex_pipeline", "_pipeline", "layout_det_model"], "directory_attribute": "model_dir", "name_attribute": "model_name"},
+    {"parser": "vl", "role": "vl_recognition", "object_path": ["paddlex_pipeline", "_pipeline", "vl_rec_model"], "directory_attribute": "model_dir", "name_attribute": "model_name"},
+    {"parser": "structure", "role": "layout", "object_path": ["paddlex_pipeline", "_pipeline", "layout_det_model"], "directory_attribute": "model_dir", "name_attribute": "model_name"},
+    {"parser": "structure", "role": "text_detection", "object_path": ["paddlex_pipeline", "_pipeline", "general_ocr_pipeline", "text_det_model"], "directory_attribute": "model_dir", "name_attribute": "model_name"},
+    {"parser": "structure", "role": "text_recognition", "object_path": ["paddlex_pipeline", "_pipeline", "general_ocr_pipeline", "text_rec_model"], "directory_attribute": "model_dir", "name_attribute": "model_name"},
+    {"parser": "structure", "role": "textline_orientation", "object_path": ["paddlex_pipeline", "_pipeline", "general_ocr_pipeline", "textline_orientation_model"], "directory_attribute": "model_dir", "name_attribute": "model_name"},
+    {"parser": "structure", "role": "table_classification", "object_path": ["paddlex_pipeline", "_pipeline", "table_recognition_pipeline", "table_cls_model"], "directory_attribute": "model_dir", "name_attribute": "model_name"},
+    {"parser": "structure", "role": "wired_table_structure", "object_path": ["paddlex_pipeline", "_pipeline", "table_recognition_pipeline", "wired_table_rec_model"], "directory_attribute": "model_dir", "name_attribute": "model_name"},
+    {"parser": "structure", "role": "wireless_table_structure", "object_path": ["paddlex_pipeline", "_pipeline", "table_recognition_pipeline", "wireless_table_rec_model"], "directory_attribute": "model_dir", "name_attribute": "model_name"},
+    {"parser": "structure", "role": "wired_cells", "object_path": ["paddlex_pipeline", "_pipeline", "table_recognition_pipeline", "wired_table_cells_detection_model"], "directory_attribute": "model_dir", "name_attribute": "model_name"},
+    {"parser": "structure", "role": "wireless_cells", "object_path": ["paddlex_pipeline", "_pipeline", "table_recognition_pipeline", "wireless_table_cells_detection_model"], "directory_attribute": "model_dir", "name_attribute": "model_name"},
+    {"parser": "structure", "role": "formula", "object_path": ["paddlex_pipeline", "_pipeline", "formula_recognition_pipeline", "formula_rec_model"], "directory_attribute": "model_dir", "name_attribute": "model_name"},
+    {"parser": "structure", "role": "chart", "object_path": ["paddlex_pipeline", "_pipeline", "chart_recognition_model"], "directory_attribute": "model_dir", "name_attribute": "model_name"}
+  ]
+}

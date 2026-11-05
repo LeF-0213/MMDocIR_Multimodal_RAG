@@ -11,6 +11,9 @@ run.py는 같은 함수의 반환값을 run.json에 기록한다.
 https://github.com/PaddlePaddle/PaddleOCR/blob/v3.7.0/paddleocr/_pipelines/pp_structurev3.py
 """
 
+# 표준 라이브러리 copy의 deepcopy는 중첩 옵션을 복사해 라이브러리의 수정이 다음 페이지에 번지지 않게 한다.
+from copy import deepcopy
+
 # NumPy(별칭 np)는 PDF 렌더링에서 받은 uint8 BGR 배열의 타입을 표현한다.
 import numpy as np
 
@@ -19,7 +22,7 @@ import numpy as np
 from .model_result import predict_page
 
 
-def parser_options(device: str, formula_model: str, cpu_threads: int = 4) -> dict:
+def parser_options(device: str, formula_model: str, cpu_threads: int = 4, *, overrides: dict | None = None) -> dict:
     """모델을 로딩하지 않고 실제 초기화와 실행 기록에 쓸 설정을 반환한다."""
     if not isinstance(device, str) or not device.strip():
         raise ValueError("device에 실행 장치를 지정해야 합니다.")
@@ -28,7 +31,7 @@ def parser_options(device: str, formula_model: str, cpu_threads: int = 4) -> dic
     if type(cpu_threads) is not int or cpu_threads < 1:
         raise ValueError("cpu_threads는 양의 정수여야 합니다.")
 
-    return {
+    options = {
         # PaddlePaddle 실행 경로다. 프레임워크 이름을 인식 품질의 근거로 삼지 않는다.
         "engine": "paddle",
         "device": device,
@@ -66,6 +69,8 @@ def parser_options(device: str, formula_model: str, cpu_threads: int = 4) -> dic
         "format_block_content": False,
         "markdown_ignore_labels": [],
     }
+    options.update(deepcopy(overrides or {}))
+    return options
 
 
 def predict_options() -> dict:
@@ -76,22 +81,24 @@ def predict_options() -> dict:
     return {}
 
 
-def build_parser(device: str, formula_model: str, cpu_threads: int = 4):
+def build_parser(device: str, formula_model: str, cpu_threads: int = 4, *, overrides: dict | None = None):
     """명시한 설정으로 모델을 로딩한다. 초기화 실패는 실행부에 전달한다."""
     # PaddleOCR의 PPStructureV3는 레이아웃·OCR·표·수식 모델을 연결한다.
     # 지연 import로 도움말·설정 조회만으로 모델을 로딩하지 않게 한다.
     from paddleocr import PPStructureV3
 
-    return PPStructureV3(**parser_options(device, formula_model, cpu_threads))
+    return PPStructureV3(**parser_options(device, formula_model, cpu_threads, overrides=overrides))
 
 
-def parse_image(parser, image: np.ndarray, page_id: str) -> dict:
+def parse_image(parser, image: np.ndarray, page_id: str, *, predict_overrides: dict | None = None) -> dict:
     """VL과 구분한 source·요소 ID로 원본 결과와 영역을 반환한다."""
+    options = predict_options()
+    options.update(deepcopy(predict_overrides or {}))
     return predict_page(
         parser,
         image,
         page_id,
         "pp_structure_v3",
         "structure",
-        predict_options=predict_options(),
+        predict_options=options,
     )

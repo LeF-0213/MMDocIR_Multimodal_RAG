@@ -2,11 +2,13 @@
 PDF → 페이지 준비 → 선택한 파서 → 좌표 연결 → 저장을 실행한다.
 pdf_source.py에서 입력을 받고 pdf_parser.py로 원본 정보와 이미지를 준비한다.
 v1_parser.py 또는 structure_parser.py를 호출한 뒤 review_pdf.py로 검토본을 만든다.
-실행 시 HTTP 다운로드·모델 캐시·새 결과 폴더 생성이 발생한다.
+실행 시 로컬 PDF 읽기 또는 HTTP 다운로드·모델 캐시·새 결과 폴더 생성이 발생한다.
 기존 파일은 덮어쓰지 않으며 --help는 모델 로딩·다운로드·결과 저장을 하지 않는다.
 
 모델은 실행당 한 번 로딩하고 페이지마다 결과와 실패 위치를 기록한다.
-프로젝트 루트에서 python -m parsing.run 으로 실행한다.
+공통 실행 기록은 기본 활성화하며 종료 후 호환되는 이전 실행과 비교 보고서를 만든다.
+첫 실행·비교 비활성화·중단·보고서 실패는 별도 auto_comparison.json에 남긴다.
+루트 main.py가 실행 설정을 전달하며 python -m parsing.run으로 인자를 직접 지정할 수도 있다.
 """
 
 # 표준 라이브러리: argparse는 CLI 검증, hashlib는 입력·코드 내용 추적에 사용한다.
@@ -31,8 +33,17 @@ from time import perf_counter
 
 # 아래 내부 모듈은 네트워크 입력과 파일 저장의 책임을 분리한다.
 # PDF 처리·모델·검토 모듈은 CLI 검증 뒤 가져와 --help의 의존성을 줄인다.
-from .pdf_source import build_pdf_url, load_selection, read_pdf_bytes
+from .pdf_source import build_pdf_url, load_selection, local_pdf_path, read_pdf_bytes
 from .result_store import create_output_directory, save_bytes, save_json
+
+# 실행 폴더 이름의 UTC 직렬화 형식이다. 실제 상위 폴더·파서는 설정이나 CLI에서 받는다.
+RUN_TIMESTAMP_FORMAT = "%Y%m%dT%H%M%S%fZ"
+
+
+def new_output_directory(parent: Path, parser: str) -> Path:
+    """반복 실행을 보존할 새 경로만 계산한다. 폴더 생성·덮어쓰기는 하지 않는다."""
+    stamp = datetime.now(timezone.utc).strftime(RUN_TIMESTAMP_FORMAT)
+    return parent / f"parsing_{parser}_{stamp}"
 
 
 def positive_int(value: str) -> int:
@@ -52,8 +63,23 @@ def arguments(argv: list[str] | None = None) -> argparse.Namespace:
         default=Path("configs/selection.json"),
         help="PDF 뷰어 기준 1부터 시작하는 페이지 선택 목록",
     )
-    cli.add_argument("--base-url", required=True, help="원본 PDF가 있는 HTTP(S) 폴더 URL")
+    source = cli.add_mutually_exclusive_group(required=True)
+    source.add_argument("--base-url", help="원본 PDF가 있는 HTTP(S) 폴더 URL")
+    source.add_argument("--pdf-directory", type=Path, help="선정 문서의 원본 PDF가 있는 로컬 폴더")
     cli.add_argument("--output-dir", type=Path, help="새 결과 폴더. 기존 폴더는 거부")
+    # 내부 모듈의 이름 있는 기본 경로를 공유한다. 도움말은 모델·자원 관측을 시작하지 않는다.
+    from experiments.automatic import DEFAULT_RECORDING_CONFIG, DEFAULT_EVALUATION_CONFIG
+    recording = cli.add_mutually_exclusive_group()
+    recording.add_argument("--experiment-config", type=Path,
+                           help="기본 활성화된 공통 기록의 JSON 설정 교체. 프로젝트 경로는 설정 파일 기준")
+    recording.add_argument("--no-experiment-record", action="store_true", help="공통 소스·모델·메모리 기록 끄기")
+    comparison = cli.add_mutually_exclusive_group()
+    comparison.add_argument("--compare-baseline", type=Path, help="자동 선택 대신 비교할 기준 실행 폴더")
+    comparison.add_argument("--no-auto-compare", action="store_true", help="파싱 종료 후 자동 비교 끄기")
+    cli.add_argument("--comparison-output-dir", type=Path, help="자동 보고서용 새 폴더. 기본은 실행 폴더 옆 <실행명>_comparison")
+    cli.add_argument("--comparison-gold", type=Path, help="자동 비교에 사용할 확인된 파싱 정답 JSON")
+    cli.add_argument("--comparison-evaluation-config", type=Path, default=DEFAULT_EVALUATION_CONFIG,
+                     help="자동 정답 평가 설정 JSON. 기본은 프로젝트 configs의 평가 설정")
     # 두 모델의 메모리와 결과를 구분하려고 한 실행에는 파서 하나만 사용한다.
     cli.add_argument(
         "--parser",
@@ -81,6 +107,10 @@ def arguments(argv: list[str] | None = None) -> argparse.Namespace:
     )
 
     args = cli.parse_args(argv)
+    if not args.no_experiment_record and args.experiment_config is None:
+        args.experiment_config = DEFAULT_RECORDING_CONFIG
+    if args.no_auto_compare and (args.comparison_gold or args.comparison_output_dir):
+        cli.error("--no-auto-compare와 자동 비교의 정답·출력 옵션을 함께 사용할 수 없습니다.")
     if not math.isfinite(args.timeout) or args.timeout <= 0:
         cli.error("--timeout은 유한한 양수여야 합니다.")
     if args.parser == "structure" and not args.formula_model:
@@ -91,8 +121,7 @@ def arguments(argv: list[str] | None = None) -> argparse.Namespace:
         cli.error("--device에는 비어 있지 않은 장치를 지정해야 합니다.")
     if args.output_dir is None:
         # 마이크로초를 포함하되 충돌하면 덮어쓰지 않고 실패한다.
-        stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
-        args.output_dir = Path("outputs") / f"parsing_{args.parser}_{stamp}"
+        args.output_dir = new_output_directory(Path("outputs"), args.parser)
 
     return args
 
@@ -112,6 +141,7 @@ def environment_record() -> dict:
         "paddlepaddle-gpu",
         "PyMuPDF",
         "numpy",
+        "psutil",
     ):
         try:
             packages[name] = version(name)
@@ -138,6 +168,10 @@ def process_document(
     from .pdf_parser import add_pdf_coordinates, error_info, open_pdf, prepare_page
     from .model_result import json_builtin
     from .review_pdf import add_review_page
+    # 공통 실험 모듈: 선택한 실행의 구간 관측과 URL 자격증명 제거를 담당한다.
+    from experiments.record import measure
+    from experiments.common import clean, diagnostic_clean
+    recorder = getattr(args, "_experiment_recorder", None)
 
     # PyMuPDF는 검토용 빈 문서를 만들고 페이지 복사본을 관리한다.
     import pymupdf
@@ -157,14 +191,23 @@ def process_document(
         "errors": [],
     }
 
-    stage = "download"
+    stage = "source_read"
     try:
-        url = build_pdf_url(args.base_url, name)
-        entry["source_url"] = url
-        data = read_pdf_bytes(url, timeout=args.timeout)
+        if getattr(args, "pdf_directory", None) is not None:
+            path = local_pdf_path(args.pdf_directory, name)
+            entry.update(source_kind="local", source_path=str(path))
+            with measure(recorder, "pdf_read", document_id=doc_id):
+                data = path.read_bytes()
+        else:
+            url = build_pdf_url(args.base_url, name)
+            entry.update(source_kind="http", source_url=clean(url, recorder.secrets if recorder else ()))
+            with measure(recorder, "pdf_download", document_id=doc_id):
+                data = read_pdf_bytes(url, timeout=args.timeout)
         entry["source_sha256"] = sha256(data)
         entry["source_pdf"] = f"documents/{doc_id}/source.pdf"
         save_bytes(folder / "source.pdf", data)
+        source_artifact = (recorder.artifact(folder / "source.pdf", "source_pdf", source_sha256=entry["source_sha256"])
+                           if recorder else None)
 
         stage = "open_pdf"
         with open_pdf(data) as document, pymupdf.open() as review:
@@ -197,13 +240,15 @@ def process_document(
                 }
 
                 image = png = None
+                image_artifact = None
                 page_stage = "page_validation"
                 try:
                     if number > len(document):
                         raise ValueError(f"원본 {len(document)}페이지에 선택한 {number}페이지가 없습니다.")
 
                     page_stage = "prepare_page"
-                    prepared, image, png = prepare_page(document[number - 1], args.dpi)
+                    with measure(recorder, "page_prepare", page_id=page_id):
+                        prepared, image, png = prepare_page(document[number - 1], args.dpi)
                     record.update(prepared)
 
                     if png is not None:
@@ -212,6 +257,9 @@ def process_document(
                             "path": f"documents/{doc_id}/{stem}.png",
                             "sha256": sha256(png),
                         }
+                        if recorder:
+                            image_artifact = recorder.artifact(folder / f"{stem}.png", "page_image",
+                                                               parents=[source_artifact], page_id=page_id)
 
                     page_stage = "model_prediction"
                     if image is None:
@@ -224,7 +272,14 @@ def process_document(
                     else:
                         # 텍스트층이 있어도 전체 페이지 이미지에 모델을 적용한다.
                         # 일부 누락·표·수식·그림 속 글자는 빈 텍스트층 검사로 찾을 수 없다.
-                        record["parsing"] = adapter.parse_image(parser, image, page_id)
+                        with measure(recorder, "model_prediction", page_id=page_id, kind="model_call") as scope:
+                            if recorder:
+                                record["parsing"] = adapter.parse_image(parser, image, page_id,
+                                    predict_overrides=getattr(args, "_predict_overrides", {}))
+                            else:
+                                record["parsing"] = adapter.parse_image(parser, image, page_id)
+                            if recorder and record["parsing"]["status"] in ("failed", "skipped"):
+                                scope["status"] = "failed"
 
                     parsed = record["parsing"]
                     page_stage = "coordinate_mapping"
@@ -286,7 +341,12 @@ def process_document(
                 # strict JSON 실패나 디스크 오류는 문서 수준 오류로도 기록한다.
                 # 실패를 무시하고 다음 파일을 만들어 성공처럼 보이게 하지 않는다.
                 stage = "page_result_save"
-                save_json(folder / f"{stem}.json", json_builtin(record))
+                if recorder:
+                    record["experiment"] = {"run_id": recorder.run_id, "stage_run_id": recorder.stage_id}
+                save_json(folder / f"{stem}.json", diagnostic_clean(json_builtin(record), recorder.secrets if recorder else ()))
+                if recorder:
+                    recorder.artifact(folder / f"{stem}.json", "parsing_page",
+                                      parents=[p for p in (source_artifact, image_artifact) if p], page_id=page_id)
                 entry["pages"].append(
                     {
                         "page_number": number,
@@ -318,17 +378,32 @@ def process_document(
         entry["errors"].append({"stage": stage, **error_info(exc)})
         entry["status"] = "failed"
 
+    entry = diagnostic_clean(entry, recorder.secrets if recorder else ())
     save_json(folder / "document.json", entry)
     return entry
 
 
-def main(argv: list[str] | None = None) -> int:
+def main(argv: list[str] | None = None, *, launch_context: dict | None = None) -> int:
     """설정·환경·코드 해시·결과를 기록하고 실패가 있으면 종료 코드 1을 반환한다."""
     args = arguments(argv)
     selection = load_selection(args.selection)
+    # 지연 import로 --help는 추가 기록 라이브러리조차 로딩하지 않는다.
+    from experiments.common import clean, known_secrets
+    recording = None
+    if args.experiment_config:
+        from experiments.record import load_record_config
+        recording = load_record_config(args.experiment_config)
+    secrets = known_secrets(recording["secret_environment_names"]) if recording else ()
 
-    # 잘못된 URL은 다운로드나 모델 로딩 전에 검출한다.
-    build_pdf_url(args.base_url, selection["documents"][0]["document_name"])
+    # 잘못된 입력은 출력 생성·모델 로딩 전에 검출한다. 로컬 문서는 전부 존재 여부를 확인한다.
+    if args.pdf_directory is not None:
+        for item in selection["documents"]:
+            local_pdf_path(args.pdf_directory, item["document_name"])
+    else:
+        build_pdf_url(args.base_url, selection["documents"][0]["document_name"])
+    # 내부 자동화 모듈은 기준을 지금 고정한다. 추론 중 새로 생긴 실행으로 비교 대상이 바뀌지 않는다.
+    from experiments.automatic import prepare_comparison, finish_comparison
+    comparison_plan = prepare_comparison(args, selection)
 
     # CLI 검증 뒤 선택한 어댑터만 가져온다. --help는 모델을 로딩하지 않는다.
     if args.parser == "vl":
@@ -339,6 +414,13 @@ def main(argv: list[str] | None = None) -> int:
         from . import structure_parser as adapter
 
         options = adapter.parser_options(args.device, args.formula_model, args.cpu_threads)
+
+    # 설정은 실제 build_parser()에 전달할 override와 동일하게 조합한다.
+    pipeline_overrides = recording["pipeline_options"] if recording else {}
+    options.update(pipeline_overrides)
+    actual_predict_options = adapter.predict_options()
+    actual_predict_options.update(recording["predict_options"] if recording else {})
+    args._predict_overrides = recording["predict_options"] if recording else {}
 
     root = args.output_dir
     create_output_directory(root)
@@ -355,6 +437,8 @@ def main(argv: list[str] | None = None) -> int:
         "http_timeout_seconds": args.timeout,
         "all_pages": args.all_pages,
         "base_url": args.base_url,
+        "source_kind": "local" if args.pdf_directory is not None else "http",
+        "pdf_directory": str(args.pdf_directory.resolve()) if args.pdf_directory is not None else None,
         "selection_sha256": sha256(args.selection.read_bytes()),
         # 미확인 모델 가중치 revision·하드웨어·정밀도는 추정하지 않는다.
         "model_weight_revision": None,
@@ -365,27 +449,51 @@ def main(argv: list[str] | None = None) -> int:
         },
         # 어댑터의 parse_image()가 실제 추론에 넘기는 값과 같은 함수에서 가져온다.
         # 값을 여기에 따로 적으면 어댑터만 고쳤을 때 기록이 실제 설정과 어긋난다.
-        "predict_options": adapter.predict_options(),
+        "predict_options": actual_predict_options,
+        "automatic_comparison": comparison_plan,
+        "experiment_recording": {"enabled": recording is not None,
+                                 "config_path": str(args.experiment_config.resolve()) if recording else None},
     }
+    if launch_context is not None:
+        metadata["launch_config"] = launch_context
 
     # 중단되어도 실행 조건은 남는다. 최종 결과는 별도 summary.json으로 저장한다.
-    save_json(root / "run.json", metadata)
+    if recording:
+        metadata["experiment_config_sha256"] = sha256(args.experiment_config.read_bytes())
+    save_json(root / "run.json", clean(metadata, secrets))
+    recorder = None
+    if recording:
+        from experiments.record import ExperimentRecorder
+        recorder = ExperimentRecorder(root, recording, metadata)
+    args._experiment_recorder = recorder
     entries = []
     fatal = None
+    interrupted = None
     model_load_seconds = None
 
     try:
         init_started = perf_counter()
-        if args.parser == "vl":
-            parser = adapter.build_parser(args.device, args.cpu_threads)
-        else:
-            parser = adapter.build_parser(args.device, args.formula_model, args.cpu_threads)
+        from experiments.record import measure
+        with measure(recorder, "model_load"):
+            build_kwargs = {"overrides": pipeline_overrides} if recording else {}
+            if args.parser == "vl":
+                parser = adapter.build_parser(args.device, args.cpu_threads, **build_kwargs)
+            else:
+                parser = adapter.build_parser(args.device, args.formula_model, args.cpu_threads, **build_kwargs)
 
         model_load_seconds = perf_counter() - init_started
+        if recorder:
+            recorder.capture_parser(parser)
         for item in selection["documents"]:
-            entries.append(process_document(item, args, root, adapter, parser))
-    except Exception as exc:
-        fatal = {"type": type(exc).__name__, "message": str(exc)}
+            with measure(recorder, "document_processing", document_name=item["document_name"]) as scope:
+                entry = process_document(item, args, root, adapter, parser)
+                entries.append(entry)
+                if recorder:
+                    scope["status"] = entry["status"]
+    except BaseException as exc:
+        if not isinstance(exc, Exception):
+            interrupted = exc
+        fatal = {"type": type(exc).__name__, "message": clean(str(exc), secrets)}
         if model_load_seconds is None:
             model_load_seconds = perf_counter() - init_started
 
@@ -408,7 +516,18 @@ def main(argv: list[str] | None = None) -> int:
         "fatal_error": fatal,
         "quality_evaluation": "not_run",
     }
-    save_json(root / "summary.json", summary)
+    try:
+        save_json(root / "summary.json", clean(summary, secrets))
+    except BaseException as exc:
+        if recorder:
+            recorder.finish("failed", {"type": type(exc).__name__, "message": clean(str(exc), secrets)})
+        raise
+    if recorder:
+        recorder.finish("interrupted" if interrupted else summary["status"], fatal)
+    # 자원 기록을 먼저 닫아 보고서 생성 시간을 파싱 비용으로 세지 않는다.
+    comparison_result = finish_comparison(comparison_plan, root, interrupted=interrupted is not None, secrets=secrets)
+    if interrupted:
+        raise interrupted
     print(
         json.dumps(
             {
@@ -416,12 +535,13 @@ def main(argv: list[str] | None = None) -> int:
                 "status": summary["status"],
                 "page_status_counts": dict(counts),
                 "fatal_error": fatal,
+                "automatic_comparison": comparison_result,
             },
             ensure_ascii=False,
         )
     )
 
-    return 0 if success else 1
+    return 0 if success and comparison_result["status"] != "failed" else 1
 
 
 if __name__ == "__main__":

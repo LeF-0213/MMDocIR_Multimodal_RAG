@@ -18,6 +18,9 @@ https://github.com/PaddlePaddle/PaddleOCR/blob/v3.7.0/paddleocr/_pipelines/paddl
 https://www.paddleocr.ai/main/en/version3.x/pipeline_usage/PaddleOCR-VL.html
 """
 
+# 표준 라이브러리 copy의 deepcopy는 라이브러리가 중첩 실험 옵션을 바꿔도 다음 페이지의 설정을 보존한다.
+from copy import deepcopy
+
 # NumPy(별칭 np)는 pdf_parser.py가 만든 uint8 BGR 배열의 타입을 표현한다.
 import numpy as np
 
@@ -26,14 +29,14 @@ import numpy as np
 from .model_result import json_builtin, normalize_result_blocks, predict_page
 
 
-def parser_options(device: str, cpu_threads: int = 4) -> dict:
+def parser_options(device: str, cpu_threads: int = 4, *, overrides: dict | None = None) -> dict:
     """모델을 로딩하지 않고 초기화 설정을 구성한다. 실행 기록에도 사용한다."""
     if not isinstance(device, str) or not device.strip():
         raise ValueError("device에 'cpu', 'gpu:0' 등의 장치를 지정해야 합니다.")
     if type(cpu_threads) is not int or cpu_threads < 1:
         raise ValueError("cpu_threads는 양의 정수여야 합니다.")
 
-    return {
+    options = {
         # 공식 API가 지원하는 버전을 명시해 향후 기본 버전 변경을 피한다.
         # v1.6의 우열을 이 프로젝트에서 측정했다는 뜻은 아니다.
         "pipeline_version": "v1.6",
@@ -104,6 +107,10 @@ def parser_options(device: str, cpu_threads: int = 4) -> dict:
         # 병목이면 다중 이미지 입력과 함께 큐 유무·최대 메모리를 통제 비교한다.
         "use_queues": False,
     }
+    # 기록 설정에서 받은 변경값을 실제 초기화와 manifest에 함께 사용한다.
+    # 기존 기본값의 교체와 실험 설정의 추가를 구분한다.
+    options.update(deepcopy(overrides or {}))
+    return options
 
 
 def predict_options() -> dict:
@@ -119,9 +126,9 @@ def predict_options() -> dict:
     }
 
 
-def build_parser(device: str, cpu_threads: int = 4):
+def build_parser(device: str, cpu_threads: int = 4, *, overrides: dict | None = None):
     """명시한 설정으로 모델을 한 번 로딩한다. 실패는 run.py에 전달한다."""
-    options = parser_options(device, cpu_threads)
+    options = parser_options(device, cpu_threads, overrides=overrides)
 
     # PaddleOCR는 문서 분석 도구 모음이며 PaddleOCRVL은 그 안의 파이프라인이다.
     # 지연 import를 사용해 --help와 설정 조회만으로 모델 의존성을 로딩하지 않는다.
@@ -135,15 +142,17 @@ def normalize_blocks(raw: dict, page_id: str) -> list[dict]:
     return normalize_result_blocks(raw, page_id, "paddleocr_vl", "vl")
 
 
-def parse_image(parser, image: np.ndarray, page_id: str) -> dict:
+def parse_image(parser, image: np.ndarray, page_id: str, *, predict_overrides: dict | None = None) -> dict:
     """원본 결과와 공통 블록을 반환한다. PDF 좌표는 run.py에서 추가한다."""
     # 원본 JSON은 함께 보존해 추가로 반환된 모델 필드가 사라지지 않게 한다.
+    options = predict_options()
+    options.update(deepcopy(predict_overrides or {}))
     return predict_page(
         parser,
         image,
         page_id,
         "paddleocr_vl",
         "vl",
-        predict_options=predict_options(),
+        predict_options=options,
     )
 

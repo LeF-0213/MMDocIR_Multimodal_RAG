@@ -1,5 +1,5 @@
 """
-파싱할 PDF의 선택 목록과 HTTP 입력을 준비하는 모듈이다.
+파싱할 PDF의 선택 목록과 로컬·HTTP 입력을 준비하는 모듈이다.
 설정의 문서명·1부터 시작하는 페이지 번호·중복을 검증하고 PDF URL을 구성한다.
 run.py에 반환한 PDF bytes는 pdf_parser.py가 해석한다.
 설정 파일 읽기와 HTTP 다운로드를 수행하며 파일 생성·모델 로딩은 하지 않는다.
@@ -63,6 +63,17 @@ def load_selection(path: Path) -> dict:
 
     # 원본 필드·선정 순서를 보존한다. 처리할 페이지 정렬은 run.py의 책임이다.
     return data
+
+
+def local_pdf_path(directory: Path, document_name: str) -> Path:
+    """검증한 문서명을 로컬 PDF에 연결하고 symlink를 포함한 폴더 이탈·누락을 거부한다."""
+    root = Path(directory).resolve()
+    path = (root / (document_name + ".pdf")).resolve()
+    if not path.is_relative_to(root):
+        raise ValueError("PDF 경로가 지정한 원본 폴더를 벗어났습니다.")
+    if not path.is_file():
+        raise FileNotFoundError(f"로컬 PDF가 없습니다: {path}")
+    return path
 
 
 def build_pdf_url(base_url: str, document_name: str) -> str:
