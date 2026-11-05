@@ -6,6 +6,8 @@ v1_parser.py 또는 structure_parser.py를 호출한 뒤 review_pdf.py로 검토
 기존 파일은 덮어쓰지 않으며 --help는 모델 로딩·다운로드·결과 저장을 하지 않는다.
 
 모델은 실행당 한 번 로딩하고 페이지마다 결과와 실패 위치를 기록한다.
+공통 실행 기록은 기본 활성화하며 종료 후 호환되는 이전 실행과 비교 보고서를 만든다.
+첫 실행·비교 비활성화·중단·보고서 실패는 별도 auto_comparison.json에 남긴다.
 프로젝트 루트에서 python -m parsing.run 으로 실행한다.
 """
 
@@ -54,8 +56,19 @@ def arguments(argv: list[str] | None = None) -> argparse.Namespace:
     )
     cli.add_argument("--base-url", required=True, help="원본 PDF가 있는 HTTP(S) 폴더 URL")
     cli.add_argument("--output-dir", type=Path, help="새 결과 폴더. 기존 폴더는 거부")
-    cli.add_argument("--experiment-config", type=Path,
-                     help="공통 실행 기록·메모리·설정 override를 켤 JSON 설정. 상대 경로는 설정 파일 기준")
+    # 내부 모듈의 이름 있는 기본 경로를 공유한다. 도움말은 모델·자원 관측을 시작하지 않는다.
+    from experiments.automatic import DEFAULT_RECORDING_CONFIG, DEFAULT_EVALUATION_CONFIG
+    recording = cli.add_mutually_exclusive_group()
+    recording.add_argument("--experiment-config", type=Path,
+                           help="기본 활성화된 공통 기록의 JSON 설정 교체. 프로젝트 경로는 설정 파일 기준")
+    recording.add_argument("--no-experiment-record", action="store_true", help="공통 소스·모델·메모리 기록 끄기")
+    comparison = cli.add_mutually_exclusive_group()
+    comparison.add_argument("--compare-baseline", type=Path, help="자동 선택 대신 비교할 기준 실행 폴더")
+    comparison.add_argument("--no-auto-compare", action="store_true", help="파싱 종료 후 자동 비교 끄기")
+    cli.add_argument("--comparison-output-dir", type=Path, help="자동 보고서용 새 폴더. 기본은 실행 폴더 옆 <실행명>_comparison")
+    cli.add_argument("--comparison-gold", type=Path, help="자동 비교에 사용할 확인된 파싱 정답 JSON")
+    cli.add_argument("--comparison-evaluation-config", type=Path, default=DEFAULT_EVALUATION_CONFIG,
+                     help="자동 정답 평가 설정 JSON. 기본은 프로젝트 configs의 평가 설정")
     # 두 모델의 메모리와 결과를 구분하려고 한 실행에는 파서 하나만 사용한다.
     cli.add_argument(
         "--parser",
@@ -83,6 +96,10 @@ def arguments(argv: list[str] | None = None) -> argparse.Namespace:
     )
 
     args = cli.parse_args(argv)
+    if not args.no_experiment_record and args.experiment_config is None:
+        args.experiment_config = DEFAULT_RECORDING_CONFIG
+    if args.no_auto_compare and (args.comparison_gold or args.comparison_output_dir):
+        cli.error("--no-auto-compare와 자동 비교의 정답·출력 옵션을 함께 사용할 수 없습니다.")
     if not math.isfinite(args.timeout) or args.timeout <= 0:
         cli.error("--timeout은 유한한 양수여야 합니다.")
     if args.parser == "structure" and not args.formula_model:
@@ -364,6 +381,9 @@ def main(argv: list[str] | None = None) -> int:
 
     # 잘못된 URL은 다운로드나 모델 로딩 전에 검출한다.
     build_pdf_url(args.base_url, selection["documents"][0]["document_name"])
+    # 내부 자동화 모듈은 기준을 지금 고정한다. 추론 중 새로 생긴 실행으로 비교 대상이 바뀌지 않는다.
+    from experiments.automatic import prepare_comparison, finish_comparison
+    comparison_plan = prepare_comparison(args, selection)
 
     # CLI 검증 뒤 선택한 어댑터만 가져온다. --help는 모델을 로딩하지 않는다.
     if args.parser == "vl":
@@ -408,6 +428,9 @@ def main(argv: list[str] | None = None) -> int:
         # 어댑터의 parse_image()가 실제 추론에 넘기는 값과 같은 함수에서 가져온다.
         # 값을 여기에 따로 적으면 어댑터만 고쳤을 때 기록이 실제 설정과 어긋난다.
         "predict_options": actual_predict_options,
+        "automatic_comparison": comparison_plan,
+        "experiment_recording": {"enabled": recording is not None,
+                                 "config_path": str(args.experiment_config.resolve()) if recording else None},
     }
 
     # 중단되어도 실행 조건은 남는다. 최종 결과는 별도 summary.json으로 저장한다.
@@ -477,6 +500,8 @@ def main(argv: list[str] | None = None) -> int:
         raise
     if recorder:
         recorder.finish("interrupted" if interrupted else summary["status"], fatal)
+    # 자원 기록을 먼저 닫아 보고서 생성 시간을 파싱 비용으로 세지 않는다.
+    comparison_result = finish_comparison(comparison_plan, root, interrupted=interrupted is not None, secrets=secrets)
     if interrupted:
         raise interrupted
     print(
@@ -486,12 +511,13 @@ def main(argv: list[str] | None = None) -> int:
                 "status": summary["status"],
                 "page_status_counts": dict(counts),
                 "fatal_error": fatal,
+                "automatic_comparison": comparison_result,
             },
             ensure_ascii=False,
         )
     )
 
-    return 0 if success else 1
+    return 0 if success and comparison_result["status"] != "failed" else 1
 
 
 if __name__ == "__main__":

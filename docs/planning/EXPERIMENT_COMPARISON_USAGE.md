@@ -7,14 +7,18 @@
 ## 1. 입력부터 보고서까지
 
 ```text
-선정 목록·기록 설정 → parsing.run → 모델 초기화·페이지 처리
+선정 목록·기본/지정 기록 설정 → parsing.run → 기준 실행 선택 → 모델 초기화·페이지 처리
  → run.json·페이지 JSON·PDF·PNG + experiment.json·experiment_finished.json·resources.jsonl·source_snapshot/
+ → 파싱 기록 종료 → 자동 전후 비교 → 실행 폴더 옆 <실행명>_comparison/comparison.json·comparison.md
 
 기준 실행 + 비교 실행 + 선택적 선정 목록·정답·평가 설정
  → experiments.compare → 콘솔 요약 + 선택적 comparison.json·comparison.md
 ```
 
-`--experiment-config`를 생략하면 기존 파싱 결과 형식을 유지하며 새 공통 기록은 만들지 않는다.
+공통 기록과 종료 후 비교는 기본 활성화다. `--experiment-config`를 생략하면 모듈 위치 기준의
+`configs/experiment_recording.json`을 사용한다. `--experiment-config`는 설정 교체용이며
+`--no-experiment-record`로 공통 기록을, `--no-auto-compare`로 종료 후 비교를 각각 끈다.
+기존 파싱 결과도 함께 저장한다. `--help`는 기록 파일을 만들지 않는다.
 기존 파싱 경로·DPI·모델 기본값은 이번 작업에서 일괄 변경하지 않았다.
 현재 공통 기록을 연결한 실제 단계는 파싱이다. 청킹·임베딩·검색·리랭킹 알고리즘은 구현하지 않았다.
 공통 `ExperimentRecorder`의 `stage`, `artifact()`, `reuse()`, `measure()`는 후속 단계에서도 사용할 수 있다.
@@ -28,6 +32,7 @@
 | [resources.py](../../experiments/resources.py) | 하나의 관측 스레드로 전체 실행과 중첩 구간의 RSS·시간·선택적 CUDA 할당량 수집 |
 | [evaluate.py](../../experiments/evaluate.py) | 정답을 입력받는 문장·위치·표의 순수 전후 평가 |
 | [compare.py](../../experiments/compare.py) | 기존/새 실행 읽기, 입력·설정·코드·모델·비용·품질 비교, 보고서 저장 |
+| [automatic.py](../../experiments/automatic.py) | 파싱 시작 시 기준 선택·검증, 종료 후 같은 비교기 호출·상태 저장 |
 | [기록 설정](../../configs/experiment_recording.json) | 프로젝트·소스 경로, 수집 범위·간격, 실제 모델 객체 경로, 파서 옵션 |
 | [평가 설정](../../configs/experiment_evaluation.json) | 정규화·매칭·IoU·표 자원 한도 |
 
@@ -78,17 +83,46 @@ GPU 수집은 이미 로딩된 Paddle의 allocator API만 사용하며 GPU 전�
 ```
 
 다음은 VL 파싱 명령 형식이다. HTTP 읽기·모델 다운로드/캐시·새 결과 폴더와 소스 복사본·자원 로그 생성이 발생한다.
-기존 출력 폴더는 거부한다. `RECORDING_CONFIG`에는 사용할 기록 JSON 경로를 넣는다.
+기존 출력 폴더는 거부한다. 기본 기록 설정을 쓰는 명령은 다음과 같다.
 
 ```bash
 .venv/bin/python -B -m parsing.run \
   --base-url "$PDF_BASE_URL" --selection "$SELECTION_PATH" \
   --parser vl --device "$DEVICE" --cpu-threads "$CPU_THREADS" --dpi "$DPI" \
-  --experiment-config "$RECORDING_CONFIG" --output-dir "$RUN_OUTPUT"
+  --output-dir "$RUN_OUTPUT"
 ```
 
 Structure에서는 파서 선택을 `structure`로 바꾸고 `--formula-model "$FORMULA_MODEL"`을 추가한다.
 예시 모델 ID를 실행 코드에 새로 고정하지 않는다. 전후 실행은 서로 다른 출력 폴더에 보존한다.
+
+### 종료 후 자동 비교
+
+실행 폴더의 바로 위 폴더에서 같은 파서·선정 문서/페이지·`--all-pages` 여부의 종료 실행을 찾는다.
+선정 목록의 JSON 공백·문서/페이지 순서는 비교 대상 선택에 영향을 주지 않는다.
+`run.json`의 시간대가 있는 시작 시각이 가장 최근인 실행을 고른다. 부분 실패 종료도 대상에 포함하고,
+미종료·손상·공통 시작/종료 ID 불일치는 제외 사유를 남긴다. 최근 시각이 같으면 임의로 고르지 않는다.
+선택한 기준과 메타데이터 해시는 파싱 시작 전에 고정하며, 종료 시 변경을 감지하면 비교 실패로 남긴다.
+모델·DPI·설정 차이는 비교할 변수이므로 기준 선정에서 일치시킬 조건으로 강제하지 않는다.
+원본 PDF 해시가 다르면 품질 비교에서 구분하며, 비교 결과만으로 변경의 인과 효과를 확정하지 않는다.
+
+첫 실행처럼 기준이 없으면 기록만 보존하고 비교는 `skipped`로 남긴다.
+기준이 있으면 파싱 자원 기록을 닫은 뒤 실행 폴더 옆의 새 `<실행명>_comparison/`에 보고서를 만든다.
+`--all-pages` 실행에서는 저장한 전체 페이지를 비교하며 선정 페이지 목록으로 다시 잘라내지 않는다.
+다른 파서·다른 상위 폴더와 비교하려면 기준을 직접 지정한다.
+
+```bash
+.venv/bin/python -B -m parsing.run \
+  --base-url "$PDF_BASE_URL" --selection "$SELECTION_PATH" --output-dir "$RUN_OUTPUT" \
+  --compare-baseline "$BASELINE_RUN" --comparison-output-dir "$COMPARISON_OUTPUT"
+```
+
+이 명령은 파싱·공통 기록·보고서 파일을 생성한다. 확인한 정답까지 평가하려면
+`--comparison-gold "$GOLD_PATH"`를 추가한다. 기본 평가 설정을 교체할 때는
+`--comparison-evaluation-config "$EVALUATION_CONFIG"`를 추가한다. 정답 없이 품질은 미측정이다.
+공통 기록의 수집 간격·모델 binding·실험 의도 등을 바꾸려면
+`--experiment-config "$RECORDING_CONFIG"`를 추가한다.
+두 자동 기능을 모두 끄려면 `--no-experiment-record --no-auto-compare`를 함께 지정한다.
+이때도 기존 파싱 기록과 자동 비교 비활성화 상태 파일은 남긴다.
 
 ### 기록 파일의 의미
 
@@ -99,6 +133,7 @@ Structure에서는 파서 선택을 `structure`로 바꾸고 `--formula-model "$
 | `source_snapshot/` | 수집을 허용한 프로젝트 파일의 원문 복사본 |
 | `experiment_finished.json` | 종료 상태·해석 설정·구성 모델 파일·자원 구간·결과물/재사용 연결·소스 변경 감지 |
 | `resources.jsonl` | 단계 ID와 PID·시각을 포함한 점진적 RSS·선택적 CUDA 관측 |
+| `auto_comparison.json` | 기준 선택·제외 근거, 완료/생략/비활성화/실패, 보고서 경로·해시. 자원 기록 종료 뒤 생성 |
 | 기존 PDF·PNG·페이지 JSON | 원본·이미지·모델 결과. 새 페이지 JSON의 `experiment` 필드가 실행 ID를 연결 |
 
 해석 설정은 확인한 버전의 `_merged_paddlex_config`를 읽으며 수집 경로와 구현 파일 해시를 남긴다.
@@ -106,6 +141,7 @@ Structure에서는 파서 선택을 `structure`로 바꾸고 `--formula-model "$
 메모리 최고값은 관측 최대값이며 현재 GPU 동기화는 하지 않는다. 관측 실패는 별도 기록한다.
 모델 초기화·다운로드, PDF 읽기·렌더링·예측·저장, 소스/가중치 기록 비용이 전체 시간에 포함된다.
 기록을 켠 실행과 끈 실행의 시간을 순수 추론 속도 차이로 단정하지 않는다.
+자동 비교의 시간·메모리는 이 파싱 자원 기록에 포함하지 않는다.
 
 모델 목록은 파일 상대 경로·크기·SHA-256에 기반한다. 같은 내용의 다른 캐시 폴더는 동일한 목록 해시가 된다.
 HF local_dir 메타데이터가 있으면 ETag와 실제 bytes를 대조해 commit 근거를 기록한다.
@@ -201,6 +237,9 @@ Markdown은 같은 JSON에서 요약과 소스 diff·품질 집계를 생성한�
 원본·PNG 해시 오류는 품질 채점에서 미해결로 처리하고, 소스 복사본 변조 시 diff를 만들지 않는다.
 보고서 출력이 입력 폴더 안이거나 기존 폴더이면 비교 CLI가 종료 코드 2로 거부한다.
 파싱은 기존과 같이 부분 실패·실패가 있으면 종료 코드 1을 반환한다.
+파싱 자체가 성공했어도 자동 보고서 생성이 실패하면 종료 코드 1이며, 파싱 결과는 보존한다.
+이 경우 `summary.json`의 파싱 상태와 `auto_comparison.json`의 비교 실패를 구분한다.
+파싱 중단 시에는 자원 종료 기록과 자동 비교 생략 상태를 남기고 중단 예외를 다시 전달한다.
 메모리 실패·모델 파일 경로 미확보는 기록 상태에 남으며 인식 정확도나 가중치 revision을 대신 만들지 않는다.
 
 후속 단계는 `ExperimentRecorder(..., stage=...)`에 실제 단계 이름·요청 조건을 전달한다.

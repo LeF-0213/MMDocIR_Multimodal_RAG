@@ -6,8 +6,10 @@
 """
 
 # 표준 라이브러리: copy는 독립 전후 입력, hashlib는 모의 원본 해시,
+# datetime·timedelta·timezone은 현재 시각 기준 모의 실행 순서를 만든다.
 # json은 설정, pathlib·tempfile은 임시 자료, types는 모델 없는 객체 그래프다.
 import copy
+from datetime import datetime, timedelta, timezone
 import hashlib
 import json
 from pathlib import Path
@@ -25,6 +27,8 @@ from experiments.resources import ResourceMonitor
 from experiments.evaluate import (EVALUATION_SCHEMA, PDF_COORDINATES, LogicalTable,
     evaluate_pair, region_iou, sentence_result, validate_gold, validate_settings)
 from experiments.compare import compare_runs, differences, load_run, main as compare_main, markdown
+from experiments.automatic import (AUTO_COMPARISON_FILE, DEFAULT_RECORDING_CONFIG,
+                                  finish_comparison, prepare_comparison)
 
 # 측정 스레드가 테스트의 실행 순서에 개입하지 않도록 긴 간격을 명시한다.
 # 구간 시작·종료에서 동기 샘플을 수집하므로 실제 sleep은 필요 없다.
@@ -387,7 +391,173 @@ class ComparisonTests(unittest.TestCase):
             self.assertTrue(loaded["problems"])
 
 
+class AutomaticComparisonTests(unittest.TestCase):
+    def fixture(self, root):
+        """시각·문서·출력은 이번 테스트 안에서만 생성한 값이다."""
+        selection = {"page_numbering": "pdf_viewer_1_based", "documents": [
+            {"document_name": "synthetic-document", "page_numbers": [2, 1]}]}
+        args = SimpleNamespace(output_dir=root / "next", compare_baseline=None, no_auto_compare=False,
+            comparison_gold=None, comparison_evaluation_config=None, comparison_output_dir=None,
+            parser="vl", all_pages=False)
+        return args, selection
+
+    def baseline(self, root, selection, *, parser="vl", age_seconds=0, completed=True):
+        root.mkdir()
+        write_json(root / "run.json", {"schema_version": "project.parsing.v1", "parser": parser,
+            "started_at_utc": (datetime.now(timezone.utc) - timedelta(seconds=age_seconds)).isoformat()})
+        write_json(root / "selection.json", selection)
+        if completed:
+            write_json(root / "summary.json", {"status": "completed"})
+        return root
+
+    def test_default_recording_and_explicit_opt_out(self):
+        from parsing.run import arguments
+        args = arguments(["--base-url", "https://example.invalid/"])
+        self.assertEqual(args.experiment_config, DEFAULT_RECORDING_CONFIG)
+        self.assertFalse(args.no_auto_compare)
+        disabled = arguments(["--base-url", "https://example.invalid/", "--no-experiment-record", "--no-auto-compare"])
+        self.assertIsNone(disabled.experiment_config)
+        self.assertTrue(disabled.no_auto_compare)
+        with self.assertRaises(SystemExit):
+            arguments(["--base-url", "https://example.invalid/", "--no-auto-compare", "--compare-baseline", "."])
+
+    def test_recent_compatible_finished_run_and_selection_order(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); args, selected = self.fixture(root)
+            older = self.baseline(root / "older", selected, age_seconds=30)
+            recent_selection = copy.deepcopy(selected)
+            recent_selection["documents"][0]["page_numbers"].reverse()
+            recent = self.baseline(root / "recent", recent_selection, age_seconds=20)
+            self.baseline(root / "unfinished", selected, age_seconds=10, completed=False)
+            incomplete = self.baseline(root / "incomplete_manifest", selected)
+            write_json(incomplete / MANIFEST_FILE, {"run_id": "synthetic-incomplete"})
+            self.baseline(root / "other_parser", selected, parser="structure")
+            other = copy.deepcopy(selected); other["documents"][0]["page_numbers"].append(3)
+            self.baseline(root / "other_pages", other)
+            plan = prepare_comparison(args, selected)
+            self.assertEqual(Path(plan["baseline"]), recent.resolve())
+            self.assertNotEqual(Path(plan["baseline"]), older.resolve())
+            self.assertTrue(plan["ignored"])
+            self.assertFalse(args.output_dir.exists())
+
+    def test_tied_recent_runs_are_not_arbitrarily_chosen(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); args, selected = self.fixture(root)
+            first = self.baseline(root / "first", selected)
+            second = self.baseline(root / "second", selected)
+            (second / "run.json").write_bytes((first / "run.json").read_bytes())
+            self.assertEqual(prepare_comparison(args, selected)["status"], "skipped")
+
+    def test_explicit_other_parser_and_output_safety(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); args, selected = self.fixture(root)
+            args.compare_baseline = self.baseline(root / "structure", selected, parser="structure")
+            plan = prepare_comparison(args, selected)
+            self.assertEqual(plan["mode"], "explicit")
+            args.comparison_output_dir = args.output_dir / "report"
+            with self.assertRaises(ValueError):
+                prepare_comparison(args, selected)
+            args.comparison_output_dir = root / "exists"; args.comparison_output_dir.mkdir()
+            with self.assertRaises(FileExistsError):
+                prepare_comparison(args, selected)
+
+    def test_changed_baseline_is_recorded_as_failed_without_overwrite(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); args, selected = self.fixture(root)
+            previous = self.baseline(root / "previous", selected)
+            plan = prepare_comparison(args, selected)
+            (previous / "summary.json").write_text('{}')
+            args.output_dir.mkdir()
+            result = finish_comparison(plan, args.output_dir)
+            self.assertEqual(result["status"], "failed")
+            self.assertIn("메타데이터", result["error"]["message"])
+            self.assertFalse(Path(plan["output_dir"]).exists())
+            self.assertEqual(read_json(args.output_dir / AUTO_COMPARISON_FILE)["status"], "failed")
+
+    def test_interrupted_run_skips_comparison(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); args, selected = self.fixture(root)
+            self.baseline(root / "previous", selected)
+            plan = prepare_comparison(args, selected)
+            args.output_dir.mkdir()
+            with patch("experiments.automatic.run_comparison") as compare:
+                result = finish_comparison(plan, args.output_dir, interrupted=True)
+            compare.assert_not_called()
+            self.assertEqual(result["status"], "skipped")
+
+    def test_all_pages_does_not_limit_report_to_selected_pages(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); args, selected = self.fixture(root)
+            args.all_pages = True
+            args.compare_baseline = self.baseline(root / "previous", selected)
+            plan = prepare_comparison(args, selected)
+            args.output_dir.mkdir()
+            # 비교기를 대체하되 생성 파일 해시까지 실제로 연결되는지 확인한다.
+            def compare(*unused, **kwargs):
+                self.assertIsNone(kwargs["selection"])
+                target = Path(kwargs["output_dir"]); target.mkdir()
+                write_json(target / "comparison.json", {"summary": {}})
+                (target / "comparison.md").write_text("모의 보고서")
+                return {"summary": {}}
+            with patch("experiments.automatic.run_comparison", side_effect=compare):
+                self.assertEqual(finish_comparison(plan, args.output_dir)["status"], "completed")
+
+    def test_invalid_gold_is_rejected_before_output(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); args, selected = self.fixture(root)
+            args.comparison_gold = root / "gold.json"; write_json(args.comparison_gold, {})
+            with self.assertRaises(ValueError):
+                prepare_comparison(args, selected)
+            self.assertFalse(args.output_dir.exists())
+
+    def test_report_failure_preserves_candidate_and_records_failure(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); args, selected = self.fixture(root)
+            self.baseline(root / "previous", selected)
+            plan = prepare_comparison(args, selected)
+            args.output_dir.mkdir()
+            write_json(args.output_dir / "summary.json", {"status": "completed"})
+            original = (args.output_dir / "summary.json").read_bytes()
+            with patch("experiments.automatic.run_comparison", side_effect=OSError("synthetic report failure")):
+                result = finish_comparison(plan, args.output_dir)
+            self.assertEqual(result["status"], "failed")
+            self.assertEqual((args.output_dir / "summary.json").read_bytes(), original)
+
+    def test_gold_and_settings_are_forwarded_to_shared_comparison(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); args, selected = self.fixture(root)
+            self.baseline(root / "previous", selected)
+            args.comparison_gold = root / "gold.json"
+            write_json(args.comparison_gold, gold_for(page(["alpha beta"]), [sentence()]))
+            args.comparison_evaluation_config = root / "evaluation.json"
+            write_json(args.comparison_evaluation_config, settings())
+            plan = prepare_comparison(args, selected)
+            args.output_dir.mkdir()
+            # 인자 전달만 검사한다. 실제 보고서 생성은 연속 파싱 통합 테스트에서 검증한다.
+            with patch("experiments.automatic.run_comparison", side_effect=OSError("synthetic stop")) as compare:
+                finish_comparison(plan, args.output_dir)
+            self.assertEqual(Path(compare.call_args.kwargs["gold"]), args.comparison_gold.resolve())
+            self.assertEqual(Path(compare.call_args.kwargs["evaluation_config"]), args.comparison_evaluation_config.resolve())
+
+
 class ParserIntegrationTests(unittest.TestCase):
+    def test_recording_and_comparison_can_both_be_disabled(self):
+        from parsing.run import main as parsing_main
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            selection = root / "selection.json"
+            write_json(selection, {"page_numbering": "pdf_viewer_1_based", "documents": [
+                {"document_name": "synthetic-document", "page_numbers": [1]}]})
+            output = root / "run"
+            with patch("parsing.v1_parser.build_parser", side_effect=RuntimeError("synthetic failure")), \
+                 patch("experiments.record.ExperimentRecorder") as recorder:
+                result = parsing_main(["--base-url", "https://example.invalid/", "--selection", str(selection),
+                    "--output-dir", str(output), "--no-experiment-record", "--no-auto-compare"])
+            recorder.assert_not_called()
+            self.assertEqual(result, 1)
+            self.assertFalse((output / MANIFEST_FILE).exists())
+            self.assertEqual(read_json(output / AUTO_COMPARISON_FILE)["status"], "disabled")
+
     def test_recorded_options_match_predict_and_saved_artifacts(self):
         # PyMuPDF는 테스트 안에서 작은 PDF를 생성한다. 모델·HTTP는 대체한다.
         import pymupdf
@@ -409,13 +579,27 @@ class ParserIntegrationTests(unittest.TestCase):
             raw = {"res": {"model_settings": {"merge_layout_blocks": False}, "parsing_res_list": [
                 {"block_label": "text", "block_content": "synthetic evidence", "block_bbox": [0, 0, 10, 10]}]}}
             parser = SimpleNamespace(_merged_paddlex_config={"configured": True},
-                                     predict=MagicMock(return_value=iter([SimpleNamespace(json=raw)])))
+                                     predict=MagicMock(side_effect=lambda **kwargs: iter([SimpleNamespace(json=raw)])))
             output = root / "run"
             with patch("parsing.v1_parser.build_parser", return_value=parser) as build, \
-                 patch("parsing.run.read_pdf_bytes", return_value=pdf):
+                 patch("parsing.run.read_pdf_bytes", return_value=pdf), \
+                 patch("experiments.automatic.DEFAULT_RECORDING_CONFIG", config_file):
+                # 기록 설정 플래그 없이 기본 설정을 읽는지 확인한다.
                 result = parsing_main(["--base-url", "https://example.invalid/", "--selection", str(selection),
-                    "--output-dir", str(output), "--experiment-config", str(config_file)])
+                    "--output-dir", str(output)])
+                second_output = root / "next_run"
+                second_result = parsing_main(["--base-url", "https://example.invalid/", "--selection", str(selection),
+                    "--output-dir", str(second_output)])
             self.assertEqual(result, 0)
+            self.assertEqual(second_result, 0)
+            self.assertEqual(read_json(output / AUTO_COMPARISON_FILE)["status"], "skipped")
+            auto = read_json(second_output / AUTO_COMPARISON_FILE)
+            self.assertEqual(auto["status"], "completed")
+            self.assertEqual(Path(auto["baseline"]), output.resolve())
+            report = read_json(Path(auto["report_files"]["comparison.json"]["path"]))
+            self.assertEqual(report["summary"]["quality_status"], "unmeasured")
+            self.assertEqual(report["source_comparison"]["status"], "compared")
+            self.assertEqual(read_json(second_output / FINISHED_FILE)["status"], "completed")
             self.assertEqual(build.call_args.kwargs["overrides"], config["pipeline_options"])
             self.assertFalse(parser.predict.call_args.kwargs["merge_layout_blocks"])
             metadata = read_json(output / "run.json")

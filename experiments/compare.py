@@ -343,6 +343,29 @@ def markdown(report):
     return "\n".join(lines)
 
 
+def run_comparison(baseline, candidate, *, selection=None, gold=None, evaluation_config=None, output_dir=None):
+    """CLI와 파싱 종료 훅이 같은 비교·저장 규칙을 사용한다. 입력 파일은 수정하지 않는다."""
+    paths = {key: Path(value) for key, value in (("selection", selection), ("gold", gold),
+              ("evaluation_config", evaluation_config)) if value is not None}
+    if gold is not None and evaluation_config is None:
+        raise ValueError("정답 평가에는 evaluation_config가 필요합니다.")
+    selected = read_json(paths["selection"]) if selection is not None else None
+    evaluation = validate_settings(read_json(paths["evaluation_config"])) if evaluation_config is not None else None
+    before, after = load_run(baseline, selected), load_run(candidate, selected)
+    report = compare_runs(before, after, read_json(paths["gold"]) if gold is not None else None, evaluation)
+    report["input_files"] = {key: {"path": str(path.resolve()), "sha256": file_hash(path)}
+                             for key, path in paths.items()}
+    if output_dir is not None:
+        output = Path(output_dir).resolve()
+        if any(output.is_relative_to(run["root"]) for run in (before, after)):
+            raise ValueError("보고서는 두 입력 실행 폴더 밖에 저장해야 합니다.")
+        output.mkdir(parents=True, exist_ok=False)
+        write_json(output / REPORT_JSON, clean(report))
+        with (output / REPORT_MARKDOWN).open("x", encoding="utf-8") as stream:
+            stream.write(markdown(clean(report)))
+    return report
+
+
 def main(argv=None):
     cli = argparse.ArgumentParser(description="저장된 실행의 설정·소스·품질·비용 전후 비교")
     cli.add_argument("--baseline", type=Path, required=True)
@@ -355,21 +378,8 @@ def main(argv=None):
     if args.gold and not args.evaluation_config:
         cli.error("--gold를 사용하면 --evaluation-config도 지정해야 합니다.")
     try:
-        selection = read_json(args.selection) if args.selection else None
-        evaluation = validate_settings(read_json(args.evaluation_config)) if args.evaluation_config else None
-        before, after = load_run(args.baseline, selection), load_run(args.candidate, selection)
-        report = compare_runs(before, after, read_json(args.gold) if args.gold else None, evaluation)
-        report["input_files"] = {key: {"path": str(path.resolve()), "sha256": file_hash(path)}
-                                 for key, path in (("selection", args.selection), ("gold", args.gold),
-                                                   ("evaluation_config", args.evaluation_config)) if path}
-        if args.output_dir:
-            output = args.output_dir.resolve()
-            if any(output.is_relative_to(run["root"]) for run in (before, after)):
-                raise ValueError("보고서는 두 입력 실행 폴더 밖에 저장해야 합니다.")
-            output.mkdir(parents=True, exist_ok=False)
-            write_json(output / REPORT_JSON, clean(report))
-            with (output / REPORT_MARKDOWN).open("x", encoding="utf-8") as stream:
-                stream.write(markdown(clean(report)))
+        report = run_comparison(args.baseline, args.candidate, selection=args.selection, gold=args.gold,
+                                evaluation_config=args.evaluation_config, output_dir=args.output_dir)
         print(json.dumps(report["summary"], ensure_ascii=False, indent=2))
         return 0
     except (OSError, ValueError, TypeError, KeyError) as exc:
