@@ -7,7 +7,8 @@
 ## 1. 입력부터 보고서까지
 
 ```text
-선정 목록·기본/지정 기록 설정 → parsing.run → 기준 실행 선택 → 모델 초기화·페이지 처리
+parsing_run.json → main.py → 선정 목록·기본/지정 기록 설정 → parsing.run
+ → 로컬 PDF 읽기/HTTP 입력·기준 실행 선택 → 모델 초기화·페이지 처리
  → run.json·페이지 JSON·PDF·PNG + experiment.json·experiment_finished.json·resources.jsonl·source_snapshot/
  → 파싱 기록 종료 → 자동 전후 비교 → 실행 폴더 옆 <실행명>_comparison/comparison.json·comparison.md
 
@@ -27,6 +28,8 @@
 
 | 파일 | 책임 |
 |---|---|
+| [main.py](../../main.py) | 실행 JSON 검증·기존 파싱 호출, 읽기 전용 설정 확인 |
+| [파싱 실행 설정](../../configs/parsing_run.json) | 입력·파서·장치·해상도·출력·기록/비교 활성화와 경로 |
 | [common.py](../../experiments/common.py) | 엄격한 JSON, 경로 경계, 해시, 민감 필드 처리 |
 | [record.py](../../experiments/record.py) | 시작/종료 manifest, 소스 복사본·Git diff, 모델 파일 출처, 결과물 연결 |
 | [resources.py](../../experiments/resources.py) | 하나의 관측 스레드로 전체 실행과 중첩 구간의 RSS·시간·선택적 CUDA 할당량 수집 |
@@ -73,7 +76,53 @@ GPU 수집은 이미 로딩된 Paddle의 allocator API만 사용하며 GPU 전�
 
 확인 환경은 macOS·기본 셸 zsh·Python 3.12.10의 `.venv`다. 아래 명령은 Bash 문법이며
 프로젝트 루트에서 실행한다. Linux·Windows에서도 같은 Python 모듈을 사용하되 가상환경 Python 경로는 다를 수 있다.
-각 경로·주소·장치·스레드·DPI 환경 변수에는 이번 실행 값을 먼저 지정한다.
+
+### 기본 실행
+
+```bash
+.venv/bin/python -B main.py
+```
+
+설정은 `configs/parsing_run.json`에서 읽는다. 기본 입력은 계속 사용하기로 확인한
+`http://127.0.0.1:8080/raw/mmdocir_data/extracted/doc_pdfs/`다. HTTP 서버는 별도로 실행 중이어야 한다.
+이 주소로 실제 연결·다운로드·신규 OCR 추론은 실행하지 않았다.
+명령 실행 시 원본 읽기·모델 다운로드/캐시·새 실행 폴더·선택적 자동 보고서 생성이 발생한다.
+로컬 입력을 선택하면 원본 bytes는 변경하지 않고 실행 폴더에 `source.pdf` 복사본과 해시를 보존한다.
+
+| 실행 설정 | 의미·현재 값의 이유 |
+|---|---|
+| `schema_version` | `project.parsing_run.v1`. 알 수 없는 필드·잘못된 타입은 실행 전에 거부 |
+| `selection` | 현재 설정 폴더의 선정 JSON. 문서·페이지를 코드에 넣지 않음 |
+| `input.kind`·`input.pdf_directory`·`input.base_url` | 기본 `http`는 pdf_directory=null과 확인한 PDF 폴더 URL. `local`은 원본 폴더와 base_url=null. 두 입력을 동시에 사용하지 않음 |
+| `output_root` | 실행 결과를 쌓을 폴더. 실행마다 UTC 시각으로 새 폴더를 생성 |
+| `parser`·`formula_model` | VL이면 formula_model=null, Structure이면 실제 수식 모델 ID 명시 |
+| `device`·`cpu_threads` | 기본 CPU·4스레드는 기존 시작 설정을 유지. 현재 하드웨어의 최적값으로 측정하지 않음 |
+| `dpi` | 기존 144 DPI 유지. 작은 문자 품질과 비용은 별도 실험 필요 |
+| `http_timeout_seconds` | 기존 30초 유지. HTTP 연결·읽기에만 적용하며 로컬 읽기 제한 시간이 아님 |
+| `all_pages` | false이면 선정 페이지만, true이면 선정 문서의 전체 페이지 |
+| `recording.enabled`·`recording.config` | 공통 기록 활성화와 기록 설정 JSON 위치 |
+| `comparison.enabled`·`comparison.baseline` | 비교 활성화. baseline=null이면 최근 호환 실행을 자동 선택 |
+| `comparison.output_directory` | null이면 새 실행 폴더 옆에 자동 보고서 생성. 고정 폴더를 지정하면 재실행 때 덮어쓰지 않고 거부 |
+| `comparison.gold`·`comparison.evaluation_config` | 정답이 없으면 미측정. 실제 정답과 평가 설정의 경로를 지정하면 종료 후 같은 평가기 사용 |
+
+모든 상대 파일·폴더 경로는 실행 JSON의 폴더 기준이며, 장치·수치·모델 ID는 실행 코드 안에 새로 고정하지 않는다.
+서버 없이 로컬 파일을 읽으려면 input을 `kind=local`, `pdf_directory=../data/doc_pdfs`, `base_url=null`로 바꾼다.
+현재 로컬 폴더에 선정 문서 9개가 존재함을 확인했으며 PDF 내용·추론 성공까지 확인한 것은 아니다.
+`--config "$RUN_CONFIG"`로 다른 설정 파일을 선택할 수 있다. `main.py`는 입력 처리·저장 로직을 복제하지 않고
+기존 `parsing.run`으로 전달한다. 공통 소스 복사본 대상에 `main.py`도 포함했다.
+`run.json`의 `launch_config`는 실제 읽은 설정·경로·SHA-256을 보존하며 민감 URL 값은 가린다.
+
+```bash
+.venv/bin/python -B main.py --check
+```
+
+확인 명령은 설정·선정 목록·로컬 파일 존재·비교 계획만 읽는다. 모델 로딩·HTTP 요청·출력 폴더 생성은 하지 않는다.
+PDF 내용 유효성·모델 다운로드 가능성·실제 추론·품질을 확인한 것으로 해석하지 않는다.
+출력 경로는 생성 예정 경로이며 실제 생성하지 않는다.
+
+### 기존 CLI로 직접 실행
+
+아래 명령을 사용할 때만 각 경로·주소·장치·스레드·DPI 환경 변수에 이번 실행 값을 먼저 지정한다.
 
 도움말은 모델 로딩·다운로드·결과 파일 생성을 하지 않는다.
 

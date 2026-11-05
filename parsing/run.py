@@ -2,13 +2,13 @@
 PDF → 페이지 준비 → 선택한 파서 → 좌표 연결 → 저장을 실행한다.
 pdf_source.py에서 입력을 받고 pdf_parser.py로 원본 정보와 이미지를 준비한다.
 v1_parser.py 또는 structure_parser.py를 호출한 뒤 review_pdf.py로 검토본을 만든다.
-실행 시 HTTP 다운로드·모델 캐시·새 결과 폴더 생성이 발생한다.
+실행 시 로컬 PDF 읽기 또는 HTTP 다운로드·모델 캐시·새 결과 폴더 생성이 발생한다.
 기존 파일은 덮어쓰지 않으며 --help는 모델 로딩·다운로드·결과 저장을 하지 않는다.
 
 모델은 실행당 한 번 로딩하고 페이지마다 결과와 실패 위치를 기록한다.
 공통 실행 기록은 기본 활성화하며 종료 후 호환되는 이전 실행과 비교 보고서를 만든다.
 첫 실행·비교 비활성화·중단·보고서 실패는 별도 auto_comparison.json에 남긴다.
-프로젝트 루트에서 python -m parsing.run 으로 실행한다.
+루트 main.py가 실행 설정을 전달하며 python -m parsing.run으로 인자를 직접 지정할 수도 있다.
 """
 
 # 표준 라이브러리: argparse는 CLI 검증, hashlib는 입력·코드 내용 추적에 사용한다.
@@ -33,8 +33,17 @@ from time import perf_counter
 
 # 아래 내부 모듈은 네트워크 입력과 파일 저장의 책임을 분리한다.
 # PDF 처리·모델·검토 모듈은 CLI 검증 뒤 가져와 --help의 의존성을 줄인다.
-from .pdf_source import build_pdf_url, load_selection, read_pdf_bytes
+from .pdf_source import build_pdf_url, load_selection, local_pdf_path, read_pdf_bytes
 from .result_store import create_output_directory, save_bytes, save_json
+
+# 실행 폴더 이름의 UTC 직렬화 형식이다. 실제 상위 폴더·파서는 설정이나 CLI에서 받는다.
+RUN_TIMESTAMP_FORMAT = "%Y%m%dT%H%M%S%fZ"
+
+
+def new_output_directory(parent: Path, parser: str) -> Path:
+    """반복 실행을 보존할 새 경로만 계산한다. 폴더 생성·덮어쓰기는 하지 않는다."""
+    stamp = datetime.now(timezone.utc).strftime(RUN_TIMESTAMP_FORMAT)
+    return parent / f"parsing_{parser}_{stamp}"
 
 
 def positive_int(value: str) -> int:
@@ -54,7 +63,9 @@ def arguments(argv: list[str] | None = None) -> argparse.Namespace:
         default=Path("configs/selection.json"),
         help="PDF 뷰어 기준 1부터 시작하는 페이지 선택 목록",
     )
-    cli.add_argument("--base-url", required=True, help="원본 PDF가 있는 HTTP(S) 폴더 URL")
+    source = cli.add_mutually_exclusive_group(required=True)
+    source.add_argument("--base-url", help="원본 PDF가 있는 HTTP(S) 폴더 URL")
+    source.add_argument("--pdf-directory", type=Path, help="선정 문서의 원본 PDF가 있는 로컬 폴더")
     cli.add_argument("--output-dir", type=Path, help="새 결과 폴더. 기존 폴더는 거부")
     # 내부 모듈의 이름 있는 기본 경로를 공유한다. 도움말은 모델·자원 관측을 시작하지 않는다.
     from experiments.automatic import DEFAULT_RECORDING_CONFIG, DEFAULT_EVALUATION_CONFIG
@@ -110,8 +121,7 @@ def arguments(argv: list[str] | None = None) -> argparse.Namespace:
         cli.error("--device에는 비어 있지 않은 장치를 지정해야 합니다.")
     if args.output_dir is None:
         # 마이크로초를 포함하되 충돌하면 덮어쓰지 않고 실패한다.
-        stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
-        args.output_dir = Path("outputs") / f"parsing_{args.parser}_{stamp}"
+        args.output_dir = new_output_directory(Path("outputs"), args.parser)
 
     return args
 
@@ -181,12 +191,18 @@ def process_document(
         "errors": [],
     }
 
-    stage = "download"
+    stage = "source_read"
     try:
-        url = build_pdf_url(args.base_url, name)
-        entry["source_url"] = clean(url, recorder.secrets if recorder else ())
-        with measure(recorder, "pdf_download", document_id=doc_id):
-            data = read_pdf_bytes(url, timeout=args.timeout)
+        if getattr(args, "pdf_directory", None) is not None:
+            path = local_pdf_path(args.pdf_directory, name)
+            entry.update(source_kind="local", source_path=str(path))
+            with measure(recorder, "pdf_read", document_id=doc_id):
+                data = path.read_bytes()
+        else:
+            url = build_pdf_url(args.base_url, name)
+            entry.update(source_kind="http", source_url=clean(url, recorder.secrets if recorder else ()))
+            with measure(recorder, "pdf_download", document_id=doc_id):
+                data = read_pdf_bytes(url, timeout=args.timeout)
         entry["source_sha256"] = sha256(data)
         entry["source_pdf"] = f"documents/{doc_id}/source.pdf"
         save_bytes(folder / "source.pdf", data)
@@ -367,7 +383,7 @@ def process_document(
     return entry
 
 
-def main(argv: list[str] | None = None) -> int:
+def main(argv: list[str] | None = None, *, launch_context: dict | None = None) -> int:
     """설정·환경·코드 해시·결과를 기록하고 실패가 있으면 종료 코드 1을 반환한다."""
     args = arguments(argv)
     selection = load_selection(args.selection)
@@ -379,8 +395,12 @@ def main(argv: list[str] | None = None) -> int:
         recording = load_record_config(args.experiment_config)
     secrets = known_secrets(recording["secret_environment_names"]) if recording else ()
 
-    # 잘못된 URL은 다운로드나 모델 로딩 전에 검출한다.
-    build_pdf_url(args.base_url, selection["documents"][0]["document_name"])
+    # 잘못된 입력은 출력 생성·모델 로딩 전에 검출한다. 로컬 문서는 전부 존재 여부를 확인한다.
+    if args.pdf_directory is not None:
+        for item in selection["documents"]:
+            local_pdf_path(args.pdf_directory, item["document_name"])
+    else:
+        build_pdf_url(args.base_url, selection["documents"][0]["document_name"])
     # 내부 자동화 모듈은 기준을 지금 고정한다. 추론 중 새로 생긴 실행으로 비교 대상이 바뀌지 않는다.
     from experiments.automatic import prepare_comparison, finish_comparison
     comparison_plan = prepare_comparison(args, selection)
@@ -417,6 +437,8 @@ def main(argv: list[str] | None = None) -> int:
         "http_timeout_seconds": args.timeout,
         "all_pages": args.all_pages,
         "base_url": args.base_url,
+        "source_kind": "local" if args.pdf_directory is not None else "http",
+        "pdf_directory": str(args.pdf_directory.resolve()) if args.pdf_directory is not None else None,
         "selection_sha256": sha256(args.selection.read_bytes()),
         # 미확인 모델 가중치 revision·하드웨어·정밀도는 추정하지 않는다.
         "model_weight_revision": None,
@@ -432,6 +454,8 @@ def main(argv: list[str] | None = None) -> int:
         "experiment_recording": {"enabled": recording is not None,
                                  "config_path": str(args.experiment_config.resolve()) if recording else None},
     }
+    if launch_context is not None:
+        metadata["launch_config"] = launch_context
 
     # 중단되어도 실행 조건은 남는다. 최종 결과는 별도 summary.json으로 저장한다.
     if recording:

@@ -24,6 +24,7 @@ PDF의 텍스트·표·수식·그림을 원본 위치와 연결하고, 검색 �
 | 남은 확인 | VL 영역 병합 옵션 비교, 반복·환각 식별, 문장 위치 복구와 표 구조 검증. 개선 재실행은 미수행 |
 | 규칙 검사 구현 | `parsing.validate_run`: 입력 해시·ID·좌표·반복·병합 그룹·표 격자 검사. 테스트 20개와 실제 54페이지 실행 확인. 원문 의미 정확도는 미측정 |
 | 실행 기록·전후 비교 | 파싱 시 기본 기록과 최근 호환 실행의 자동 비교. 공통 manifest·소스 diff·모델 파일·RSS·정답 기반 문장/위치/표 평가·JSON/Markdown 보고서. 실제 원문 품질 개선은 미측정 |
+| 기본 진입점 | 루트 `main.py`가 실행 설정을 읽어 HTTP·로컬 PDF 파싱·기록·자동 비교 실행. 모의 모델로 연속 실행 검증, 실제 신규 OCR 추론은 미수행 |
 | 이후 단계 | 청킹·임베딩·인덱스·검색·리랭킹·Recall@1·@3·@10 평가는 미구현 |
 
 이전 PyMuPDF 실행은 8개 문서·24페이지 기록이다. 현재 27페이지나 새 모델 파이프라인의 검증 결과로 취급하지 않는다.
@@ -71,7 +72,9 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 
 ```text
 .
+├─ main.py                  # 설정 파일 기반 파싱·기록·자동 비교 진입점
 ├─ configs/
+│  ├─ parsing_run.json       # 입력·파서·장치·출력·기록·비교 설정
 │  ├─ selection.json
 │  ├─ selection_3m_page9.json
 │  ├─ experiment_recording.json # 기록·소스·메모리·모델 객체·실험 옵션
@@ -85,7 +88,7 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 │  ├─ automatic.py         # 파싱 시작 기준 선택·종료 후 자동 보고서
 │  └─ __init__.py
 ├─ parsing/
-│  ├─ pdf_source.py        # 1. 선택 목록·HTTP 입력
+│  ├─ pdf_source.py        # 1. 선택 목록·로컬 PDF·HTTP 입력
 │  ├─ pdf_parser.py        # 2. PDF 추출·렌더링·좌표 변환
 │  ├─ model_result.py      # 3. 공통 추론·JSON·영역 변환
 │  ├─ v1_parser.py         # 4. PaddleOCR-VL 설정과 호출
@@ -235,12 +238,42 @@ python -m pip install -r requirements.txt
 기록한 PaddlePaddle은 CPU 버전이다. GPU 실행은 검증하지 않았으며, GPU에는 대응 Paddle 패키지와 드라이버가 필요하다.
 설치 방식과 Python 지원 범위는 [PaddleOCR-VL 공식 실행 안내](https://www.paddleocr.ai/main/en/version3.x/pipeline_usage/PaddleOCR-VL.html)를 참고한다.
 
-파싱은 원본 PDF를 HTTP로 읽는다. 원본 PDF 폴더를 제공하는 HTTP 서버를 준비하고 그 폴더 URL을 `--base-url`에 지정한다.
-`--base-url`과 문서명을 합친 URL에서 PDF 파일을 직접 읽을 수 있어야 한다.
-로그인 화면이나 HTML 페이지를 반환하는 주소는 PDF 입력으로 사용할 수 없다.
-아래 명령은 프로젝트 루트에서 실행하며, `PDF_BASE_URL`에는 준비한 PDF 폴더 URL을 넣는다.
+기본 입력은 계속 사용하기로 확인한 `http://127.0.0.1:8080/raw/mmdocir_data/extracted/doc_pdfs/`다.
+이 주소의 HTTP 서버는 별도로 실행 중이어야 하며 이번 변경에서 현재 연결·다운로드를 확인하지는 않았다.
+PDF 폴더 URL과 문서명을 합친 주소에서 PDF를 직접 읽을 수 있어야 한다.
+로그인 화면이나 HTML을 반환하는 주소는 PDF 입력으로 사용할 수 없다.
+로컬 입력도 지원하며, 2026-11-05에 `data/doc_pdfs/`에서 선정 문서 9개의 파일 존재를 확인했다.
+이 폴더의 PDF는 Git에 포함되지 않으므로 다른 환경에서는 원본 파일을 준비하거나 입력 위치를 바꾼다.
 
 ## 파싱 실행
+
+### main.py 하나로 실행
+
+프로젝트 루트에서 다음 명령 하나로 파싱·공통 실행 기록·이전 실행과 자동 비교를 진행한다.
+원본 PDF를 읽고 모델 다운로드/캐시·새 결과 폴더·선택적 비교 보고서가 생길 수 있다.
+
+```bash
+.venv/bin/python -B main.py
+```
+
+IDE에서 실행할 때도 Python 인터프리터를 `.venv`로 선택하고 루트 `main.py`를 실행한다.
+입력·장치·DPI·출력 위치 등은 [configs/parsing_run.json](configs/parsing_run.json)에서 바꾼다.
+상대 경로는 설정 파일이 있는 폴더 기준이며 현재 작업 폴더에 의존하지 않는다.
+기본값은 위 HTTP 주소·VL·CPU·4스레드·144 DPI·선정 페이지이며, 기록과 자동 비교를 켠다.
+기존 실행 조건을 이어받은 시작 설정이고 현재 환경의 최적 속도·품질을 측정한 값은 아니다.
+매번 UTC 시각이 포함된 새 실행 폴더를 만들고, 실행 설정의 내용·경로·해시를 `run.json`에 남긴다.
+모델·추론 세부 옵션은 기존 [기록 설정](configs/experiment_recording.json)의
+`pipeline_options`·`predict_options`에서 관리한다.
+
+설정·선정 PDF 경로·비교 계획만 확인하려면 다음 명령을 쓴다. 모델 로딩·다운로드·결과 생성은 하지 않으며,
+PDF 내용·실제 추론 가능성·품질까지 검증하는 명령은 아니다.
+
+```bash
+.venv/bin/python -B main.py --check
+```
+
+설정을 바꿔 보관하려면 `--config "$RUN_CONFIG"`로 다른 실행 JSON을 지정한다.
+필드 설명과 HTTP·Structure 전환은 [실행 비교 사용법](docs/planning/EXPERIMENT_COMPARISON_USAGE.md)을 참고한다.
 
 ### 실행 전 확인
 
@@ -251,7 +284,7 @@ Structure의 표 처리 옵션은 생성자가 아닌 이 함수에서 정한다
 VL의 JSON 목록 변환과 시간 측정은 공통 모듈을 사용한다. 기존 결과의 정성 검토에서 결함을 확인했으며,
 정확도 측정과 개선 설정의 재실행은 아직 수행하지 않았다.
 
-### 실행 명령
+### 인자를 직접 지정하는 실행
 
 도움말은 모델 로딩·다운로드·결과 파일 생성을 하지 않는다.
 
@@ -260,6 +293,7 @@ python -B -m parsing.run --help
 ```
 
 주 파싱 경로의 실행 예시다. 모델 초기화 시 다운로드·캐시가 생길 수 있고, 원본 PDF를 HTTP로 읽어 새 출력 폴더를 만든다.
+이 방식에서는 `PDF_BASE_URL`에 준비한 PDF 서버 주소를 지정한다. 로컬은 `--base-url` 대신 `--pdf-directory`를 쓴다.
 같은 출력 폴더가 이미 있으면 덮어쓰지 않고 실패한다.
 `--device`(`cpu`, `gpu:0` 등)와 `--cpu-threads`(기본값 4)는 실행 환경에 맞춰 정한다.
 

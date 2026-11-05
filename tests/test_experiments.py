@@ -15,6 +15,9 @@ import json
 from pathlib import Path
 import tempfile
 from types import SimpleNamespace
+# subprocess·sys는 현재 Python으로 다른 작업 폴더에서 main.py의 읽기 전용 확인을 실행한다.
+import subprocess
+import sys
 # unittest·mock은 경계 조건과 모델·OS 조회의 의도한 실패를 재현한다.
 import unittest
 from unittest.mock import patch
@@ -538,6 +541,137 @@ class AutomaticComparisonTests(unittest.TestCase):
                 finish_comparison(plan, args.output_dir)
             self.assertEqual(Path(compare.call_args.kwargs["gold"]), args.comparison_gold.resolve())
             self.assertEqual(Path(compare.call_args.kwargs["evaluation_config"]), args.comparison_evaluation_config.resolve())
+
+
+class MainEntryTests(unittest.TestCase):
+    def configuration(self, root):
+        """독립된 설정 폴더·입력·선정 목록을 만들고 상대 경로 기준을 검증한다."""
+        configs = root / "configs"; configs.mkdir()
+        (root / "inputs").mkdir()
+        write_json(configs / "selected.json", {"page_numbering": "pdf_viewer_1_based", "documents": [
+            {"document_name": "synthetic-document", "page_numbers": [1]}]})
+        write_json(configs / "record.json", record_config(root))
+        (root / "source.py").write_text("value = 1\n")
+        config = {"schema_version": "project.parsing_run.v1", "selection": "selected.json",
+            "input": {"kind": "local", "pdf_directory": "../inputs", "base_url": None},
+            "output_root": "../runs", "parser": "vl", "device": "cpu", "cpu_threads": 1,
+            "dpi": 72, "http_timeout_seconds": 1, "formula_model": None, "all_pages": False,
+            "recording": {"enabled": True, "config": "record.json"},
+            "comparison": {"enabled": True, "baseline": None, "output_directory": None,
+                           "gold": None, "evaluation_config": None}}
+        path = configs / "run.json"; write_json(path, config)
+        return path, config
+
+    def test_default_main_runs_local_parsing_and_automatic_comparison(self):
+        import main as entry
+        import pymupdf
+        from unittest.mock import MagicMock
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); config_path, config = self.configuration(root)
+            original = root / "inputs" / "synthetic-document.pdf"
+            with pymupdf.open() as document:
+                document.new_page().insert_text((20, 30), "synthetic evidence")
+                original.write_bytes(document.tobytes())
+            original_hash = file_hash(original)
+            raw = {"res": {"parsing_res_list": [{"block_label": "text", "block_content": "synthetic evidence",
+                                                "block_bbox": [0, 0, 10, 10]}]}}
+            parser = SimpleNamespace(_merged_paddlex_config={},
+                predict=MagicMock(side_effect=lambda **kwargs: iter([SimpleNamespace(json=raw)])))
+            with patch("main.DEFAULT_RUN_CONFIG", config_path), \
+                 patch("parsing.v1_parser.build_parser", return_value=parser), \
+                 patch("parsing.run.read_pdf_bytes") as remote:
+                self.assertEqual(entry.main([]), 0)
+                self.assertEqual(entry.main([]), 0)
+            remote.assert_not_called()
+            runs = sorted((root / "runs").glob("*/run.json"))
+            self.assertEqual(len(runs), parser.predict.call_count)
+            first, second = (read_json(file) for file in runs)
+            self.assertEqual(first["source_kind"], "local")
+            self.assertEqual(first["launch_config"]["config"], config)
+            self.assertEqual(first["launch_config"]["sha256"], file_hash(config_path))
+            self.assertEqual(second["pdf_directory"], str(original.parent.resolve()))
+            auto = read_json(runs[-1].parent / AUTO_COMPARISON_FILE)
+            self.assertEqual(auto["status"], "completed")
+            report = read_json(Path(auto["report_files"]["comparison.json"]["path"]))
+            self.assertTrue(all(item["same_pdf"] for item in report["input_comparison"]))
+            self.assertEqual(file_hash(original), original_hash)
+            self.assertEqual(Path(second["automatic_comparison"]["baseline"]), runs[0].parent.resolve())
+
+    def test_check_creates_no_outputs_and_does_not_start_parser(self):
+        import main as entry
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); path, _ = self.configuration(root)
+            # --check는 PDF 내용 검증이 아니라 경로·설정 검증이다.
+            (root / "inputs" / "synthetic-document.pdf").write_bytes(b"synthetic placeholder")
+            before = {file.relative_to(root): file_hash(file) for file in root.rglob("*") if file.is_file()}
+            with patch("main.run_parsing") as run, patch("main.DEFAULT_RUN_CONFIG", path):
+                self.assertEqual(entry.main(["--check"]), 0)
+            run.assert_not_called()
+            after = {file.relative_to(root): file_hash(file) for file in root.rglob("*") if file.is_file()}
+            self.assertEqual(before, after)
+            self.assertFalse((root / "runs").exists())
+
+    def test_entrypoint_resolves_paths_from_config_in_another_working_directory(self):
+        import main as entry
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); path, _ = self.configuration(root)
+            (root / "inputs" / "synthetic-document.pdf").write_bytes(b"synthetic placeholder")
+            result = subprocess.run([sys.executable, "-B", str(Path(entry.__file__).resolve()),
+                "--config", str(path), "--check"], cwd=root, capture_output=True, text=True, check=False)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            report = json.loads(result.stdout)
+            self.assertEqual(report["status"], "configuration_valid")
+            self.assertEqual(Path(report["output_directory"]).parent, (root / "runs").resolve())
+            self.assertFalse((root / "runs").exists())
+
+    def test_missing_local_pdf_fails_before_model_and_output(self):
+        import main as entry
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); path, _ = self.configuration(root)
+            with patch("parsing.v1_parser.build_parser") as build:
+                with self.assertRaises(SystemExit) as exc:
+                    entry.main(["--config", str(path)])
+            self.assertEqual(exc.exception.code, 2)
+            build.assert_not_called()
+            self.assertFalse((root / "runs").exists())
+
+    def test_invalid_types_and_unknown_fields_are_rejected(self):
+        from main import configured_arguments
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); path, original = self.configuration(root)
+            for key, value in (("cpu_threads", True), ("all_pages", "false"), ("unexpected", None)):
+                with self.subTest(key=key):
+                    config = {**original, key: value}
+                    path.write_text(json.dumps(config))
+                    with self.assertRaises(ValueError):
+                        configured_arguments(path)
+
+    def test_http_and_structure_settings_are_forwarded(self):
+        from main import configured_arguments
+        from parsing.run import arguments
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); path, config = self.configuration(root)
+            config["input"] = {"kind": "http", "pdf_directory": None, "base_url": "https://example.invalid/pdfs"}
+            config["parser"] = "structure"; config["formula_model"] = "synthetic-formula-model"
+            path.write_text(json.dumps(config))
+            invocation, context = configured_arguments(path)
+            args = arguments(invocation)
+            self.assertEqual(args.base_url, config["input"]["base_url"])
+            self.assertIsNone(args.pdf_directory)
+            self.assertEqual(args.formula_model, config["formula_model"])
+            self.assertEqual(context["sha256"], file_hash(path))
+            self.assertEqual(args.selection, (path.parent / config["selection"]).resolve())
+
+    def test_local_path_rejects_escape_and_external_symlink(self):
+        from parsing.pdf_source import local_pdf_path
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); source = root / "inputs"; source.mkdir()
+            outside = root / "outside.pdf"; outside.write_bytes(b"synthetic PDF")
+            with self.assertRaises(ValueError):
+                local_pdf_path(source, "../outside")
+            (source / outside.name).symlink_to(outside)
+            with self.assertRaises(ValueError):
+                local_pdf_path(source, outside.stem)
 
 
 class ParserIntegrationTests(unittest.TestCase):
