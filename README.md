@@ -23,7 +23,7 @@ PDF의 텍스트·표·수식·그림을 원본 위치와 연결하고, 검색 �
 | 품질 검토 | 2026-10-30 선정 27페이지의 이미지·JSON 정성 비교. 반복·원문에 없는 내용, 문장–bbox 불일치, 표 행·열 대응 오류 확인. 정확도 점수는 미측정 |
 | 남은 확인 | VL 영역 병합 옵션 비교, 반복·환각 식별, 문장 위치 복구와 표 구조 검증. 개선 재실행은 미수행 |
 | 규칙 검사 구현 | `parsing.validate_run`: 입력 해시·ID·좌표·반복·병합 그룹·표 격자 검사. 테스트 20개와 실제 54페이지 실행 확인. 원문 의미 정확도는 미측정 |
-| 실행 비교 계획 | 파싱부터 리랭킹까지 공통 실행 기록·설정/소스 diff·품질 전후 비교·가중치 출처·메모리 수집 설계 정리. 공통 비교 코드는 미구현 |
+| 실행 기록·전후 비교 | 공통 manifest·소스 복사본/diff·구성 모델 파일·RSS·정답 기반 문장/위치/표 평가·JSON/Markdown 비교 코드 구현. 실제 원문 품질 개선은 미측정 |
 | 이후 단계 | 청킹·임베딩·인덱스·검색·리랭킹·Recall@1·@3·@10 평가는 미구현 |
 
 이전 PyMuPDF 실행은 8개 문서·24페이지 기록이다. 현재 27페이지나 새 모델 파이프라인의 검증 결과로 취급하지 않는다.
@@ -48,7 +48,9 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 병합 비활성화의 개선 효과는 아직 검증하지 않았다. 기존 실행 JSON과 모델 코드는 변경하지 않았다.
 같은 날 macOS의 `.venv`에 PaddleOCR 3.7.0·PaddleX 3.7.2를 설치해 결과 객체의 이미지 접근·저장과
 병합·반복 제거 함수를 샘플 입력으로 확인했다. 모델 재추론은 수행하지 않았다.
-실행 조건 기록과 규칙 검사는 구현됐고, 변경 전후의 품질 비교는 미구현이다.
+당시에는 실행 조건 기록과 규칙 검사만 구현돼 있었다.
+2026-11-05에 공통 실행 기록과 정답을 입력받는 파싱 전후 평가를 추가했다.
+기존 실행에 없던 메모리·가중치 revision을 소급해 채우거나 실제 품질 개선을 확인한 것은 아니다.
 
 [파싱 품질 검증 단계 계획](docs/parsing_log/PARSING_VALIDATION_PLAN.md)은 위 검토 절차를 VL·Structure 뒤에 적용하는 설계안이다.
 규칙 검사·원본 근거 정렬·선택적 시각 검토·재인식·청킹 전달 정책과 완료 기준을 정리했다.
@@ -56,15 +58,27 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 
 [단계별 실행 기록과 전후 비교 계획](docs/planning/EXPERIMENT_COMPARISON_PLAN.md)은 실행 A/B의
 설정·소스 diff·모델 가중치 출처·메모리와 품질 변화를 같은 기록 구조로 연결하는 설계안이다.
-첫 코드 구현 범위는 공통 기록·비교 기반과 파싱 연결이며, 이후 청킹·임베딩·검색·리랭킹을 같은 구조로 확장한다.
+공통 기록·비교 기반과 파싱 연결을 구현했고, 이후 청킹·임베딩·검색·리랭킹을 같은 구조로 확장한다.
 문장 복구·새 누락·위치·표 셀 대응은 확인한 정답 표본으로 평가하고, 정답 없는 항목은 미측정으로 남긴다.
-이 계획 문서 추가로 실행 코드나 기존 결과를 변경하지 않았다.
+설정·실행 명령·기록 파일·정답 구조·한계는 [실행 비교 사용법](docs/planning/EXPERIMENT_COMPARISON_USAGE.md)에 기록했다.
+현재 구현은 정답 기반 비교 엔진이며 실제 정답 작성·파싱 자동 복구·후속 단계 알고리즘은 별도 작업이다.
 
 ## 구조와 코드 읽는 순서
 
 ```text
 .
-├─ configs/selection.json
+├─ configs/
+│  ├─ selection.json
+│  ├─ selection_3m_page9.json
+│  ├─ experiment_recording.json # 기록·소스·메모리·모델 객체·실험 옵션
+│  └─ experiment_evaluation.json # 매칭·위치·표 평가 설정
+├─ experiments/
+│  ├─ common.py            # 엄격한 JSON·경로·해시·민감정보 처리
+│  ├─ record.py            # 공통 실행·소스·모델·결과물 출처 기록
+│  ├─ resources.py         # 시간·프로세스 RSS·선택적 CUDA 관측
+│  ├─ evaluate.py          # 정답 기반 문장·위치·표 전후 평가
+│  ├─ compare.py           # 저장된 실행 조회·비교·보고서 CLI
+│  └─ __init__.py
 ├─ parsing/
 │  ├─ pdf_source.py        # 1. 선택 목록·HTTP 입력
 │  ├─ pdf_parser.py        # 2. PDF 추출·렌더링·좌표 변환
@@ -81,6 +95,7 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 │  ├─ planning/
 │  │  ├─ PROJECT_PLAN.md  # 설계·기술 선정 근거·실험 계획
 │  │  ├─ EXPERIMENT_COMPARISON_PLAN.md # 공통 실행 기록·단계별 전후 비교 설계
+│  │  ├─ EXPERIMENT_COMPARISON_USAGE.md # 현재 기록·비교·평가 사용법과 한계
 │  │  └─ RAG_LEARNING_PLAN.md # 기본 학습 커리큘럼
 │  ├─ data/
 │  │  └─ DATA_SPEC.md     # 선정 문서·페이지·관찰 특성
@@ -88,7 +103,9 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 │     ├─ PARSING_REVIEW.md # 파서별·공통·텍스트층·저장 문제
 │     └─ PARSING_VALIDATION_PLAN.md # 품질 검증 구현 계획
 ├─ requirements.txt
-├─ tests/test_parsing_quality.py # 규칙 경계·CLI·원본 보존 검증
+├─ tests/
+│  ├─ test_parsing_quality.py # 기존 규칙 경계·CLI·원본 보존 검증
+│  └─ test_experiments.py    # 기록·diff·복구/퇴행·모델/자원·파싱 연결 검증
 └─ outputs/
 ```
 
@@ -383,6 +400,7 @@ VLM/API 검토는 선택지로 유지하며 현재 검사에는 사용하지 않
 |---|---|
 | [PROJECT_PLAN.md](docs/planning/PROJECT_PLAN.md) | 모델·프레임워크 선정 근거, 내부 구조·대안, 세 채널 결합·리랭킹·평가 설계, 다음 실험 |
 | [EXPERIMENT_COMPARISON_PLAN.md](docs/planning/EXPERIMENT_COMPARISON_PLAN.md) | 공통 실행 기록, 설정·소스 diff, 문장·위치·표 전후 평가, 모델 출처·메모리, 후속 단계 확장 설계 |
+| [EXPERIMENT_COMPARISON_USAGE.md](docs/planning/EXPERIMENT_COMPARISON_USAGE.md) | 현재 기록·비교 CLI, 설정값의 의미, 정답 파일 구조, 검증 방법·제한 |
 | [DATA_SPEC.md](docs/data/DATA_SPEC.md) | 선정 문서·페이지·관찰 특성 |
 | [PARSING_REVIEW.md](docs/parsing_log/PARSING_REVIEW.md) | VL·Structure별 문제, 공통·텍스트층·저장 문제, 이미지 API, 변경 기록·효과 측정 상태 |
 | [PARSING_VALIDATION_PLAN.md](docs/parsing_log/PARSING_VALIDATION_PLAN.md) | 공통 품질 검증 단계의 입력·출력, 규칙·원본 대조·재인식, 지표·완료 기준 |

@@ -286,11 +286,15 @@ PaddleX 3.7.2의 `merge_blocks()`는 조건에 맞는 영역의 이미지를 연
 [Structure 결과 클래스](https://github.com/PaddlePaddle/PaddleX/blob/v3.7.2/paddlex/inference/pipelines/layout_parsing/result_v2.py),
 [이미지·Markdown 속성과 저장 메서드](https://github.com/PaddlePaddle/PaddleX/blob/v3.7.2/paddlex/inference/common/result/mixin.py).
 
-### 변경 기록과 효과 측정의 현재 구현
+### 2026-11-02 확인 당시의 변경 기록과 효과 측정
 
 아래 미구현 항목의 구현 방향과 청킹 이후 확장은
 [단계별 실행 기록과 전후 비교 계획](../planning/EXPERIMENT_COMPARISON_PLAN.md)에 정리했다.
 이는 2026-11-04 설계 문서이며 아래 구현 상태나 기존 실행 결과를 변경한 것은 아니다.
+
+2026-11-05에는 공통 실행 기록·소스 diff·모델 파일·메모리·파싱 전후 평가 코드를 추가했다.
+현재 사용법과 실제 지원 범위는 [실행 비교 사용법](../planning/EXPERIMENT_COMPARISON_USAGE.md)을 참고한다.
+아래 표는 추가 구현 전의 확인 기록으로 보존한다. 과거 결과에 새 메모리·revision·품질 점수를 채워 넣지 않았다.
 
 | 항목 | 구현 상태 | 한계 |
 |---|---|---|
