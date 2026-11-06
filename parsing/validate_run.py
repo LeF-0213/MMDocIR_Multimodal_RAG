@@ -5,7 +5,7 @@
 모델 로딩·설치·네트워크 호출·기존 파일 덮어쓰기를 하지 않는다.
 """
 
-# 표준 라이브러리: argparse는 CLI, json은 입력·보고서, hashlib는 파일 동일성을 처리한다.
+# 표준 라이브러리: argparse는 CLI, json은 보고서, hashlib는 문서명 ID를 처리한다.
 # sys는 실행 환경, Counter는 요약, datetime은 UTC 실행 시각을 기록한다.
 # Path는 경로·파일 접근을, perf_counter는 검사 소요 시간 측정을 맡는다.
 import argparse
@@ -17,31 +17,17 @@ from datetime import datetime, timezone
 from pathlib import Path
 from time import perf_counter
 
-# 내부 검사 모듈은 파일을 바꾸지 않고 페이지별 측정값·검토 항목을 반환한다.
+# 내부 공통 모듈은 엄격한 JSON 읽기·해시, 검사 모듈은 페이지별 측정값·검토 항목을 맡는다.
+from common import files as common_files
+from common.files import file_hash, read_json
 from .quality_checks import LIMITS, RULE_VERSION, inspect_page
-
-
-def file_hash(path):
-    """큰 PDF도 한 번에 메모리에 올리지 않도록 나누어 SHA-256을 계산한다."""
-    digest = hashlib.sha256()
-    with path.open("rb") as stream:
-        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
-
-
-def load_json(path):
-    """Python 기본값이 허용하는 비표준 NaN·Infinity도 거부한다."""
-    def reject(value):
-        raise ValueError(f"표준 JSON 숫자가 아닙니다: {value}")
-    return json.loads(path.read_text(encoding="utf-8"), parse_constant=reject)
 
 
 def inspect_run(root, selection_path, pdf_dir):
     """현재 선정 목록을 기준으로 페이지를 검사하고 원본 참조·해시를 남긴다."""
     if not root.is_dir():
         raise ValueError("파싱 실행 폴더가 존재하지 않습니다.")
-    selection = load_json(selection_path)
+    selection = read_json(selection_path)
     if not isinstance(selection, dict):
         raise ValueError("선정 목록은 객체여야 합니다.")
     if selection.get("page_numbering") != "pdf_viewer_1_based":
@@ -80,7 +66,7 @@ def inspect_run(root, selection_path, pdf_dir):
                 "tables": [], "findings": [],
             }
             try:
-                record = load_json(path)
+                record = read_json(path)
                 report = inspect_page(record)
                 report["input_json_sha256"] = file_hash(path)
                 expected_png = path.with_suffix(".png").relative_to(root).as_posix()
@@ -181,7 +167,8 @@ def main():
         report["elapsed_seconds"] = perf_counter() - started
         report["code_sha256"] = {
             path.name: file_hash(path)
-            for path in (Path(__file__), Path(__file__).with_name("quality_checks.py"))
+            for path in (Path(__file__), Path(__file__).with_name("quality_checks.py"),
+                         Path(common_files.__file__))
         }
         serialized = json.dumps(report, ensure_ascii=False, indent=2, allow_nan=False)
         if args.output:

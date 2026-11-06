@@ -7,7 +7,7 @@
 ## 1. 입력부터 보고서까지
 
 ```text
-parsing_run.json → main.py → 선정 목록·기본/지정 기록 설정 → parsing.run
+parsing_run.json → main.py → 선정 목록·기본/지정 기록 설정 → experiments.parsing_stage → parsing.run
  → 로컬 PDF 읽기/HTTP 입력·기준 실행 선택 → 모델 초기화·페이지 처리
  → run.json·페이지 JSON·PDF·PNG + experiment.json·experiment_finished.json·resources.jsonl·source_snapshot/
  → 파싱 기록 종료 → 자동 전후 비교 → 실행 폴더 옆 <실행명>_comparison/comparison.json·comparison.md
@@ -30,7 +30,10 @@ parsing_run.json → main.py → 선정 목록·기본/지정 기록 설정 → 
 |---|---|
 | [main.py](../../main.py) | 실행 JSON 검증·기존 파싱 호출, 읽기 전용 설정 확인 |
 | [파싱 실행 설정](../../configs/parsing_run.json) | 입력·파서·장치·해상도·출력·기록/비교 활성화와 경로 |
-| [common.py](../../experiments/common.py) | 엄격한 JSON, 경로 경계, 해시, 민감 필드 처리 |
+| [common/files.py](../../common/files.py) | 엄격한 JSON, 경로 경계, 해시 |
+| [common/redaction.py](../../common/redaction.py) | 민감 필드 처리, 비밀 의심 소스 판별 |
+| [schema.py](../../experiments/schema.py) | 기록·비교 파일 이름과 스키마 버전 |
+| [parsing_stage.py](../../experiments/parsing_stage.py) | 파싱에 기록기·자동 비교 연결, 인자 지정 실행 진입점 |
 | [record.py](../../experiments/record.py) | 시작/종료 manifest, 소스 복사본·Git diff, 모델 파일 출처, 결과물 연결 |
 | [resources.py](../../experiments/resources.py) | 하나의 관측 스레드로 전체 실행과 중첩 구간의 RSS·시간·선택적 CUDA 할당량 수집 |
 | [evaluate.py](../../experiments/evaluate.py) | 정답을 입력받는 문장·위치·표의 순수 전후 평가 |
@@ -109,7 +112,8 @@ GPU 수집은 이미 로딩된 Paddle의 allocator API만 사용하며 GPU 전�
 서버 없이 로컬 파일을 읽으려면 input을 `kind=local`, `pdf_directory=../data/doc_pdfs`, `base_url=null`로 바꾼다.
 현재 로컬 폴더에 선정 문서 9개가 존재함을 확인했으며 PDF 내용·추론 성공까지 확인한 것은 아니다.
 `--config "$RUN_CONFIG"`로 다른 설정 파일을 선택할 수 있다. `main.py`는 입력 처리·저장 로직을 복제하지 않고
-기존 `parsing.run`으로 전달한다. 공통 소스 복사본 대상에 `main.py`도 포함했다.
+`experiments.parsing_stage`로 전달한다. 공통 소스 복사본 대상에 `main.py`와 `common`도 포함했다.
+`parsing.run`은 실험 기록을 모르며, 직접 실행하면 파싱 결과만 남기고 기록·자동 비교를 하지 않는다.
 `run.json`의 `launch_config`는 실제 읽은 설정·경로·SHA-256을 보존하며 민감 URL 값은 가린다.
 
 ```bash
@@ -127,7 +131,7 @@ PDF 내용 유효성·모델 다운로드 가능성·실제 추론·품질을 �
 도움말은 모델 로딩·다운로드·결과 파일 생성을 하지 않는다.
 
 ```bash
-.venv/bin/python -B -m parsing.run --help
+.venv/bin/python -B -m experiments.parsing_stage --help
 .venv/bin/python -B -m experiments.compare --help
 ```
 
@@ -135,7 +139,7 @@ PDF 내용 유효성·모델 다운로드 가능성·실제 추론·품질을 �
 기존 출력 폴더는 거부한다. 기본 기록 설정을 쓰는 명령은 다음과 같다.
 
 ```bash
-.venv/bin/python -B -m parsing.run \
+.venv/bin/python -B -m experiments.parsing_stage \
   --base-url "$PDF_BASE_URL" --selection "$SELECTION_PATH" \
   --parser vl --device "$DEVICE" --cpu-threads "$CPU_THREADS" --dpi "$DPI" \
   --output-dir "$RUN_OUTPUT"
@@ -160,7 +164,7 @@ Structure에서는 파서 선택을 `structure`로 바꾸고 `--formula-model "$
 다른 파서·다른 상위 폴더와 비교하려면 기준을 직접 지정한다.
 
 ```bash
-.venv/bin/python -B -m parsing.run \
+.venv/bin/python -B -m experiments.parsing_stage \
   --base-url "$PDF_BASE_URL" --selection "$SELECTION_PATH" --output-dir "$RUN_OUTPUT" \
   --compare-baseline "$BASELINE_RUN" --comparison-output-dir "$COMPARISON_OUTPUT"
 ```

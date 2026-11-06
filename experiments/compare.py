@@ -16,9 +16,11 @@ import re
 from pathlib import Path
 from datetime import datetime, timezone
 
-# 내부 모듈: common은 표준 입출력·비밀 처리, evaluate는 원문 정답 기반 순수 평가다.
-from .common import (COMPARE_SCHEMA, FINISHED_FILE, MANIFEST_FILE, RECORD_SCHEMA,
-                     clean, file_hash, inside, json_bytes, read_json, write_json)
+# 내부 모듈: common은 표준 입출력·비밀 처리, schema는 기록 파일 이름,
+# evaluate는 원문 정답 기반 순수 평가다.
+from common.files import file_hash, inside, json_bytes, read_json, write_json
+from common.redaction import clean
+from .schema import COMPARE_SCHEMA, FINISHED_FILE, MANIFEST_FILE, RECORD_SCHEMA
 from .evaluate import evaluate_pair, validate_settings
 # 기존 규칙 검사는 의미 정확도 평가와 별도로 재사용한다. 이 모듈도 모델 의존성이 없다.
 from parsing.quality_checks import LIMITS, RULE_VERSION, inspect_page

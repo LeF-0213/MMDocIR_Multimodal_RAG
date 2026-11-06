@@ -5,9 +5,10 @@
 복구·퇴행·보류, 소스 무결성·배타적 저장·기록 설정의 실제 전달을 확인한다.
 """
 
-# 표준 라이브러리: copy는 독립 전후 입력, hashlib는 모의 원본 해시,
+# 표준 라이브러리: ast는 지연 import 검사, copy는 독립 전후 입력, hashlib는 모의 원본 해시,
 # datetime·timedelta·timezone은 현재 시각 기준 모의 실행 순서를 만든다.
 # json은 설정, pathlib·tempfile은 임시 자료, types는 모델 없는 객체 그래프다.
+import ast
 import copy
 from datetime import datetime, timedelta, timezone
 import hashlib
@@ -23,8 +24,9 @@ import unittest
 from unittest.mock import patch
 
 # 내부 공통·기록·자원·평가·비교 모듈의 공개 연결과 순수 함수를 각각 검사한다.
-from experiments.common import (FINISHED_FILE, GOLD_SCHEMA, MANIFEST_FILE, RECORD_SCHEMA,
-    clean, digest, file_hash, inside, read_json, source_is_sensitive, write_json)
+from common.files import digest, file_hash, inside, read_json, write_json
+from common.redaction import clean, source_is_sensitive
+from experiments.schema import FINISHED_FILE, GOLD_SCHEMA, MANIFEST_FILE, RECORD_SCHEMA
 from experiments.record import ExperimentRecorder, HF_METADATA_DIRECTORY, load_record_config, model_inventory
 from experiments.resources import ResourceMonitor
 from experiments.evaluate import (EVALUATION_SCHEMA, PDF_COORDINATES, LogicalTable,
@@ -37,6 +39,8 @@ from experiments.automatic import (AUTO_COMPARISON_FILE, DEFAULT_RECORDING_CONFI
 # 구간 시작·종료에서 동기 샘플을 수집하므로 실제 sleep은 필요 없다.
 TEST_INTERVAL_SECONDS = 60
 TEST_GIT_TIMEOUT_SECONDS = 1
+# 패키지 경계를 검사할 소스 위치다. 이 테스트 파일 기준이라 실행 폴더에 의존하지 않는다.
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
 def settings():
@@ -414,7 +418,7 @@ class AutomaticComparisonTests(unittest.TestCase):
         return root
 
     def test_default_recording_and_explicit_opt_out(self):
-        from parsing.run import arguments
+        from experiments.parsing_stage import arguments
         args = arguments(["--base-url", "https://example.invalid/"])
         self.assertEqual(args.experiment_config, DEFAULT_RECORDING_CONFIG)
         self.assertFalse(args.no_auto_compare)
@@ -648,7 +652,7 @@ class MainEntryTests(unittest.TestCase):
 
     def test_http_and_structure_settings_are_forwarded(self):
         from main import configured_arguments
-        from parsing.run import arguments
+        from experiments.parsing_stage import arguments
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory); path, config = self.configuration(root)
             config["input"] = {"kind": "http", "pdf_directory": None, "base_url": "https://example.invalid/pdfs"}
@@ -676,7 +680,7 @@ class MainEntryTests(unittest.TestCase):
 
 class ParserIntegrationTests(unittest.TestCase):
     def test_recording_and_comparison_can_both_be_disabled(self):
-        from parsing.run import main as parsing_main
+        from experiments.parsing_stage import main as parsing_main
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             selection = root / "selection.json"
@@ -695,7 +699,7 @@ class ParserIntegrationTests(unittest.TestCase):
     def test_recorded_options_match_predict_and_saved_artifacts(self):
         # PyMuPDF는 테스트 안에서 작은 PDF를 생성한다. 모델·HTTP는 대체한다.
         import pymupdf
-        from parsing.run import main as parsing_main
+        from experiments.parsing_stage import main as parsing_main
         from unittest.mock import MagicMock
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory); source = root / "source.py"; source.write_text("value = 1\n")
@@ -748,7 +752,7 @@ class ParserIntegrationTests(unittest.TestCase):
             self.assertTrue({"model_load", "model_prediction", "entire_run"} <= scopes)
 
     def test_model_load_failure_has_finished_record(self):
-        from parsing.run import main as parsing_main
+        from experiments.parsing_stage import main as parsing_main
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory); (root / "source.py").write_text("value = 1\n")
             selection = root / "selection.json"
@@ -765,7 +769,7 @@ class ParserIntegrationTests(unittest.TestCase):
             self.assertEqual(final["error"]["type"], "RuntimeError")
 
     def test_interruption_has_terminal_manifest_and_is_reraised(self):
-        from parsing.run import main as parsing_main
+        from experiments.parsing_stage import main as parsing_main
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory); (root / "source.py").write_text("value = 1\n")
             selection = root / "selection.json"
@@ -778,6 +782,93 @@ class ParserIntegrationTests(unittest.TestCase):
                     parsing_main(["--base-url", "https://example.invalid/", "--selection", str(selection),
                         "--output-dir", str(output), "--experiment-config", str(config_file)])
             self.assertEqual(read_json(output / FINISHED_FILE)["status"], "interrupted")
+
+
+class DomainBoundaryTests(unittest.TestCase):
+    """의존 방향 main → experiments → parsing → common이 함수 안 import까지 지켜지는지 본다."""
+
+    @staticmethod
+    def imported_roots(path):
+        """함수 안의 지연 import까지 포함한 최상위 패키지 이름을 모은다."""
+        roots = set()
+        for node in ast.walk(ast.parse(path.read_text(encoding="utf-8"))):
+            if isinstance(node, ast.Import):
+                roots.update(alias.name.split(".")[0] for alias in node.names)
+            elif isinstance(node, ast.ImportFrom) and node.level == 0 and node.module:
+                roots.add(node.module.split(".")[0])
+        return roots
+
+    def assert_no_imports(self, directory, forbidden):
+        files = sorted((PROJECT_ROOT / directory).glob("*.py"))
+        self.assertTrue(files)
+        for path in files:
+            with self.subTest(path=path.name):
+                self.assertFalse(self.imported_roots(path) & forbidden)
+
+    def test_lower_layers_do_not_import_upper_domains(self):
+        self.assert_no_imports("parsing", {"experiments", "main"})
+        self.assert_no_imports("common", {"parsing", "experiments", "main"})
+
+    def test_parsing_run_loads_without_experiments(self):
+        code = "import sys, parsing.run; sys.exit('experiments' in sys.modules)"
+        done = subprocess.run([sys.executable, "-B", "-c", code], cwd=PROJECT_ROOT)
+        self.assertEqual(done.returncode, 0)
+
+    def test_parsing_only_run_writes_no_experiment_files(self):
+        from parsing.run import main as parsing_only
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            selection = root / "selection.json"
+            write_json(selection, {"page_numbering": "pdf_viewer_1_based", "documents": [
+                {"document_name": "synthetic-document", "page_numbers": [1]}]})
+            output = root / "run"
+            with patch("parsing.vl_parser.build_parser", side_effect=RuntimeError("synthetic failure")):
+                result = parsing_only(["--base-url", "https://example.invalid/", "--selection", str(selection),
+                                       "--output-dir", str(output)])
+            self.assertEqual(result, 1)
+            metadata = read_json(output / "run.json")
+            self.assertNotIn("automatic_comparison", metadata)
+            self.assertTrue(any(name.startswith("common/") for name in metadata["code_sha256"]))
+            self.assertEqual(read_json(output / "summary.json")["fatal_error"]["type"], "RuntimeError")
+            self.assertFalse((output / MANIFEST_FILE).exists())
+            self.assertFalse((output / AUTO_COMPARISON_FILE).exists())
+
+    def test_parsing_only_run_reraises_interruption_after_summary(self):
+        from parsing.run import main as parsing_only
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            selection = root / "selection.json"
+            write_json(selection, {"page_numbering": "pdf_viewer_1_based", "documents": [
+                {"document_name": "synthetic-document", "page_numbers": [1]}]})
+            output = root / "run"
+            with patch("parsing.vl_parser.build_parser", side_effect=KeyboardInterrupt):
+                with self.assertRaises(KeyboardInterrupt):
+                    parsing_only(["--base-url", "https://example.invalid/", "--selection", str(selection),
+                                  "--output-dir", str(output)])
+            self.assertEqual(read_json(output / "summary.json")["status"], "completed_with_errors")
+
+    def test_selection_and_validator_share_strict_json_rules(self):
+        from parsing.pdf_source import load_selection
+        from parsing.validate_run import inspect_run
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            selection = root / "selection.json"
+            selection.write_text('{"page_numbering": "pdf_viewer_1_based", "page_numbering": "x", "documents": []}',
+                                 encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "중복 JSON 키"):
+                load_selection(selection)
+            with self.assertRaisesRegex(ValueError, "중복 JSON 키"):
+                inspect_run(root, selection, root)
+
+    def test_result_store_keeps_field_order_and_refuses_overwrite(self):
+        from parsing.result_store import save_json
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "record.json"
+            save_json(path, {"z": 1, "a": 2})
+            self.assertLess(path.read_text(encoding="utf-8").index('"z"'),
+                            path.read_text(encoding="utf-8").index('"a"'))
+            with self.assertRaises(FileExistsError):
+                save_json(path, {"z": 1})
 
 
 if __name__ == "__main__":

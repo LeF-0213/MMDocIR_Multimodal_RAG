@@ -5,8 +5,7 @@ run.py에 반환한 PDF bytes는 pdf_parser.py가 해석한다.
 설정 파일 읽기와 HTTP 다운로드를 수행하며 파일 생성·모델 로딩은 하지 않는다.
 """
 
-# 표준 라이브러리: json은 선택 설정, Path는 파일 경로·UTF-8 읽기를 담당한다.
-import json
+# 표준 라이브러리: Path는 파일 경로를 담당한다.
 from pathlib import Path
 
 # quote는 문서명을 URL 경로 한 조각으로 인코딩하고 urlsplit은 주소를 검증한다.
@@ -14,10 +13,13 @@ from pathlib import Path
 from urllib.parse import quote, urlsplit
 from urllib.request import urlopen
 
+# 내부 공통 모듈: read_json은 중복 키·NaN을 거부하는 엄격한 설정 읽기를 맡는다.
+from common.files import read_json
+
 
 def load_selection(path: Path) -> dict:
     """필드와 번호 체계를 검사한다. 실제 페이지 존재 여부는 PDF를 연 뒤 확인한다."""
-    data = json.loads(path.read_text(encoding="utf-8"))
+    data = read_json(path)
     if not isinstance(data, dict):
         raise ValueError("선택 설정의 최상위 값은 객체여야 합니다.")
     if data.get("page_numbering") != "pdf_viewer_1_based":

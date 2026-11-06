@@ -21,7 +21,7 @@ from uuid import uuid4
 import psutil
 
 # 내부 모듈: clean은 구간 설명과 오류에 명시한 비밀 값이 섞이지 않게 한다.
-from .common import clean
+from common.redaction import clean
 
 
 class ResourceMonitor:

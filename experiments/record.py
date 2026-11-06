@@ -6,9 +6,8 @@ CLI가 읽은 기록 설정과 실행 폴더를 받아 시작/종료 manifest를
 정답·평가 레이블은 이 모듈의 모델 입력이나 문서 표현으로 전달하지 않는다.
 """
 
-# 표준 라이브러리: contextlib는 기록을 끈 호출의 빈 구간, datetime은 UTC 시각,
-# importlib는 패키지 버전, subprocess는 shell 없는 Git 조회, uuid는 실행 식별자다.
-from contextlib import nullcontext
+# 표준 라이브러리: datetime은 UTC 시각, importlib는 패키지 버전,
+# subprocess는 shell 없는 Git 조회, uuid는 실행 식별자다.
 from datetime import datetime, timezone
 from importlib.metadata import PackageNotFoundError, version
 import subprocess
@@ -25,10 +24,11 @@ import platform
 import sys
 from pathlib import Path
 
-# 내부 모듈: common은 보존·비밀 처리, resources는 프로세스·단계별 자원 관측을 맡는다.
-from .common import (FINISHED_FILE, MANIFEST_FILE, RECORD_SCHEMA, RESOURCES_FILE,
-                     HASH_BUFFER_BYTES, clean, digest, file_hash, inside, json_bytes, known_secrets,
-                     read_json, source_is_sensitive, write_json)
+# 내부 모듈: common은 보존·비밀 처리, schema는 기록 파일 이름,
+# resources는 프로세스·단계별 자원 관측을 맡는다.
+from common.files import HASH_BUFFER_BYTES, digest, file_hash, inside, json_bytes, read_json, write_json
+from common.redaction import clean, known_secrets, source_is_sensitive
+from .schema import FINISHED_FILE, MANIFEST_FILE, RECORD_SCHEMA, RESOURCES_FILE
 from .resources import ResourceMonitor
 
 # 공식 Git 출력 형식과 manifest 파일명은 환경 설정이 아닌 직렬화 정의다.
@@ -361,8 +361,3 @@ class ExperimentRecorder:
             "source_changes_during_run": changed, "error": clean(error, self.secrets)}
         write_json(self.root / FINISHED_FILE, result)
         return result
-
-
-def measure(recorder, name, **details):
-    """기록을 요청하지 않은 기존 실행도 같은 호출부를 유지하게 한다."""
-    return recorder.measure(name, **details) if recorder else nullcontext()

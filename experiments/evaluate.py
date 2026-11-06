@@ -15,7 +15,7 @@ import re
 import unicodedata
 
 # 내부 공통 모듈: 정답의 스키마와 JSON 해시가 보고서 정의와 일치하게 한다.
-from .common import GOLD_SCHEMA
+from .schema import GOLD_SCHEMA
 
 # 실제 실험의 임계값이 아닌 평가 파일 형식·좌표 기준의 정의다.
 EVALUATION_SCHEMA = "project.parsing_evaluation.v1"
