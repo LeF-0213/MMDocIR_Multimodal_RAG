@@ -31,12 +31,26 @@ AUTO_COMPARISON_SCHEMA = "project.parsing_auto_comparison.v1"
 COMPARISON_DIRECTORY_SUFFIX = "_comparison"
 SELECTION_FILE = "selection.json"
 TERMINAL_STATUSES = frozenset({"completed", "completed_with_errors"})
+# 파싱 결과가 남은 페이지 상태의 정의다. failed는 비교할 출력이 없으므로 제외한다.
+USABLE_PAGE_STATUSES = ("ok", "empty", "partial")
 
 
 def _selection_key(selection):
     """문서·페이지의 입력 순서와 JSON 공백을 제외한 선정 범위를 비교한다."""
     return tuple(sorted((item["document_name"], tuple(sorted(item["page_numbers"])))
                         for item in selection["documents"]))
+
+
+def _baseline_rejection(summary):
+    """자동 기준으로 쓸 수 없는 이유를 반환한다. 일부 페이지 실패 실행은 비교 근거가 있어 허용한다."""
+    if summary.get("status") not in TERMINAL_STATUSES:
+        return "종료되지 않은 실행"
+    if summary.get("fatal_error"):
+        return "치명 오류·중단으로 끝난 실행"
+    counts = summary.get("page_status_counts") or {}
+    if summary["status"] != "completed" and not any(counts.get(name) for name in USABLE_PAGE_STATUSES):
+        return "처리된 페이지가 없는 실행"
+    return None
 
 
 def _evidence(root):
@@ -81,8 +95,9 @@ def prepare_comparison(args, selection):
                 if _selection_key(load_selection(folder / SELECTION_FILE)) != _selection_key(selection):
                     continue
                 summary = read_json(folder / LEGACY_SUMMARY_FILE)
-                if summary.get("status") not in TERMINAL_STATUSES:
-                    raise ValueError("종료되지 않은 실행")
+                rejection = _baseline_rejection(summary)
+                if rejection:
+                    raise ValueError(rejection)
                 if (folder / MANIFEST_FILE).exists():
                     final = read_json(folder / FINISHED_FILE)
                     start = read_json(folder / MANIFEST_FILE)

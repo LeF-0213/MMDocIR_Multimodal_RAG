@@ -33,6 +33,10 @@ LEGACY_SOURCE_FILE = "source.pdf"
 PAGE_FILENAME = re.compile(r"page_(\d+)\.json$")
 REPORT_JSON = "comparison.json"
 REPORT_MARKDOWN = "comparison.md"
+# 결과에 영향을 주도록 요청한 실행 조건이다. 시각·경로·비교 계획 같은 운영 정보와 구분해 보여준다.
+# 환경·코드는 별도 항목으로 비교하고, 입력 PDF는 input_comparison에서 해시로 비교한다.
+SETTING_KEYS = ("parser", "parser_options", "predict_options", "dpi", "all_pages")
+SEPARATELY_COMPARED_KEYS = ("environment",)
 
 
 def differences(before, after, path=()):
@@ -51,6 +55,15 @@ def differences(before, after, path=()):
         result.append({"path": list(path), "kind": "type_changed" if type(before) is not type(after) else "changed",
                        "before": before, "after": after})
     return result
+
+
+def setting_view(requested):
+    """요청 기록을 실행 설정과 운영 정보로 나눈다. 없는 키를 만들지 않는다."""
+    requested = requested or {}
+    settings = {key: requested[key] for key in SETTING_KEYS if key in requested}
+    operations = {key: value for key, value in requested.items()
+                  if key not in SETTING_KEYS and key not in SEPARATELY_COMPARED_KEYS}
+    return settings, operations
 
 
 def _optional(root, name):
@@ -128,6 +141,9 @@ def load_run(root, selection=None):
             source = path.parent / LEGACY_SOURCE_FILE
             if key[0] not in source_hashes:
                 source_hashes[key[0]] = file_hash(inside(root, source.relative_to(root))) if source.is_file() else None
+                if source_hashes[key[0]] is None:
+                    # .gitignore가 PDF를 제외해 보통의 저장소 사본에는 없다. 채점은 막지 않되 숨기지 않는다.
+                    problems.append({"document_id": key[0], "reason": "원본 PDF 없음. 기록된 해시만 확인 가능"})
             record["_actual_source_sha256"] = source_hashes[key[0]]
             if source_hashes[key[0]] and source_hashes[key[0]] != record.get("source_sha256"):
                 record["_integrity_error"] = "실제 PDF 해시와 기록 불일치"
@@ -163,6 +179,10 @@ def load_run(root, selection=None):
                 raise ValueError("결과물 해시 불일치")
         except (OSError, ValueError, KeyError, TypeError) as exc:
             problems.append({"artifact_id": artifact.get("artifact_id"), "reason": str(exc)})
+            # 실행 뒤 바뀐 페이지 JSON의 내용을 채점하지 않도록 해당 페이지를 미해결로 표시한다.
+            for record in pages.values():
+                if record.get("_input_json") == artifact.get("path"):
+                    record["_integrity_error"] = f"등록된 결과물과 다름: {exc}"
     requested = (manifest or {}).get("requested")
     if requested is None:
         requested = {k: (legacy or {}).get(k) for k in (
@@ -184,7 +204,10 @@ def source_diff(before, after):
     files = []
     for name in sorted(old.keys() | new.keys()):
         a, b = old.get(name), new.get(name)
-        entry = {"path": name, "kind": "added" if a is None else "removed" if b is None else "unchanged"}
+        entry = {"path": name, "kind": "added" if a is None else "removed" if b is None else "unknown"}
+        # 내용 비교보다 먼저 해시로 판정한다. 복사본을 읽지 못해도 변경 사실은 알 수 있다.
+        if a and b and a.get("sha256") and b.get("sha256"):
+            entry["kind"] = "changed" if a["sha256"] != b["sha256"] else "unchanged"
         contents = []
         try:
             for run, item in ((before, a), (after, b)):
@@ -197,8 +220,6 @@ def source_diff(before, after):
                     contents.append(path.read_text(encoding="utf-8"))
                 else:
                     raise ValueError("수집이 보류되거나 실패한 소스")
-            if a and b and a["sha256"] != b["sha256"]:
-                entry["kind"] = "changed"
             entry["status"] = "verified"
             entry["unified_diff"] = "".join(unified_diff(contents[0].splitlines(keepends=True),
                 contents[1].splitlines(keepends=True), fromfile=f"before/{name}", tofile=f"after/{name}"))
@@ -241,6 +262,14 @@ def _models(run):
         for model in manifest["models"]], "coverage": manifest.get("coverage")}
 
 
+def model_comparison_status(before, after):
+    """양쪽 모델 파일을 모두 확보했을 때만 model_changes가 비어 있는 것을 동일로 읽을 수 있다."""
+    views = [_models(run) for run in (before, after)]
+    if any(view is None for view in views):
+        return "unavailable"
+    return "verified" if all(view["status"] == "collected" for view in views) else "incomplete"
+
+
 def _artifact_inventory(run):
     """실행마다 달라지는 UUID와 실제 파일 내용의 변화를 구분한다. 원본 연결은 별도 보존한다."""
     final = run["finished"] or {}
@@ -250,17 +279,20 @@ def _artifact_inventory(run):
 
 def compare_runs(before, after, gold=None, evaluation=None):
     keys = before["expected"] | after["expected"] | before["pages"].keys() | after["pages"].keys()
-    input_rows = []; output_rows = []; blocked = set()
+    input_rows = []; output_rows = []; blocked = set(); unconfirmed = set()
     for key in sorted(keys):
         a, b = before["pages"].get(key), after["pages"].get(key)
         row = {"page": list(key), "before_present": a is not None, "after_present": b is not None}
         if a and b:
-            same_pdf = a.get("source_sha256") is not None and a.get("source_sha256") == b.get("source_sha256")
+            hashes = a.get("source_sha256"), b.get("source_sha256")
+            # 읽지 못한 페이지는 해시가 없다. 다르다고 단정하지 않고 확인 불가로 구분한다.
+            same_pdf = hashes[0] == hashes[1] if all(hashes) else None
             row.update(same_pdf=same_pdf,
                        same_model_image=a.get("_actual_png_sha256") is not None and
                            a.get("_actual_png_sha256") == b.get("_actual_png_sha256"),
                        before_source_sha256=a.get("source_sha256"), after_source_sha256=b.get("source_sha256"))
-            if not same_pdf: blocked.add(key)
+            if same_pdf is False: blocked.add(key)
+            if same_pdf is None: unconfirmed.add(key)
         input_rows.append(row)
         outputs = []
         for page in (a, b):
@@ -274,7 +306,7 @@ def compare_runs(before, after, gold=None, evaluation=None):
                 "observed_settings": raw.get("model_settings") if isinstance(raw, dict) else None,
                 "rules": (page or {}).get("_rules"),
                 "page_execution": (page or {}).get("_page_execution")})
-        output_rows.append({"page": list(key), "same_source_for_quality": key not in blocked,
+        output_rows.append({"page": list(key), "same_source_for_quality": row.get("same_pdf"),
                             "before": outputs[0], "after": outputs[1],
                             "observed_setting_changes": differences(outputs[0]["observed_settings"], outputs[1]["observed_settings"]),
                             "output_changes": differences(outputs[0]["content"], outputs[1]["content"])})
@@ -285,6 +317,9 @@ def compare_runs(before, after, gold=None, evaluation=None):
         stages = {(r["manifest"] or {}).get("stage", "parsing") for r in (before, after)}
         if stages == {"parsing"}:
             quality = evaluate_pair(before["pages"], after["pages"], gold, evaluation)
+            quality["source_file_unverified_pages"] = {side: sum(p.get("_actual_source_sha256") is None
+                                                                for p in run["pages"].values())
+                                                       for side, run in (("before", before), ("after", after))}
         else:
             quality = {"status": "unmeasured", "reason": "문장·표 평가기는 parsing 단계에만 적용"}
     return {"schema_version": COMPARE_SCHEMA, "checked_at_utc": datetime.now(timezone.utc).isoformat(),
@@ -293,11 +328,13 @@ def compare_runs(before, after, gold=None, evaluation=None):
                   "after": (after["manifest"] or {}).get("stage", "parsing")},
         "execution_status": {"before": before["execution_status"], "after": after["execution_status"]},
         "summary": {"page_count": len(keys), "common_pages": sum(r["before_present"] and r["after_present"] for r in input_rows),
-                    "different_pdf_pages": len(blocked), "quality_status": quality["status"],
+                    "different_pdf_pages": len(blocked), "unconfirmed_pdf_pages": len(unconfirmed),
+                    "quality_status": quality["status"], "model_comparison": model_comparison_status(before, after),
                     "before_problems": len(before["problems"]), "after_problems": len(after["problems"])},
         "input_comparison": input_rows,
         "input_problems": {"before": before["problems"], "after": after["problems"]},
-        "requested_setting_changes": differences(before["requested"], after["requested"]),
+        "requested_setting_changes": differences(setting_view(before["requested"])[0], setting_view(after["requested"])[0]),
+        "operational_changes": differences(setting_view(before["requested"])[1], setting_view(after["requested"])[1]),
         "environment_changes": differences((before["manifest"] or {}).get("environment", (before["legacy"] or {}).get("environment")),
                                            (after["manifest"] or {}).get("environment", (after["legacy"] or {}).get("environment"))),
         "resolved_setting_changes": differences((before["finished"] or {}).get("resolved"), (after["finished"] or {}).get("resolved")),
@@ -361,10 +398,13 @@ def run_comparison(baseline, candidate, *, selection=None, gold=None, evaluation
         output = Path(output_dir).resolve()
         if any(output.is_relative_to(run["root"]) for run in (before, after)):
             raise ValueError("보고서는 두 입력 실행 폴더 밖에 저장해야 합니다.")
+        # 폴더를 만들기 전에 내용을 완성한다. 실패해도 빈 폴더가 재시도를 막지 않는다.
+        cleaned = clean(report)
+        rendered = markdown(cleaned)
         output.mkdir(parents=True, exist_ok=False)
-        write_json(output / REPORT_JSON, clean(report))
+        write_json(output / REPORT_JSON, cleaned)
         with (output / REPORT_MARKDOWN).open("x", encoding="utf-8") as stream:
-            stream.write(markdown(clean(report)))
+            stream.write(rendered)
     return report
 
 

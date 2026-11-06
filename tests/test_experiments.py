@@ -31,7 +31,8 @@ from experiments.record import ExperimentRecorder, HF_METADATA_DIRECTORY, load_r
 from experiments.resources import ResourceMonitor
 from experiments.evaluate import (EVALUATION_SCHEMA, PDF_COORDINATES, LogicalTable,
     evaluate_pair, region_iou, sentence_result, validate_gold, validate_settings)
-from experiments.compare import compare_runs, differences, load_run, main as compare_main, markdown
+from experiments.compare import (compare_runs, differences, load_run, main as compare_main, markdown,
+                                 model_comparison_status, run_comparison, setting_view, source_diff)
 from experiments.automatic import (AUTO_COMPARISON_FILE, DEFAULT_RECORDING_CONFIG,
                                   finish_comparison, prepare_comparison)
 
@@ -156,6 +157,42 @@ class SentenceTests(unittest.TestCase):
         report = evaluate(before, after, gold)
         self.assertEqual(report["summary"]["sentences"]["transition_counts"],
                          {"recovered": 1, "new_missing": 1})
+
+    def test_absent_baseline_page_is_not_recovery(self):
+        after = page(["alpha beta"])
+        report = evaluate(None, after, gold_for(after, [sentence()]))
+        self.assertEqual(report["sentences"][0]["before"]["status"], "page_absent")
+        self.assertEqual(report["sentences"][0]["transition"], "unresolved")
+
+    def test_failed_baseline_page_can_still_be_recovered(self):
+        before = page(["alpha beta"]); before["parsing"]["status"] = "failed"
+        after = page(["alpha beta"])
+        report = evaluate(before, after, gold_for(after, [sentence()]))
+        self.assertEqual(report["sentences"][0]["transition"], "recovered")
+
+    def test_page_absent_from_both_runs_is_reported_outside_denominator(self):
+        record = page(["alpha beta"])
+        report = evaluate(None, None, gold_for(record, [sentence()]))
+        self.assertEqual(report["summary"]["sentences"]["denominator"], 0)
+        self.assertEqual(report["absent_pages"], [[record["document_id"], record["page_number"]]])
+
+    def test_absent_table_page_is_not_cell_recovery(self):
+        html = '<table><tr><td>7</td></tr></table>'
+        after = page([html], table=True)
+        table = {"id": "table", "bboxes": [[0, 0, 10, 10]], "cells": [
+            {"id": "value", "row": 0, "column": 0, "rowspan": 1, "colspan": 1, "text": "7"}]}
+        report = evaluate(None, after, gold_for(after, tables=[table]))
+        cell = report["tables"][0]["cell_transitions"][0]
+        self.assertEqual((cell["transition"], cell["correspondence_transition"]), ("unresolved", "unresolved"))
+
+    def test_contained_alternative_is_one_match(self):
+        truth = {**sentence("Revenue grew 5% in 2018.", "revenue"), "alternatives": ["Revenue grew 5% in 2018"]}
+        self.assertEqual(sentence_result(page(["Revenue grew 5% in 2018."]), truth, settings())["status"], "correct")
+
+    def test_repeated_positions_stay_unresolved_with_alternatives(self):
+        truth = {**sentence("alpha beta.", "repeat"), "alternatives": ["alpha beta"]}
+        result = sentence_result(page(["alpha beta. middle text alpha beta."]), truth, settings())
+        self.assertEqual(result["status"], "unresolved")
 
     def test_typo_is_not_correct(self):
         record = page(["alpha betx"])
@@ -427,6 +464,31 @@ class AutomaticComparisonTests(unittest.TestCase):
         self.assertTrue(disabled.no_auto_compare)
         with self.assertRaises(SystemExit):
             arguments(["--base-url", "https://example.invalid/", "--no-auto-compare", "--compare-baseline", "."])
+
+    def test_runs_without_usable_pages_are_not_selected_as_baseline(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); args, selected = self.fixture(root)
+            good = self.baseline(root / "good", selected, age_seconds=30)
+            rejected = {
+                "interrupted": {"status": "completed_with_errors", "fatal_error": {"type": "KeyboardInterrupt"},
+                                "page_status_counts": {"ok": 1}},
+                "no_pages": {"status": "completed_with_errors", "fatal_error": None, "page_status_counts": {}},
+                "all_failed": {"status": "completed_with_errors", "fatal_error": None,
+                               "page_status_counts": {"failed": 1}},
+            }
+            for name, summary in rejected.items():
+                write_json(self.baseline(root / name, selected, completed=False) / "summary.json", summary)
+            plan = prepare_comparison(args, selected)
+            self.assertEqual(Path(plan["baseline"]), good.resolve())
+            self.assertEqual(len(plan["ignored"]), len(rejected))
+
+    def test_partially_failed_run_remains_a_baseline(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); args, selected = self.fixture(root)
+            partial = self.baseline(root / "partial", selected, completed=False)
+            write_json(partial / "summary.json", {"status": "completed_with_errors", "fatal_error": None,
+                                                  "page_status_counts": {"ok": 1, "failed": 1}})
+            self.assertEqual(Path(prepare_comparison(args, selected)["baseline"]), partial.resolve())
 
     def test_recent_compatible_finished_run_and_selection_order(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -900,6 +962,123 @@ class PageProcessingTests(unittest.TestCase):
             self.assertNotIn("review", record)
             self.assertEqual(len(review), 0)
             context.adapter.parse_image.assert_not_called()
+
+
+class ReviewRegressionTests(unittest.TestCase):
+    """코드 리뷰에서 재현한 실패가 돌아오지 않는지 합성 입력으로 확인한다."""
+
+    def write_run(self, root, record, *, artifacts=None):
+        """모델 없이 비교기가 읽는 최소 실행 폴더를 만든다."""
+        folder = root / "documents" / record["document_id"]
+        folder.mkdir(parents=True)
+        write_json(folder / "page_00001.json", record)
+        write_json(root / "run.json", {"schema_version": "project.parsing.v1", "parser": "vl", "dpi": 72})
+        if artifacts is not None:
+            write_json(root / MANIFEST_FILE, {"schema_version": RECORD_SCHEMA, "run_id": "synthetic-run"})
+            write_json(root / FINISHED_FILE, {"run_id": "synthetic-run", "status": "completed", "artifacts": artifacts})
+        return root
+
+    def test_clean_keeps_malformed_url_without_credentials(self):
+        self.assertEqual(clean("see http://[broken now"), "see http://[broken now")
+
+    def test_clean_hides_malformed_url_with_credentials(self):
+        cleaned = clean("http://user:secret@[broken")
+        self.assertNotIn("secret", cleaned)
+
+    def test_clean_keeps_ordinary_url_spelling(self):
+        for url in ("https://example.invalid/a?q=1%202", "https://example.invalid/a?flag"):
+            self.assertEqual(clean(url), url)
+
+    def test_clean_still_hides_url_credentials_and_secret_query(self):
+        cleaned = clean("https://user:secret-value@example.invalid/a?token=secret-token&page=1")
+        self.assertNotIn("secret-value", cleaned)
+        self.assertNotIn("secret-token", cleaned)
+        self.assertIn("page=1", cleaned)
+
+    def test_ordinary_encoded_url_is_not_treated_as_sensitive_source(self):
+        self.assertFalse(source_is_sensitive(b"see https://example.invalid/a?q=1%202", ".txt"))
+
+    def test_withheld_source_with_different_hash_is_changed(self):
+        side = lambda value: {"manifest": {"sources": {"files": {"a.py": {"status": "withheld", "sha256": value}}}},
+                              "root": Path(".")}
+        entry = source_diff(side("1"), side("2"))["files"][0]
+        self.assertEqual((entry["kind"], entry["status"]), ("changed", "unavailable"))
+
+    def test_source_without_hash_is_not_reported_unchanged(self):
+        side = {"manifest": {"sources": {"files": {"a.py": {"status": "unavailable"}}}}, "root": Path(".")}
+        self.assertEqual(source_diff(side, side)["files"][0]["kind"], "unknown")
+
+    def test_setting_view_separates_operational_metadata(self):
+        common = {"parser": "vl", "dpi": 72}
+        first = {**common, "started_at_utc": "a", "environment": {"python": "1"}}
+        second = {**common, "started_at_utc": "b", "environment": {"python": "2"}}
+        self.assertEqual(differences(setting_view(first)[0], setting_view(second)[0]), [])
+        self.assertEqual([item["path"] for item in differences(setting_view(first)[1], setting_view(second)[1])],
+                         [["started_at_utc"]])
+
+    def test_incomplete_model_collection_is_not_read_as_same_models(self):
+        binding = {"role": "layout", "object_path": ["absent"], "name_attribute": "name", "directory_attribute": "path"}
+        inventory = model_inventory(SimpleNamespace(), [binding])
+        self.assertEqual(inventory["status"], "unavailable")
+        run = {"finished": {"models": inventory}}
+        self.assertEqual(model_comparison_status(run, run), "incomplete")
+
+    def test_tampered_page_json_is_not_scored(self):
+        with tempfile.TemporaryDirectory() as directory:
+            record = page(["alpha beta"])
+            relative = f"documents/{record['document_id']}/page_00001.json"
+            artifact = {"artifact_id": "synthetic", "path": relative, "sha256": digest(b"different bytes")}
+            run = load_run(self.write_run(Path(directory), record, artifacts=[artifact]))
+            loaded = run["pages"][record["document_id"], record["page_number"]]
+            self.assertIn("등록된 결과물과 다름", loaded["_integrity_error"])
+            report = evaluate(loaded, loaded, gold_for(record, [sentence()]))
+            self.assertEqual(report["sentences"][0]["after"]["status"], "unresolved")
+
+    def test_missing_source_pdf_is_reported_without_blocking_scoring(self):
+        with tempfile.TemporaryDirectory() as directory:
+            record = page(["alpha beta"])
+            run = load_run(self.write_run(Path(directory), record))
+            self.assertTrue(any("원본 PDF 없음" in item["reason"] for item in run["problems"]))
+            loaded = run["pages"][record["document_id"], record["page_number"]]
+            self.assertNotIn("_integrity_error", loaded)
+
+    def test_page_missing_on_one_side_is_not_called_different_pdf(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            present = self.write_run(root / "present", page(["alpha beta"]))
+            other = page(["alpha beta"]); other["document_id"] = digest(b"other document")
+            absent = self.write_run(root / "other", other)
+            report = compare_runs(load_run(present), load_run(absent))
+            self.assertEqual(report["summary"]["different_pdf_pages"], 0)
+            self.assertIsNone(report["output_comparison"][0]["same_source_for_quality"])
+
+    def test_report_failure_leaves_no_folder_blocking_retry(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            before = self.write_run(root / "before", page(["alpha beta"]))
+            after = self.write_run(root / "after", page(["alpha beta"]))
+            output = root / "report"
+            with patch("experiments.compare.clean", side_effect=ValueError("synthetic failure")):
+                with self.assertRaises(ValueError):
+                    run_comparison(before, after, output_dir=output)
+            self.assertFalse(output.exists())
+
+    def test_resource_sample_identifies_stage_time_and_scope(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "samples.jsonl"
+            monitor = ResourceMonitor(path, TEST_INTERVAL_SECONDS, False, None, stage_run_id="synthetic-stage")
+            with monitor.measure("prediction", page_id="synthetic-page"):
+                pass
+            monitor.close()
+            samples = [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+            self.assertTrue(all(item["stage_run_id"] == "synthetic-stage" and item["sampled_at_utc"] for item in samples))
+            names = [scope["details"] for item in samples for scope in item["active_scope_details"]
+                     if scope["name"] == "prediction"]
+            self.assertIn({"page_id": "synthetic-page"}, names)
+
+    def test_recording_config_lists_gpu_paddle_package(self):
+        config = read_json(Path(__file__).resolve().parents[1] / "configs" / "experiment_recording.json")
+        self.assertIn("paddlepaddle-gpu", config["environment_packages"])
 
 
 if __name__ == "__main__":

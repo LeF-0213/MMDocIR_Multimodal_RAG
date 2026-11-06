@@ -55,11 +55,21 @@ def clean(value, secrets=()):
         for secret in secrets:
             value = value.replace(secret, REDACTED)
         def redact_url(match):
-            parts = urlsplit(match[0])
+            original = match[0]
+            try:
+                parts = urlsplit(original)
+            except ValueError:
+                # OCR 결과처럼 형식이 깨진 URL은 구조를 믿을 수 없다. 자격증명 표식이 있으면
+                # 통째로 가리고, 없으면 모델 출력 원문을 보존한다.
+                names = re.findall(r"[?&]([^=&#]+)=", original)
+                return REDACTED if "@" in original or any(secret_name(k) for k in names) else original
+            pairs = parse_qsl(parts.query, keep_blank_values=True)
+            # 가릴 값이 없으면 다시 조립하지 않는다. 조립하면 %20이 +로 바뀌는 등 표기가 달라진다.
+            if "@" not in parts.netloc and not any(secret_name(k) for k, _ in pairs):
+                return original
             # user:password와 민감 질의 필드만 제거하며 서버 주소 자체는 비교용으로 남긴다.
             host = parts.netloc.rsplit("@", 1)[-1]
-            query = [(k, REDACTED if secret_name(k) else v)
-                     for k, v in parse_qsl(parts.query, keep_blank_values=True)]
+            query = [(k, REDACTED if secret_name(k) else v) for k, v in pairs]
             return urlunsplit((parts.scheme, host, parts.path, urlencode(query), parts.fragment))
         return re.sub(r'''https?://[^\s"'<>\)]+''', redact_url, value)
     if value is None or type(value) in (int, float, bool):

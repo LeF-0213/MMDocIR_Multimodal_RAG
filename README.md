@@ -112,6 +112,8 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 │  │  └─ RAG_LEARNING_PLAN.md # 기본 학습 커리큘럼
 │  ├─ data/
 │  │  └─ DATA_SPEC.md     # 선정 문서·페이지·관찰 특성
+│  ├─ reviews/
+│  │  └─ CODE_REVIEW_2026-11-06.md # 코드 리뷰 지적·수정·남은 항목
 │  └─ parsing_log/
 │     ├─ PARSING_REVIEW.md # 파서별·공통·텍스트층·저장 문제
 │     └─ PARSING_VALIDATION_PLAN.md # 품질 검증 구현 계획
@@ -437,7 +439,8 @@ VLM/API 검토는 선택지로 유지하며 현재 검사에는 사용하지 않
 
 ## 문서와 작업 방식
 
-문서는 `docs/planning/`의 계획, `docs/data/`의 데이터 명세, `docs/parsing_log/`의 파싱 검토·검증으로 나눈다.
+문서는 `docs/planning/`의 계획, `docs/data/`의 데이터 명세, `docs/parsing_log/`의 파싱 검토·검증,
+`docs/reviews/`의 코드 리뷰 기록으로 나눈다.
 학습 순서는 기본 학습 계획에서, 모델별 문제와 이미지 API·변경 효과 측정 상태는 파싱 문제 정리에서 확인한다.
 전체 단계에 걸친 실행 기록·변경 비교의 구현 방향은 공통 실행 비교 계획에서 확인한다.
 계획·정성 관찰·직접 실행한 검사 결과를 구분해 읽는다.
@@ -450,6 +453,7 @@ VLM/API 검토는 선택지로 유지하며 현재 검사에는 사용하지 않
 | [DATA_SPEC.md](docs/data/DATA_SPEC.md) | 선정 문서·페이지·관찰 특성 |
 | [PARSING_REVIEW.md](docs/parsing_log/PARSING_REVIEW.md) | VL·Structure별 문제, 공통·텍스트층·저장 문제, 이미지 API, 변경 기록·효과 측정 상태 |
 | [PARSING_VALIDATION_PLAN.md](docs/parsing_log/PARSING_VALIDATION_PLAN.md) | 공통 품질 검증 단계의 입력·출력, 규칙·원본 대조·재인식, 지표·완료 기준 |
+| [CODE_REVIEW_2026-11-06.md](docs/reviews/CODE_REVIEW_2026-11-06.md) | 코드 리뷰 지적 사항, 수정 내용과 검증, 남은 항목 |
 | [RAG_LEARNING_PLAN.md](docs/planning/RAG_LEARNING_PLAN.md) | 별도로 보존하는 기본 학습 커리큘럼 |
 | [AGENTS.md](AGENTS.md) | 탑다운 학습, 코드·주석·글쓰기, 하드코딩 금지, 파일 변경·커밋·푸시 규칙 |
 

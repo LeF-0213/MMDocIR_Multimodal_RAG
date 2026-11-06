@@ -5,7 +5,7 @@
   "source_suffixes": [".py", ".json", ".txt"],
   "git_timeout_seconds": 10,
   "secret_environment_names": [],
-  "environment_packages": ["paddleocr", "paddlex", "paddlepaddle", "PyMuPDF", "numpy", "psutil"],
+  "environment_packages": ["paddleocr", "paddlex", "paddlepaddle", "paddlepaddle-gpu", "PyMuPDF", "numpy", "psutil"],
   "memory": {
     "interval_seconds": 0.1,
     "include_children": true,
