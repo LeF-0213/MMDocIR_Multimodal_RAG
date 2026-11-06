@@ -30,6 +30,11 @@ from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
 from time import perf_counter
 
+# dataclass는 페이지 처리에 공통으로 넘길 값을 묶고, Any는 모델 어댑터·PyMuPDF 객체의 타입을 표시한다.
+# 어댑터·기록기는 지연 import하거나 호출부가 넘기므로 구체 타입에 의존하지 않는다.
+from dataclasses import dataclass
+from typing import Any
+
 # 내부 공통 모듈: 입력·코드 내용 해시와 저장 직전의 민감정보 제거를 맡는다.
 # 공통 패키지 전체를 코드 해시에 넣으려고 위치 확인용으로 패키지도 가져온다.
 import common
@@ -168,6 +173,194 @@ def environment_record() -> dict:
     }
 
 
+@dataclass(frozen=True)
+class DocumentContext:
+    """한 문서의 페이지를 처리하는 동안 변하지 않는 값이다. 페이지 함수의 인자 수를 줄인다."""
+
+    args: argparse.Namespace
+    adapter: Any
+    parser: Any
+    # 기록기·모델 옵션은 기록을 켠 실행에서만 들어온다.
+    recorder: Any
+    predict_overrides: dict | None
+    folder: Path
+    doc_id: str
+    name: str
+    source_sha256: str
+    # 기록기에 등록한 원본 PDF의 ID다. 페이지 결과물의 출처로 연결한다.
+    source_artifact: str | None
+    review_pdf: str
+
+
+def read_source(entry: dict, args: argparse.Namespace, recorder) -> bytes:
+    """로컬 또는 HTTP에서 원본을 읽는다. 읽기 전에 출처를 entry에 남겨 실패해도 위치를 추적한다."""
+    name, doc_id = entry["document_name"], entry["document_id"]
+    if getattr(args, "pdf_directory", None) is not None:
+        path = local_pdf_path(args.pdf_directory, name)
+        entry.update(source_kind="local", source_path=str(path))
+        with measure(recorder, "pdf_read", document_id=doc_id):
+            return path.read_bytes()
+    url = build_pdf_url(args.base_url, name)
+    entry.update(source_kind="http", source_url=clean(url, recorder.secrets if recorder else ()))
+    with measure(recorder, "pdf_download", document_id=doc_id):
+        return read_pdf_bytes(url, timeout=args.timeout)
+
+
+def parse_page(context: DocumentContext, number: int, document, record: dict) -> str | None:
+    """렌더링·모델 추론·좌표 변환을 수행해 record를 채우고 페이지 이미지의 기록 ID를 반환한다."""
+    # 내부 모듈: PDF 읽기·좌표는 pdf_parser.py에 위임한다. CLI 검증 뒤 가져와 --help의 의존성을 줄인다.
+    from .pdf_parser import add_pdf_coordinates, error_info, prepare_page
+
+    recorder = context.recorder
+    page_id = record["page_id"]
+    stem = f"page_{number:05d}"
+    image_artifact = None
+    page_stage = "page_validation"
+    # image·png는 이 함수의 지역 변수라 기록에 들어가지 않고, 반환과 함께 참조가 사라진다.
+    try:
+        if number > len(document):
+            raise ValueError(f"원본 {len(document)}페이지에 선택한 {number}페이지가 없습니다.")
+
+        page_stage = "prepare_page"
+        with measure(recorder, "page_prepare", page_id=page_id):
+            prepared, image, png = prepare_page(document[number - 1], context.args.dpi)
+        record.update(prepared)
+
+        if png is not None:
+            save_bytes(context.folder / f"{stem}.png", png)
+            record["page_image"] = {
+                "path": f"documents/{context.doc_id}/{stem}.png",
+                "sha256": digest(png),
+            }
+            if recorder:
+                image_artifact = recorder.artifact(context.folder / f"{stem}.png", "page_image",
+                                                   parents=[context.source_artifact], page_id=page_id)
+
+        page_stage = "model_prediction"
+        if image is None:
+            record["parsing"] = {
+                "status": "skipped",
+                "blocks": [],
+                "raw": None,
+                "reason": "페이지 렌더링 실패",
+            }
+        else:
+            # 텍스트층이 있어도 전체 페이지 이미지에 모델을 적용한다.
+            # 일부 누락·표·수식·그림 속 글자는 빈 텍스트층 검사로 찾을 수 없다.
+            with measure(recorder, "model_prediction", page_id=page_id, kind="model_call") as scope:
+                if context.predict_overrides is not None:
+                    record["parsing"] = context.adapter.parse_image(context.parser, image, page_id,
+                        predict_overrides=context.predict_overrides)
+                else:
+                    record["parsing"] = context.adapter.parse_image(context.parser, image, page_id)
+                if recorder and record["parsing"]["status"] in ("failed", "skipped"):
+                    scope["status"] = "failed"
+
+        parsed = record["parsing"]
+        page_stage = "coordinate_mapping"
+        if parsed["status"] in ("ok", "empty"):
+            parsed["blocks"] = add_pdf_coordinates(
+                parsed["blocks"],
+                record["render"]["pixel_to_pdf_matrix"],
+            )
+            parsed["coordinate_status"] = "ok"
+
+        # 원본 추출·이미지 조회·모델 중 어느 부분이 실패해도 전체 성공으로
+        # 숨기지 않는다. ok는 처리 완료일 뿐 품질 검증 완료가 아니다.
+        failed = any(
+            record[k]["status"] == "failed"
+            for k in ("native", "images", "render")
+        )
+        record["status"] = "partial" if failed else parsed["status"]
+        if parsed["status"] in ("failed", "skipped"):
+            record["status"] = "failed"
+    except Exception as exc:
+        record["error"] = {"stage": page_stage, **error_info(exc)}
+        record["status"] = "failed"
+        if page_stage == "coordinate_mapping":
+            record["parsing"]["coordinate_status"] = "failed"
+    return image_artifact
+
+
+def add_page_review(context: DocumentContext, number: int, document, review, record: dict) -> None:
+    """원본 페이지 복사본에 bbox를 표시해 검토 PDF에 추가하고, 실패를 페이지 상태에 반영한다."""
+    from .pdf_parser import error_info
+    from .review_pdf import add_review_page
+
+    try:
+        record["review"] = add_review_page(
+            review,
+            document,
+            number,
+            {
+                "status": record["status"],
+                # 시각화 함수의 입력은 상태와 블록 목록이다.
+                # 페이지 기록에서는 블록이 parsing 아래에 있으므로
+                # 명시적으로 꺼내 전달한다. 페이지 준비가 실패한 경우
+                # 빈 목록을 넘겨 원본 복사본과 실패 상태만 남긴다.
+                "blocks": record.get("parsing", {}).get("blocks", []),
+            },
+            f"documents/{context.doc_id}/page_{number:05d}.json",
+        )
+        record["review"]["path"] = context.review_pdf
+        if (
+            record["review"]["status"] != "ok"
+            and record["status"] in ("ok", "empty")
+        ):
+            record["status"] = "partial"
+    except Exception as exc:
+        record["review"] = {"status": "failed", "error": error_info(exc)}
+        record["status"] = "failed"
+
+
+def process_page(context: DocumentContext, number: int, document, review) -> tuple[dict, str | None]:
+    """한 페이지를 처리한다. 실패는 record에 남기며 다음 페이지 처리를 막지 않는다."""
+    started = perf_counter()
+    record = {
+        "page_id": f"{context.doc_id}:p{number}",
+        "id_origin": "project_generated",
+        "document_id": context.doc_id,
+        "document_name": context.name,
+        "page_number": number,
+        "page_numbering": "pdf_viewer_1_based",
+        "page_index": number - 1,
+        "source_sha256": context.source_sha256,
+        "status": "failed",
+    }
+    image_artifact = parse_page(context, number, document, record)
+
+    # 파싱 실패도 원본 페이지 복사본을 남겨 무엇이 빠졌는지 검토한다.
+    # 존재하지 않는 페이지는 복사하지 않고 JSON에만 실패를 기록한다.
+    if number <= len(document):
+        add_page_review(context, number, document, review, record)
+
+    record["elapsed_seconds"] = perf_counter() - started
+    return record, image_artifact
+
+
+def save_page(context: DocumentContext, number: int, record: dict, image_artifact: str | None) -> dict:
+    """페이지 JSON을 저장하고 문서 요약에 넣을 항목을 반환한다. 저장 실패는 호출부에 전달한다."""
+    # 내부 모듈: NumPy 반환값 등은 model_result.py에서 표준 JSON 타입으로 바꾼다.
+    from .model_result import json_builtin
+
+    recorder = context.recorder
+    stem = f"page_{number:05d}"
+    if recorder:
+        record["experiment"] = {"run_id": recorder.run_id, "stage_run_id": recorder.stage_id}
+    save_json(context.folder / f"{stem}.json", diagnostic_clean(json_builtin(record), recorder.secrets if recorder else ()))
+    if recorder:
+        recorder.artifact(context.folder / f"{stem}.json", "parsing_page",
+                          parents=[p for p in (context.source_artifact, image_artifact) if p], page_id=record["page_id"])
+    return {
+        "page_number": number,
+        "page_id": record["page_id"],
+        "status": record["status"],
+        "json_path": f"documents/{context.doc_id}/{stem}.json",
+        "native_status": record.get("native", {}).get("status"),
+        "parser_status": record.get("parsing", {}).get("status"),
+    }
+
+
 def process_document(
     item: dict,
     args: argparse.Namespace,
@@ -178,11 +371,8 @@ def process_document(
     predict_overrides: dict | None = None,
 ) -> dict:
     """문서별로 입력을 읽고 각 페이지 결과를 즉시 저장해 중단 시 손실을 줄인다."""
-    # 내부 모듈: PDF 읽기·좌표는 기존 pdf_parser.py에 그대로 위임한다.
-    # NumPy 반환값 등은 model_result.py에서 표준 JSON 타입으로 바꾼다.
-    from .pdf_parser import add_pdf_coordinates, error_info, open_pdf, prepare_page
-    from .model_result import json_builtin
-    from .review_pdf import add_review_page
+    # 내부 모듈: PDF 열기와 오류 정보는 pdf_parser.py에 위임한다.
+    from .pdf_parser import error_info, open_pdf
 
     # PyMuPDF는 검토용 빈 문서를 만들고 페이지 복사본을 관리한다.
     import pymupdf
@@ -204,16 +394,7 @@ def process_document(
 
     stage = "source_read"
     try:
-        if getattr(args, "pdf_directory", None) is not None:
-            path = local_pdf_path(args.pdf_directory, name)
-            entry.update(source_kind="local", source_path=str(path))
-            with measure(recorder, "pdf_read", document_id=doc_id):
-                data = path.read_bytes()
-        else:
-            url = build_pdf_url(args.base_url, name)
-            entry.update(source_kind="http", source_url=clean(url, recorder.secrets if recorder else ()))
-            with measure(recorder, "pdf_download", document_id=doc_id):
-                data = read_pdf_bytes(url, timeout=args.timeout)
+        data = read_source(entry, args, recorder)
         entry["source_sha256"] = digest(data)
         entry["source_pdf"] = f"documents/{doc_id}/source.pdf"
         save_bytes(folder / "source.pdf", data)
@@ -232,142 +413,16 @@ def process_document(
             )
             entry["requested_page_numbers"] = page_numbers
             entry["review_pdf"] = f"documents/{doc_id}/review_{args.parser}.pdf"
+            context = DocumentContext(args, adapter, parser, recorder, predict_overrides, folder, doc_id, name,
+                                      entry["source_sha256"], source_artifact, entry["review_pdf"])
 
             for number in page_numbers:
-                page_started = perf_counter()
-                page_id = f"{doc_id}:p{number}"
-                stem = f"page_{number:05d}"
-                page_path = f"documents/{doc_id}/{stem}.json"
-                record = {
-                    "page_id": page_id,
-                    "id_origin": "project_generated",
-                    "document_id": doc_id,
-                    "document_name": name,
-                    "page_number": number,
-                    "page_numbering": "pdf_viewer_1_based",
-                    "page_index": number - 1,
-                    "source_sha256": entry["source_sha256"],
-                    "status": "failed",
-                }
-
-                image = png = None
-                image_artifact = None
-                page_stage = "page_validation"
-                try:
-                    if number > len(document):
-                        raise ValueError(f"원본 {len(document)}페이지에 선택한 {number}페이지가 없습니다.")
-
-                    page_stage = "prepare_page"
-                    with measure(recorder, "page_prepare", page_id=page_id):
-                        prepared, image, png = prepare_page(document[number - 1], args.dpi)
-                    record.update(prepared)
-
-                    if png is not None:
-                        save_bytes(folder / f"{stem}.png", png)
-                        record["page_image"] = {
-                            "path": f"documents/{doc_id}/{stem}.png",
-                            "sha256": digest(png),
-                        }
-                        if recorder:
-                            image_artifact = recorder.artifact(folder / f"{stem}.png", "page_image",
-                                                               parents=[source_artifact], page_id=page_id)
-
-                    page_stage = "model_prediction"
-                    if image is None:
-                        record["parsing"] = {
-                            "status": "skipped",
-                            "blocks": [],
-                            "raw": None,
-                            "reason": "페이지 렌더링 실패",
-                        }
-                    else:
-                        # 텍스트층이 있어도 전체 페이지 이미지에 모델을 적용한다.
-                        # 일부 누락·표·수식·그림 속 글자는 빈 텍스트층 검사로 찾을 수 없다.
-                        with measure(recorder, "model_prediction", page_id=page_id, kind="model_call") as scope:
-                            if predict_overrides is not None:
-                                record["parsing"] = adapter.parse_image(parser, image, page_id,
-                                    predict_overrides=predict_overrides)
-                            else:
-                                record["parsing"] = adapter.parse_image(parser, image, page_id)
-                            if recorder and record["parsing"]["status"] in ("failed", "skipped"):
-                                scope["status"] = "failed"
-
-                    parsed = record["parsing"]
-                    page_stage = "coordinate_mapping"
-                    if parsed["status"] in ("ok", "empty"):
-                        parsed["blocks"] = add_pdf_coordinates(
-                            parsed["blocks"],
-                            record["render"]["pixel_to_pdf_matrix"],
-                        )
-                        parsed["coordinate_status"] = "ok"
-
-                    # 원본 추출·이미지 조회·모델 중 어느 부분이 실패해도 전체 성공으로
-                    # 숨기지 않는다. ok는 처리 완료일 뿐 품질 검증 완료가 아니다.
-                    failed = any(
-                        record[k]["status"] == "failed"
-                        for k in ("native", "images", "render")
-                    )
-                    record["status"] = "partial" if failed else parsed["status"]
-                    if parsed["status"] in ("failed", "skipped"):
-                        record["status"] = "failed"
-                except Exception as exc:
-                    record["error"] = {"stage": page_stage, **error_info(exc)}
-                    record["status"] = "failed"
-                    if page_stage == "coordinate_mapping":
-                        record["parsing"]["coordinate_status"] = "failed"
-                finally:
-                    # 페이지 이미지 배열을 기록에 넣지 않고 다음 페이지 전에 참조를 해제한다.
-                    image = png = None
-
-                # 파싱 실패도 원본 페이지 복사본을 남겨 무엇이 빠졌는지 검토한다.
-                # 존재하지 않는 페이지는 복사하지 않고 JSON에만 실패를 기록한다.
-                if number <= len(document):
-                    try:
-                        record["review"] = add_review_page(
-                            review,
-                            document,
-                            number,
-                            {
-                                "status": record["status"],
-                                # 시각화 함수의 입력은 상태와 블록 목록이다.
-                                # 페이지 기록에서는 블록이 parsing 아래에 있으므로
-                                # 명시적으로 꺼내 전달한다. 페이지 준비가 실패한 경우
-                                # 빈 목록을 넘겨 원본 복사본과 실패 상태만 남긴다.
-                                "blocks": record.get("parsing", {}).get("blocks", []),
-                            },
-                            page_path,
-                        )
-                        record["review"]["path"] = entry["review_pdf"]
-                        if (
-                            record["review"]["status"] != "ok"
-                            and record["status"] in ("ok", "empty")
-                        ):
-                            record["status"] = "partial"
-                    except Exception as exc:
-                        record["review"] = {"status": "failed", "error": error_info(exc)}
-                        record["status"] = "failed"
-
-                record["elapsed_seconds"] = perf_counter() - page_started
+                record, image_artifact = process_page(context, number, document, review)
 
                 # strict JSON 실패나 디스크 오류는 문서 수준 오류로도 기록한다.
                 # 실패를 무시하고 다음 파일을 만들어 성공처럼 보이게 하지 않는다.
                 stage = "page_result_save"
-                if recorder:
-                    record["experiment"] = {"run_id": recorder.run_id, "stage_run_id": recorder.stage_id}
-                save_json(folder / f"{stem}.json", diagnostic_clean(json_builtin(record), recorder.secrets if recorder else ()))
-                if recorder:
-                    recorder.artifact(folder / f"{stem}.json", "parsing_page",
-                                      parents=[p for p in (source_artifact, image_artifact) if p], page_id=page_id)
-                entry["pages"].append(
-                    {
-                        "page_number": number,
-                        "page_id": page_id,
-                        "status": record["status"],
-                        "json_path": page_path,
-                        "native_status": record.get("native", {}).get("status"),
-                        "parser_status": record.get("parsing", {}).get("status"),
-                    }
-                )
+                entry["pages"].append(save_page(context, number, record, image_artifact))
                 print(f"[{args.parser}] {name} p{number}: {record['status']}", flush=True)
 
             stage = "review_save"

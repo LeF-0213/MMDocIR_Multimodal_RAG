@@ -21,7 +21,7 @@ import subprocess
 import sys
 # unittest·mock은 경계 조건과 모델·OS 조회의 의도한 실패를 재현한다.
 import unittest
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 # 내부 공통·기록·자원·평가·비교 모듈의 공개 연결과 순수 함수를 각각 검사한다.
 from common.files import digest, file_hash, inside, read_json, write_json
@@ -569,7 +569,6 @@ class MainEntryTests(unittest.TestCase):
     def test_default_main_runs_local_parsing_and_automatic_comparison(self):
         import main as entry
         import pymupdf
-        from unittest.mock import MagicMock
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory); config_path, config = self.configuration(root)
             original = root / "inputs" / "synthetic-document.pdf"
@@ -700,7 +699,6 @@ class ParserIntegrationTests(unittest.TestCase):
         # PyMuPDF는 테스트 안에서 작은 PDF를 생성한다. 모델·HTTP는 대체한다.
         import pymupdf
         from experiments.parsing_stage import main as parsing_main
-        from unittest.mock import MagicMock
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory); source = root / "source.py"; source.write_text("value = 1\n")
             with pymupdf.open() as document:
@@ -869,6 +867,39 @@ class DomainBoundaryTests(unittest.TestCase):
                             path.read_text(encoding="utf-8").index('"a"'))
             with self.assertRaises(FileExistsError):
                 save_json(path, {"z": 1})
+
+
+class PageProcessingTests(unittest.TestCase):
+    def context(self, root):
+        from parsing.run import DocumentContext
+        args = SimpleNamespace(dpi=72)
+        return DocumentContext(args, MagicMock(), None, None, None, root, "synthetic-id", "synthetic", "0" * 64,
+                               None, "documents/synthetic-id/review_vl.pdf")
+
+    def test_saved_page_summary_handles_page_without_parsing_result(self):
+        from parsing.run import save_page
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            record = {"page_id": "synthetic-id:p1", "status": "failed"}
+            summary = save_page(self.context(root), 1, record, None)
+            self.assertIsNone(summary["parser_status"])
+            self.assertEqual(summary["json_path"], "documents/synthetic-id/page_00001.json")
+            self.assertEqual(read_json(root / "page_00001.json")["status"], "failed")
+
+    def test_missing_page_records_failure_without_stopping_document(self):
+        # 존재하지 않는 페이지는 모델과 검토본을 호출하지 않고 그 페이지에만 실패를 남긴다.
+        import pymupdf
+        from parsing.run import process_page
+        with tempfile.TemporaryDirectory() as directory, pymupdf.open() as document, pymupdf.open() as review:
+            document.new_page()
+            context = self.context(Path(directory))
+            record, artifact = process_page(context, len(document) + 1, document, review)
+            self.assertEqual(record["status"], "failed")
+            self.assertEqual(record["error"]["stage"], "page_validation")
+            self.assertIsNone(artifact)
+            self.assertNotIn("review", record)
+            self.assertEqual(len(review), 0)
+            context.adapter.parse_image.assert_not_called()
 
 
 if __name__ == "__main__":

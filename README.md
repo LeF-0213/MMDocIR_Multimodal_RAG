@@ -150,7 +150,7 @@ flowchart TD
     subgraph ENTRY["실행 진입점 — run.py"]
         MAIN("실행 준비<br/>main()<br/>실행 옵션 · 선택 목록 검증")
         INIT("선택한 모델 한 번 로딩<br/>VL 또는 Structure")
-        PROCESS("처리 반복<br/>process_document()<br/>문서별 · 페이지별 처리")
+        PROCESS("처리 반복<br/>process_document() · process_page()<br/>문서별 · 페이지별 처리")
         MAIN ==> INIT ==> PROCESS
     end
 
