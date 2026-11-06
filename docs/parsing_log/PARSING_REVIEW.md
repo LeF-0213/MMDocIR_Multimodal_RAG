@@ -202,7 +202,7 @@ selection.json + CLI
  → run.py: 문서·페이지 선택, 선택한 파서 초기화
  → pdf_source.py: 원본 PDF bytes 읽기
  → pdf_parser.py: native 텍스트·이미지 배치 추출 + 페이지 렌더링
- → BGR 이미지 → v1_parser.py 또는 structure_parser.py
+ → BGR 이미지 → vl_parser.py 또는 structure_parser.py
  → model_result.py: parser.predict() → 라이브러리 JSON → 공통 blocks
  → pdf_parser.py: 이미지 bbox를 유지하고 PDF 좌표 추가
  → review_pdf.py / result_store.py: 검토 PDF·PNG·JSON·요약 저장

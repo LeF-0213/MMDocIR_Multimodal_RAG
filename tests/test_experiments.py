@@ -578,7 +578,7 @@ class MainEntryTests(unittest.TestCase):
             parser = SimpleNamespace(_merged_paddlex_config={},
                 predict=MagicMock(side_effect=lambda **kwargs: iter([SimpleNamespace(json=raw)])))
             with patch("main.DEFAULT_RUN_CONFIG", config_path), \
-                 patch("parsing.v1_parser.build_parser", return_value=parser), \
+                 patch("parsing.vl_parser.build_parser", return_value=parser), \
                  patch("parsing.run.read_pdf_bytes") as remote:
                 self.assertEqual(entry.main([]), 0)
                 self.assertEqual(entry.main([]), 0)
@@ -628,7 +628,7 @@ class MainEntryTests(unittest.TestCase):
         import main as entry
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory); path, _ = self.configuration(root)
-            with patch("parsing.v1_parser.build_parser") as build:
+            with patch("parsing.vl_parser.build_parser") as build:
                 with self.assertRaises(SystemExit) as exc:
                     entry.main(["--config", str(path)])
             self.assertEqual(exc.exception.code, 2)
@@ -683,7 +683,7 @@ class ParserIntegrationTests(unittest.TestCase):
             write_json(selection, {"page_numbering": "pdf_viewer_1_based", "documents": [
                 {"document_name": "synthetic-document", "page_numbers": [1]}]})
             output = root / "run"
-            with patch("parsing.v1_parser.build_parser", side_effect=RuntimeError("synthetic failure")), \
+            with patch("parsing.vl_parser.build_parser", side_effect=RuntimeError("synthetic failure")), \
                  patch("experiments.record.ExperimentRecorder") as recorder:
                 result = parsing_main(["--base-url", "https://example.invalid/", "--selection", str(selection),
                     "--output-dir", str(output), "--no-experiment-record", "--no-auto-compare"])
@@ -715,7 +715,7 @@ class ParserIntegrationTests(unittest.TestCase):
             parser = SimpleNamespace(_merged_paddlex_config={"configured": True},
                                      predict=MagicMock(side_effect=lambda **kwargs: iter([SimpleNamespace(json=raw)])))
             output = root / "run"
-            with patch("parsing.v1_parser.build_parser", return_value=parser) as build, \
+            with patch("parsing.vl_parser.build_parser", return_value=parser) as build, \
                  patch("parsing.run.read_pdf_bytes", return_value=pdf), \
                  patch("experiments.automatic.DEFAULT_RECORDING_CONFIG", config_file):
                 # 기록 설정 플래그 없이 기본 설정을 읽는지 확인한다.
@@ -756,7 +756,7 @@ class ParserIntegrationTests(unittest.TestCase):
                 {"document_name": "synthetic-document", "page_numbers": [1]}]})
             config_file = root / "record.json"; write_json(config_file, record_config(root))
             output = root / "run"
-            with patch("parsing.v1_parser.build_parser", side_effect=RuntimeError("synthetic load failure")):
+            with patch("parsing.vl_parser.build_parser", side_effect=RuntimeError("synthetic load failure")):
                 result = parsing_main(["--base-url", "https://example.invalid/", "--selection", str(selection),
                     "--output-dir", str(output), "--experiment-config", str(config_file)])
             self.assertEqual(result, 1)
@@ -773,7 +773,7 @@ class ParserIntegrationTests(unittest.TestCase):
                 {"document_name": "synthetic-document", "page_numbers": [1]}]})
             config_file = root / "record.json"; write_json(config_file, record_config(root))
             output = root / "run"
-            with patch("parsing.v1_parser.build_parser", side_effect=KeyboardInterrupt):
+            with patch("parsing.vl_parser.build_parser", side_effect=KeyboardInterrupt):
                 with self.assertRaises(KeyboardInterrupt):
                     parsing_main(["--base-url", "https://example.invalid/", "--selection", str(selection),
                         "--output-dir", str(output), "--experiment-config", str(config_file)])

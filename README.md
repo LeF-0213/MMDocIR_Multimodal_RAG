@@ -91,7 +91,7 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 │  ├─ pdf_source.py        # 1. 선택 목록·로컬 PDF·HTTP 입력
 │  ├─ pdf_parser.py        # 2. PDF 추출·렌더링·좌표 변환
 │  ├─ model_result.py      # 3. 공통 추론·JSON·영역 변환
-│  ├─ v1_parser.py         # 4. PaddleOCR-VL 설정과 호출
+│  ├─ vl_parser.py         # 4. PaddleOCR-VL 설정과 호출
 │  ├─ structure_parser.py  # 5. PP-StructureV3 설정과 호출
 │  ├─ review_pdf.py        # 6. 원문 복사본 위 bbox 표시
 │  ├─ result_store.py      # 7. JSON·PDF·PNG 저장
@@ -170,7 +170,7 @@ flowchart TD
     PROCESS ==> SOURCE
 
     subgraph PARSING["모델 추론 · 결과 정리"]
-        ADAPTER("선택한 어댑터 하나<br/>v1_parser.py / structure_parser.py")
+        ADAPTER("선택한 어댑터 하나<br/>vl_parser.py / structure_parser.py")
         RESULT("이미지 추론 · 결과 정리<br/>model_result.py<br/>모델 원본 JSON 보존 · 공통 블록 목록 생성")
         COORD("원본 위치 연결<br/>pdf_parser.py: add_pdf_coordinates()<br/>이미지 좌표를 유지하고 회전 전 PDF 좌표 추가")
 

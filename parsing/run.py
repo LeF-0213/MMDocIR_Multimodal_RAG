@@ -1,7 +1,7 @@
 """
 PDF → 페이지 준비 → 선택한 파서 → 좌표 연결 → 저장을 실행한다.
 pdf_source.py에서 입력을 받고 pdf_parser.py로 원본 정보와 이미지를 준비한다.
-v1_parser.py 또는 structure_parser.py를 호출한 뒤 review_pdf.py로 검토본을 만든다.
+vl_parser.py 또는 structure_parser.py를 호출한 뒤 review_pdf.py로 검토본을 만든다.
 실행 시 로컬 PDF 읽기 또는 HTTP 다운로드·모델 캐시·새 결과 폴더 생성이 발생한다.
 기존 파일은 덮어쓰지 않으며 --help는 모델 로딩·다운로드·결과 저장을 하지 않는다.
 
@@ -407,7 +407,7 @@ def main(argv: list[str] | None = None, *, launch_context: dict | None = None) -
 
     # CLI 검증 뒤 선택한 어댑터만 가져온다. --help는 모델을 로딩하지 않는다.
     if args.parser == "vl":
-        from . import v1_parser as adapter
+        from . import vl_parser as adapter
 
         options = adapter.parser_options(args.device, args.cpu_threads)
     else:

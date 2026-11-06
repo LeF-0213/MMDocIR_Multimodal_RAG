@@ -177,7 +177,7 @@ LangChain은 기존 통합 도구나 향후 상태 기반 도구 호출이 중�
 ### 파싱 구현과 결과 구조
 
 현재 파싱 경로는 PaddleOCR-VL v1.6과 PP-StructureV3다. PyMuPDF로 입력·원본 정보를 준비하고 PaddlePaddle로 실행한다.
-`v1_parser.py` 또는 `structure_parser.py`에서 설정과 초기화를 맡고, `model_result.py`에서 출력 변환과 실패 기록을 처리한다.
+`vl_parser.py` 또는 `structure_parser.py`에서 설정과 초기화를 맡고, `model_result.py`에서 출력 변환과 실패 기록을 처리한다.
 한 실행에는 파서 하나만 사용하며 결과를 자동으로 합치지 않는다.
 입력·설정을 바꿔 실험할 때 원본 PDF·선정 목록·DPI·페이지 PNG 해시와 바꾼 조건을 기록한다.
 
