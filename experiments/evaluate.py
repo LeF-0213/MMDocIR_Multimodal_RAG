@@ -22,6 +22,8 @@ EVALUATION_SCHEMA = "project.parsing_evaluation.v1"
 PDF_COORDINATES = "pymupdf_unrotated_page_points"
 UNRESOLVED = {"unresolved", "unscored", "source_mismatch"}
 SUCCESS = {"correct"}
+# 페이지 결과 자체가 없는 상태다. 파서가 처리하고 못 찾은 missing과 달리 실패가 확인되지 않았다.
+PAGE_ABSENT = "page_absent"
 
 
 def validate_settings(settings):
@@ -112,11 +114,25 @@ def _position(blocks, truth, settings):
             "iou": score, "granularity": "sentence" if precise else "block_proxy"}
 
 
+def _distinct_spans(spans):
+    """겹치는 구간은 같은 출력 위치를 가리키는 허용 표기이므로 가장 긴 구간 하나로 합친다."""
+    kept = []
+    for span in sorted(spans):
+        if kept and span[0] < kept[-1][1]:
+            if span[1] - span[0] > kept[-1][1] - kept[-1][0]:
+                kept[-1] = span
+            continue
+        kept.append(span)
+    return kept
+
+
 def sentence_result(record, truth, settings):
     """내용 매칭 후 위치를 평가한다. 정답 bbox로 내용 검색 범위를 제한하지 않는다."""
-    blocks = (record or {}).get("parsing", {}).get("blocks", [])
-    if record is None or (record or {}).get("parsing", {}).get("status") in ("failed", "skipped"):
-        return {"status": "missing", "reason": "페이지 또는 파싱 결과 없음", "spans": []}
+    if record is None:
+        return {"status": PAGE_ABSENT, "reason": "이 실행에 페이지 결과 없음", "spans": []}
+    blocks = record.get("parsing", {}).get("blocks", [])
+    if record.get("parsing", {}).get("status") in ("failed", "skipped"):
+        return {"status": "missing", "reason": "파싱 실패로 결과 없음", "spans": []}
     norm = settings["normalization"]
     indexed = [(i, normalize(b["content"], norm)) for i, b in enumerate(blocks)]
     indexed = [(i, text) for i, text in indexed if text]
@@ -149,6 +165,7 @@ def sentence_result(record, truth, settings):
                 return {"status": "unresolved", "reason": "문장 후보 자원 한도", "spans": []}
     if exceeded_join:
         return {"status": "unresolved", "reason": "정확 문장의 블록 결합 자원 한도", "spans": []}
+    matches = {span: matches[span] for span in _distinct_spans(matches)}
     if len(matches) > 1:
         return {"status": "unresolved", "reason": "반복 문장의 다중 대응", "spans": list(matches)}
     if matches:
@@ -269,9 +286,11 @@ class LogicalTable(HTMLParser):
 
 
 def table_result(record, truth, settings):
-    if record is None or record.get("parsing", {}).get("status") in ("failed", "skipped"):
-        return {"status": "missing", "reason": "페이지 또는 파싱 결과 없음", "cells": []}
-    tables = [b for b in (record or {}).get("parsing", {}).get("blocks", []) if b.get("label") == "table"]
+    if record is None:
+        return {"status": PAGE_ABSENT, "reason": "이 실행에 페이지 결과 없음", "cells": []}
+    if record.get("parsing", {}).get("status") in ("failed", "skipped"):
+        return {"status": "missing", "reason": "파싱 실패로 결과 없음", "cells": []}
+    tables = [b for b in record.get("parsing", {}).get("blocks", []) if b.get("label") == "table"]
     if len(tables) > settings["table"]["maximum_tables"]:
         return {"status": "unresolved", "reason": "표 후보 자원 한도", "cells": []}
     candidates = []
@@ -338,9 +357,12 @@ def table_result(record, truth, settings):
 def transition(before, after):
     if before in UNRESOLVED or after in UNRESOLVED:
         return "unresolved"
+    # 복구는 기준 실행의 실패가 확인돼야 성립한다. 맞던 항목이 사라진 경우만 새 누락으로 남긴다.
+    if PAGE_ABSENT in (before, after) and before != "correct":
+        return "unresolved"
     if before != "correct" and after == "correct":
         return "recovered"
-    if before == "correct" and after == "missing":
+    if before == "correct" and after in ("missing", PAGE_ABSENT):
         return "new_missing"
     if before == "correct" and after != "correct":
         return "new_moved" if after == "moved" else "new_incorrect"
@@ -392,15 +414,32 @@ def validate_gold(gold):
     return gold
 
 
+def _cell_placeholder(table):
+    """표 판정만 있고 셀 판정이 없을 때의 셀 상태다."""
+    status = table["status"]
+    return {"status": status if status in ("missing", PAGE_ABSENT) else "unresolved"}
+
+
+def _correspondence_status(cell):
+    """대응 판정 없이 보류·부재인 셀을 오답으로 세지 않는다."""
+    if cell["status"] in UNRESOLVED or cell["status"] == PAGE_ABSENT:
+        return cell["status"]
+    return "correct" if cell.get("correspondence_correct") else "incorrect"
+
+
 def evaluate_pair(before_pages, after_pages, gold, settings):
     validate_settings(settings); validate_gold(gold)
-    sentence_items = []; table_items = []; withheld_pages = 0
+    sentence_items = []; table_items = []; withheld_pages = 0; absent_pages = []
     for page in gold["pages"]:
         key = (page["document_id"], page["page_number"])
         if page["review_status"] != "confirmed":
             withheld_pages += 1
             continue
         records = [before_pages.get(key), after_pages.get(key)]
+        # 두 실행 모두 없는 페이지는 이번 비교 범위 밖이다. 분모 대신 별도 목록으로 보고한다.
+        if records == [None, None]:
+            absent_pages.append(list(key))
+            continue
         results = []
         for record in records:
             if record and (record.get("_load_error") or record.get("_integrity_error")):
@@ -438,15 +477,12 @@ def evaluate_pair(before_pages, after_pages, gold, settings):
                     ac = {c["id"]: c for c in a["cells"]}; bc = {c["id"]: c for c in b["cells"]}
                     entry["cell_transitions"] = []
                     for cell in item["cells"]:
-                        old = ac.get(cell["id"], {"status": "missing" if a["status"] == "missing" else "unresolved"})
-                        new = bc.get(cell["id"], {"status": "missing" if b["status"] == "missing" else "unresolved"})
+                        old = ac.get(cell["id"], _cell_placeholder(a))
+                        new = bc.get(cell["id"], _cell_placeholder(b))
                         entry["cell_transitions"].append({"id": cell["id"], "before": old, "after": new,
                             "transition": transition(old["status"], new["status"]),
                             "correspondence_transition": transition(
-                                old["status"] if old["status"] in UNRESOLVED else
-                                    ("correct" if old.get("correspondence_correct") else "incorrect"),
-                                new["status"] if new["status"] in UNRESOLVED else
-                                    ("correct" if new.get("correspondence_correct") else "incorrect"))})
+                                _correspondence_status(old), _correspondence_status(new))})
                 else:
                     old_position = a.get("position", {}).get("status", "unscored")
                     new_position = b.get("position", {}).get("status", "unscored")
@@ -482,4 +518,5 @@ def evaluate_pair(before_pages, after_pages, gold, settings):
         **{side: dict(Counter(t[side]["status"] for t in table_items)) for side in ("before", "after")}}
     return {"status": "measured" if sentence_items or table_items else "unmeasured",
             "gold_version": gold["version"], "split": gold["split"], "withheld_page_count": withheld_pages,
+            "absent_page_count": len(absent_pages), "absent_pages": absent_pages,
             "matching_is_policy_based": True, "summary": summaries, "sentences": sentence_items, "tables": table_items}

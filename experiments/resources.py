@@ -7,7 +7,9 @@ record가 전달한 측정 설정과 출력 파일을 받아 JSONL 샘플과 구
 
 # 표준 라이브러리: contextmanager는 구간 수명, json은 점진적 기록,
 # os는 자기 PID, sys는 이미 로딩된 Paddle 조회, threading은 한 개의 측정 스레드다.
+# datetime은 강제 종료 뒤에도 샘플을 시각에 맞출 UTC 시각을 만든다.
 from contextlib import contextmanager
+from datetime import datetime, timezone
 import json
 import os
 import sys
@@ -27,7 +29,7 @@ from common.redaction import clean
 class ResourceMonitor:
     """설정으로 받은 간격·프로세스 범위에 따라 샘플을 저장하고 구간별로 집계한다."""
 
-    def __init__(self, path, interval_seconds, include_children, gpu_device, secrets=()):
+    def __init__(self, path, interval_seconds, include_children, gpu_device, secrets=(), stage_run_id=None):
         if (isinstance(interval_seconds, bool) or not isinstance(interval_seconds, (int, float))
                 or not 0 < interval_seconds < float("inf")):
             raise ValueError("측정 간격은 유한한 양수 초여야 합니다.")
@@ -37,6 +39,7 @@ class ResourceMonitor:
         self.children = include_children
         self.gpu_device = gpu_device
         self.secrets = secrets
+        self.stage_run_id = stage_run_id
         self.stream = path.open("x", encoding="utf-8")
         self.lock = threading.RLock()
         self.stop_event = threading.Event()
@@ -68,8 +71,14 @@ class ResourceMonitor:
 
     def sample(self):
         with self.lock:
-            sample = {"elapsed_seconds": perf_counter() - self.started,
-                      "active_scopes": list(self.active), "processes": [], "gpu": self._gpu()}
+            # 종료 기록 없이 끝나도 이 줄만으로 실행 단계·시각·진행 구간을 알 수 있게 한다.
+            sample = {"stage_run_id": self.stage_run_id,
+                      "sampled_at_utc": datetime.now(timezone.utc).isoformat(),
+                      "elapsed_seconds": perf_counter() - self.started,
+                      "active_scopes": list(self.active),
+                      "active_scope_details": [{"scope_id": scope["scope_id"], "name": scope["name"],
+                                                "details": scope["details"]} for scope in self.active.values()],
+                      "processes": [], "gpu": self._gpu()}
             try:
                 parent = psutil.Process(os.getpid())
                 processes = [parent]

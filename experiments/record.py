@@ -211,8 +211,11 @@ def model_inventory(parser, bindings, secrets=()):
             item["reason"] = clean(f"{type(exc).__name__}: {exc}", secrets)
         item["collection_seconds"] = perf_counter() - started
         result.append(item)
-    return {"status": "collected" if bindings else "not_configured",
-            "coverage": "configured_object_paths_only", "models": result}
+    # 일부만 확보해도 collected로 보이면 모델이 같다고 잘못 읽을 수 있어 집계해 구분한다.
+    available = sum(item["status"] == "ok" for item in result)
+    status = ("not_configured" if not bindings else "collected" if available == len(result)
+              else "partial" if available else "unavailable")
+    return {"status": status, "coverage": "configured_object_paths_only", "models": result}
 
 
 class ExperimentRecorder:
@@ -231,7 +234,7 @@ class ExperimentRecorder:
         self.run_id = str(uuid4())
         self.stage_id = str(uuid4())
         self.monitor = ResourceMonitor(self.root / RESOURCES_FILE,
-                                       **config["memory"], secrets=self.secrets)
+                                       **config["memory"], secrets=self.secrets, stage_run_id=self.stage_id)
         try:
             self.manifest = {"schema_version": RECORD_SCHEMA, "run_id": self.run_id,
                 "stage_run_id": self.stage_id, "stage": stage, "status": "started",
