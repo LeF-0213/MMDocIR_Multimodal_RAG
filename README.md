@@ -79,8 +79,13 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 │  ├─ selection_3m_page9.json
 │  ├─ experiment_recording.json # 기록·소스·메모리·모델 객체·실험 옵션
 │  └─ experiment_evaluation.json # 매칭·위치·표 평가 설정
+├─ common/                 # 도메인과 무관한 공용 도구. parsing·experiments를 모름
+│  ├─ files.py             # 엄격한 JSON·해시·경로 경계
+│  ├─ redaction.py         # 민감정보 제거와 비밀 의심 소스 판별
+│  └─ __init__.py
 ├─ experiments/
-│  ├─ common.py            # 엄격한 JSON·경로·해시·민감정보 처리
+│  ├─ schema.py            # 기록·비교 파일 이름과 스키마 버전
+│  ├─ parsing_stage.py     # 파싱에 기록·자동 비교 연결, 인자 지정 실행 진입점
 │  ├─ record.py            # 공통 실행·소스·모델·결과물 출처 기록
 │  ├─ resources.py         # 시간·프로세스 RSS·선택적 CUDA 관측
 │  ├─ evaluate.py          # 정답 기반 문장·위치·표 전후 평가
@@ -91,11 +96,11 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 │  ├─ pdf_source.py        # 1. 선택 목록·로컬 PDF·HTTP 입력
 │  ├─ pdf_parser.py        # 2. PDF 추출·렌더링·좌표 변환
 │  ├─ model_result.py      # 3. 공통 추론·JSON·영역 변환
-│  ├─ v1_parser.py         # 4. PaddleOCR-VL 설정과 호출
+│  ├─ vl_parser.py         # 4. PaddleOCR-VL 설정과 호출
 │  ├─ structure_parser.py  # 5. PP-StructureV3 설정과 호출
 │  ├─ review_pdf.py        # 6. 원문 복사본 위 bbox 표시
 │  ├─ result_store.py      # 7. JSON·PDF·PNG 저장
-│  ├─ run.py               # 8. 실행 진입점
+│  ├─ run.py               # 8. 파싱 실행 본체, 기록 없는 진입점
 │  ├─ quality_checks.py    # 저장된 페이지의 순수 규칙 검사
 │  ├─ validate_run.py      # 검사 실행·입력 조회·별도 보고서 저장
 │  └─ __init__.py
@@ -145,7 +150,7 @@ flowchart TD
     subgraph ENTRY["실행 진입점 — run.py"]
         MAIN("실행 준비<br/>main()<br/>실행 옵션 · 선택 목록 검증")
         INIT("선택한 모델 한 번 로딩<br/>VL 또는 Structure")
-        PROCESS("처리 반복<br/>process_document()<br/>문서별 · 페이지별 처리")
+        PROCESS("처리 반복<br/>process_document() · process_page()<br/>문서별 · 페이지별 처리")
         MAIN ==> INIT ==> PROCESS
     end
 
@@ -170,7 +175,7 @@ flowchart TD
     PROCESS ==> SOURCE
 
     subgraph PARSING["모델 추론 · 결과 정리"]
-        ADAPTER("선택한 어댑터 하나<br/>v1_parser.py / structure_parser.py")
+        ADAPTER("선택한 어댑터 하나<br/>vl_parser.py / structure_parser.py")
         RESULT("이미지 추론 · 결과 정리<br/>model_result.py<br/>모델 원본 JSON 보존 · 공통 블록 목록 생성")
         COORD("원본 위치 연결<br/>pdf_parser.py: add_pdf_coordinates()<br/>이미지 좌표를 유지하고 회전 전 PDF 좌표 추가")
 
@@ -286,10 +291,12 @@ VL의 JSON 목록 변환과 시간 측정은 공통 모듈을 사용한다. 기�
 
 ### 인자를 직접 지정하는 실행
 
+코드 의존 방향은 `main.py → experiments → parsing → common`이다. `parsing`은 실험 기록을 모른다.
+기록·자동 비교까지 하려면 `experiments.parsing_stage`를, 파싱 결과만 남기려면 `parsing.run`을 실행한다.
 도움말은 모델 로딩·다운로드·결과 파일 생성을 하지 않는다.
 
 ```bash
-python -B -m parsing.run --help
+python -B -m experiments.parsing_stage --help
 ```
 
 주 파싱 경로의 실행 예시다. 모델 초기화 시 다운로드·캐시가 생길 수 있고, 원본 PDF를 HTTP로 읽어 새 출력 폴더를 만든다.
@@ -298,7 +305,7 @@ python -B -m parsing.run --help
 `--device`(`cpu`, `gpu:0` 등)와 `--cpu-threads`(기본값 4)는 실행 환경에 맞춰 정한다.
 
 ```bash
-python -B -m parsing.run \
+python -B -m experiments.parsing_stage \
   --base-url "$PDF_BASE_URL" \
   --parser vl --device cpu --dpi 144 \
   --output-dir outputs/parsing_vl_01
@@ -311,7 +318,7 @@ PP-StructureV3는 다음 명령으로 실행한다. 문자 OCR은 PP-OCRv6 mediu
 수식은 비교 후보인 `PP-FormulaNet_plus-L`을 사용한다. 이 선택이 VL보다 정확하다는 실측 결론은 아니다.
 
 ```bash
-python -B -m parsing.run \
+python -B -m experiments.parsing_stage \
   --base-url "$PDF_BASE_URL" \
   --parser structure --formula-model PP-FormulaNet_plus-L \
   --device cpu --dpi 144

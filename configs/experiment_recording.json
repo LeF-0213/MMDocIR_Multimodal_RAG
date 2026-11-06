@@ -1,7 +1,7 @@
 {
   "schema_version": "project.experiment.v1",
   "project_root": "..",
-  "source_paths": ["main.py", "parsing", "experiments", "configs", "requirements.txt"],
+  "source_paths": ["main.py", "common", "parsing", "experiments", "configs", "requirements.txt"],
   "source_suffixes": [".py", ".json", ".txt"],
   "git_timeout_seconds": 10,
   "secret_environment_names": [],

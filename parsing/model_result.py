@@ -1,6 +1,6 @@
 """
 선택한 파서의 출력을 저장용 JSON과 영역 객체로 정리하는 내부 모듈이다.
-v1_parser.py 또는 structure_parser.py가 한 페이지의 모델 결과를 전달하면
+vl_parser.py 또는 structure_parser.py가 한 페이지의 모델 결과를 전달하면
 JSON 기본 타입·공통 영역·실패 단계·처리 시간을 반환한다.
 원본 JSON은 따로 유지하고, 원본 라벨·내용·목록 순서를 임의로 교정하지 않는다.
 PDF 좌표 변환은 pdf_parser.py, 파일 저장은 result_store.py의 책임이다.

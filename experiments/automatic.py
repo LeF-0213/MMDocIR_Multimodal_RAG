@@ -10,9 +10,12 @@
 from datetime import datetime, timezone
 from pathlib import Path
 
-# 내부 모듈: common은 엄격한 읽기·해시·비밀 제거, compare는 동일한 전후 보고서 생성,
-# evaluate는 추론 전에 정답·평가 설정을 검증한다. pdf_source는 선정 목록 형식을 검증한다.
-from .common import FINISHED_FILE, MANIFEST_FILE, clean, file_hash, read_json, write_json
+# 내부 모듈: common은 엄격한 읽기·해시·비밀 제거, schema는 기록 파일 이름,
+# compare는 동일한 전후 보고서 생성, evaluate는 추론 전에 정답·평가 설정을 검증한다.
+# pdf_source는 선정 목록 형식을 검증한다.
+from common.files import file_hash, read_json, write_json
+from common.redaction import clean
+from .schema import FINISHED_FILE, MANIFEST_FILE
 from .compare import LEGACY_RUN_FILE, LEGACY_SUMMARY_FILE, REPORT_JSON, REPORT_MARKDOWN, load_run, run_comparison
 from .evaluate import validate_gold, validate_settings
 from parsing.pdf_source import load_selection

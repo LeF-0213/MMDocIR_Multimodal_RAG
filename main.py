@@ -1,7 +1,7 @@
 """설정 파일 하나로 PDF 파싱·실행 기록·자동 전후 비교를 시작한다.
 
 기본 입력은 configs/parsing_run.json이며 상대 경로는 그 파일의 폴더 기준이다.
-설정을 기존 parsing.run의 실행 인자로 변환해 처리·저장 로직을 재사용한다.
+설정을 실행 인자로 변환해 experiments.parsing_stage에 넘기고 처리·저장 로직을 재사용한다.
 실제 실행은 PDF 읽기, 모델 다운로드/캐시, 새 실행 폴더와 비교 보고서를 만들 수 있다.
 --check는 입력·설정·비교 계획만 읽어 검증하며 모델 로딩·파일 생성은 하지 않는다.
 """
@@ -13,11 +13,14 @@ import json
 from pathlib import Path
 
 # 내부 공통 모듈은 엄격한 JSON·해시·비밀 제거를 담당한다. automatic은 기존 기본 경로와
-# 비교 계획을 공유한다. pdf_source는 원본 확인, run은 기존 CLI 검증과 전체 파싱 실행을 맡는다.
-from experiments.common import clean, file_hash, known_secrets, read_json
+# 비교 계획을 공유한다. parsing_stage는 CLI 검증과 기록을 포함한 전체 실행을 맡고,
+# pdf_source·run은 선정 목록 검증·원본 확인·출력 경로 계산을 제공한다.
+from common.files import file_hash, read_json
+from common.redaction import clean, known_secrets
 from experiments.automatic import CONFIG_DIRECTORY, prepare_comparison
-from parsing.pdf_source import build_pdf_url, load_selection, local_pdf_path
-from parsing.run import arguments, main as run_parsing, new_output_directory
+from experiments.parsing_stage import arguments, main as run_parsing
+from parsing.pdf_source import load_selection
+from parsing.run import new_output_directory, validate_source
 
 # 설정 파일 위치의 유일한 기본값이다. --config로 교체할 수 있으며 경로·해시를 실행 기록에 남긴다.
 DEFAULT_RUN_CONFIG = CONFIG_DIRECTORY / "parsing_run.json"
@@ -113,11 +116,7 @@ def main(argv=None):
         if options.check:
             args = arguments(invocation)
             selected = load_selection(args.selection)
-            if args.pdf_directory is not None:
-                for item in selected["documents"]:
-                    local_pdf_path(args.pdf_directory, item["document_name"])
-            else:
-                build_pdf_url(args.base_url, selected["documents"][0]["document_name"])
+            validate_source(args, selected)
             secrets = ()
             if args.experiment_config:
                 # 기록 설정 검증은 psutil만 로딩하며 OCR 모델·관측 스레드를 시작하지 않는다.
