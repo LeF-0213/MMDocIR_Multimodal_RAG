@@ -58,6 +58,18 @@ def parser_options(device: str, cpu_threads: int = 4, *, overrides: dict | None 
         # 영역별 내용·좌표가 필요하므로 페이지 전체를 단일 문자열로 받지 않는다.
         "use_layout_detection": True,
 
+        # 공식 기능: True이면 조건이 맞는 인접 영역의 이미지를 이어 붙여 첫 블록에서 한 번에
+        # 인식하고, 나머지 블록은 빈 내용으로 둔 채 각자의 bbox만 유지한다.
+        # 설치된 PaddleX 3.7.2의 파이프라인 기본값은 True다(paddleocr_vl/pipeline.py의
+        # config.get("merge_layout_blocks", True)와 merge_blocks()).
+        # 프로젝트 판단: 2026-10-27 실행의 게슈탈트 8페이지에서 오른쪽 문단이 왼쪽 블록의
+        # 내용으로 기록되고 오른쪽 블록은 빈 문자열로 남았다. 청킹·검색은 bbox로 원문 위치를
+        # 찾으므로 영역마다 따로 인식하도록 끈다.
+        # 끈 상태의 품질·속도 효과는 아직 측정하지 않았다. 상자 경계에서 문장이 나뉘고
+        # VLM 호출 수가 늘 수 있다. 같은 환경의 True 실행은 기록 설정의
+        # pipeline_options로 이 값만 덮어써 비교한다.
+        "merge_layout_blocks": False,
+
         # 공식 기능: 문서 방향 분류는 추가 회전, unwarping은 이미지 보정을 한다.
         # 프로젝트 판단: 현재 pixel_to_pdf_matrix는 렌더링 원점·배율·PDF 회전만
         # 되돌린다. 추가 회전의 역행렬이나 비선형 변형의 역매핑은 구현하지 않았다.

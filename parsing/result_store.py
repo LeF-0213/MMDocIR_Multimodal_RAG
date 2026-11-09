@@ -29,3 +29,15 @@ def save_bytes(path: Path, data: bytes) -> None:
     with path.open("xb") as output:
         output.write(data)
 
+
+def save_bytes_under(base: Path, relative: str, data: bytes) -> Path:
+    """모델이 만든 상대 경로의 파일을 base 안에만 저장하고 실제 경로를 반환한다."""
+    target = (base / relative).resolve()
+    # 참조 경로는 model_result.py에서도 검사하지만, 저장 위치는 이 모듈이 다시 확인한다.
+    # symlink를 따라간 실제 경로가 base 밖이면 저장하지 않는다.
+    if not target.is_relative_to(base.resolve()):
+        raise ValueError(f"저장 경로가 결과 폴더를 벗어납니다: {relative!r}")
+    target.parent.mkdir(parents=True, exist_ok=True)
+    save_bytes(target, data)
+    return target
+

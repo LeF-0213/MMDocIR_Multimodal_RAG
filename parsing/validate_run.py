@@ -3,14 +3,19 @@
 선정 목록의 문서·페이지만 읽어 3M의 과거 7페이지가 섞이는 일을 피한다.
 기본 실행은 콘솔 출력만 한다. --output 지정 시 입력 실행 폴더 밖에 새 JSON 하나를 만든다.
 모델 로딩·설치·네트워크 호출·기존 파일 덮어쓰기를 하지 않는다.
+
+원본 해시는 --pdf-dir의 원본과 대조한다. 지정하지 않으면 실행 폴더에 보관한 source.pdf 사본을
+대조하며, 이 경우 사본의 무결성만 확인하고 원래 배포 파일과 같은지는 확인하지 않는다.
 """
 
 # 표준 라이브러리: argparse는 CLI, json은 보고서, hashlib는 문서명 ID를 처리한다.
-# sys는 실행 환경, Counter는 요약, datetime은 UTC 실행 시각을 기록한다.
+# re는 블록 내용의 <img src> 참조를 찾고, sys는 실행 환경, Counter는 요약,
+# datetime은 UTC 실행 시각을 기록한다.
 # Path는 경로·파일 접근을, perf_counter는 검사 소요 시간 측정을 맡는다.
 import argparse
 import hashlib
 import json
+import re
 import sys
 from collections import Counter
 from datetime import datetime, timezone
@@ -20,11 +25,53 @@ from time import perf_counter
 # 내부 공통 모듈은 엄격한 JSON 읽기·해시, 검사 모듈은 페이지별 측정값·검토 항목을 맡는다.
 from common import files as common_files
 from common.files import file_hash, read_json
-from .quality_checks import LIMITS, RULE_VERSION, inspect_page
+from .quality_checks import LIMITS, RULE_VERSION, inspect_page, review_status
+
+# 모델 출력 HTML의 그림 참조다. 속성 순서와 따옴표 종류만 허용 범위로 둔다.
+# PaddleX 출력에는 alt="Image"" 같은 깨진 속성이 있어 src 값만 읽는다.
+IMAGE_SOURCE = re.compile(r"""<img\b[^>]*?\bsrc\s*=\s*["']([^"']+)["']""", re.IGNORECASE)
 
 
-def inspect_run(root, selection_path, pdf_dir):
-    """현재 선정 목록을 기준으로 페이지를 검사하고 원본 참조·해시를 남긴다."""
+def image_reference_findings(root, record):
+    """블록 내용이 참조하는 그림이 저장 기록에 있고 파일 해시가 맞는지 검사한다."""
+    root = Path(root).resolve()
+    parsing = record["parsing"]
+    saved = {item["reference"]: item
+             for item in (parsing.get("result_images") or {}).get("items", [])}
+    findings = []
+    for block in parsing["blocks"]:
+        for reference in sorted(set(IMAGE_SOURCE.findall(block["content"]))):
+            item = saved.get(reference)
+            reason, actual = None, None
+            if item is None:
+                reason = "저장 기록에 참조 그림이 없음"
+            else:
+                path = (root / item["path"]).resolve()
+                if not path.is_relative_to(root):
+                    reason = "실행 폴더 밖 경로"
+                else:
+                    try:
+                        actual = file_hash(path)
+                    except OSError as exc:
+                        reason = str(exc)
+                    else:
+                        if actual != item["sha256"]:
+                            reason = "그림 파일 해시 불일치"
+            if reason:
+                findings.append({
+                    "rule": "html_image_reference", "status": "confirmed_error",
+                    "element_id": block["element_id"],
+                    "evidence": {"reference": reference, "reason": reason,
+                                 "expected": item and item.get("sha256"), "actual": actual},
+                })
+    return findings
+
+
+def inspect_run(root, selection_path, pdf_dir=None):
+    """현재 선정 목록을 기준으로 페이지를 검사하고 원본 참조·해시를 남긴다.
+
+    pdf_dir가 None이면 실행 폴더의 documents/<문서 ID>/source.pdf 사본을 대조한다.
+    """
     if not root.is_dir():
         raise ValueError("파싱 실행 폴더가 존재하지 않습니다.")
     selection = read_json(selection_path)
@@ -51,8 +98,10 @@ def inspect_run(root, selection_path, pdf_dir):
                 or len(numbers) != len(set(numbers))):
             raise ValueError("페이지 번호에는 중복 없는 양의 정수가 필요합니다.")
         doc_id = hashlib.sha256(name.encode("utf-8")).hexdigest()
+        source_path = (pdf_dir / f"{name}.pdf" if pdf_dir is not None
+                       else root / "documents" / doc_id / "source.pdf")
         try:
-            source_hash = file_hash(pdf_dir / f"{name}.pdf")
+            source_hash = file_hash(source_path)
             source_error = None
         except OSError as exc:
             source_hash, source_error = None, str(exc)
@@ -85,6 +134,7 @@ def inspect_run(root, selection_path, pdf_dir):
                         "evidence": {"reason": "다른 페이지에서도 사용된 ID"},
                     })
                 seen_elements.update(ids)
+                report["findings"].extend(image_reference_findings(root, record))
                 expected = {
                     "document_name": name, "document_id": doc_id,
                     "page_number": number, "page_id": page_id,
@@ -127,21 +177,26 @@ def inspect_run(root, selection_path, pdf_dir):
                 "expected_page_id": page_id,
                 "document_name": name, "page_number": number,
                 "input_json": str(path),
-                "review_status": "needs_review" if report["findings"] else "not_reviewed",
+                "review_status": review_status(report["findings"]),
             })
             results.append(report)
     counts = Counter(
         item["rule"] for page in results for item in page["findings"]
     )
+    statuses = Counter(page["review_status"] for page in results)
     return {
         "schema_version": "project.parsing_quality.v1",
         "rule_version": RULE_VERSION, "limits": dict(LIMITS),
         "input_run": str(root), "selection": str(selection_path),
         "selection_sha256": file_hash(selection_path),
-        "pdf_directory": str(pdf_dir),
+        "pdf_directory": str(pdf_dir) if pdf_dir is not None else None,
+        # run_copy는 실행 당시 보관한 사본과의 대조라 원본 배포 파일의 동일성 확인이 아니다.
+        "source_reference": "pdf_directory" if pdf_dir is not None else "run_copy",
         "summary": {
             "page_count": len(results),
-            "pages_needing_review": sum(bool(p["findings"]) for p in results),
+            # 의심·확정 오류가 있는 페이지와 확인하지 못한 항목만 있는 페이지를 따로 센다.
+            "pages_needing_review": statuses["needs_review"],
+            "pages_unresolved": statuses["unresolved"],
             "finding_counts": dict(counts),
             "quality_accuracy": None,
         },
@@ -153,7 +208,8 @@ def main():
     cli = argparse.ArgumentParser(description="저장된 파싱 결과의 규칙 검사")
     cli.add_argument("--run-dir", type=Path, required=True)
     cli.add_argument("--selection", type=Path, default=Path("configs/selection.json"))
-    cli.add_argument("--pdf-dir", type=Path, default=Path("data/doc_pdfs"))
+    # 원본 PDF 위치는 환경마다 다르므로 기본 경로를 두지 않는다. 생략하면 실행 폴더의 사본을 쓴다.
+    cli.add_argument("--pdf-dir", type=Path, help="원본 PDF 폴더. 생략 시 실행 폴더의 source.pdf 사본과 대조")
     cli.add_argument("--output", type=Path)
     args = cli.parse_args()
     root = args.run_dir.resolve()
@@ -161,7 +217,8 @@ def main():
         cli.error("검사 보고서는 입력 실행 폴더 밖에 저장해야 합니다.")
     started = perf_counter()
     try:
-        report = inspect_run(root, args.selection.resolve(), args.pdf_dir.resolve())
+        report = inspect_run(root, args.selection.resolve(),
+                             args.pdf_dir.resolve() if args.pdf_dir else None)
         report["checked_at_utc"] = datetime.now(timezone.utc).isoformat()
         report["python"] = sys.version
         report["elapsed_seconds"] = perf_counter() - started
