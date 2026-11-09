@@ -44,7 +44,7 @@ from common.redaction import clean, diagnostic_clean
 # 아래 내부 모듈은 네트워크 입력과 파일 저장의 책임을 분리한다.
 # PDF 처리·모델·검토 모듈은 CLI 검증 뒤 가져와 --help의 의존성을 줄인다.
 from .pdf_source import build_pdf_url, load_selection, local_pdf_path, read_pdf_bytes
-from .result_store import create_output_directory, save_bytes, save_json
+from .result_store import create_output_directory, save_bytes, save_bytes_under, save_json
 
 # 실행 폴더 이름의 UTC 직렬화 형식이다. 실제 상위 폴더·파서는 설정이나 CLI에서 받는다.
 RUN_TIMESTAMP_FORMAT = "%Y%m%dT%H%M%S%fZ"
@@ -159,6 +159,7 @@ def environment_record() -> dict:
         "paddlepaddle-gpu",
         "PyMuPDF",
         "numpy",
+        "pillow",
         "psutil",
     ):
         try:
@@ -257,6 +258,18 @@ def parse_page(context: DocumentContext, number: int, document, record: dict) ->
                     scope["status"] = "failed"
 
         parsed = record["parsing"]
+        # 블록 내용의 <img src> 참조 그림을 페이지별 폴더에 저장한다. bytes는 JSON에 남기지 않는다.
+        image_bytes = parsed.pop("result_image_bytes", None) or {}
+        if image_bytes:
+            page_stage = "result_image_save"
+            for reference, data in sorted(image_bytes.items()):
+                path = save_bytes_under(context.folder / stem, reference, data)
+                relative = f"documents/{context.doc_id}/{stem}/{reference}"
+                parsed["result_images"]["items"].append(
+                    {"reference": reference, "path": relative, "sha256": digest(data)})
+                if recorder:
+                    recorder.artifact(path, "parsing_result_image",
+                                      parents=[p for p in (image_artifact,) if p], page_id=page_id)
         page_stage = "coordinate_mapping"
         if parsed["status"] in ("ok", "empty"):
             parsed["blocks"] = add_pdf_coordinates(

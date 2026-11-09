@@ -21,8 +21,8 @@ PDF의 텍스트·표·수식·그림을 원본 위치와 연결하고, 검색 �
 | 추가 실행 | 3M 9페이지 VL 파싱 완료(`ok`). 기존 문서 폴더에 JSON·PNG를 추가하고 검토 PDF를 8·9·15페이지로 갱신 |
 | Structure 실행 | PP-StructureV3 27페이지(3M 8·9·15 포함) 처리 기록: `ok` 27개. 처리 상태이며 품질 판정이 아님 |
 | 품질 검토 | 2026-10-30 선정 27페이지의 이미지·JSON 정성 비교. 반복·원문에 없는 내용, 문장–bbox 불일치, 표 행·열 대응 오류 확인. 정확도 점수는 미측정 |
-| 남은 확인 | VL 영역 병합 옵션 비교, 반복·환각 식별, 문장 위치 복구와 표 구조 검증. 개선 재실행은 미수행 |
-| 규칙 검사 구현 | `parsing.validate_run`: 입력 해시·ID·좌표·반복·병합 그룹·표 격자 검사. 테스트 20개와 실제 54페이지 실행 확인. 원문 의미 정확도는 미측정 |
+| 남은 확인 | VL 영역 병합 옵션 비교, 반복·환각 식별, 문장 위치 복구와 표 구조 검증. 2026-11-08 VL 병합 기본값을 끄고 그림 crop 저장을 추가했으나 재실행은 미수행 |
+| 규칙 검사 구현 | `parsing.validate_run`: 입력 해시·ID·좌표·반복·병합 그룹·표 격자·그림 참조 검사(규칙 0.2.0). 실제 54페이지 실행 확인은 0.1.0 기준. 원문 의미 정확도는 미측정 |
 | 실행 기록·전후 비교 | 파싱 시 기본 기록과 최근 호환 실행의 자동 비교. 공통 manifest·소스 diff·모델 파일·RSS·정답 기반 문장/위치/표 평가·JSON/Markdown 보고서. 실제 원문 품질 개선은 미측정 |
 | 기본 진입점 | 루트 `main.py`가 실행 설정을 읽어 HTTP·로컬 PDF 파싱·기록·자동 비교 실행. 모의 모델로 연속 실행 검증, 실제 신규 OCR 추론은 미수행 |
 | 이후 단계 | 청킹·임베딩·인덱스·검색·리랭킹·Recall@1·@3·@10 평가는 미구현 |
@@ -47,6 +47,8 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 2026-11-02 코드 확인에서 VL의 `merge_layout_blocks=True`와 병합 그룹을 확인했다.
 라이브러리가 여러 영역 이미지를 합쳐 읽고 개별 bbox를 유지하는 동작은 문장–bbox 불일치의 유력한 발생 경로다.
 병합 비활성화의 개선 효과는 아직 검증하지 않았다. 기존 실행 JSON과 모델 코드는 변경하지 않았다.
+2026-11-08 VL 어댑터의 생성자 설정에 `merge_layout_blocks=False`를 명시했다. 이후 실행부터 영역마다 따로 인식하며,
+공통 블록에 라이브러리 그룹 번호 `model_group_id`를 남긴다. 같은 환경의 `True` 실행은 기록 설정의 `pipeline_options`로 덮어써 비교한다.
 같은 날 macOS의 `.venv`에 PaddleOCR 3.7.0·PaddleX 3.7.2를 설치해 결과 객체의 이미지 접근·저장과
 병합·반복 제거 함수를 샘플 입력으로 확인했다. 모델 재추론은 수행하지 않았다.
 당시에는 실행 조건 기록과 규칙 검사만 구현돼 있었다.
@@ -99,7 +101,7 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 │  ├─ vl_parser.py         # 4. PaddleOCR-VL 설정과 호출
 │  ├─ structure_parser.py  # 5. PP-StructureV3 설정과 호출
 │  ├─ review_pdf.py        # 6. 원문 복사본 위 bbox 표시
-│  ├─ result_store.py      # 7. JSON·PDF·PNG 저장
+│  ├─ result_store.py      # 7. JSON·PDF·PNG·그림 crop 저장
 │  ├─ run.py               # 8. 파싱 실행 본체, 기록 없는 진입점
 │  ├─ quality_checks.py    # 저장된 페이지의 순수 규칙 검사
 │  ├─ validate_run.py      # 검사 실행·입력 조회·별도 보고서 저장
@@ -120,6 +122,7 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 ├─ requirements.txt
 ├─ tests/
 │  ├─ test_parsing_quality.py # 기존 규칙 경계·CLI·원본 보존 검증
+│  ├─ test_parsing_adapters.py # 병합 설정·그룹 번호·그림 저장과 참조 검사
 │  └─ test_experiments.py    # 기록·diff·복구/퇴행·모델/자원·파싱 연결 검증
 └─ outputs/
 ```
@@ -242,6 +245,12 @@ PDF에서 직접 추출한 텍스트층과 모델 인식 결과는 따로 보존
 python -m pip install -r requirements.txt
 ```
 
+2026-11-08 Linux 컨테이너(Ubuntu 24.04, GPU 없음)에서는 `uv venv --seed --python 3.12 .venv`로 가상환경을 만들고
+`uv pip install --python .venv/bin/python -r requirements.txt`로 설치했다. 최소 설치 Ubuntu에는 PaddleX가 고정한
+`opencv-contrib-python`이 요구하는 `libGL.so.1`·`libglib-2.0.so.0`이 없어 `import cv2`가 실패했으므로
+`sudo apt-get install libgl1 libglib2.0-0t64`로 시스템 라이브러리를 추가했다. 설치 확인은 import·`main.py --check`·테스트까지이며
+이 환경에서 모델 가중치를 받거나 실제 추론을 실행하지는 않았다. 기존 결과는 모두 Windows 11에서 만든 것이다.
+
 기록한 PaddlePaddle은 CPU 버전이다. GPU 실행은 검증하지 않았으며, GPU에는 대응 Paddle 패키지와 드라이버가 필요하다.
 설치 방식과 Python 지원 범위는 [PaddleOCR-VL 공식 실행 안내](https://www.paddleocr.ai/main/en/version3.x/pipeline_usage/PaddleOCR-VL.html)를 참고한다.
 
@@ -341,6 +350,7 @@ outputs/<실행명>/
    ├─ document.json          # 원본 해시·페이지와 결과 경로
    ├─ page_00009.png         # 페이지 렌더링
    ├─ page_00009.json        # 원본 추출·모델 출력·영역·좌표
+   ├─ page_00009/imgs/*.jpg  # 블록 내용의 <img src> 참조 그림. 2026-11-08 이후 실행부터, 그림이 있을 때만
    └─ review_vl.pdf          # Structure 실행이면 review_structure.pdf
 ```
 
@@ -407,8 +417,11 @@ python3 -B -m parsing.validate_run \
   --run-dir outputs/parsing_structure_20261028T232222203813Z
 ```
 
-선정 목록 기본값은 `configs/selection.json`, 원본 PDF 폴더는 `data/doc_pdfs`다.
-다른 위치를 쓰려면 `--selection`, `--pdf-dir`로 지정한다. 원본 PDF가 없으면 해시 검증을 `unresolved`로 남긴다.
+선정 목록 기본값은 `configs/selection.json`이다. 원본 PDF 폴더는 `--pdf-dir`로 지정한다.
+생략하면 실행 폴더의 `documents/<문서 ID>/source.pdf` 사본을 대조하고 보고서에 `source_reference: run_copy`를 남긴다.
+이 경우 사본의 무결성만 확인하며 원래 배포 파일과 같은지는 확인하지 않는다. 대조할 파일이 없으면 해시 검증을 `unresolved`로 남긴다.
+블록 내용의 `<img src>` 참조가 저장 기록·파일·해시와 맞지 않으면 `html_image_reference`로 표시한다.
+2026-11-08 이전 실행은 그림을 저장하지 않았으므로 참조가 있는 페이지에서 이 신호가 나온다.
 3M의 현재 대상은 8·9·15페이지이며 과거 7페이지는 자동 포함하지 않는다.
 
 상세 보고서를 저장하려면 `--output outputs/quality_vl_01.json`을 추가한다. 이는 새 JSON 하나를 생성한다.
@@ -416,7 +429,8 @@ python3 -B -m parsing.validate_run \
 보고서에는 규칙 버전·임계값·검사 코드 해시·입력 해시·요소 ID·근거를 기록한다.
 종료 코드 0은 검사 실행 완료, 2는 실행 인자·보고서 저장 등 실행 오류를 뜻한다. 0이 품질 통과를 뜻하지 않는다.
 
-2026-11-02 저장된 두 실행 결과에 검사를 실행한 결과다.
+2026-11-02 저장된 두 실행 결과에 규칙 0.1.0과 `data/doc_pdfs` 원본으로 검사를 실행한 결과다.
+0.2.0의 생략 가능한 표 종료 태그 허용·상태 분리·그림 참조 검사는 아래 수치에 반영되지 않았다.
 
 | 경로 | 검사 페이지 | 검토 후보 페이지 | 검사 신호 |
 |---|---:|---:|---|
@@ -428,11 +442,12 @@ python3 -B -m parsing.validate_run \
 검사 코드·원본 보존·보고서 배타적 저장의 경계 테스트 20개도 통과했다.
 
 ```bash
-python3 -B -m unittest discover -s tests -v
+.venv/bin/python -B -m unittest discover -s tests -v
 ```
 
 테스트는 정리되는 임시 폴더에 작은 입력과 보고서를 만든다. 실제 파싱 결과는 수정하지 않는다.
 `suspected`는 원본 대조가 필요한 신호, `unresolved`는 확인하지 못한 항목이다.
+페이지의 `review_status`는 의심·확정 오류가 있으면 `needs_review`, 확인하지 못한 항목만 있으면 `unresolved`다.
 신호가 없는 페이지도 `not_reviewed`로 남기며 정확하다고 판정하지 않는다.
 표 격자가 정상이어도 숫자가 잘못된 행에 있을 수 있다. 원문 줄·셀 정렬과 개선 모델 재실행은 이후 단계다.
 VLM/API 검토는 선택지로 유지하며 현재 검사에는 사용하지 않는다.

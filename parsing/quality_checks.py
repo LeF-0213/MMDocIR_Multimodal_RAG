@@ -12,7 +12,8 @@ import re
 from collections import Counter
 from html.parser import HTMLParser
 
-RULE_VERSION = "0.1.0"
+# 0.2.0: 생략 가능한 표 종료 태그 허용, 미해결만 있는 페이지의 검토 상태 분리
+RULE_VERSION = "0.2.0"
 # 반복 임계값은 개발용 초기값이며 환각 확정 기준이 아니다.
 # 좌표 허용 오차는 부동소수점 계산 비교용이고 문장 위치의 허용 오차가 아니다.
 LIMITS = {
@@ -27,7 +28,16 @@ LIMITS = {
 
 
 class TableGrid(HTMLParser):
-    """단일 표의 행·셀·병합 범위를 읽는다. 일반 HTML의 완전한 유효성 검사기는 아니다."""
+    """단일 표의 행·셀·병합 범위를 읽는다. 일반 HTML의 완전한 유효성 검사기는 아니다.
+
+    HTML 표준은 </td>·</th>·</tr> 종료 태그의 생략을 허용한다(WHATWG HTML "Optional tags").
+    다음 셀·행이 시작되거나 상위 요소가 닫히면 열린 셀·행을 닫은 것으로 본다.
+    생략을 오류로 세면 정상 표가 구조 확인 불가로 분류된다.
+    </table>은 생략할 수 없으므로 끝까지 닫히지 않은 표는 계속 거부한다.
+    """
+
+    # thead·tbody·tfoot의 시작·종료는 열린 행을 닫는다. 셀 위치 계산에는 영향이 없다.
+    SECTION_TAGS = ("thead", "tbody", "tfoot")
 
     def __init__(self):
         super().__init__(convert_charrefs=True)
@@ -37,6 +47,17 @@ class TableGrid(HTMLParser):
         self.table_count = 0
         self.table_open = False
 
+    def close_cell(self):
+        if self.cell is not None:
+            self.row.append(self.cell)
+            self.cell = None
+
+    def close_row(self):
+        self.close_cell()
+        if self.row is not None:
+            self.rows.append(self.row)
+            self.row = None
+
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
         if tag == "table":
@@ -44,13 +65,21 @@ class TableGrid(HTMLParser):
             if self.table_count > 1:
                 raise ValueError("한 블록의 중첩 표 또는 여러 표는 별도 처리가 필요합니다.")
             self.table_open = True
+        elif tag in self.SECTION_TAGS:
+            if not self.table_open:
+                raise ValueError("표 바깥의 표 구역 태그입니다.")
+            self.close_row()
         elif tag == "tr":
-            if not self.table_open or self.row is not None:
-                raise ValueError("표 바깥의 행이거나 이전 행이 닫히지 않았습니다.")
+            if not self.table_open:
+                raise ValueError("표 바깥의 행입니다.")
+            self.close_row()
             self.row = []
         elif tag in ("td", "th"):
-            if self.row is None or self.cell is not None:
-                raise ValueError("셀의 시작 위치가 올바르지 않습니다.")
+            # 행 없이 시작한 셀은 브라우저가 행을 만들어 주지만, 모델 출력의 구조 손상일 수
+            # 있어 추정하지 않고 거부한다.
+            if self.row is None:
+                raise ValueError("행 바깥의 셀입니다.")
+            self.close_cell()
             rowspan = int(attrs.get("rowspan", "1"))
             colspan = int(attrs.get("colspan", "1"))
             if min(rowspan, colspan) < 1:
@@ -59,22 +88,23 @@ class TableGrid(HTMLParser):
 
     def handle_endtag(self, tag):
         if tag in ("td", "th"):
-            if self.cell is None or self.row is None:
+            if self.cell is None:
                 raise ValueError("열린 셀이 없습니다.")
-            self.row.append(self.cell)
-            self.cell = None
+            self.close_cell()
         elif tag == "tr":
-            if self.row is None or self.cell is not None:
-                raise ValueError("행을 닫기 전에 셀을 확인해야 합니다.")
-            self.rows.append(self.row)
-            self.row = None
+            if self.row is None:
+                raise ValueError("열린 행이 없습니다.")
+            self.close_row()
+        elif tag in self.SECTION_TAGS:
+            self.close_row()
         elif tag == "table":
-            if not self.table_open or self.row is not None or self.cell is not None:
-                raise ValueError("열린 행·셀 또는 표 종료 위치를 확인해야 합니다.")
+            if not self.table_open:
+                raise ValueError("열린 표가 없습니다.")
+            self.close_row()
             self.table_open = False
 
     def measure(self, html):
-        """명시적인 행·셀 종료와 양수 병합 범위를 가진 단일 표를 검사한다."""
+        """양수 병합 범위를 가진 단일 표를 검사한다. 생략 가능한 종료 태그는 허용한다."""
         self.feed(html)
         self.close()
         if (self.table_count != 1 or self.table_open
@@ -109,6 +139,17 @@ class TableGrid(HTMLParser):
         width = 1 + max(c for _, c in occupied)
         holes = len(self.rows) * width - len(occupied)
         return {"rows": len(self.rows), "columns": width, "unfilled_slots": holes}
+
+
+def review_status(findings):
+    """의심·확정 오류가 있으면 검토 필요, 확인하지 못한 항목만 있으면 미해결로 나눈다.
+
+    원본 PDF가 없어 해시를 대조하지 못한 페이지를 내용이 의심되는 페이지와 같은 상태로
+    세면 검토 대상 수가 부풀고 실제 신호가 묻힌다.
+    """
+    if any(f["status"] in ("confirmed_error", "suspected") for f in findings):
+        return "needs_review"
+    return "unresolved" if findings else "not_reviewed"
 
 
 def box(value):
@@ -275,7 +316,7 @@ def inspect_page(record):
     return {
         "page_id": record["page_id"],
         "processing_status": record["status"],
-        "review_status": "needs_review" if findings else "not_reviewed",
+        "review_status": review_status(findings),
         "block_count": len(blocks),
         "tables": tables,
         "findings": findings,

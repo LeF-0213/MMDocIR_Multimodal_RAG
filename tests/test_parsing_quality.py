@@ -76,6 +76,16 @@ class GridTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             TableGrid().measure('<table><tr><td>value</td></tr>')
 
+    def test_optional_end_tags_are_closed_implicitly(self):
+        # HTML 표준이 생략을 허용하는 </td>·</tr>가 없어도 같은 2×2 격자다.
+        html = '<table><tbody><tr><td>a<td>b<tr><td>c<td>d</tbody></table>'
+        self.assertEqual(TableGrid().measure(html),
+                         {"rows": 2, "columns": 2, "unfilled_slots": 0})
+
+    def test_stray_cell_end_is_rejected(self):
+        with self.assertRaises(ValueError):
+            TableGrid().measure('<table><tr></td></tr></table>')
+
     def test_large_span_is_bounded_before_allocation(self):
         with self.assertRaises(ValueError):
             TableGrid().measure('<table><tr><td colspan="1000000000">x</td></tr></table>')
@@ -95,6 +105,13 @@ class PageTests(unittest.TestCase):
         report = inspect_page(page_record())
         self.assertEqual(report["findings"], [])
         self.assertEqual(report["review_status"], "not_reviewed")
+
+    def test_unchecked_page_is_unresolved_not_suspected(self):
+        record = page_record()
+        record["parsing"]["status"] = "failed"
+        report = inspect_page(record)
+        self.assertEqual({f["status"] for f in report["findings"]}, {"unresolved"})
+        self.assertEqual(report["review_status"], "unresolved")
 
     def test_nan_coordinate_is_explicit_error(self):
         record = page_record()
@@ -183,6 +200,19 @@ class RunTests(unittest.TestCase):
         findings = self.inspect()["pages"][0]["findings"]
         missing = next(f for f in findings if f["rule"] == "source_hash")
         self.assertEqual(missing["status"], "unresolved")
+        report = self.inspect()
+        self.assertEqual(report["pages"][0]["review_status"], "unresolved")
+        self.assertEqual((report["summary"]["pages_needing_review"],
+                          report["summary"]["pages_unresolved"]), (0, 1))
+
+    def test_missing_referenced_image_is_detected(self):
+        content = '<table><tr><td><img src="imgs/a.jpg"></td></tr></table>'
+        self.record = page_record(content, "table")
+        self.write_record()
+        finding = next(f for f in self.inspect()["pages"][0]["findings"]
+                       if f["rule"] == "html_image_reference")
+        self.assertEqual(finding["status"], "confirmed_error")
+        self.assertEqual(finding["evidence"]["reference"], "imgs/a.jpg")
 
     def test_wrong_page_identity_is_detected(self):
         self.record["page_index"] = 5

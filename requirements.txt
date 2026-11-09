@@ -10,5 +10,8 @@ PyMuPDF==1.28.2
 # 모델 입력 이미지와 모델 출력 배열 처리
 numpy>=1.26,<3
 
+# 모델 결과의 그림 crop(PIL 이미지)을 JPEG 파일로 저장. PaddleX도 의존하며 2026-11-08 Linux 설치 버전
+Pillow==13.0.0
+
 # Python 객체뿐 아니라 Paddle·NumPy를 포함한 프로세스 RSS·자식 프로세스 관측
 psutil==7.2.2

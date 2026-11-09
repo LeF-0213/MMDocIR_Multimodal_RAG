@@ -5,16 +5,32 @@ JSON 기본 타입·공통 영역·실패 단계·처리 시간을 반환한다.
 원본 JSON은 따로 유지하고, 원본 라벨·내용·목록 순서를 임의로 교정하지 않는다.
 PDF 좌표 변환은 pdf_parser.py, 파일 저장은 result_store.py의 책임이다.
 이 모듈은 모델 로딩이나 파일 생성을 수행하지 않는다.
+
+블록 내용의 <img src="imgs/..."> 참조가 가리키는 그림 crop은 JSON에 들어가지 않는다.
+predict_page()는 그 그림을 JPEG bytes로 따로 반환하고, run.py가 꺼내 파일로 저장한다.
 """
 
 # 표준 라이브러리: json은 직렬화 가능 여부, math는 좌표의 유한성을 검사한다.
 # perf_counter는 시스템 시각 변경에 영향을 받지 않는 경과 시간을 측정한다.
+# BytesIO는 그림을 파일 없이 메모리에서 인코딩하고, PurePosixPath는 라이브러리가
+# 만든 상대 참조 경로가 결과 폴더를 벗어나지 않는지 운영체제와 무관하게 검사한다.
 import json
 import math
+from io import BytesIO
+from pathlib import PurePosixPath
 from time import perf_counter
 
 # NumPy(별칭 np)는 모델 입력 배열과 반환된 배열·숫자 타입을 처리한다.
 import numpy as np
+
+# Pillow(패키지 이름 PIL)의 Image는 PaddleX가 그림 crop을 담아 반환하는 이미지 객체다.
+# 형식 확인과 JPEG 인코딩에만 사용한다. PaddleX가 이미 의존하는 라이브러리라 새 엔진을 들이지 않는다.
+from PIL import Image
+
+# PaddleX가 만든 참조 경로가 .jpg로 끝나므로 같은 형식으로 저장한다. JPEG는 손실 압축이다.
+# 품질 값은 Pillow 기본값(75)과 같으며, PaddleX의 save_to_markdown 결과와 바이트가 같다는 보장은 없다.
+RESULT_IMAGE_FORMAT = "JPEG"
+RESULT_IMAGE_QUALITY = 75
 
 
 def json_builtin(value):
@@ -91,6 +107,11 @@ def normalize_result_blocks(
                 "source_list_index": index,
                 "model_block_id": block.get("block_id"),
                 "model_block_order": block.get("block_order"),
+                # 라이브러리의 병합 그룹 번호다. PaddleX 3.7.2 VL은 병합하지 않은 블록에
+                # 자기 목록 순번을, 함께 인식한 블록에는 같은 번호를 넣는다.
+                # 같은 번호의 블록은 내용이 첫 블록에 몰렸을 수 있어 청킹이 함께 다뤄야 한다.
+                # 필드가 없는 결과는 None으로 두고 번호를 추정하지 않는다.
+                "model_group_id": block.get("group_id"),
                 "label": label,
                 "content": content,
                 "bbox_image_pixels": [float(v) for v in bbox],
@@ -98,6 +119,32 @@ def normalize_result_blocks(
         )
 
     return normalized
+
+
+def result_images(result) -> dict[str, bytes]:
+    """결과 객체의 markdown_images를 {블록 내용의 참조 경로: JPEG bytes}로 반환한다.
+
+    PaddleX 3.7.2의 markdown 속성은 그림 블록과 표 안에 들어간 그림 crop을
+    상대 경로 → PIL 이미지로 제공한다. 병합된 VLM 입력 crop 전체를 주는 API는 아니다.
+    """
+    images = result.markdown.get("markdown_images") or {}
+    if not isinstance(images, dict):
+        raise TypeError("markdown_images는 경로→이미지 딕셔너리여야 합니다.")
+    encoded = {}
+    for reference, image in images.items():
+        path = PurePosixPath(reference) if isinstance(reference, str) else None
+        # 절대 경로·상위 폴더 이동·빈 조각이 있으면 저장 위치를 신뢰할 수 없어 전체를 거부한다.
+        if (path is None or not reference or path.is_absolute() or "\\" in reference
+                or any(part in ("", ".", "..") for part in reference.split("/"))):
+            raise ValueError(f"그림 참조 경로가 상대 경로가 아닙니다: {reference!r}")
+        # 배열이면 색 순서(RGB/BGR)를 확인할 근거가 없으므로 추정해 변환하지 않는다.
+        if not isinstance(image, Image.Image):
+            raise TypeError(f"{reference}: PIL 이미지가 아닙니다({type(image).__name__}).")
+        buffer = BytesIO()
+        # JPEG는 투명도·팔레트를 담지 못하므로 RGB로 바꿔 저장한다.
+        image.convert("RGB").save(buffer, format=RESULT_IMAGE_FORMAT, quality=RESULT_IMAGE_QUALITY)
+        encoded[reference] = buffer.getvalue()
+    return encoded
 
 
 def predict_page(
@@ -177,6 +224,18 @@ def predict_page(
         # ok는 문자열 출력이 있다는 처리 상태다. HTML 태그·LaTeX도 길이에
         # 포함되므로 원문 문자 수·인식 정확도·누락 없음의 지표가 아니다.
         output["status"] = "ok" if output["character_count"] else "empty"
+
+        # 그림 crop을 얻지 못해도 이미 확보한 문자 결과는 유효하므로 페이지 상태를 바꾸지 않는다.
+        # 실패는 별도 상태로 남기고, 참조 파일 누락은 validate_run.py가 다시 검사한다.
+        # result_image_bytes는 JSON에 저장할 수 없는 bytes라 run.py가 꺼낸 뒤 파일로 저장한다.
+        try:
+            output["result_image_bytes"] = result_images(first)
+            output["result_images"] = {"status": "ok", "items": []}
+        except Exception as exc:
+            output["result_images"] = {
+                "status": "failed",
+                "error": {"type": type(exc).__name__, "message": str(exc)},
+            }
     except Exception as exc:
         output["error"] = {
             "stage": stage,
