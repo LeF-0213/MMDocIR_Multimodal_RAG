@@ -4,6 +4,7 @@
 설정을 실행 인자로 변환해 experiments.parsing_stage에 넘기고 처리·저장 로직을 재사용한다.
 실제 실행은 PDF 읽기, 모델 다운로드/캐시, 새 실행 폴더와 비교 보고서를 만들 수 있다.
 --check는 입력·설정·비교 계획만 읽어 검증하며 모델 로딩·파일 생성은 하지 않는다.
+--resume <실행 폴더>는 중단된 실행을 experiments.resume_stage로 넘겨 남은 페이지만 처리한다.
 """
 
 # 표준 라이브러리: argparse는 설정 선택·조회 옵션, json은 확인 결과 출력,
@@ -19,6 +20,8 @@ from common.files import file_hash, read_json
 from common.redaction import clean, known_secrets
 from experiments.automatic import CONFIG_DIRECTORY, prepare_comparison
 from experiments.parsing_stage import arguments, main as run_parsing
+# resume_stage는 중단된 실행의 기록으로 설정을 복원해 남은 페이지만 처리한다.
+from experiments.resume_stage import main as run_resume
 from parsing.pdf_source import load_selection
 from parsing.run import new_output_directory, validate_source
 
@@ -110,7 +113,12 @@ def main(argv=None):
     cli = argparse.ArgumentParser(description="설정 파일로 파싱·실행 기록·자동 비교 실행")
     cli.add_argument("--config", type=Path, default=DEFAULT_RUN_CONFIG, help="파싱 실행 JSON 설정 교체")
     cli.add_argument("--check", action="store_true", help="모델 로딩·파일 생성 없이 설정과 입력 경로 확인")
+    cli.add_argument("--resume", type=Path, help="중단된 실행 폴더를 이어서 처리. 설정은 그 실행의 run.json에서 복원")
     options = cli.parse_args(argv)
+    if options.resume is not None:
+        # 재개는 현재 설정 파일의 파서·DPI가 아니라 중단된 실행의 기록을 따른다.
+        # 원본 위치·비교 기준을 바꾸려면 python -m experiments.resume_stage를 직접 실행한다.
+        return run_resume(["--run-dir", str(options.resume)] + (["--check"] if options.check else []))
     try:
         invocation, context = configured_arguments(options.config)
         if options.check:

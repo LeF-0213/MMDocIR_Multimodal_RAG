@@ -34,6 +34,8 @@ parsing_run.json → main.py → 선정 목록·기본/지정 기록 설정 → 
 | [common/redaction.py](../../common/redaction.py) | 민감 필드 처리, 비밀 의심 소스 판별 |
 | [schema.py](../../experiments/schema.py) | 기록·비교 파일 이름과 스키마 버전 |
 | [parsing_stage.py](../../experiments/parsing_stage.py) | 파싱에 기록기·자동 비교 연결, 인자 지정 실행 진입점 |
+| [resume_stage.py](../../experiments/resume_stage.py) | 중단된 실행에 재개 세그먼트 기록·자동 비교 연결, 재개 진입점 |
+| [parsing/resume.py](../../parsing/resume.py) | 중단 실행의 설정 복원·호환성 검사·저장 페이지 검증, `run.py`에 넘기는 재개 세션 |
 | [record.py](../../experiments/record.py) | 시작/종료 manifest, 소스 복사본·Git diff, 모델 파일 출처, 결과물 연결 |
 | [resources.py](../../experiments/resources.py) | 하나의 관측 스레드로 전체 실행과 중첩 구간의 RSS·시간·선택적 CUDA 할당량 수집 |
 | [evaluate.py](../../experiments/evaluate.py) | 정답을 입력받는 문장·위치·표의 순수 전후 평가 |
@@ -186,6 +188,8 @@ Structure에서는 파서 선택을 `structure`로 바꾸고 `--formula-model "$
 | `experiment.json` | 시작 시각·실행/단계 ID·요청 설정·실험 의도·소스 목록·Git 상태 |
 | `source_snapshot/` | 수집을 허용한 프로젝트 파일의 원문 복사본 |
 | `experiment_finished.json` | 종료 상태·해석 설정·구성 모델 파일·자원 구간·결과물/재사용 연결·소스 변경 감지 |
+| `experiment_models.json` | 모델 로딩 직후의 구성 모델 파일 목록. 종료 기록 없이 끊겨도 재개 때 비교 근거로 남음(2026-11-10 이후 실행) |
+| `resume/segment_<번호>/` | 재개 세그먼트의 시작·종료 기록, 세그먼트 manifest·자원 기록·소스 복사본, 옮겨 둔 잔여 파일(`partial/`) |
 | `resources.jsonl` | 단계 ID·UTC 시각·진행 구간 이름과 PID를 포함한 점진적 RSS·선택적 CUDA 관측 |
 | `auto_comparison.json` | 기준 선택·제외 근거, 완료/생략/비활성화/실패, 보고서 경로·해시. 자원 기록 종료 뒤 생성 |
 | 기존 PDF·PNG·페이지 JSON | 원본·이미지·모델 결과. 새 페이지 JSON의 `experiment` 필드가 실행 ID를 연결 |
@@ -202,6 +206,41 @@ HF local_dir 메타데이터가 있으면 ETag와 실제 bytes를 대조해 comm
 로컬 메타데이터 내용과의 대조이며 공식 서버를 새로 조회하는 검증은 아니다.
 전체 파일의 근거가 일치하지 않으면 모델 전체의 `verified_revision`은 null이다.
 요청한 revision·실제 파일 해시·로컬 출처 선언은 별도 필드다. 임의의 요청 revision을 검증값에 복사하지 않는다.
+
+### 중단된 실행 재개
+
+전원 차단·메모리 부족·Ctrl+C로 끊긴 실행은 같은 폴더에서 이어서 처리한다.
+정상 종료한 실행(`summary.json`에 치명 오류 없음)은 재개하지 않는다.
+
+```bash
+.venv/bin/python -B main.py --resume "$INTERRUPTED_RUN" --check   # 재사용·재처리 예정만 출력, 파일 변경 없음
+.venv/bin/python -B main.py --resume "$INTERRUPTED_RUN"           # 남은 페이지 처리
+```
+
+원본 위치나 비교 기준을 바꾸려면 재개 모듈을 직접 실행한다.
+
+```bash
+.venv/bin/python -B -m experiments.resume_stage --run-dir "$INTERRUPTED_RUN" \
+  --pdf-directory "$PDF_DIRECTORY" --compare-baseline "$BASELINE_RUN"
+```
+
+| 확인·처리 | 규칙 |
+|---|---|
+| 실행 설정 | 현재 설정 파일이 아니라 중단된 실행의 `run.json`·`selection.json`·`experiment.json`에서 복원 |
+| 코드 | `run.json`의 파일별 코드 해시(`parsing/`·`common/`)가 모두 같아야 함. 바뀌거나 추가된 파일이 하나라도 있으면 거부 |
+| 환경 | 패키지 버전·Python 빌드·파서 옵션·predict 옵션이 같아야 함. 플랫폼은 기록만 함 |
+| 모델 파일 | 이전 세그먼트의 `experiment_models.json`이 있으면 역할별 목록 해시를 비교. 없으면 미확인으로 기록 |
+| 원본 PDF | 다시 읽은 bytes의 해시가 실행 폴더의 `source.pdf`와 다르면 거부(`ResumeError`) |
+| 완료 문서 | `document.json`이 있으면 원본·페이지·PNG·그림·검토 PDF 해시를 확인하고 그대로 재사용. 손상되면 거부 |
+| 미완료 문서의 페이지 | 유효한 페이지 JSON은 재사용하고 검토 PDF 페이지만 다시 만듦. 없거나 손상된 페이지는 잔여 파일을 `partial/`로 옮긴 뒤 다시 처리 |
+| `failed` 페이지 | 실행 결과로 보고 다시 처리하지 않음 |
+| 시간·메모리 | `summary.json`의 경과 시간은 마지막 세그먼트만 측정(`elapsed_scope`). 비교 보고서는 전체 시간·메모리를 `not_comparable_resumed`로 표시. 페이지별 시간은 비교 가능 |
+
+재개는 새 실행과 같은 `parsing/run.py`의 `run_parsing()`·`process_document()`로 처리한다.
+`parsing/resume.py`는 설정 복원·호환성 검사·저장 페이지 검증과 재개 세션(세그먼트 폴더·잔여 파일 이동·재사용 통계)만 맡는다.
+처리 경로가 하나라서 처음 실행한 페이지와 재개한 페이지가 같은 규칙으로 만들어진다.
+이 기능을 넣으며 `parsing/run.py`가 바뀌었으므로, 2026-11-10 이전에 시작해 중단된 실행은 코드가 달라 재개할 수 없다.
+그런 실행은 새 폴더로 처음부터 다시 실행하며, 이후 실행부터 코드를 고치지 않은 상태에서 재개할 수 있다.
 
 ## 5. 기존 실행 또는 새 실행 비교
 

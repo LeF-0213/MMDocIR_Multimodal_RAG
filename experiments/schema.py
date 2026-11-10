@@ -9,6 +9,8 @@ JSON·해시·민감정보 처리는 도메인과 무관하므로 common 패키�
 MANIFEST_FILE = "experiment.json"
 FINISHED_FILE = "experiment_finished.json"
 RESOURCES_FILE = "resources.jsonl"
+# 모델 로딩 직후 저장하는 모델 파일 목록이다. 중단돼 종료 기록이 없어도 재개 때 비교할 수 있다.
+MODELS_FILE = "experiment_models.json"
 RECORD_SCHEMA = "project.experiment.v1"
 COMPARE_SCHEMA = "project.experiment_comparison.v1"
 GOLD_SCHEMA = "project.parsing_gold.v1"
