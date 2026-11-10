@@ -8,6 +8,7 @@ vl_parser.py 또는 structure_parser.py를 호출한 뒤 review_pdf.py로 검토
 모델은 실행당 한 번 로딩하고 페이지마다 결과와 실패 위치를 기록한다.
 실험 기록·전후 비교는 모르며, experiments.parsing_stage가 기록기를 인자로 넘겨 연결한다.
 python -m parsing.run은 파싱 결과만 남긴다. 기록·비교까지 하려면 루트 main.py를 실행한다.
+중단된 실행은 resume.py의 ResumeSession을 run_parsing()에 넘겨 같은 처리 경로로 이어서 처리한다.
 """
 
 # 표준 라이브러리: argparse는 CLI 검증에 사용한다. contextlib는 기록을 끈 호출의 빈 구간,
@@ -45,6 +46,8 @@ from common.redaction import clean, diagnostic_clean
 # PDF 처리·모델·검토 모듈은 CLI 검증 뒤 가져와 --help의 의존성을 줄인다.
 from .pdf_source import build_pdf_url, load_selection, local_pdf_path, read_pdf_bytes
 from .result_store import create_output_directory, save_bytes, save_bytes_under, save_json
+# 재개 모듈: 재개 세션을 받으면 끝난 문서·페이지를 재사용한다. ResumeError는 재개 조건 위반이다.
+from .resume import ResumeError
 
 # 실행 폴더 이름의 UTC 직렬화 형식이다. 실제 상위 폴더·파서는 설정이나 CLI에서 받는다.
 RUN_TIMESTAMP_FORMAT = "%Y%m%dT%H%M%S%fZ"
@@ -382,8 +385,13 @@ def process_document(
     parser,
     recorder=None,
     predict_overrides: dict | None = None,
+    resume=None,
 ) -> dict:
-    """문서별로 입력을 읽고 각 페이지 결과를 즉시 저장해 중단 시 손실을 줄인다."""
+    """문서별로 입력을 읽고 각 페이지 결과를 즉시 저장해 중단 시 손실을 줄인다.
+
+    resume은 parsing.resume.ResumeSession이다. 주어지면 끝난 문서·페이지를 검증해 재사용하고
+    남은 페이지만 같은 process_page()로 처리한다. None이면 새 실행으로 동작한다.
+    """
     # 내부 모듈: PDF 열기와 오류 정보는 pdf_parser.py에 위임한다.
     from .pdf_parser import error_info, open_pdf
 
@@ -395,7 +403,15 @@ def process_document(
     # 안전하게 저장하며 이름의 해시와 원본 bytes의 해시는 별개 필드로 기록한다.
     doc_id = digest(name.encode("utf-8"))
     folder = root / "documents" / doc_id
-    folder.mkdir(parents=True, exist_ok=False)
+    report = None
+    if resume is not None:
+        # document.json까지 저장된 문서는 검증 후 그대로 쓴다. 손상되면 ResumeError로 실행을 멈춘다.
+        completed = resume.completed_document(folder, doc_id, recorder)
+        if completed is not None:
+            return completed
+        report = resume.new_report(doc_id)
+    # 새 실행은 기존 폴더를 거부하고, 재개는 중단 전에 만든 문서 폴더를 그대로 쓴다.
+    folder.mkdir(parents=True, exist_ok=resume is not None)
     entry = {
         "document_id": doc_id,
         "id_origin": "project_generated_name_sha256",
@@ -410,7 +426,9 @@ def process_document(
         data = read_source(entry, args, recorder)
         entry["source_sha256"] = digest(data)
         entry["source_pdf"] = f"documents/{doc_id}/source.pdf"
-        save_bytes(folder / "source.pdf", data)
+        # 재개 중 원본 사본이 이미 있으면 해시만 대조하고 새로 저장하지 않는다.
+        if resume is None or not resume.check_source(folder, entry["source_sha256"], name):
+            save_bytes(folder / "source.pdf", data)
         source_artifact = (recorder.artifact(folder / "source.pdf", "source_pdf", source_sha256=entry["source_sha256"])
                            if recorder else None)
 
@@ -430,6 +448,15 @@ def process_document(
                                       entry["source_sha256"], source_artifact, entry["review_pdf"])
 
             for number in page_numbers:
+                if resume is not None:
+                    stage = "page_resume"
+                    saved = resume.saved_page(report, folder, doc_id, number, entry["source_sha256"])
+                    if saved is not None:
+                        # 저장된 페이지는 다시 추론하지 않고 검토 PDF 페이지만 저장된 블록으로 다시 만든다.
+                        entry["pages"].append(resume.reuse_page(context, number, document, review, saved, report))
+                        print(f"[{args.parser}] {name} p{number}: reused ({saved['status']})", flush=True)
+                        continue
+                    report["processed_pages"].append(number)
                 record, image_artifact = process_page(context, number, document, review)
 
                 # strict JSON 실패나 디스크 오류는 문서 수준 오류로도 기록한다.
@@ -439,6 +466,8 @@ def process_document(
                 print(f"[{args.parser}] {name} p{number}: {record['status']}", flush=True)
 
             stage = "review_save"
+            if resume is not None:
+                resume.set_aside_review(folder / f"review_{args.parser}.pdf", report)
             if len(review):
                 # 검토본만 새 파일로 저장한다. 원본 PDF의 내용과 해시는 변하지 않는다.
                 save_bytes(
@@ -453,10 +482,15 @@ def process_document(
                 and all(p["status"] in ("ok", "empty") for p in entry["pages"])
                 else "partial"
             )
+    except ResumeError:
+        # 원본 변경 같은 재개 조건 위반은 문서 오류로 숨기지 않고 실행 전체를 멈춘다.
+        raise
     except Exception as exc:
         entry["errors"].append({"stage": stage, **error_info(exc)})
         entry["status"] = "failed"
 
+    if report is not None:
+        entry["resume"] = report
     entry = diagnostic_clean(entry, recorder.secrets if recorder else ())
     save_json(folder / "document.json", entry)
     return entry
@@ -471,6 +505,7 @@ def run_parsing(
     extra_metadata: dict | None = None,
     start_recorder=None,
     secrets: tuple = (),
+    resume=None,
 ) -> dict:
     """모델을 로딩해 선정 문서를 처리하고 run.json·summary.json을 저장한 뒤 결과를 반환한다.
 
@@ -478,6 +513,8 @@ def run_parsing(
     기록기는 measure·artifact·capture_parser·secrets·run_id·stage_id를 제공해야 한다.
     종료 처리는 호출부 몫이다. 중단(KeyboardInterrupt 등)도 결과의 interrupted로 돌려주므로
     호출부는 자신의 마무리를 끝낸 뒤 다시 raise한다.
+    resume(시작한 parsing.resume.ResumeSession)을 주면 같은 폴더에서 이어서 처리한다.
+    이때 폴더 생성과 run.json·selection.json 저장을 건너뛰고, 요약에 재개 통계를 더한다.
     """
     # CLI 검증 뒤 선택한 어댑터만 가져온다. --help는 모델을 로딩하지 않는다.
     if args.parser == "vl":
@@ -495,8 +532,9 @@ def run_parsing(
     actual_predict_options.update(predict_overrides or {})
 
     root = args.output_dir
-    create_output_directory(root)
-    save_json(root / "selection.json", selection)
+    if resume is None:
+        create_output_directory(root)
+        save_json(root / "selection.json", selection)
     started = perf_counter()
     metadata = {
         "schema_version": "project.parsing.v1",
@@ -522,8 +560,12 @@ def run_parsing(
         **(extra_metadata or {}),
     }
 
-    # 중단되어도 실행 조건은 남는다. 최종 결과는 별도 summary.json으로 저장한다.
-    save_json(root / "run.json", clean(metadata, secrets))
+    if resume is None:
+        # 중단되어도 실행 조건은 남는다. 최종 결과는 별도 summary.json으로 저장한다.
+        save_json(root / "run.json", clean(metadata, secrets))
+    else:
+        # 재개는 중단 전 run.json을 덮어쓰지 않는다. 같은 설정·코드인지는 호환성 검사에서 확인했다.
+        metadata = {**metadata, "resume_segment": resume.segment}
     recorder = start_recorder(root, metadata) if start_recorder else None
     entries = []
     fatal = None
@@ -544,7 +586,7 @@ def run_parsing(
             recorder.capture_parser(parser)
         for item in selection["documents"]:
             with measure(recorder, "document_processing", document_name=item["document_name"]) as scope:
-                entry = process_document(item, args, root, adapter, parser, recorder, predict_overrides)
+                entry = process_document(item, args, root, adapter, parser, recorder, predict_overrides, resume)
                 entries.append(entry)
                 if recorder:
                     scope["status"] = entry["status"]
@@ -574,8 +616,14 @@ def run_parsing(
         "fatal_error": fatal,
         "quality_evaluation": "not_run",
     }
+    if resume is not None:
+        # 경과 시간은 이번 세그먼트만이다. 중단 전 구간은 측정 기록이 없어 더하지 않는다.
+        summary.update(elapsed_scope="current_resume_segment", resume=resume.summary())
     save_json(root / "summary.json", clean(summary, secrets))
-    return {"root": root, "summary": summary, "success": success, "interrupted": interrupted}
+    if resume is not None:
+        resume.finish(summary, secrets)
+    return {"root": root, "summary": summary, "success": success, "interrupted": interrupted,
+            "segment": resume.number if resume is not None else None}
 
 
 def main(argv: list[str] | None = None) -> int:

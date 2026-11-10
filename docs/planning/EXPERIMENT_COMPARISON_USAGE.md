@@ -35,7 +35,7 @@ parsing_run.json → main.py → 선정 목록·기본/지정 기록 설정 → 
 | [schema.py](../../experiments/schema.py) | 기록·비교 파일 이름과 스키마 버전 |
 | [parsing_stage.py](../../experiments/parsing_stage.py) | 파싱에 기록기·자동 비교 연결, 인자 지정 실행 진입점 |
 | [resume_stage.py](../../experiments/resume_stage.py) | 중단된 실행에 재개 세그먼트 기록·자동 비교 연결, 재개 진입점 |
-| [parsing/resume.py](../../parsing/resume.py) | 중단 실행의 설정 복원·호환성 검사·유효 페이지 재사용·남은 페이지 처리 |
+| [parsing/resume.py](../../parsing/resume.py) | 중단 실행의 설정 복원·호환성 검사·저장 페이지 검증, `run.py`에 넘기는 재개 세션 |
 | [record.py](../../experiments/record.py) | 시작/종료 manifest, 소스 복사본·Git diff, 모델 파일 출처, 결과물 연결 |
 | [resources.py](../../experiments/resources.py) | 하나의 관측 스레드로 전체 실행과 중첩 구간의 RSS·시간·선택적 CUDA 할당량 수집 |
 | [evaluate.py](../../experiments/evaluate.py) | 정답을 입력받는 문장·위치·표의 순수 전후 평가 |
@@ -227,7 +227,7 @@ HF local_dir 메타데이터가 있으면 ETag와 실제 bytes를 대조해 comm
 | 확인·처리 | 규칙 |
 |---|---|
 | 실행 설정 | 현재 설정 파일이 아니라 중단된 실행의 `run.json`·`selection.json`·`experiment.json`에서 복원 |
-| 코드 | `run.json`의 파일별 코드 해시가 모두 같고 추가 파일이 `parsing/resume.py`뿐이어야 함 |
+| 코드 | `run.json`의 파일별 코드 해시(`parsing/`·`common/`)가 모두 같아야 함. 바뀌거나 추가된 파일이 하나라도 있으면 거부 |
 | 환경 | 패키지 버전·Python 빌드·파서 옵션·predict 옵션이 같아야 함. 플랫폼은 기록만 함 |
 | 모델 파일 | 이전 세그먼트의 `experiment_models.json`이 있으면 역할별 목록 해시를 비교. 없으면 미확인으로 기록 |
 | 원본 PDF | 다시 읽은 bytes의 해시가 실행 폴더의 `source.pdf`와 다르면 거부(`ResumeError`) |
@@ -236,10 +236,11 @@ HF local_dir 메타데이터가 있으면 ETag와 실제 bytes를 대조해 comm
 | `failed` 페이지 | 실행 결과로 보고 다시 처리하지 않음 |
 | 시간·메모리 | `summary.json`의 경과 시간은 마지막 세그먼트만 측정(`elapsed_scope`). 비교 보고서는 전체 시간·메모리를 `not_comparable_resumed`로 표시. 페이지별 시간은 비교 가능 |
 
-재개 기능을 기존 파일 수정 없이 새 모듈로 추가한 이유는, 중단 전 실행의 코드 해시와 비교해
-"페이지를 만든 코드가 같고 재개 모듈만 추가됐다"는 사실을 기록으로 확인하기 위해서다.
-대신 `parsing/run.py`의 문서·실행 반복문과 비슷한 코드가 `parsing/resume.py`에 있다.
-재개 기능 추가 이전에 시작한 실행은 `experiment_models.json`이 없어 모델 파일 연속성을 미확인으로 남긴다.
+재개는 새 실행과 같은 `parsing/run.py`의 `run_parsing()`·`process_document()`로 처리한다.
+`parsing/resume.py`는 설정 복원·호환성 검사·저장 페이지 검증과 재개 세션(세그먼트 폴더·잔여 파일 이동·재사용 통계)만 맡는다.
+처리 경로가 하나라서 처음 실행한 페이지와 재개한 페이지가 같은 규칙으로 만들어진다.
+이 기능을 넣으며 `parsing/run.py`가 바뀌었으므로, 2026-11-10 이전에 시작해 중단된 실행은 코드가 달라 재개할 수 없다.
+그런 실행은 새 폴더로 처음부터 다시 실행하며, 이후 실행부터 코드를 고치지 않은 상태에서 재개할 수 있다.
 
 ## 5. 기존 실행 또는 새 실행 비교
 

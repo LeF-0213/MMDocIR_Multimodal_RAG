@@ -127,7 +127,7 @@ class ResumeTests(unittest.TestCase):
             before = {p: file_hash(p) for p in fixture.run.rglob("*") if p.is_file()}
             recorded = read_json(fixture.run / "run.json")["code_sha256"]
             changed = {**recorded, next(iter(recorded)): "0" * 64}
-            with patch("parsing.resume.source_hashes", return_value=changed):
+            with patch("parsing.run.source_hashes", return_value=changed):
                 result, parser = fixture.resume()
             self.assertEqual(result, 2)
             parser.predict.assert_not_called()

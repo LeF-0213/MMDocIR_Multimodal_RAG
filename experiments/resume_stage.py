@@ -1,7 +1,8 @@
 """중단된 파싱 실행에 재개 세그먼트 기록과 자동 전후 비교를 연결하는 실행 모듈이다.
 
 전체 위치: main.py --resume 또는 python -m experiments.resume_stage
-  → parsing.resume(설정 복원·호환성 검사·남은 페이지 처리) → 종료 기록 → 자동 비교
+  → parsing.resume(설정 복원·호환성 검사·재개 세션) → parsing.run.run_parsing(resume=세션)
+  → 종료 기록 → 자동 비교
 입력: 중단된 실행 폴더. 원본 위치·비교 기준은 선택해서 바꿀 수 있다.
 출력: 같은 실행 폴더의 resume/segment_<번호>/ 기록, summary.json, experiment_finished.json,
       선택적 비교 보고서(<실행명>_comparison/).
@@ -21,11 +22,11 @@ from pathlib import Path
 from common.files import read_json
 from common.redaction import clean, known_secrets
 
-# 내부 파싱 모듈: resume는 설정 복원·호환성 검사·재개 실행을, run.validate_source는 원본 위치 검사를 맡는다.
-# 의존 방향은 experiments → parsing이며 parsing은 이 모듈을 모른다.
-from parsing.resume import (FIRST_SEGMENT, RESUME_DIRECTORY, SEGMENT_PREFIX, ResumeError,
-                            check_compatibility, plan_resume, restore_arguments, resume_parsing)
-from parsing.run import validate_source
+# 내부 파싱 모듈: resume는 설정 복원·호환성 검사·재개 세션을, run은 실제 처리(run_parsing)와
+# 원본 위치 검사를 맡는다. 의존 방향은 experiments → parsing이며 parsing은 이 모듈을 모른다.
+from parsing.resume import (FIRST_SEGMENT, RESUME_DIRECTORY, SEGMENT_PREFIX, ResumeError, ResumeSession,
+                            check_compatibility, plan_resume, restore_arguments)
+from parsing.run import run_parsing, validate_source
 
 # 내부 실험 모듈: automatic은 비교 기준 고정과 종료 후 보고서, schema는 기록 파일 이름,
 # record는 세그먼트 기록기를 제공한다(psutil 로딩을 늦추려고 실행 시점에 가져온다).
@@ -102,24 +103,31 @@ def main(argv: list[str] | None = None) -> int:
 
         comparison_plan = automatic.prepare_comparison(args, selection)
         expected = previous_models(root) if recording else None
+        session = ResumeSession(root, metadata, compatibility)
+        # 이전 시도의 종료 기록·자동 비교 상태 파일은 실험 기록 쪽 파일이라 여기서 이름을 넘긴다.
+        session.start(root_files_to_set_aside=(FINISHED_FILE, automatic.AUTO_COMPARISON_FILE), secrets=secrets)
         recorder = None
 
-        def start_recorder(run_root, segment_metadata, record_dir):
+        def start_recorder(run_root, requested):
             """세그먼트 폴더에 시작 기록을 남기는 기록기를 만든다. 실행 ID는 중단 전 값을 잇는다."""
             nonlocal recorder
             from .record import ExperimentRecorder
-            requested = {**metadata, "resume_segment": segment_metadata}
-            recorder = ExperimentRecorder(run_root, recording, requested, record_dir=record_dir,
+            recorder = ExperimentRecorder(run_root, recording, requested, record_dir=session.directory,
                                           run_id=manifest["run_id"], expected_models=expected)
             return recorder
     except (OSError, ValueError, TypeError, KeyError) as exc:
         print(f"재개 실패: {clean(str(exc))}", flush=True)
         return 2
 
-    outcome = resume_parsing(args, selection, metadata, compatibility,
-                             pipeline_overrides=pipeline, predict_overrides=predict,
-                             start_recorder=start_recorder if recording else None, secrets=secrets,
-                             root_files_to_set_aside=(FINISHED_FILE, automatic.AUTO_COMPARISON_FILE))
+    try:
+        outcome = run_parsing(args, selection, pipeline_overrides=pipeline, predict_overrides=predict,
+                              start_recorder=start_recorder if recording else None, secrets=secrets,
+                              resume=session)
+    except BaseException as exc:
+        # run_parsing은 추론 오류를 결과로 돌려주므로, 여기 오는 것은 저장 실패다. 기록기를 닫는다.
+        if recorder:
+            recorder.finish("failed", {"type": type(exc).__name__, "message": clean(str(exc), secrets)})
+        raise
     summary, interrupted = outcome["summary"], outcome["interrupted"]
     if recorder:
         recorder.finish("interrupted" if interrupted else summary["status"], summary["fatal_error"])
