@@ -233,6 +233,8 @@ def _cost(run):
     final = run["finished"] or {}
     summary = run["summary"] or {}
     return {"elapsed_seconds": final.get("elapsed_seconds", summary.get("elapsed_seconds")),
+            # 재개한 실행의 시간·메모리는 마지막 세그먼트만 측정한 값이라 전체 실행과 비교할 수 없다.
+            "resumed": bool(summary.get("resume")),
             "resources": final.get("resources"),
             "model_prediction_calls": sum(s.get("details", {}).get("kind") == "model_call"
                                           for s in (final.get("resources") or {}).get("scopes", [])) if final else None,
@@ -242,14 +244,18 @@ def _cost(run):
 
 def _cost_difference(before, after):
     old, new = _cost(before), _cost(after)
+    # 페이지별 시간(page_elapsed_seconds)은 페이지 JSON 값이라 재개 여부와 관계없이 비교할 수 있다.
+    kind = "not_comparable_resumed" if old["resumed"] or new["resumed"] else "observed_not_causal"
     result = {}
     for name, a, b in (
         ("elapsed_seconds", old["elapsed_seconds"], new["elapsed_seconds"]),
         ("model_prediction_calls", old["model_prediction_calls"], new["model_prediction_calls"]),
         ("main_observed_peak_rss_bytes", (old["resources"] or {}).get("main_observed_peak_rss_bytes"),
          (new["resources"] or {}).get("main_observed_peak_rss_bytes"))):
-        result[name] = {"before": a, "after": b, "delta": b - a if a is not None and b is not None else None,
-                        "comparison_kind": "observed_not_causal"}
+        comparable = kind == "observed_not_causal"
+        result[name] = {"before": a, "after": b,
+                        "delta": b - a if comparable and a is not None and b is not None else None,
+                        "comparison_kind": kind}
     return result
 
 

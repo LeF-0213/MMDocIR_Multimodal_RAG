@@ -28,7 +28,7 @@ from pathlib import Path
 # resources는 프로세스·단계별 자원 관측을 맡는다.
 from common.files import HASH_BUFFER_BYTES, digest, file_hash, inside, json_bytes, read_json, write_json
 from common.redaction import clean, known_secrets, source_is_sensitive
-from .schema import FINISHED_FILE, MANIFEST_FILE, RECORD_SCHEMA, RESOURCES_FILE
+from .schema import FINISHED_FILE, MANIFEST_FILE, MODELS_FILE, RECORD_SCHEMA, RESOURCES_FILE
 from .resources import ResourceMonitor
 
 # 공식 Git 출력 형식과 manifest 파일명은 환경 설정이 아닌 직렬화 정의다.
@@ -221,8 +221,18 @@ def model_inventory(parser, bindings, secrets=()):
 class ExperimentRecorder:
     """단계 공통 기록 API다. 후속 청킹·검색은 stage 이름과 결과물 종류만 달리 연결한다."""
 
-    def __init__(self, root, config, requested, stage="parsing"):
+    def __init__(self, root, config, requested, stage="parsing", *, record_dir=None, run_id=None,
+                 expected_models=None):
+        """record_dir·run_id·expected_models는 재개 세그먼트에서만 지정한다.
+
+        record_dir: 시작 manifest·자원 기록·소스 복사본을 둘 폴더. 기본은 실행 폴더다.
+        run_id: 중단 전 실행의 ID. 종료 기록이 같은 실행으로 연결되도록 이어받는다.
+        expected_models: 이전 세그먼트의 역할별 모델 파일 목록 해시. 다르면 처리를 멈춘다.
+        """
         self.root = Path(root).resolve()
+        self.record_dir = Path(record_dir).resolve() if record_dir is not None else self.root
+        if not self.record_dir.is_relative_to(self.root):
+            raise ValueError("세그먼트 기록 폴더는 실행 폴더 안에 있어야 합니다.")
         self.config = config
         self.project = Path(config["project_root"]).resolve()
         self.secrets = known_secrets(config["secret_environment_names"])
@@ -231,20 +241,22 @@ class ExperimentRecorder:
         self.inputs = []
         self.resolved = {"status": "not_collected"}
         self.models = {"status": "not_collected", "models": []}
-        self.run_id = str(uuid4())
+        self.expected_models = expected_models
+        self.run_id = run_id or str(uuid4())
         self.stage_id = str(uuid4())
-        self.monitor = ResourceMonitor(self.root / RESOURCES_FILE,
+        self.monitor = ResourceMonitor(self.record_dir / RESOURCES_FILE,
                                        **config["memory"], secrets=self.secrets, stage_run_id=self.stage_id)
         try:
             self.manifest = {"schema_version": RECORD_SCHEMA, "run_id": self.run_id,
                 "stage_run_id": self.stage_id, "stage": stage, "status": "started",
                 "started_at_utc": datetime.now(timezone.utc).isoformat(),
+                "record_scope": "entire_run" if self.record_dir == self.root else "resume_segment",
                 "experiment": clean(config["experiment"], self.secrets),
                 "recording_config": clean(config, self.secrets), "requested": clean(requested, self.secrets),
                 "environment": self._environment(),
                 "sources": self._snapshot(),
                 "git": git_record(self.project, config["git_timeout_seconds"], self.secrets, config["source_paths"])}
-            write_json(self.root / MANIFEST_FILE, self.manifest)
+            write_json(self.record_dir / MANIFEST_FILE, self.manifest)
         except BaseException:
             self.monitor.close("failed")
             raise
@@ -285,7 +297,7 @@ class ExperimentRecorder:
                     if source_is_sensitive(data, path.suffix, self.secrets):
                         item.update(status="withheld", reason="비밀 값이 의심되는 소스")
                     else:
-                        destination = self.root / SOURCE_DIRECTORY / name
+                        destination = self.record_dir / SOURCE_DIRECTORY / name
                         destination.parent.mkdir(parents=True, exist_ok=True)
                         with destination.open("xb") as stream:
                             stream.write(data)
@@ -312,6 +324,24 @@ class ExperimentRecorder:
             bindings = [b for b in self.config["model_bindings"]
                         if b.get("parser") in (None, self.manifest["requested"].get("parser"))]
             self.models = model_inventory(parser, bindings, self.secrets)
+            self.models["continuity"] = self._model_continuity()
+            # 종료 기록은 정상 종료 때만 생긴다. 중단돼도 재개 때 비교하도록 지금 따로 저장한다.
+            write_json(self.record_dir / MODELS_FILE, {"schema_version": RECORD_SCHEMA, "run_id": self.run_id,
+                       "stage_run_id": self.stage_id, "models": self.models})
+        if self.models["continuity"]["status"] == "changed":
+            raise ValueError(f"이전 세그먼트와 모델 파일이 다릅니다: {self.models['continuity']['roles']}")
+
+    def _model_continuity(self):
+        """이전 세그먼트와 역할별 모델 파일 목록 해시를 비교한다. 비교 근거가 없으면 미확인으로 둔다."""
+        if self.expected_models is None:
+            return {"status": "not_applicable" if self.record_dir == self.root else "unverified_no_previous_record"}
+        current = {m["role"]: m.get("inventory_sha256") for m in self.models["models"]}
+        changed = sorted(role for role, value in self.expected_models.items()
+                         if role in current and (value is None or current[role] != value))
+        missing = sorted(set(self.expected_models) - set(current))
+        if changed:
+            return {"status": "changed", "roles": changed}
+        return {"status": "same" if not missing else "partial", "missing_roles": missing}
 
     def measure(self, name, **details):
         return self.monitor.measure(name, **details)
@@ -361,6 +391,8 @@ class ExperimentRecorder:
             "elapsed_seconds": perf_counter() - self.started, "resolved": self.resolved,
             "models": self.models, "resources": resources, "artifacts": self.artifacts,
             "input_artifacts": self.inputs,
+            "record_scope": self.manifest["record_scope"],
+            "segment_record": self.record_dir.relative_to(self.root).as_posix() if self.record_dir != self.root else None,
             "source_changes_during_run": changed, "error": clean(error, self.secrets)}
         write_json(self.root / FINISHED_FILE, result)
         return result
