@@ -1,0 +1,117 @@
+{
+  "code_sha256": {
+    "chunking/__init__.py": "b10674192a52ffadc3bd8e18e95526cddbdbeb7b8cacae00b34704ca466439d8",
+    "chunking/run.py": "84c2ebd72f30df8c774135bf2e6c4af2397bb80d15d1cfc9ebcdb20d5060216e",
+    "chunking/structure.py": "7ba2d1782cadfa245dd8873ee380ea79a84427510407cd417f8652bd6ac7a54b",
+    "chunking/tables.py": "c20aba2e1e947ec4767c2645255bef5e608611b1daf529949d5f20173e2e94ce",
+    "chunking/tokens.py": "0a6a9a047646b3d988b0fd5b68d98a2c2365e55c4cd278a8f2cf91ff201cdd6d",
+    "common/__init__.py": "a3b257df576707d8b358a8a747958cb034b806f50984700aa68cfe2b41608dc7",
+    "common/files.py": "8c7dd75c5af582d32f97faecc694367cf0257627b124bcd867f5c886406f82b0",
+    "common/redaction.py": "8bd11b6ad6f5e35dbcdc4b5fa361cd90f76d5271b49f60d199cccb169a598a08",
+    "parsing/pdf_source.py": "105127b01d4fb487ce2eda8ecf71e78d8eee88d8897a603ce0c11c1b524ecb8d",
+    "parsing/quality_checks.py": "94f9888859a898d0e104afc3e5cd0fe9e797c22f0dbff1c74027d4afbd8d8f17"
+  },
+  "config": {
+    "caption_max_gap_points": 72,
+    "flag_rules": [
+      "dominant_token",
+      "repeated_trigrams",
+      "long_number_sequence",
+      "output_length",
+      "merged_content_scope",
+      "table_grid"
+    ],
+    "input_runs": [
+      "../outputs/parsing_vl_20261027T015138481163Z",
+      "../outputs/parsing_structure_20261028T232222203813Z"
+    ],
+    "kind_markers": {
+      "caption": "Caption:",
+      "chart": "[Chart]",
+      "table": "[Table]",
+      "visual": "[Figure]"
+    },
+    "labels": {
+      "caption": [
+        "figure_title"
+      ],
+      "chart": [
+        "chart"
+      ],
+      "excluded": [
+        "header",
+        "footer",
+        "number",
+        "formula_number",
+        "header_image"
+      ],
+      "table": [
+        "table"
+      ],
+      "text": [
+        "text",
+        "aside_text",
+        "vertical_text",
+        "footnote",
+        "vision_footnote",
+        "display_formula",
+        "formula"
+      ],
+      "title_levels": [
+        [
+          "doc_title"
+        ],
+        [
+          "paragraph_title"
+        ]
+      ],
+      "visual": [
+        "image"
+      ]
+    },
+    "max_tokens": 512,
+    "output_root": "../outputs",
+    "overlap_tokens": 0,
+    "schema_version": "project.chunking.v1",
+    "selection": "selection.json",
+    "table_header_rows_without_th": 1,
+    "tokenizer": {
+      "add_special_tokens": true,
+      "model_config_file": "config.json",
+      "repo_id": "Qwen/Qwen3-Embedding-8B",
+      "revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+      "tokenizer_file": "tokenizer.json"
+    }
+  },
+  "config_path": "C:\\Users\\CNXK\\abs_sandbox\\MMDocIR_Multimodal_RAG\\configs\\chunking.json",
+  "config_sha256": "304ca3cd50d15b78bf21187fb20ad9fe878a5e96cf1f792f7c44d02dd5e1d6ea",
+  "environment": {
+    "packages": {
+      "huggingface_hub": "2.4.0",
+      "tokenizers": "0.23.3"
+    },
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.14 (main, Sep  1 2026, 14:17:39) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "input_parser": "vl",
+  "input_run": "C:\\Users\\CNXK\\abs_sandbox\\MMDocIR_Multimodal_RAG\\outputs\\parsing_vl_20261027T015138481163Z",
+  "input_run_json_sha256": "f6e988a480510f6eda044b42328a65a65c86fd0f85142be526e060ab18690f5c",
+  "quality_rule_version": "0.2.0",
+  "schema_version": "project.chunking.v1",
+  "selection_path": "C:\\Users\\CNXK\\abs_sandbox\\MMDocIR_Multimodal_RAG\\configs\\selection.json",
+  "selection_sha256": "29e15834b86ea69d0207c01dd420ce169e020e03b6d73433f752c8abe737554d",
+  "started_at_utc": "2026-11-10T02:47:52.259178+00:00",
+  "strategy": "layout_structure",
+  "tokenizer": {
+    "add_special_tokens": true,
+    "model_config_file": "config.json",
+    "model_config_sha256": "dcccf7c7890c8debc4af8dace8d6acd8dd50bd56d50d4d8b60529381ba3de3d7",
+    "model_position_limit": 40960,
+    "repo_id": "Qwen/Qwen3-Embedding-8B",
+    "revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+    "special_tokens_per_input": 1,
+    "tokenizer_file": "tokenizer.json",
+    "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+    "weights_downloaded": false
+  }
+}

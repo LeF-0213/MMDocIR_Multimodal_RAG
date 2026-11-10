@@ -15,3 +15,9 @@ Pillow==13.0.0
 
 # Python 객체뿐 아니라 Paddle·NumPy를 포함한 프로세스 RSS·자식 프로세스 관측
 psutil==7.2.2
+
+# 청킹의 토큰 수 측정. tokenizer.json으로 임베딩 모델과 같은 규칙의 토큰·원문 위치를 얻는다(2026-11-10 설치 버전)
+tokenizers==0.23.3
+
+# 고정 revision의 토크나이저·설정 파일만 내려받는 Hugging Face 클라이언트(2026-11-10 설치 버전)
+huggingface_hub==2.4.0
