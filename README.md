@@ -27,7 +27,8 @@ PDF의 텍스트·표·수식·그림을 원본 위치와 연결하고, 검색 �
 | 기본 진입점 | 루트 `main.py`가 실행 설정을 읽어 HTTP·로컬 PDF 파싱·기록·자동 비교 실행. 모의 모델로 연속 실행 검증, 실제 신규 OCR 추론은 미수행 |
 | 실행 재개 | `main.py --resume`으로 중단된 실행의 유효 페이지를 재사용하고 남은 페이지만 `run.py`의 같은 처리 경로로 처리. 모의 테스트만 확인. 이 기능 추가 전에 중단된 실행은 코드가 달라 재개 불가(새로 실행) |
 | 재파싱 | 병합 해제 후 VL 재파싱을 두 번 시도했으나 PC 메모리 부족(3페이지)·서버 정전(5페이지 이상)으로 중단. 개선 효과 미측정 |
-| 이후 단계 | 청킹·임베딩·인덱스·검색·리랭킹·Recall@1·@3·@10 평가는 미구현 |
+| 청킹 | 레이아웃 블록 구조 기반 청킹 구현·실행. 기존 VL 190개·Structure 147개 청크, 미배정 블록 0, 512토큰 초과 0. 근거 보존은 미측정 ([구조 기반 청킹](docs/chunking/CHUNKING.md)) |
+| 이후 단계 | 임베딩·인덱스·검색·리랭킹·Recall@1·@3·@10 평가는 미구현 |
 
 이전 PyMuPDF 실행은 8개 문서·24페이지 기록이다. 현재 27페이지나 새 모델 파이프라인의 검증 결과로 취급하지 않는다.
 선정 목록은 [configs/selection.json](configs/selection.json), 문서별 관찰은 [DATA_SPEC.md](docs/data/DATA_SPEC.md)에 기록했다.
@@ -110,6 +111,12 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 │  ├─ quality_checks.py    # 저장된 페이지의 순수 규칙 검사
 │  ├─ validate_run.py      # 검사 실행·입력 조회·별도 보고서 저장
 │  └─ __init__.py
+├─ chunking/               # 파싱 블록 → 구조 기반 청크. chunking → parsing(규칙 검사) → common
+│  ├─ tables.py            # HTML 표·파이프 표 → "열 제목: 값" 행
+│  ├─ tokens.py            # 고정 revision 토크나이저로 실제 입력 토큰 수·토큰 경계 분할
+│  ├─ structure.py         # 페이지 블록의 역할 분류·캡션 연결·제목 묶음·길이 맞추기
+│  ├─ run.py               # 설정·입력 실행 읽기, 청킹 실행 폴더 저장 진입점
+│  └─ __init__.py
 ├─ docs/
 │  ├─ planning/
 │  │  ├─ PROJECT_PLAN.md  # 설계·기술 선정 근거·실험 계획
@@ -120,6 +127,8 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 │  │  └─ DATA_SPEC.md     # 선정 문서·페이지·관찰 특성
 │  ├─ reviews/
 │  │  └─ CODE_REVIEW_2026-11-06.md # 코드 리뷰 지적·수정·남은 항목
+│  ├─ chunking/
+│  │  └─ CHUNKING.md      # 구조 기반 청킹 설계·설정·실제 결과·한계
 │  └─ parsing_log/
 │     ├─ PARSING_REVIEW.md # 파서별·공통·텍스트층·저장 문제
 │     └─ PARSING_VALIDATION_PLAN.md # 품질 검증 구현 계획
@@ -128,7 +137,8 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 │  ├─ test_parsing_quality.py # 기존 규칙 경계·CLI·원본 보존 검증
 │  ├─ test_parsing_adapters.py # 병합 설정·그룹 번호·그림 저장과 참조 검사
 │  ├─ test_experiments.py    # 기록·diff·복구/퇴행·모델/자원·파싱 연결 검증
-│  └─ test_parsing_resume.py # 중단 재개·잔여 파일 보존·코드/원본/모델 불일치 거부 검증
+│  ├─ test_parsing_resume.py # 중단 재개·잔여 파일 보존·코드/원본/모델 불일치 거부 검증
+│  └─ test_chunking.py       # 표 변환·제목 묶음·캡션·길이 분할·겹침·누락 보고 검증
 └─ outputs/
 ```
 
@@ -461,10 +471,24 @@ python3 -B -m parsing.validate_run \
 표 격자가 정상이어도 숫자가 잘못된 행에 있을 수 있다. 원문 줄·셀 정렬과 개선 모델 재실행은 이후 단계다.
 VLM/API 검토는 선택지로 유지하며 현재 검사에는 사용하지 않는다.
 
+## 청킹 실행
+
+파싱 실행 폴더의 페이지 JSON을 읽어 구조 기반 청크를 만든다. 입력·크기·라벨 역할·토크나이저는
+[configs/chunking.json](configs/chunking.json)에서 정하고, 입력 실행마다 `outputs/chunking_<파서>_<UTC>/`를 새로 만든다.
+처음 실행하면 Qwen3-Embedding-8B의 토크나이저·설정 JSON만 Hugging Face 캐시에 내려받는다(가중치 제외).
+
+```bash
+.venv/bin/python -B -m chunking.run --check   # 설정·입력 확인, 파일 생성 없음
+.venv/bin/python -B -m chunking.run
+```
+
+고정 길이 분할과의 비교는 프로젝트 결정으로 제외했다. 처리 흐름·설정값 의미·실제 결과·한계는
+[구조 기반 청킹](docs/chunking/CHUNKING.md)에 정리했다.
+
 ## 문서와 작업 방식
 
 문서는 `docs/planning/`의 계획, `docs/data/`의 데이터 명세, `docs/parsing_log/`의 파싱 검토·검증,
-`docs/reviews/`의 코드 리뷰 기록으로 나눈다.
+`docs/chunking/`의 청킹 설계·결과, `docs/reviews/`의 코드 리뷰 기록으로 나눈다.
 학습 순서는 기본 학습 계획에서, 모델별 문제와 이미지 API·변경 효과 측정 상태는 파싱 문제 정리에서 확인한다.
 전체 단계에 걸친 실행 기록·변경 비교의 구현 방향은 공통 실행 비교 계획에서 확인한다.
 계획·정성 관찰·직접 실행한 검사 결과를 구분해 읽는다.

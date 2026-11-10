@@ -1,0 +1,240 @@
+{
+  "blocks": {
+    "excluded": 71,
+    "heading_only": 47,
+    "in_chunks": 327,
+    "total": 445,
+    "unassigned": []
+  },
+  "captions_as_text": 0,
+  "captions_attached": 20,
+  "chunks": {
+    "by_flag": {
+      "dominant_token": 10,
+      "hard_split": 11,
+      "long_number_sequence": 14,
+      "merged_content_scope": 17,
+      "output_length": 10,
+      "repeated_trigrams": 10,
+      "title_only": 10
+    },
+    "by_kind": {
+      "chart": 16,
+      "table": 31,
+      "text": 90,
+      "visual": 53
+    },
+    "flagged": 53,
+    "split_groups": 16,
+    "total": 190
+  },
+  "elapsed_seconds": 1.5174170000245795,
+  "excluded_by_reason": {
+    "empty_content": 24,
+    "empty_visual": 1,
+    "excluded_label": 46
+  },
+  "finished_at_utc": "2026-11-10T02:47:53.777671+00:00",
+  "hard_splits": 11,
+  "input_parser": "vl",
+  "input_run": "C:\\Users\\CNXK\\abs_sandbox\\MMDocIR_Multimodal_RAG\\outputs\\parsing_vl_20261027T015138481163Z",
+  "output_dir": "C:\\Users\\CNXK\\abs_sandbox\\MMDocIR_Multimodal_RAG\\outputs\\chunking_vl_20261110T024752259178Z",
+  "pages": {
+    "chunked": 27,
+    "missing": [],
+    "quality_flags_unavailable": 0,
+    "selected": 27,
+    "unreadable": []
+  },
+  "per_page": [
+    {
+      "chunks": 7,
+      "excluded": 5,
+      "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p1",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 4,
+      "excluded": 6,
+      "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p3",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 4,
+      "excluded": 4,
+      "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 4,
+      "excluded": 0,
+      "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 8,
+      "excluded": 0,
+      "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 3,
+      "excluded": 1,
+      "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p8",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 1,
+      "excluded": 0,
+      "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p10",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 6,
+      "excluded": 0,
+      "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p15",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 4,
+      "excluded": 2,
+      "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p8",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 2,
+      "excluded": 2,
+      "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p9",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 5,
+      "excluded": 2,
+      "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p15",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 4,
+      "excluded": 4,
+      "page_id": "86582f690906603c36f8bc08266640f92e879b79b7bcdaaadb16bcc23823f87f:p5",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 5,
+      "excluded": 2,
+      "page_id": "86582f690906603c36f8bc08266640f92e879b79b7bcdaaadb16bcc23823f87f:p13",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 4,
+      "excluded": 2,
+      "page_id": "de7c2798d40a0c5c32b38e3ba65c0e70f93ab1ddad234a554ed74afa49ccf9b1:p3",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 3,
+      "excluded": 1,
+      "page_id": "de7c2798d40a0c5c32b38e3ba65c0e70f93ab1ddad234a554ed74afa49ccf9b1:p4",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 7,
+      "excluded": 1,
+      "page_id": "de7c2798d40a0c5c32b38e3ba65c0e70f93ab1ddad234a554ed74afa49ccf9b1:p6",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 5,
+      "excluded": 1,
+      "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p16",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 2,
+      "excluded": 0,
+      "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p29",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 5,
+      "excluded": 1,
+      "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 8,
+      "excluded": 2,
+      "page_id": "f720ceb61ed6bba34910a9a02ea9d7df4767a4163c19a55b61300cb8e3b08c7a:p8",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 23,
+      "excluded": 7,
+      "page_id": "2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298:p2",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 25,
+      "excluded": 11,
+      "page_id": "2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298:p7",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 9,
+      "excluded": 5,
+      "page_id": "2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298:p21",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 13,
+      "excluded": 4,
+      "page_id": "2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298:p32",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 19,
+      "excluded": 4,
+      "page_id": "2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298:p34",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 4,
+      "excluded": 2,
+      "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p9",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 6,
+      "excluded": 2,
+      "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+      "quality_flags": "inspected"
+    }
+  ],
+  "schema_version": "project.chunking.v1",
+  "status": "completed",
+  "table_parse_failures": 0,
+  "title_only_chunks": 10,
+  "tokens": {
+    "all": {
+      "count": 190,
+      "max": 511,
+      "median": 137.5,
+      "min": 2,
+      "p90": 509.0,
+      "total": 40762
+    },
+    "max_tokens": 512,
+    "model_position_limit": 40960,
+    "over_max_tokens": 0,
+    "over_model_limit": 0,
+    "unflagged": {
+      "count": 137,
+      "max": 509,
+      "median": 105,
+      "min": 2,
+      "p90": 463.2,
+      "total": 24514
+    }
+  },
+  "unmapped_labels": {}
+}
