@@ -13,7 +13,8 @@ from collections import Counter
 from html.parser import HTMLParser
 
 # 0.2.0: 생략 가능한 표 종료 태그 허용, 미해결만 있는 페이지의 검토 상태 분리
-RULE_VERSION = "0.2.0"
+# 0.3.0: 반복·길이 검사를 content_findings()로 분리, Structure 표 구조 토큰 상한(table_structure_limit) 추가
+RULE_VERSION = "0.3.0"
 # 반복 임계값은 개발용 초기값이며 환각 확정 기준이 아니다.
 # 좌표 허용 오차는 부동소수점 계산 비교용이고 문장 위치의 허용 오차가 아니다.
 LIMITS = {
@@ -24,7 +25,20 @@ LIMITS = {
     "long_sequence_length": 50,
     "maximum_grid_slots": 20000,
     "coordinate_tolerance": 0.00001,
+    # PP-StructureV3 표 구조 모델(SLANet_plus·SLANeXt_wired)의 inference.yml max_text_length다.
+    # 디코더는 이 길이까지만 구조 토큰을 내므로, 이 수에 닿은 표는 뒤쪽 행이 잘렸을 수 있다.
+    # 근거: docs/parsing_log/PARSING_ROOT_CAUSES.md 4.1절(RAG 논문 p6, 다시 센 구조 토큰 501개).
+    "table_structure_tokens": 500,
 }
+# 표 구조 토큰 상한을 적용할 파싱 출처다. VL 표는 VLM이 직접 만들어 이 상한과 관계없다.
+STRUCTURE_TABLE_SOURCE = "pp_structure_v3"
+# 표 구조 모델 사전의 구역 태그다. 각각 구조 토큰 하나로 센다.
+STRUCTURE_SECTION_TOKENS = ("<thead>", "</thead>", "<tbody>", "</tbody>")
+# 병합 범위 속성(colspan·rowspan)은 사전에서 값까지 포함한 토큰 하나다.
+SPAN_ATTRIBUTE = re.compile(r'\s(?:colspan|rowspan)="\d+"')
+TABLE_CELL = re.compile(r"<td(\s[^>]*)?>.*?</td>", re.IGNORECASE | re.DOTALL)
+# content_findings()가 내는 규칙 이름이다. 블록 내용을 다른 글자로 바꿨을 때 다시 계산할 대상이다.
+CONTENT_RULES = frozenset({"dominant_token", "repeated_trigrams", "long_number_sequence", "output_length"})
 
 
 class TableGrid(HTMLParser):
@@ -139,6 +153,64 @@ class TableGrid(HTMLParser):
         width = 1 + max(c for _, c in occupied)
         holes = len(self.rows) * width - len(occupied)
         return {"rows": len(self.rows), "columns": width, "unfilled_slots": holes}
+
+
+def structure_token_count(html):
+    """표 HTML을 표 구조 모델의 출력 토큰 수로 다시 센다. 셀 안 글자는 OCR 결과라 세지 않는다.
+
+    모델 사전은 병합 없는 셀을 "<td></td>" 한 토큰으로 묶는다(merge_no_span_structure: true).
+    병합 셀은 "<td", 속성마다 한 토큰, ">", "</td>"로 센다. 행은 "<tr>"·"</tr>" 두 토큰이다.
+    html·body·table 태그는 후처리가 덧붙인 것이라 모델 토큰이 아니다.
+    """
+    count = sum(html.count(tag) for tag in STRUCTURE_SECTION_TOKENS)
+    count += html.count("<tr>") + html.count("</tr>")
+    for match in TABLE_CELL.finditer(html):
+        attributes = match.group(1) or ""
+        spans = len(SPAN_ATTRIBUTE.findall(attributes))
+        count += 1 if not spans else 3 + spans
+    return count
+
+
+def content_findings(content, label):
+    """블록 내용 하나의 반복·길이 신호를 (규칙, 근거) 목록으로 반환한다. 페이지 정보가 필요 없다.
+
+    inspect_page와 재인식 단계(rerecognize.py)가 같은 기준으로 판정하도록 분리했다.
+    """
+    found = []
+    # 표 태그 이름의 반복이 문자 반복 신호로 섞이지 않도록 태그를 제외한다.
+    # 이 문자열은 검사에만 쓰며 원본 content에는 반영하지 않는다.
+    text = re.sub(r"<[^>]*>", " ", content) if label == "table" else content
+    tokens = re.findall(r"\w+", text.casefold())
+    if len(tokens) >= LIMITS["minimum_tokens"]:
+        token, count = Counter(tokens).most_common(1)[0]
+        ratio = count / len(tokens)
+        if ratio >= LIMITS["dominant_token_ratio"]:
+            found.append(("dominant_token", {"token": token, "count": count, "ratio": ratio}))
+        trigrams = list(zip(tokens, tokens[1:], tokens[2:]))
+        # 연속한 세 단어 묶음의 중복 비율이다. 긴 문장이 반복되면 한 단어의
+        # 점유율이 낮아도 신호를 얻는다. 정상 반복도 표시될 수 있다.
+        duplicate_ratio = 1 - len(set(trigrams)) / len(trigrams)
+        if duplicate_ratio >= LIMITS["repeated_trigram_ratio"]:
+            found.append(("repeated_trigrams", {"ratio": duplicate_ratio}))
+
+    # 번호 목록·차트의 연속 행 번호는 원문의 정상 목록일 수도 있다.
+    # 자동 삭제하거나 환각으로 확정하지 않고 긴 연속 구간만 표시한다.
+    sequences = [
+        re.findall(r"(?m)^\s*(\d+)\s*\|", content),
+        re.findall(r"\b(\d+)\.", content),
+    ]
+    for values in sequences:
+        numbers = [int(v) for v in values if len(v) < 10]
+        longest = streak = 1 if numbers else 0
+        for previous, current in zip(numbers, numbers[1:]):
+            streak = streak + 1 if current == previous + 1 else 1
+            longest = max(longest, streak)
+        if longest >= LIMITS["long_sequence_length"]:
+            found.append(("long_number_sequence", {"length": longest}))
+            break
+    if len(content) > LIMITS["maximum_characters"]:
+        found.append(("output_length", {"characters": len(content)}))
+    return found
 
 
 def review_status(findings):
@@ -264,41 +336,8 @@ def inspect_page(record):
         except (KeyError, TypeError, ValueError) as exc:
             add("coordinate_structure", "confirmed_error", eid, {"reason": str(exc)})
 
-        # 표 태그 이름의 반복이 문자 반복 신호로 섞이지 않도록 태그를 제외한다.
-        # 이 문자열은 검사에만 쓰며 원본 content에는 반영하지 않는다.
-        text = re.sub(r"<[^>]*>", " ", content) if block["label"] == "table" else content
-        tokens = re.findall(r"\w+", text.casefold())
-        if len(tokens) >= LIMITS["minimum_tokens"]:
-            token, count = Counter(tokens).most_common(1)[0]
-            ratio = count / len(tokens)
-            if ratio >= LIMITS["dominant_token_ratio"]:
-                add("dominant_token", "suspected", eid,
-                    {"token": token, "count": count, "ratio": ratio})
-            trigrams = list(zip(tokens, tokens[1:], tokens[2:]))
-            # 연속한 세 단어 묶음의 중복 비율이다. 긴 문장이 반복되면 한 단어의
-            # 점유율이 낮아도 신호를 얻는다. 정상 반복도 표시될 수 있다.
-            duplicate_ratio = 1 - len(set(trigrams)) / len(trigrams)
-            if duplicate_ratio >= LIMITS["repeated_trigram_ratio"]:
-                add("repeated_trigrams", "suspected", eid,
-                    {"ratio": duplicate_ratio})
-
-        # 번호 목록·차트의 연속 행 번호는 원문의 정상 목록일 수도 있다.
-        # 자동 삭제하거나 환각으로 확정하지 않고 긴 연속 구간만 표시한다.
-        sequences = [
-            re.findall(r"(?m)^\s*(\d+)\s*\|", content),
-            re.findall(r"\b(\d+)\.", content),
-        ]
-        for values in sequences:
-            numbers = [int(v) for v in values if len(v) < 10]
-            longest = streak = 1 if numbers else 0
-            for previous, current in zip(numbers, numbers[1:]):
-                streak = streak + 1 if current == previous + 1 else 1
-                longest = max(longest, streak)
-            if longest >= LIMITS["long_sequence_length"]:
-                add("long_number_sequence", "suspected", eid, {"length": longest})
-                break
-        if len(content) > LIMITS["maximum_characters"]:
-            add("output_length", "suspected", eid, {"characters": len(content)})
+        for rule, evidence in content_findings(content, block["label"]):
+            add(rule, "suspected", eid, evidence)
 
         if block["label"] == "table":
             try:
@@ -308,6 +347,13 @@ def inspect_page(record):
                     add("table_grid", "suspected", eid, measured)
             except (ValueError, TypeError) as exc:
                 add("table_grid", "unresolved", eid, {"reason": str(exc)})
+            # 구조 토큰이 모델 상한에 닿은 표는 뒤쪽 행이 잘리고 남은 글자가 마지막 칸에 몰렸을 수 있다.
+            # 내용은 고치지 않고 신호만 남긴다.
+            if parsing.get("source") == STRUCTURE_TABLE_SOURCE:
+                tokens_used = structure_token_count(content)
+                if tokens_used >= LIMITS["table_structure_tokens"]:
+                    add("table_structure_limit", "suspected", eid,
+                        {"structure_tokens": tokens_used, "limit": LIMITS["table_structure_tokens"]})
 
     for gid, members in groups.items():
         if len(members) > 1 and any(not filled for _, filled in members):

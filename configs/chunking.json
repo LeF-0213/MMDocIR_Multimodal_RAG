@@ -1,8 +1,11 @@
 {
   "schema_version": "project.chunking.v1",
   "input_runs": [
-    "../outputs/parsing_vl_20261027T015138481163Z",
-    "../outputs/parsing_structure_20261028T232222203813Z"
+    "../outputs/parsing_vl_20261110T233124280038Z",
+    "../outputs/parsing_structure_20261111T073737685789Z"
+  ],
+  "rerecognition_runs": [
+    "../outputs/rerecognition_vl_20261111T101144801007Z"
   ],
   "selection": "selection.json",
   "output_root": "../outputs",
@@ -38,6 +41,7 @@
     "long_number_sequence",
     "output_length",
     "merged_content_scope",
-    "table_grid"
+    "table_grid",
+    "table_structure_limit"
   ]
 }

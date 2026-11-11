@@ -1,0 +1,58 @@
+{
+  "accepted": 2,
+  "blocks": [
+    {
+      "attempts": [
+        {
+          "dpi": 576,
+          "ended_before_limit": false,
+          "findings": [
+            "long_number_sequence"
+          ],
+          "output_tokens": 4096
+        }
+      ],
+      "element_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6:vl:0",
+      "label": "chart",
+      "original_tokens": 4096,
+      "status": "unresolved"
+    },
+    {
+      "attempts": [
+        {
+          "dpi": 576,
+          "ended_before_limit": true,
+          "findings": [],
+          "output_tokens": 1166
+        }
+      ],
+      "element_id": "2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298:p2:vl:20",
+      "label": "image",
+      "original_tokens": 4096,
+      "status": "accepted"
+    },
+    {
+      "attempts": [
+        {
+          "dpi": 576,
+          "ended_before_limit": true,
+          "findings": [],
+          "output_tokens": 106
+        }
+      ],
+      "element_id": "2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298:p7:vl:15",
+      "label": "image",
+      "original_tokens": 4096,
+      "status": "accepted"
+    }
+  ],
+  "elapsed_seconds": 2559.9407622180006,
+  "finished_at_utc": "2026-11-11T10:54:24.741733+00:00",
+  "input_run": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/outputs/parsing_vl_20261110T233124280038Z",
+  "output_dir": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/outputs/rerecognition_vl_20261111T101144801007Z",
+  "schema_version": "project.rerecognition.v1",
+  "skipped_unsupported_label": 0,
+  "status": "completed",
+  "targets": 3,
+  "unresolved": 1
+}

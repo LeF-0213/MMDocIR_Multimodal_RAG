@@ -19,7 +19,8 @@ import tempfile
 import unittest
 
 # 내부 모듈: 순수 페이지 검사와 실행 폴더 검사를 서로 구분해 검증한다.
-from parsing.quality_checks import LIMITS, TableGrid, inspect_page
+from parsing.quality_checks import (LIMITS, STRUCTURE_TABLE_SOURCE, TableGrid, inspect_page,
+                                    structure_token_count)
 from parsing.validate_run import inspect_run
 
 
@@ -152,6 +153,28 @@ class PageTests(unittest.TestCase):
         report = inspect_page(page_record('<table><tr><td>0.85</td></tr></table>', "table"))
         self.assertEqual(report["review_status"], "not_reviewed")
         self.assertEqual(report["tables"][0]["columns"], 1)
+
+    def test_structure_table_at_token_limit_is_suspected_only_for_structure(self):
+        # 행 하나 = <tr>·</tr> 2개 + 병합 없는 셀 2개 = 구조 토큰 4개. 상한에 닿는 행 수를 계산한다.
+        tokens_per_row, cells = 4, "<td>a</td><td>b</td>"
+        rows = -(-LIMITS["table_structure_tokens"] // tokens_per_row)
+        html = "<table>" + f"<tr>{cells}</tr>" * rows + "</table>"
+        self.assertEqual(structure_token_count(html), rows * tokens_per_row)
+        record = page_record(html, "table")
+        record["parsing"]["source"] = STRUCTURE_TABLE_SOURCE
+        rules = [f["rule"] for f in inspect_page(record)["findings"]]
+        self.assertIn("table_structure_limit", rules)
+        # 같은 표라도 VL 출력이면 구조 모델 상한과 관계없으므로 신호를 내지 않는다.
+        record["parsing"]["source"] = "paddleocr_vl"
+        self.assertNotIn("table_structure_limit", [f["rule"] for f in inspect_page(record)["findings"]])
+        # 상한보다 한 행 적으면 신호가 없다.
+        shorter = page_record("<table>" + f"<tr>{cells}</tr>" * (rows - 1) + "</table>", "table")
+        shorter["parsing"]["source"] = STRUCTURE_TABLE_SOURCE
+        self.assertNotIn("table_structure_limit", [f["rule"] for f in inspect_page(shorter)["findings"]])
+
+    def test_spanned_cell_counts_each_attribute(self):
+        # "<td" + colspan + rowspan + ">" + "</td>" = 5토큰, 행 태그 2토큰.
+        self.assertEqual(structure_token_count('<tr><td colspan="2" rowspan="3">x</td></tr>'), 7)
 
 
 class RunTests(unittest.TestCase):

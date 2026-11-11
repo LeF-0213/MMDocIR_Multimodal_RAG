@@ -22,12 +22,13 @@ PDF의 텍스트·표·수식·그림을 원본 위치와 연결하고, 검색 �
 | Structure 실행 | PP-StructureV3 27페이지(3M 8·9·15 포함) 처리 기록: `ok` 27개. 처리 상태이며 품질 판정이 아님 |
 | 품질 검토 | 2026-10-30 선정 27페이지의 이미지·JSON 정성 비교. 반복·원문에 없는 내용, 문장–bbox 불일치, 표 행·열 대응 오류 확인. 정확도 점수는 미측정 |
 | 남은 확인 | VL 영역 병합 옵션 비교, 반복·환각 식별, 문장 위치 복구와 표 구조 검증. 2026-11-08 VL 병합 기본값을 끄고 그림 crop 저장을 추가했으나 재실행은 미수행 |
-| 규칙 검사 구현 | `parsing.validate_run`: 입력 해시·ID·좌표·반복·병합 그룹·표 격자·그림 참조 검사(규칙 0.2.0). 실제 54페이지 실행 확인은 0.1.0 기준. 원문 의미 정확도는 미측정 |
+| 규칙 검사 구현 | `parsing.validate_run`: 입력 해시·ID·좌표·반복·병합 그룹·표 격자·표 구조 토큰 상한·그림 참조 검사(규칙 0.3.0). 실제 54페이지 실행 확인은 0.1.0 기준. 원문 의미 정확도는 미측정 |
 | 실행 기록·전후 비교 | 파싱 시 기본 기록과 최근 호환 실행의 자동 비교. 공통 manifest·소스 diff·모델 파일·RSS·정답 기반 문장/위치/표 평가·JSON/Markdown 보고서. 실제 원문 품질 개선은 미측정 |
 | 기본 진입점 | 루트 `main.py`가 실행 설정을 읽어 HTTP·로컬 PDF 파싱·기록·자동 비교 실행. 모의 모델로 연속 실행 검증, 실제 신규 OCR 추론은 미수행 |
 | 실행 재개 | `main.py --resume`으로 중단된 실행의 유효 페이지를 재사용하고 남은 페이지만 `run.py`의 같은 처리 경로로 처리. 처음 실행에 고정한 비교 기준을 이어 씀. 모의 테스트만 확인. 이 기능 추가 전에 중단된 실행은 코드가 달라 재개 불가(새로 실행) |
 | 재파싱 | 병합 해제 후 VL·Structure 27페이지 재파싱 완료(컨테이너, VL은 한 번 중단 후 재개). VL 병합 그룹 22→0, 빈 text 블록 23→0, 규칙 검사 검토 페이지 14→3. bbox·라벨은 같음. Structure 블록 출력은 기준과 같음. 정답 대조는 미수행 ([재파싱 결과](docs/parsing_log/REPARSE_RESULT.md)) |
-| 청킹 | 레이아웃 블록 구조 기반 청킹 구현·실행. 기존 VL 190개·Structure 147개 청크, 미배정 블록 0, 512토큰 초과 0. 근거 보존은 미측정 ([구조 기반 청킹](docs/chunking/CHUNKING.md)) |
+| 재인식 | VL 출력이 생성 한도(4,096토큰)에 닿은 블록만 576 DPI로 다시 인식(`parsing.rerecognize`). 3개 중 Toyota p2·p7 채택, 슬라이드 p6 미복구. 원래 파싱 결과는 그대로 두고 별도 폴더에 저장 ([원인 조사 9절](docs/parsing_log/PARSING_ROOT_CAUSES.md#9-적용한-수정과-결과-2026-11-11)) |
+| 청킹 | 레이아웃 블록 구조 기반 청킹. 재파싱 결과 + 재인식 적용으로 VL 170개(신호 12)·Structure 147개(신호 28) 청크, 미배정 블록 0, 512토큰 초과 0. 복구 못 한 반복 블록은 사유와 함께 제외. 근거 보존은 미측정 ([구조 기반 청킹](docs/chunking/CHUNKING.md)) |
 | 이후 단계 | 임베딩·인덱스·검색·리랭킹·Recall@1·@3·@10 평가는 미구현 |
 
 이전 PyMuPDF 실행은 8개 문서·24페이지 기록이다. 현재 27페이지나 새 모델 파이프라인의 검증 결과로 취급하지 않는다.
@@ -109,6 +110,7 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 │  ├─ run.py               # 8. 파싱 실행 본체, 기록 없는 진입점
 │  ├─ resume.py            # 중단 실행의 설정 복원·호환성 검사·재개 세션. 처리는 run.py가 맡음
 │  ├─ quality_checks.py    # 저장된 페이지의 순수 규칙 검사
+│  ├─ rerecognize.py       # 생성 한도에 닿은 VL 블록의 고해상도 재인식(후처리, 별도 폴더 저장)
 │  ├─ validate_run.py      # 검사 실행·입력 조회·별도 보고서 저장
 │  └─ __init__.py
 ├─ chunking/               # 파싱 블록 → 구조 기반 청크. chunking → parsing(규칙 검사) → common
@@ -140,7 +142,8 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 │  ├─ test_parsing_adapters.py # 병합 설정·그룹 번호·그림 저장과 참조 검사
 │  ├─ test_experiments.py    # 기록·diff·복구/퇴행·모델/자원·파싱 연결 검증
 │  ├─ test_parsing_resume.py # 중단 재개·잔여 파일 보존·코드/원본/모델 불일치 거부·비교 기준 유지 검증
-│  └─ test_chunking.py       # 표 변환·제목 묶음·캡션·길이 분할·겹침·누락 보고 검증
+│  ├─ test_parsing_rerecognize.py # 재인식 대상 선택·DPI 재시도·채택/거부·원본 미변경 검증
+│  └─ test_chunking.py       # 표 변환·제목 묶음·캡션·길이 분할·겹침·누락 보고·재인식 적용 검증
 └─ outputs/
 ```
 
@@ -473,11 +476,26 @@ python3 -B -m parsing.validate_run \
 표 격자가 정상이어도 숫자가 잘못된 행에 있을 수 있다. 원문 줄·셀 정렬과 개선 모델 재실행은 이후 단계다.
 VLM/API 검토는 선택지로 유지하며 현재 검사에는 사용하지 않는다.
 
+## 생성 한도 블록 재인식
+
+VL 출력이 생성 한도에 닿아 잘린 블록(반복 출력)만 원본 PDF 영역을 높은 DPI로 다시 렌더링해 같은 모델로 다시 인식한다.
+입력 실행·모델·DPI·채택 규칙은 [configs/rerecognition.json](configs/rerecognition.json)에서 정한다.
+입력 실행 폴더는 읽기만 하고 `outputs/rerecognition_vl_<UTC>/`를 새로 만든다. 실행하면 VL 인식 모델(약 2GB)을 불러오고
+블록당 수 분~수십 분 CPU 추론을 한다. 실행 폴더의 원본 PDF 사본(`source.pdf`)이 있어야 한다.
+
+```bash
+.venv/bin/python -B -m parsing.rerecognize --check   # 대상 블록 목록만 출력, 모델 로딩·파일 생성 없음
+.venv/bin/python -B -m parsing.rerecognize
+```
+
+원인과 결과는 [원인 조사](docs/parsing_log/PARSING_ROOT_CAUSES.md)의 2절·9절에 정리했다.
+
 ## 청킹 실행
 
 파싱 실행 폴더의 페이지 JSON을 읽어 구조 기반 청크를 만든다. 입력·크기·라벨 역할·토크나이저는
 [configs/chunking.json](configs/chunking.json)에서 정하고, 입력 실행마다 `outputs/chunking_<파서>_<UTC>/`를 새로 만든다.
 처음 실행하면 Qwen3-Embedding-8B의 토크나이저·설정 JSON만 Hugging Face 캐시에 내려받는다(가중치 제외).
+`rerecognition_runs`의 재인식 결과는 입력 실행 `run.json` 해시가 같을 때만 적용한다. Windows에서 `core.autocrlf=true`로 받은 결과 JSON은 CRLF로 바뀌어 해시가 달라지므로 적용되지 않는다.
 
 ```bash
 .venv/bin/python -B -m chunking.run --check   # 설정·입력 확인, 파일 생성 없음

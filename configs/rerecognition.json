@@ -1,0 +1,37 @@
+{
+  "schema_version": "project.rerecognition.v1",
+  "input_run": "../outputs/parsing_vl_20261110T233124280038Z",
+  "output_root": "../outputs",
+  "model": {
+    "model_name": "PaddleOCR-VL-1.6-0.9B",
+    "model_dir": "~/.paddlex/official_models/PaddleOCR-VL-1.6",
+    "device": "cpu"
+  },
+  "generation_limit_tokens": 4096,
+  "limit_margin_tokens": 16,
+  "max_new_tokens": 4096,
+  "render_dpis": [576],
+  "min_pixels": 112896,
+  "max_pixels": 1003520,
+  "channel_order": "bgr",
+  "prompts": {
+    "default": "OCR:",
+    "by_label": {
+      "chart": "Chart Recognition:"
+    }
+  },
+  "unsupported_labels": [
+    "table",
+    "display_formula",
+    "inline_formula",
+    "formula",
+    "seal",
+    "spotting"
+  ],
+  "rejection_rules": [
+    "dominant_token",
+    "repeated_trigrams",
+    "long_number_sequence",
+    "output_length"
+  ]
+}

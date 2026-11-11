@@ -1,7 +1,9 @@
 """파싱 실행 폴더를 읽어 구조 기반 청크를 만들고 새 청킹 실행 폴더에 저장하는 진입점이다.
 
 전체 위치: PDF → 파싱(outputs/parsing_*) → 청킹〔현재〕(outputs/chunking_*) → 임베딩
-입력: configs/chunking.json(입력 파싱 실행·선정 목록·토크나이저·크기·라벨 역할), 페이지 JSON.
+입력: configs/chunking.json(입력 파싱 실행·재인식 결과·선정 목록·토크나이저·크기·라벨 역할), 페이지 JSON.
+      재인식 결과(outputs/rerecognition_vl_*)는 입력 실행의 run.json 해시가 일치할 때만 적용한다.
+      채택된 블록은 재인식 글자로 청크를 만들고, 복구하지 못한 블록은 청크에서 빼고 사유를 남긴다.
 출력: 입력 실행마다 새 폴더 outputs/chunking_<파서>_<UTC 시각>/
   run.json        설정 내용·해시, 입력 실행·페이지 JSON 해시, 토크나이저 출처, 코드 해시, 환경
   chunks.jsonl    청크 한 줄에 하나. 텍스트·토큰 수·원래 블록 ID·좌표·검사 신호
@@ -34,7 +36,7 @@ from common.files import digest, file_hash, read_json, write_json
 # 내부 파싱 모듈: load_selection은 선정 목록 검증, quality_checks는 반복·병합·표 격자 신호를 만든다.
 # 청킹은 신호를 계산하지 않고 파싱 검사의 결과를 그대로 받아 청크에 표시한다.
 from parsing.pdf_source import load_selection
-from parsing.quality_checks import RULE_VERSION, inspect_page
+from parsing.quality_checks import CONTENT_RULES, RULE_VERSION, content_findings, inspect_page
 
 # 내부 청킹 모듈: structure는 페이지별 청크 생성, tokens는 토크나이저 로딩을 맡는다.
 from .structure import build_page_chunks, label_roles
@@ -43,9 +45,15 @@ from .structure import build_page_chunks, label_roles
 DEFAULT_CONFIG = Path(__file__).resolve().parents[1] / "configs" / "chunking.json"
 # 아래는 설정·출력 형식의 정의다.
 CONFIG_SCHEMA = "project.chunking.v1"
-CONFIG_FIELDS = frozenset({"schema_version", "input_runs", "selection", "output_root", "tokenizer", "max_tokens",
-                           "overlap_tokens", "caption_max_gap_points", "table_header_rows_without_th",
-                           "kind_markers", "labels", "flag_rules"})
+CONFIG_FIELDS = frozenset({"schema_version", "input_runs", "rerecognition_runs", "selection", "output_root",
+                           "tokenizer", "max_tokens", "overlap_tokens", "caption_max_gap_points",
+                           "table_header_rows_without_th", "kind_markers", "labels", "flag_rules"})
+# 재인식 결과 폴더의 파일 이름과 상태 값이다(parsing/rerecognize.py의 출력 형식).
+REREC_RUN_FILE, REREC_BLOCKS_FILE = "run.json", "blocks.jsonl"
+# 재인식 상태별 청킹 처리다. 채택은 글자 대체, 나머지는 반복 출력이 그대로이므로 청크에서 뺀다.
+REREC_ACCEPTED = "accepted"
+REREC_EXCLUSION_REASONS = {"unresolved": "generation_limit_unrecovered",
+                           "skipped_unsupported_label": "generation_limit_not_rerecognized"}
 TOKENIZER_FIELDS = frozenset({"repo_id", "revision", "tokenizer_file", "model_config_file", "add_special_tokens"})
 LABEL_FIELDS = frozenset({"title_levels", "text", "table", "chart", "visual", "caption", "excluded"})
 MARKER_FIELDS = frozenset({"table", "chart", "visual", "caption"})
@@ -78,8 +86,11 @@ def load_config(path: Path) -> tuple[dict, dict]:
         raise ValueError("caption_max_gap_points는 0 이상의 숫자여야 합니다.")
     if not isinstance(config["input_runs"], list) or not config["input_runs"]:
         raise ValueError("input_runs에는 파싱 실행 폴더가 하나 이상 필요합니다.")
+    if not isinstance(config["rerecognition_runs"], list):
+        raise ValueError("rerecognition_runs는 재인식 결과 폴더 목록이어야 합니다(없으면 빈 목록).")
     base = path.parent
     paths = {"input_runs": [(base / item).resolve() for item in config["input_runs"]],
+             "rerecognition_runs": [(base / item).resolve() for item in config["rerecognition_runs"]],
              "selection": (base / config["selection"]).resolve(),
              "output_root": (base / config["output_root"]).resolve()}
     return config, {"path": str(path), "sha256": file_hash(path), "paths": paths}
@@ -101,6 +112,56 @@ def page_flags(record: dict, rules: set) -> tuple[dict, str]:
             if element_id:
                 flags.setdefault(element_id, set()).add(finding["rule"])
     return flags, "inspected"
+
+
+def load_rerecognition(input_run: Path, candidates: list[Path]) -> tuple[dict | None, dict]:
+    """입력 실행에 해당하는 재인식 결과를 찾아 {element_id: 처리} 사전으로 바꾼다.
+
+    재인식 기록의 input_run_json_sha256이 입력 실행 run.json의 해시와 같아야 같은 실행으로 본다.
+    경로 이름만 같고 내용이 다른 실행에 다른 결과를 덮어쓰지 않기 위해서다. 둘 이상 맞으면 거부한다.
+    반환값의 처리에는 페이지 JSON 해시를 함께 담아, 적용할 때 그 페이지가 바뀌지 않았는지 확인한다.
+    """
+    run_hash = file_hash(input_run / PARSING_RUN_FILE)
+    matches = []
+    for folder in candidates:
+        record = read_json(folder / REREC_RUN_FILE)
+        if record.get("input_run_json_sha256") == run_hash:
+            matches.append((folder, record))
+    if not matches:
+        return None, {}
+    if len(matches) > 1:
+        raise ValueError(f"한 입력 실행에 재인식 결과가 여럿입니다: {[str(f) for f, _ in matches]}")
+    folder, record = matches[0]
+    blocks_path = folder / REREC_BLOCKS_FILE
+    overrides = {}
+    for line in blocks_path.read_text(encoding="utf-8").splitlines():
+        row = json.loads(line)
+        source = {"run": folder.name, "status": row["status"],
+                  "dpi": next((a["dpi"] for a in row["attempts"] if a["accepted"]), None),
+                  "original_content_sha256": row["original"]["content_sha256"]}
+        if row["status"] == REREC_ACCEPTED:
+            item = {"content": row["content"], "source": {**source, "content_sha256": row["content_sha256"]}}
+        elif row["status"] in REREC_EXCLUSION_REASONS:
+            item = {"exclude": REREC_EXCLUSION_REASONS[row["status"]], "source": source}
+        else:
+            raise ValueError(f"알 수 없는 재인식 상태입니다: {row['status']!r}")
+        overrides[row["element_id"]] = {**item, "label": row["label"], "page_json": row["page_json"],
+                                        "page_json_sha256": row["page_json_sha256"]}
+    info = {"path": str(folder), "run_json_sha256": file_hash(folder / REREC_RUN_FILE),
+            "blocks_jsonl_sha256": file_hash(blocks_path), "blocks": len(overrides)}
+    return info, overrides
+
+
+def replacement_flags(flags: dict, overrides: dict, rules: set) -> dict:
+    """대체 글자를 쓰는 블록은 원래 출력에서 계산한 반복·길이 신호를 지우고 새 글자로 다시 계산한다."""
+    updated = {key: set(value) for key, value in flags.items()}
+    for element_id, item in overrides.items():
+        if "content" not in item:
+            continue
+        kept = {rule for rule in updated.get(element_id, set()) if rule not in CONTENT_RULES}
+        fresh = {rule for rule, _ in content_findings(item["content"], item.get("label", "")) if rule in rules}
+        updated[element_id] = kept | fresh
+    return {key: value for key, value in updated.items() if value}
 
 
 def distribution(values: list[int]) -> dict:
@@ -150,6 +211,7 @@ def chunk_run(input_run: Path, config: dict, context: dict, selection: dict, cou
     started = perf_counter()
     parsing_run = read_json(input_run / PARSING_RUN_FILE)
     parser = parsing_run["parser"]
+    rerecognition, overrides = load_rerecognition(input_run, context["paths"]["rerecognition_runs"])
     stamp = datetime.now(timezone.utc).strftime(RUN_TIMESTAMP_FORMAT)
     output = context["paths"]["output_root"] / f"chunking_{parser}_{stamp}"
     output.mkdir(parents=True, exist_ok=False)
@@ -161,6 +223,7 @@ def chunk_run(input_run: Path, config: dict, context: dict, selection: dict, cou
         "input_run_json_sha256": file_hash(input_run / PARSING_RUN_FILE),
         "selection_path": str(context["paths"]["selection"]),
         "selection_sha256": file_hash(context["paths"]["selection"]),
+        "rerecognition": rerecognition,
         "tokenizer": counter.record, "quality_rule_version": RULE_VERSION,
         "code_sha256": code_hashes(), "environment": environment()})
 
@@ -169,6 +232,7 @@ def chunk_run(input_run: Path, config: dict, context: dict, selection: dict, cou
     missing, unreadable, unassigned = [], [], []
     totals = Counter()
     unmapped = Counter()
+    applied_overrides: dict = {}
     blocks_total = blocks_in_chunks = blocks_heading_only = 0
     for name, number, path in selected_pages(input_run, selection):
         if not path.is_file():
@@ -180,7 +244,16 @@ def chunk_run(input_run: Path, config: dict, context: dict, selection: dict, cou
             unreadable.append({"document_name": name, "page_number": number, "reason": type(exc).__name__})
             continue
         flags, flag_status = page_flags(record, rules)
-        page_chunks, page_excluded, stats = build_page_chunks(record, config, counter, flags, parser)
+        page_json = path.relative_to(input_run).as_posix()
+        page_overrides = {eid: item for eid, item in overrides.items() if item["page_json"] == page_json}
+        for item in page_overrides.values():
+            # 재인식 이후 페이지 JSON이 바뀌었다면 대상 블록의 원래 출력이 달라졌을 수 있어 적용하지 않는다.
+            if item["page_json_sha256"] != file_hash(path):
+                raise ValueError(f"재인식 이후 페이지 JSON이 바뀌었습니다: {page_json}")
+        applied_overrides.update(page_overrides)
+        flags = replacement_flags(flags, page_overrides, rules)
+        page_chunks, page_excluded, stats = build_page_chunks(record, config, counter, flags, parser,
+                                                              page_overrides)
         source = {"page_json": path.relative_to(input_run).as_posix(), "page_json_sha256": file_hash(path),
                   "page_status": record.get("status"), "quality_flags": flag_status}
         for chunk in page_chunks:
@@ -237,6 +310,11 @@ def chunk_run(input_run: Path, config: dict, context: dict, selection: dict, cou
                    "model_position_limit": limit,
                    "over_model_limit": sum(t > limit for t in tokens) if limit else None},
         "excluded_by_reason": dict(Counter(e["reason"] for e in excluded)),
+        # 선정 범위 밖 페이지의 재인식 결과는 적용하지 않으므로 적용 수와 기록 수를 따로 센다.
+        "rerecognition": None if rerecognition is None else {
+            **rerecognition, "applied": len(applied_overrides),
+            "replaced": sum("content" in item for item in applied_overrides.values()),
+            "excluded": sum("exclude" in item for item in applied_overrides.values())},
         "unmapped_labels": dict(unmapped),
         **{key: totals[key] for key in ("captions_attached", "captions_as_text", "title_only_chunks",
                                          "hard_splits", "table_parse_failures")},
@@ -264,8 +342,9 @@ def main(argv: list[str] | None = None) -> int:
             if not (run / PARSING_RUN_FILE).is_file():
                 raise ValueError(f"파싱 실행 폴더가 아닙니다: {run}")
             found = sum(path.is_file() for _, _, path in selected_pages(run, selection))
+            rerecognition, _ = load_rerecognition(run, context["paths"]["rerecognition_runs"])
             inputs.append({"input_run": str(run), "parser": read_json(run / PARSING_RUN_FILE).get("parser"),
-                           "selected_pages_found": found})
+                           "selected_pages_found": found, "rerecognition": rerecognition})
         if options.check:
             print(json.dumps({"status": "configuration_valid", "config": context["path"],
                               "inputs": inputs, "output_root": str(context["paths"]["output_root"])},
