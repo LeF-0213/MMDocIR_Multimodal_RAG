@@ -1,0 +1,539 @@
+{
+  "environment": {
+    "cpu_quota": null,
+    "executable": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/.venv/bin/python",
+    "machine": "x86_64",
+    "packages": {
+      "PyMuPDF": "1.28.2",
+      "numpy": "2.3.5",
+      "paddleocr": "3.7.0",
+      "paddlepaddle": "3.3.1",
+      "paddlepaddle-gpu": null,
+      "paddlex": "3.7.2",
+      "psutil": "7.2.2"
+    },
+    "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+    "python": "3.12.16 (main, Oct 26 2026, 14:08:45) [Clang 23.1.3 ]",
+    "visible_logical_cpu_count": 72
+  },
+  "experiment": {
+    "changed_variables": [],
+    "controlled_conditions": [],
+    "expected_effect": null,
+    "purpose": "파싱 실행 조건과 결과·비용의 비교 기록"
+  },
+  "git": {
+    "branch": {
+      "status": "ok",
+      "text": "main"
+    },
+    "commit": {
+      "status": "ok",
+      "text": "dcd68e629cbc7925b025f8c3beaaa6eb01b9e6fc"
+    },
+    "staged_diff": {
+      "status": "ok",
+      "text": ""
+    },
+    "status": {
+      "status": "ok",
+      "text": ""
+    },
+    "unstaged_diff": {
+      "status": "ok",
+      "text": ""
+    },
+    "untracked": {
+      "status": "ok",
+      "text": ""
+    }
+  },
+  "record_scope": "entire_run",
+  "recording_config": {
+    "environment_packages": [
+      "paddleocr",
+      "paddlex",
+      "paddlepaddle",
+      "paddlepaddle-gpu",
+      "PyMuPDF",
+      "numpy",
+      "psutil"
+    ],
+    "experiment": {
+      "changed_variables": [],
+      "controlled_conditions": [],
+      "expected_effect": null,
+      "purpose": "파싱 실행 조건과 결과·비용의 비교 기록"
+    },
+    "git_timeout_seconds": 10,
+    "memory": {
+      "gpu_device": null,
+      "include_children": true,
+      "interval_seconds": 0.1
+    },
+    "model_bindings": [
+      {
+        "directory_attribute": "model_dir",
+        "name_attribute": "model_name",
+        "object_path": [
+          "paddlex_pipeline",
+          "_pipeline",
+          "layout_det_model"
+        ],
+        "parser": "vl",
+        "role": "layout"
+      },
+      {
+        "directory_attribute": "model_dir",
+        "name_attribute": "model_name",
+        "object_path": [
+          "paddlex_pipeline",
+          "_pipeline",
+          "vl_rec_model"
+        ],
+        "parser": "vl",
+        "role": "vl_recognition"
+      },
+      {
+        "directory_attribute": "model_dir",
+        "name_attribute": "model_name",
+        "object_path": [
+          "paddlex_pipeline",
+          "_pipeline",
+          "layout_det_model"
+        ],
+        "parser": "structure",
+        "role": "layout"
+      },
+      {
+        "directory_attribute": "model_dir",
+        "name_attribute": "model_name",
+        "object_path": [
+          "paddlex_pipeline",
+          "_pipeline",
+          "general_ocr_pipeline",
+          "text_det_model"
+        ],
+        "parser": "structure",
+        "role": "text_detection"
+      },
+      {
+        "directory_attribute": "model_dir",
+        "name_attribute": "model_name",
+        "object_path": [
+          "paddlex_pipeline",
+          "_pipeline",
+          "general_ocr_pipeline",
+          "text_rec_model"
+        ],
+        "parser": "structure",
+        "role": "text_recognition"
+      },
+      {
+        "directory_attribute": "model_dir",
+        "name_attribute": "model_name",
+        "object_path": [
+          "paddlex_pipeline",
+          "_pipeline",
+          "general_ocr_pipeline",
+          "textline_orientation_model"
+        ],
+        "parser": "structure",
+        "role": "textline_orientation"
+      },
+      {
+        "directory_attribute": "model_dir",
+        "name_attribute": "model_name",
+        "object_path": [
+          "paddlex_pipeline",
+          "_pipeline",
+          "table_recognition_pipeline",
+          "table_cls_model"
+        ],
+        "parser": "structure",
+        "role": "table_classification"
+      },
+      {
+        "directory_attribute": "model_dir",
+        "name_attribute": "model_name",
+        "object_path": [
+          "paddlex_pipeline",
+          "_pipeline",
+          "table_recognition_pipeline",
+          "wired_table_rec_model"
+        ],
+        "parser": "structure",
+        "role": "wired_table_structure"
+      },
+      {
+        "directory_attribute": "model_dir",
+        "name_attribute": "model_name",
+        "object_path": [
+          "paddlex_pipeline",
+          "_pipeline",
+          "table_recognition_pipeline",
+          "wireless_table_rec_model"
+        ],
+        "parser": "structure",
+        "role": "wireless_table_structure"
+      },
+      {
+        "directory_attribute": "model_dir",
+        "name_attribute": "model_name",
+        "object_path": [
+          "paddlex_pipeline",
+          "_pipeline",
+          "table_recognition_pipeline",
+          "wired_table_cells_detection_model"
+        ],
+        "parser": "structure",
+        "role": "wired_cells"
+      },
+      {
+        "directory_attribute": "model_dir",
+        "name_attribute": "model_name",
+        "object_path": [
+          "paddlex_pipeline",
+          "_pipeline",
+          "table_recognition_pipeline",
+          "wireless_table_cells_detection_model"
+        ],
+        "parser": "structure",
+        "role": "wireless_cells"
+      },
+      {
+        "directory_attribute": "model_dir",
+        "name_attribute": "model_name",
+        "object_path": [
+          "paddlex_pipeline",
+          "_pipeline",
+          "formula_recognition_pipeline",
+          "formula_rec_model"
+        ],
+        "parser": "structure",
+        "role": "formula"
+      },
+      {
+        "directory_attribute": "model_dir",
+        "name_attribute": "model_name",
+        "object_path": [
+          "paddlex_pipeline",
+          "_pipeline",
+          "chart_recognition_model"
+        ],
+        "parser": "structure",
+        "role": "chart"
+      }
+    ],
+    "pipeline_options": {},
+    "predict_options": {},
+    "project_root": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG",
+    "schema_version": "project.experiment.v1",
+    "secret_environment_names": [],
+    "source_paths": [
+      "main.py",
+      "common",
+      "parsing",
+      "experiments",
+      "configs",
+      "requirements.txt"
+    ],
+    "source_suffixes": [
+      ".py",
+      ".json",
+      ".txt"
+    ]
+  },
+  "requested": {
+    "all_pages": false,
+    "automatic_comparison": {
+      "all_pages": false,
+      "baseline": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/outputs/parsing_structure_20261028T232222203813Z",
+      "baseline_evidence": {
+        "run.json": "f89d71a5a2f90b3072d83d3c4fbc2596f029a5a299e7f9bf757cb9ed59bf9437",
+        "selection.json": "430d945c6d1659cd2086dffa1ff9a00b313ba9732f35c25dd199a74f52c17401",
+        "summary.json": "880468a11c4b4f561c3aa7fe2bcdb61700cad1fc88348779d13f9e981b8e4e5b"
+      },
+      "candidate": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/outputs/parsing_structure_20261111T073737685789Z",
+      "evaluation_config": null,
+      "gold": null,
+      "ignored": [],
+      "mode": "explicit",
+      "output_dir": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/outputs/parsing_structure_20261111T073737685789Z_comparison",
+      "schema_version": "project.parsing_auto_comparison.v1",
+      "search_root": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/outputs",
+      "status": "pending"
+    },
+    "base_url": null,
+    "code_sha256": {
+      "__init__.py": "793ba5489b5cadd6152fb97117190e3ebd8278ad3d0983626b9b5e9b6b27b6a7",
+      "common/__init__.py": "c2c9f12cc6310f7d84a98fa585b2943a51efed69bb708260526d65f2f413635a",
+      "common/files.py": "298c1f68e948e8ee41f895788014e83dcd1374642132c3e30625992a48a07a99",
+      "common/redaction.py": "b155c293493e1643807eb8aaf696ba89202c431d6a67c09653effccc29831c93",
+      "model_result.py": "62957e104fd79dfcf075bc90fc44f11f4456734db4f2740f894216bf66265b95",
+      "pdf_parser.py": "014d4fc6cc4f77aa53cf40cf8cfcdfebfd858ff15522a2a60f4c958dc28e2de7",
+      "pdf_source.py": "ae6b549d218c0d4874d1be5ed726893a5cbd9eff6ae12f4ca468662e2245072e",
+      "quality_checks.py": "a5067d78ece93c35a3483228e39eb679d760762aa1bebca95e3a06cf1179b99d",
+      "result_store.py": "1e0569a507cab0b0f5233f7a8f26687def4365126d0b20af145fb1a1216786b1",
+      "resume.py": "de25e44c792b7a04a06b5fc0e8479ba2118885d97859483a624f1addf60ca8d1",
+      "review_pdf.py": "fa5ee1f3bf58ea94a83067dadd8c905a8628bdf2558cac03e9894f8ef7df9b89",
+      "run.py": "d6ccc63b2cb0489b38ad9efb3625d48602476f0369d963b8ca621fc64c5e86b6",
+      "structure_parser.py": "132ff229de7e82ddf605608cedb6a664fd5b0ab3d6ee27f967f4e154a3d9ff5f",
+      "validate_run.py": "8a2e6cd1eb2c3cc29ed972ff2135a7f5d8a654ce73e0c7989121b87916bd976c",
+      "vl_parser.py": "19f2b1f99989b2f57f7948ff8edc34acd199379456b3cef6e9792837bd86020e"
+    },
+    "dpi": 144,
+    "environment": {
+      "executable": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/.venv/bin/python",
+      "packages": {
+        "PyMuPDF": "1.28.2",
+        "numpy": "2.3.5",
+        "paddleocr": "3.7.0",
+        "paddlepaddle": "3.3.1",
+        "paddlepaddle-gpu": null,
+        "paddlex": "3.7.2",
+        "pillow": "13.0.0",
+        "psutil": "7.2.2"
+      },
+      "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+      "python": "3.12.16 (main, Oct 26 2026, 14:08:45) [Clang 23.1.3 ]"
+    },
+    "experiment_config_sha256": "8f79fa4b785b778557fdd65bbf01a63b61784f61e0aec6075ce339128538e213",
+    "experiment_recording": {
+      "config_path": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/configs/experiment_recording.json",
+      "enabled": true
+    },
+    "http_timeout_seconds": 30,
+    "model_weight_revision": null,
+    "parser": "structure",
+    "parser_options": {
+      "cpu_threads": 4,
+      "device": "cpu",
+      "enable_mkldnn": false,
+      "engine": "paddle",
+      "format_block_content": false,
+      "formula_recognition_model_name": "PP-FormulaNet_plus-L",
+      "markdown_ignore_labels": [],
+      "text_detection_model_name": "PP-OCRv6_medium_det",
+      "text_recognition_model_name": "PP-OCRv6_medium_rec",
+      "use_chart_recognition": true,
+      "use_doc_orientation_classify": false,
+      "use_doc_unwarping": false,
+      "use_formula_recognition": true,
+      "use_seal_recognition": false,
+      "use_table_recognition": true,
+      "use_textline_orientation": true
+    },
+    "pdf_directory": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/data/doc_pdfs",
+    "predict_options": {},
+    "quality_evaluation": "not_run",
+    "schema_version": "project.parsing.v1",
+    "selection_sha256": "b24291db394bae2500e1382b9d8647716a6a6187e750f7b7bfe9e76052c2c261",
+    "source_kind": "local",
+    "started_at_utc": "2026-11-11T07:37:38.305474+00:00",
+    "status": "started"
+  },
+  "run_id": "85e8cc7a-1c7e-4a1b-9015-4c305f0d2d24",
+  "schema_version": "project.experiment.v1",
+  "sources": {
+    "collection_seconds": 0.10321878800095874,
+    "files": {
+      "common/__init__.py": {
+        "sha256": "c2c9f12cc6310f7d84a98fa585b2943a51efed69bb708260526d65f2f413635a",
+        "size": 372,
+        "snapshot": "source_snapshot/common/__init__.py",
+        "status": "ok"
+      },
+      "common/files.py": {
+        "sha256": "298c1f68e948e8ee41f895788014e83dcd1374642132c3e30625992a48a07a99",
+        "size": 3049,
+        "snapshot": "source_snapshot/common/files.py",
+        "status": "ok"
+      },
+      "common/redaction.py": {
+        "sha256": "b155c293493e1643807eb8aaf696ba89202c431d6a67c09653effccc29831c93",
+        "size": 5785,
+        "snapshot": "source_snapshot/common/redaction.py",
+        "status": "ok"
+      },
+      "configs/chunking.json": {
+        "sha256": "304ca3cd50d15b78bf21187fb20ad9fe878a5e96cf1f792f7c44d02dd5e1d6ea",
+        "size": 1258,
+        "snapshot": "source_snapshot/configs/chunking.json",
+        "status": "ok"
+      },
+      "configs/experiment_evaluation.json": {
+        "sha256": "779684fe27ad5c916b5d769d9b0cbba4457e8072c7d031210a3041b958ca4504",
+        "size": 514,
+        "snapshot": "source_snapshot/configs/experiment_evaluation.json",
+        "status": "ok"
+      },
+      "configs/experiment_recording.json": {
+        "sha256": "8f79fa4b785b778557fdd65bbf01a63b61784f61e0aec6075ce339128538e213",
+        "size": 3567,
+        "snapshot": "source_snapshot/configs/experiment_recording.json",
+        "status": "ok"
+      },
+      "configs/parsing_run.json": {
+        "sha256": "0a368703fa427f71f6b90954a9e3e548a4c9221bd77509af626c20064c625726",
+        "size": 656,
+        "snapshot": "source_snapshot/configs/parsing_run.json",
+        "status": "ok"
+      },
+      "configs/selection.json": {
+        "sha256": "b24291db394bae2500e1382b9d8647716a6a6187e750f7b7bfe9e76052c2c261",
+        "size": 962,
+        "snapshot": "source_snapshot/configs/selection.json",
+        "status": "ok"
+      },
+      "configs/selection_3m_page9.json": {
+        "sha256": "55569063c94034ba676e31d0ed94df2a6e0bbedcc6952ed7439e509bc25108e7",
+        "size": 143,
+        "snapshot": "source_snapshot/configs/selection_3m_page9.json",
+        "status": "ok"
+      },
+      "experiments/__init__.py": {
+        "sha256": "aec70ac3bf7208878a1c9286f497050be8c1ac0f1163c1ffa1a4950d64a6627b",
+        "size": 407,
+        "snapshot": "source_snapshot/experiments/__init__.py",
+        "status": "ok"
+      },
+      "experiments/automatic.py": {
+        "sha256": "d7ca94439a9dd5e4e7221a042545adbf2df02e27303eeaac7798b4b9d0474d2b",
+        "size": 9245,
+        "snapshot": "source_snapshot/experiments/automatic.py",
+        "status": "ok"
+      },
+      "experiments/compare.py": {
+        "sha256": "de668dcee43226ef2eba8b7eb35f7dfb13d45a99002804ffbbe404b9c6445dfb",
+        "size": 28224,
+        "snapshot": "source_snapshot/experiments/compare.py",
+        "status": "ok"
+      },
+      "experiments/evaluate.py": {
+        "sha256": "4b6350dff2eac77799b99beb4ba5729e8da7c754c6da1aeb0ec26d178b87b813",
+        "size": 29591,
+        "snapshot": "source_snapshot/experiments/evaluate.py",
+        "status": "ok"
+      },
+      "experiments/parsing_stage.py": {
+        "sha256": "c09fac98e5195db99d14a6a1dd30dc36c897446ca25086c04338bbf4872c4eed",
+        "size": 6794,
+        "snapshot": "source_snapshot/experiments/parsing_stage.py",
+        "status": "ok"
+      },
+      "experiments/record.py": {
+        "sha256": "187ce18646d8fb8a68aaa570e4dd6e8eb19eaf12de6ec384865a4869dc4ec892",
+        "size": 24403,
+        "snapshot": "source_snapshot/experiments/record.py",
+        "status": "ok"
+      },
+      "experiments/resources.py": {
+        "sha256": "9e8ab3781bf63b5b4ef65db3c5aadacc99004192cfb298f6d730214c417f0786",
+        "size": 8918,
+        "snapshot": "source_snapshot/experiments/resources.py",
+        "status": "ok"
+      },
+      "experiments/resume_stage.py": {
+        "sha256": "0b550a358f4d58ccfc411ebf0e94a9e805f81679249e75958c5e93451829a41a",
+        "size": 9441,
+        "snapshot": "source_snapshot/experiments/resume_stage.py",
+        "status": "ok"
+      },
+      "experiments/schema.py": {
+        "sha256": "9254aecafb393702c20c00b21bfacdbfd2ee9e15007d77187eb24fe29ef0ed99",
+        "size": 837,
+        "snapshot": "source_snapshot/experiments/schema.py",
+        "status": "ok"
+      },
+      "main.py": {
+        "sha256": "28ee124147fbc4948afb1b992a641d9f8aa2469bbb81554e225c92ab5ce5bf6e",
+        "size": 9449,
+        "snapshot": "source_snapshot/main.py",
+        "status": "ok"
+      },
+      "parsing/__init__.py": {
+        "sha256": "793ba5489b5cadd6152fb97117190e3ebd8278ad3d0983626b9b5e9b6b27b6a7",
+        "size": 337,
+        "snapshot": "source_snapshot/parsing/__init__.py",
+        "status": "ok"
+      },
+      "parsing/model_result.py": {
+        "sha256": "62957e104fd79dfcf075bc90fc44f11f4456734db4f2740f894216bf66265b95",
+        "size": 11933,
+        "snapshot": "source_snapshot/parsing/model_result.py",
+        "status": "ok"
+      },
+      "parsing/pdf_parser.py": {
+        "sha256": "014d4fc6cc4f77aa53cf40cf8cfcdfebfd858ff15522a2a60f4c958dc28e2de7",
+        "size": 14112,
+        "snapshot": "source_snapshot/parsing/pdf_parser.py",
+        "status": "ok"
+      },
+      "parsing/pdf_source.py": {
+        "sha256": "ae6b549d218c0d4874d1be5ed726893a5cbd9eff6ae12f4ca468662e2245072e",
+        "size": 4872,
+        "snapshot": "source_snapshot/parsing/pdf_source.py",
+        "status": "ok"
+      },
+      "parsing/quality_checks.py": {
+        "sha256": "a5067d78ece93c35a3483228e39eb679d760762aa1bebca95e3a06cf1179b99d",
+        "size": 14903,
+        "snapshot": "source_snapshot/parsing/quality_checks.py",
+        "status": "ok"
+      },
+      "parsing/result_store.py": {
+        "sha256": "1e0569a507cab0b0f5233f7a8f26687def4365126d0b20af145fb1a1216786b1",
+        "size": 2048,
+        "snapshot": "source_snapshot/parsing/result_store.py",
+        "status": "ok"
+      },
+      "parsing/resume.py": {
+        "sha256": "de25e44c792b7a04a06b5fc0e8479ba2118885d97859483a624f1addf60ca8d1",
+        "size": 24449,
+        "snapshot": "source_snapshot/parsing/resume.py",
+        "status": "ok"
+      },
+      "parsing/review_pdf.py": {
+        "sha256": "fa5ee1f3bf58ea94a83067dadd8c905a8628bdf2558cac03e9894f8ef7df9b89",
+        "size": 4439,
+        "snapshot": "source_snapshot/parsing/review_pdf.py",
+        "status": "ok"
+      },
+      "parsing/run.py": {
+        "sha256": "d6ccc63b2cb0489b38ad9efb3625d48602476f0369d963b8ca621fc64c5e86b6",
+        "size": 30800,
+        "snapshot": "source_snapshot/parsing/run.py",
+        "status": "ok"
+      },
+      "parsing/structure_parser.py": {
+        "sha256": "132ff229de7e82ddf605608cedb6a664fd5b0ab3d6ee27f967f4e154a3d9ff5f",
+        "size": 6184,
+        "snapshot": "source_snapshot/parsing/structure_parser.py",
+        "status": "ok"
+      },
+      "parsing/validate_run.py": {
+        "sha256": "8a2e6cd1eb2c3cc29ed972ff2135a7f5d8a654ce73e0c7989121b87916bd976c",
+        "size": 12491,
+        "snapshot": "source_snapshot/parsing/validate_run.py",
+        "status": "ok"
+      },
+      "parsing/vl_parser.py": {
+        "sha256": "19f2b1f99989b2f57f7948ff8edc34acd199379456b3cef6e9792837bd86020e",
+        "size": 10620,
+        "snapshot": "source_snapshot/parsing/vl_parser.py",
+        "status": "ok"
+      },
+      "requirements.txt": {
+        "sha256": "c5dbef9f620ce562f934c3a547ee8aa2a22462d112b8d2dfd101a458ef49479d",
+        "size": 911,
+        "snapshot": "source_snapshot/requirements.txt",
+        "status": "ok"
+      }
+    }
+  },
+  "stage": "parsing",
+  "stage_run_id": "976d1c8a-66bc-414a-8204-78cf40d7234d",
+  "started_at_utc": "2026-11-11T07:37:38.333138+00:00",
+  "status": "started"
+}

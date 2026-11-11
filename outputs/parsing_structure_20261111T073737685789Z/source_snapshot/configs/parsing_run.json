@@ -1,0 +1,28 @@
+{
+  "schema_version": "project.parsing_run.v1",
+  "selection": "selection.json",
+  "input": {
+    "kind": "http",
+    "pdf_directory": null,
+    "base_url": "http://127.0.0.1:8080/raw/mmdocir_data/extracted/doc_pdfs/"
+  },
+  "output_root": "../outputs",
+  "parser": "vl",
+  "device": "cpu",
+  "cpu_threads": 4,
+  "dpi": 144,
+  "http_timeout_seconds": 30,
+  "formula_model": null,
+  "all_pages": false,
+  "recording": {
+    "enabled": true,
+    "config": "experiment_recording.json"
+  },
+  "comparison": {
+    "enabled": true,
+    "baseline": null,
+    "output_directory": null,
+    "gold": null,
+    "evaluation_config": "experiment_evaluation.json"
+  }
+}

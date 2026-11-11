@@ -1,0 +1,18 @@
+{
+  "all_pages": false,
+  "baseline": null,
+  "candidate": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/outputs/parsing_vl_20261110T233124280038Z",
+  "evaluation_config": null,
+  "gold": null,
+  "ignored": [
+    {
+      "path": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/outputs/parsing_vl_20261109T225700571702Z",
+      "reason": "[Errno 2] No such file or directory: '/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/outputs/parsing_vl_20261109T225700571702Z/summary.json'"
+    }
+  ],
+  "mode": "latest_compatible_sibling",
+  "reason": "같은 파서·선정 범위의 종료 실행 없음",
+  "schema_version": "project.parsing_auto_comparison.v1",
+  "search_root": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/outputs",
+  "status": "skipped"
+}

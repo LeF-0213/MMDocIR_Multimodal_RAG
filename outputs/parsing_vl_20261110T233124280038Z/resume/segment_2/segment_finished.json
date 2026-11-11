@@ -1,0 +1,134 @@
+{
+  "schema_version": "project.parsing_resume.v1",
+  "segment": 2,
+  "status": "completed_with_errors",
+  "finished_at_utc": "2026-11-11T07:37:36.242910+00:00",
+  "elapsed_seconds": 12980.022173217,
+  "model_load_seconds": 31.693382012001166,
+  "fatal_error": null,
+  "documents": [
+    {
+      "document_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943",
+      "mode": "reused_document",
+      "reused_pages": [
+        1,
+        3,
+        11
+      ],
+      "processed_pages": [],
+      "invalid_pages": [],
+      "set_aside": [],
+      "review_mismatches": []
+    },
+    {
+      "document_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82",
+      "mode": "resumed_document",
+      "reused_pages": [
+        4
+      ],
+      "processed_pages": [
+        6,
+        8,
+        10,
+        15
+      ],
+      "invalid_pages": [],
+      "set_aside": [
+        {
+          "from": "documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/page_00006.png",
+          "to": "resume/segment_2/partial/documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/page_00006.png"
+        }
+      ],
+      "review_mismatches": []
+    },
+    {
+      "document_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36",
+      "mode": "resumed_document",
+      "reused_pages": [],
+      "processed_pages": [
+        8,
+        9,
+        15
+      ],
+      "invalid_pages": [],
+      "set_aside": [],
+      "review_mismatches": []
+    },
+    {
+      "document_id": "86582f690906603c36f8bc08266640f92e879b79b7bcdaaadb16bcc23823f87f",
+      "mode": "resumed_document",
+      "reused_pages": [],
+      "processed_pages": [
+        5,
+        13
+      ],
+      "invalid_pages": [],
+      "set_aside": [],
+      "review_mismatches": []
+    },
+    {
+      "document_id": "de7c2798d40a0c5c32b38e3ba65c0e70f93ab1ddad234a554ed74afa49ccf9b1",
+      "mode": "resumed_document",
+      "reused_pages": [],
+      "processed_pages": [
+        3,
+        4,
+        6
+      ],
+      "invalid_pages": [],
+      "set_aside": [],
+      "review_mismatches": []
+    },
+    {
+      "document_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2",
+      "mode": "resumed_document",
+      "reused_pages": [],
+      "processed_pages": [
+        16,
+        29,
+        40
+      ],
+      "invalid_pages": [],
+      "set_aside": [],
+      "review_mismatches": []
+    },
+    {
+      "document_id": "f720ceb61ed6bba34910a9a02ea9d7df4767a4163c19a55b61300cb8e3b08c7a",
+      "mode": "resumed_document",
+      "reused_pages": [],
+      "processed_pages": [
+        8
+      ],
+      "invalid_pages": [],
+      "set_aside": [],
+      "review_mismatches": []
+    },
+    {
+      "document_id": "2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298",
+      "mode": "resumed_document",
+      "reused_pages": [],
+      "processed_pages": [
+        2,
+        7,
+        21,
+        32,
+        34
+      ],
+      "invalid_pages": [],
+      "set_aside": [],
+      "review_mismatches": []
+    },
+    {
+      "document_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a",
+      "mode": "resumed_document",
+      "reused_pages": [],
+      "processed_pages": [
+        9,
+        22
+      ],
+      "invalid_pages": [],
+      "set_aside": [],
+      "review_mismatches": []
+    }
+  ]
+}

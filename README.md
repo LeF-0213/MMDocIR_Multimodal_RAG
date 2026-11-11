@@ -26,7 +26,7 @@ PDF의 텍스트·표·수식·그림을 원본 위치와 연결하고, 검색 �
 | 실행 기록·전후 비교 | 파싱 시 기본 기록과 최근 호환 실행의 자동 비교. 공통 manifest·소스 diff·모델 파일·RSS·정답 기반 문장/위치/표 평가·JSON/Markdown 보고서. 실제 원문 품질 개선은 미측정 |
 | 기본 진입점 | 루트 `main.py`가 실행 설정을 읽어 HTTP·로컬 PDF 파싱·기록·자동 비교 실행. 모의 모델로 연속 실행 검증, 실제 신규 OCR 추론은 미수행 |
 | 실행 재개 | `main.py --resume`으로 중단된 실행의 유효 페이지를 재사용하고 남은 페이지만 `run.py`의 같은 처리 경로로 처리. 처음 실행에 고정한 비교 기준을 이어 씀. 모의 테스트만 확인. 이 기능 추가 전에 중단된 실행은 코드가 달라 재개 불가(새로 실행) |
-| 재파싱 | 병합 해제 후 VL 재파싱을 두 번 시도했으나 PC 메모리 부족(3페이지)·서버 정전(5페이지 이상)으로 중단. 개선 효과 미측정 |
+| 재파싱 | 병합 해제 후 VL·Structure 27페이지 재파싱 완료(컨테이너, VL은 한 번 중단 후 재개). VL 병합 그룹 22→0, 빈 text 블록 23→0, 규칙 검사 검토 페이지 14→3. bbox·라벨은 같음. Structure 블록 출력은 기준과 같음. 정답 대조는 미수행 ([재파싱 결과](docs/parsing_log/REPARSE_RESULT.md)) |
 | 청킹 | 레이아웃 블록 구조 기반 청킹 구현·실행. 기존 VL 190개·Structure 147개 청크, 미배정 블록 0, 512토큰 초과 0. 근거 보존은 미측정 ([구조 기반 청킹](docs/chunking/CHUNKING.md)) |
 | 이후 단계 | 임베딩·인덱스·검색·리랭킹·Recall@1·@3·@10 평가는 미구현 |
 
@@ -131,7 +131,8 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 │  │  └─ CHUNKING.md      # 구조 기반 청킹 설계·설정·실제 결과·한계
 │  └─ parsing_log/
 │     ├─ PARSING_REVIEW.md # 파서별·공통·텍스트층·저장 문제
-│     └─ PARSING_VALIDATION_PLAN.md # 품질 검증 구현 계획
+│     ├─ PARSING_VALIDATION_PLAN.md # 품질 검증 구현 계획
+│     └─ REPARSE_RESULT.md # 병합 해제 재파싱의 전후 비교 결과
 ├─ requirements.txt
 ├─ tests/
 │  ├─ test_parsing_quality.py # 기존 규칙 경계·CLI·원본 보존 검증
@@ -501,6 +502,7 @@ VLM/API 검토는 선택지로 유지하며 현재 검사에는 사용하지 않
 | [DATA_SPEC.md](docs/data/DATA_SPEC.md) | 선정 문서·페이지·관찰 특성 |
 | [PARSING_REVIEW.md](docs/parsing_log/PARSING_REVIEW.md) | VL·Structure별 문제, 공통·텍스트층·저장 문제, 이미지 API, 변경 기록·효과 측정 상태 |
 | [PARSING_VALIDATION_PLAN.md](docs/parsing_log/PARSING_VALIDATION_PLAN.md) | 공통 품질 검증 단계의 입력·출력, 규칙·원본 대조·재인식, 지표·완료 기준 |
+| [REPARSE_RESULT.md](docs/parsing_log/REPARSE_RESULT.md) | 병합 해제 재파싱의 실행 조건, VL·Structure 전후 비교, 남은 문제와 한계 |
 | [CODE_REVIEW_2026-11-06.md](docs/reviews/CODE_REVIEW_2026-11-06.md) | 코드 리뷰 지적 사항, 수정 내용과 검증, 남은 항목 |
 | [RAG_LEARNING_PLAN.md](docs/planning/RAG_LEARNING_PLAN.md) | 별도로 보존하는 기본 학습 커리큘럼 |
 | [AGENTS.md](AGENTS.md) | 탑다운 학습, 코드·주석·글쓰기, 하드코딩 금지, 파일 변경·커밋·푸시 규칙 |
