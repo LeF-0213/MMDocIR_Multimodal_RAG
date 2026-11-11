@@ -1,0 +1,396 @@
+{
+  "code_sha256": {
+    "common/__init__.py": "c2c9f12cc6310f7d84a98fa585b2943a51efed69bb708260526d65f2f413635a",
+    "common/files.py": "298c1f68e948e8ee41f895788014e83dcd1374642132c3e30625992a48a07a99",
+    "common/redaction.py": "b155c293493e1643807eb8aaf696ba89202c431d6a67c09653effccc29831c93",
+    "parsing/pdf_source.py": "ae6b549d218c0d4874d1be5ed726893a5cbd9eff6ae12f4ca468662e2245072e",
+    "parsing/quality_checks.py": "10a32b128a1ea5dd14a14029032a91ce1db34266cd74b383f329d06ac3a3c9b9",
+    "parsing/rerecognize.py": "a7a6a4329553c77ef224de60a89f8b5e6d5d4cf1a8bc05285884059bb2c49580"
+  },
+  "config": {
+    "channel_order": "bgr",
+    "generation_limit_tokens": 4096,
+    "input_run": "../outputs/parsing_vl_20261110T233124280038Z",
+    "limit_margin_tokens": 16,
+    "max_new_tokens": 4096,
+    "max_pixels": 1003520,
+    "min_pixels": 112896,
+    "model": {
+      "device": "cpu",
+      "model_dir": "~/.paddlex/official_models/PaddleOCR-VL-1.6",
+      "model_name": "PaddleOCR-VL-1.6-0.9B"
+    },
+    "output_root": "../outputs",
+    "prompts": {
+      "by_label": {
+        "chart": "Chart Recognition:"
+      },
+      "default": "OCR:"
+    },
+    "rejection_rules": [
+      "dominant_token",
+      "repeated_trigrams",
+      "long_number_sequence",
+      "output_length"
+    ],
+    "render_dpis": [
+      576
+    ],
+    "schema_version": "project.rerecognition.v1",
+    "unsupported_labels": [
+      "table",
+      "display_formula",
+      "inline_formula",
+      "formula",
+      "seal",
+      "spotting"
+    ]
+  },
+  "config_path": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/configs/rerecognition.json",
+  "config_sha256": "33893d4f4394f150327b90234e7ea383db46ad12a35a0bdbc38691dee1e377a0",
+  "environment": {
+    "packages": {
+      "numpy": "2.3.5",
+      "paddleocr": "3.7.0",
+      "paddlepaddle": "3.3.1",
+      "paddlex": "3.7.2",
+      "pillow": "13.0.0",
+      "pymupdf": "1.28.2",
+      "tokenizers": "0.23.3"
+    },
+    "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+    "python": "3.12.16 (main, Oct 26 2026, 14:08:45) [Clang 23.1.3 ]"
+  },
+  "input_run": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/outputs/parsing_vl_20261110T233124280038Z",
+  "input_run_json_sha256": "619be8a1d2595b508f7c08c0e4a822ead50ef187dfd71c8315f40be182ac3900",
+  "model": {
+    "device": "cpu",
+    "files": [
+      {
+        "path": ".cache/huggingface/.gitignore",
+        "sha256": "684888c0ebb17f374298b65ee2807526c066094c701bcc7ebbe1c1095f494fc1",
+        "size": 1
+      },
+      {
+        "path": ".cache/huggingface/CACHEDIR.TAG",
+        "sha256": "f6572428f6d5e1575e73a1502895a8731f10757dfbb634909c6e154b849af91d",
+        "size": 191
+      },
+      {
+        "path": ".cache/huggingface/download/.eval_results/real5_omnidocbench.yaml.lock",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": ".cache/huggingface/download/.eval_results/real5_omnidocbench.yaml.metadata",
+        "sha256": "d80cee988581cffdd50ea51d6aa29ad8c96026c42e75471348c75675fc97d054",
+        "size": 101
+      },
+      {
+        "path": ".cache/huggingface/download/.gitattributes.lock",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": ".cache/huggingface/download/.gitattributes.metadata",
+        "sha256": "e8ac6646495390f8477667ce6337d010ad09f41260bbd36b25397018ae4bfd1e",
+        "size": 101
+      },
+      {
+        "path": ".cache/huggingface/download/LICENSE.lock",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": ".cache/huggingface/download/LICENSE.metadata",
+        "sha256": "73bd08235f643638cfc0f15ce58679bc4295045cfb032592c30e0d1c1567f591",
+        "size": 101
+      },
+      {
+        "path": ".cache/huggingface/download/README.md.lock",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": ".cache/huggingface/download/README.md.metadata",
+        "sha256": "78be83f40e42b8bd45f1207f9b204a1a9a3664a368af9dab19cba26b86a12d48",
+        "size": 101
+      },
+      {
+        "path": ".cache/huggingface/download/added_tokens.json.lock",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": ".cache/huggingface/download/added_tokens.json.metadata",
+        "sha256": "ae1402251e263182571a9005ae2660b5ee68c5fd95afdb9f92720570b2ddf45b",
+        "size": 100
+      },
+      {
+        "path": ".cache/huggingface/download/chat_template.jinja.lock",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": ".cache/huggingface/download/chat_template.jinja.metadata",
+        "sha256": "6a5ed9665d9ee6df65bddd7379200f1d7e8dd092e878b4c8e9d8b26de526e28c",
+        "size": 101
+      },
+      {
+        "path": ".cache/huggingface/download/config.json.lock",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": ".cache/huggingface/download/config.json.metadata",
+        "sha256": "6b96cc6b26e9a461cd18ba4ee40f106b863d6749cd9b4d86df647a6685050542",
+        "size": 101
+      },
+      {
+        "path": ".cache/huggingface/download/configuration_paddleocr_vl.py.lock",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": ".cache/huggingface/download/configuration_paddleocr_vl.py.metadata",
+        "sha256": "1d497df38ea2cd43ce47f64cab9911548b4ffe7018b029b57c2d7ff3a2d46199",
+        "size": 101
+      },
+      {
+        "path": ".cache/huggingface/download/generation_config.json.lock",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": ".cache/huggingface/download/generation_config.json.metadata",
+        "sha256": "83212a156e9930eeed6391a98a2a937f4111e6a46bf7003b37d6c90111131c06",
+        "size": 101
+      },
+      {
+        "path": ".cache/huggingface/download/image_processing_paddleocr_vl.py.lock",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": ".cache/huggingface/download/image_processing_paddleocr_vl.py.metadata",
+        "sha256": "264112c91cebb35e2a29ac0ea9bf7b5476bd24b0a812a42acfe7198f0af6e2f3",
+        "size": 101
+      },
+      {
+        "path": ".cache/huggingface/download/inference.yml.lock",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": ".cache/huggingface/download/inference.yml.metadata",
+        "sha256": "2f3d40a46d6aa499447e5c520d6d055bc8dfab3963df412e9594d57ae1706121",
+        "size": 101
+      },
+      {
+        "path": ".cache/huggingface/download/model.safetensors.lock",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": ".cache/huggingface/download/model.safetensors.metadata",
+        "sha256": "c04f370073b0d1767886b22408d59de988d0ba6651aaf455f8881f2ecf59ecdf",
+        "size": 125
+      },
+      {
+        "path": ".cache/huggingface/download/modeling_paddleocr_vl.py.lock",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": ".cache/huggingface/download/modeling_paddleocr_vl.py.metadata",
+        "sha256": "b711532176514f0cfe47d76e3780c765b512b84d1080187691a28e0937dd697e",
+        "size": 101
+      },
+      {
+        "path": ".cache/huggingface/download/preprocessor_config.json.lock",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": ".cache/huggingface/download/preprocessor_config.json.metadata",
+        "sha256": "a75389d2156b6a9eded73d91aa3b5accc36e2a5e58771178cd0ecedd1d6f36a8",
+        "size": 100
+      },
+      {
+        "path": ".cache/huggingface/download/processing_paddleocr_vl.py.lock",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": ".cache/huggingface/download/processing_paddleocr_vl.py.metadata",
+        "sha256": "e50c5b4248e7669b6fe9c0f7ccd894c8708614395d85121e4d25b459b2a9a7b0",
+        "size": 100
+      },
+      {
+        "path": ".cache/huggingface/download/processor_config.json.lock",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": ".cache/huggingface/download/processor_config.json.metadata",
+        "sha256": "e233d03a827126fb366b53f8fa05716c88e4811c3b5984c599efa45f3d0aad86",
+        "size": 101
+      },
+      {
+        "path": ".cache/huggingface/download/special_tokens_map.json.lock",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": ".cache/huggingface/download/special_tokens_map.json.metadata",
+        "sha256": "3f99d832a05dd0c37f7ff313d46da12ee0accaf388a050e1f8616ee02d5f90b9",
+        "size": 99
+      },
+      {
+        "path": ".cache/huggingface/download/tokenizer.json.lock",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": ".cache/huggingface/download/tokenizer.json.metadata",
+        "sha256": "d0bbc2856bf2f54d6a141d7d5e5331438800d2177d5b23aac97aa33f70ee620d",
+        "size": 125
+      },
+      {
+        "path": ".cache/huggingface/download/tokenizer.model.lock",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": ".cache/huggingface/download/tokenizer.model.metadata",
+        "sha256": "6b61582770966bef297d7b38ac828d435bcfbbd656e1297026df8a627dd3d1d6",
+        "size": 125
+      },
+      {
+        "path": ".cache/huggingface/download/tokenizer_config.json.lock",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size": 0
+      },
+      {
+        "path": ".cache/huggingface/download/tokenizer_config.json.metadata",
+        "sha256": "158dbeb776ccb2adcaf82798baca43bb65fe82d7203f9ddf97a7be25a0d146d3",
+        "size": 101
+      },
+      {
+        "path": ".cache/huggingface/trees/132c45f52c0a26ed5a6b2f6bd8e3985794cc27dd.json",
+        "sha256": "3b92d96131bf1ad7ddf3be6f72e523d266a4edd6468aa95190ee4b360f01e517",
+        "size": 2771
+      },
+      {
+        "path": ".eval_results/real5_omnidocbench.yaml",
+        "sha256": "99219214a2793f849b55dc875a356917b8fc6d178455467e5a98e71a00689cf5",
+        "size": 1418
+      },
+      {
+        "path": ".gitattributes",
+        "sha256": "34448b82c17d60fec9b65b1f093c115ddbaadc04beb1b0140b6bfed2e012a930",
+        "size": 1570
+      },
+      {
+        "path": "LICENSE",
+        "sha256": "b8c4d7deccd236af023af1c88c4d4e8f0fc2f41914e0fb23a3ec9678fb5a8456",
+        "size": 11376
+      },
+      {
+        "path": "README.md",
+        "sha256": "d6c5b77a660577f6e18021defccd835bdc93a8c6538f5a479d597f3e94288abf",
+        "size": 21424
+      },
+      {
+        "path": "added_tokens.json",
+        "sha256": "f59f889088e0fe21c523e7cf121bb6dca3b0bb148cb7159fbb4572c74dfc5644",
+        "size": 25381
+      },
+      {
+        "path": "chat_template.jinja",
+        "sha256": "2f27812dab7f333e471884e0c803d807f11953d5453140dfb1aaba234f872bc8",
+        "size": 1474
+      },
+      {
+        "path": "config.json",
+        "sha256": "ce7f4565f8b1db78532ad5d1b9ebe55c2139d49bd4cb04778b580a08a598f171",
+        "size": 2059
+      },
+      {
+        "path": "configuration_paddleocr_vl.py",
+        "sha256": "753dd93654c3a9c8c85a3eaee1e3092dd12591b0f2dce0305e1abfb7a41ff160",
+        "size": 8104
+      },
+      {
+        "path": "generation_config.json",
+        "sha256": "a6701d78ab3b4d972307cdec3b69d4c13f46e0d5140514f50ab7d84259324b94",
+        "size": 133
+      },
+      {
+        "path": "image_processing_paddleocr_vl.py",
+        "sha256": "a4fa521b9cb16e207f94b7f2d16427771776dfc634420d319fc4916ee58049ec",
+        "size": 25032
+      },
+      {
+        "path": "inference.yml",
+        "sha256": "1587aece2d6442366efce34161d5f7d5f67f09ebfbf043168e5fade892c2780e",
+        "size": 43
+      },
+      {
+        "path": "model.safetensors",
+        "sha256": "85a479d506a11e724e7285d395c551be69f41dbc16b6342d3cacfb189aed71db",
+        "size": 1917255968
+      },
+      {
+        "path": "modeling_paddleocr_vl.py",
+        "sha256": "4b2f0c894be95b48fa6dcf18745b8307efe1290725a258f65c6c8b503b69c060",
+        "size": 110957
+      },
+      {
+        "path": "preprocessor_config.json",
+        "sha256": "111872ab1e8bb7fd040ac5087bfced7ab8f011f02139b088cba294964c3b1d0e",
+        "size": 641
+      },
+      {
+        "path": "processing_paddleocr_vl.py",
+        "sha256": "e29cb1e5f275f2bd3ce051bd5c9983a33894e693b2823a0e13d4c07c8c4f9e13",
+        "size": 12253
+      },
+      {
+        "path": "processor_config.json",
+        "sha256": "1568858960a9760c54431dae693a6152e601ff55cdf6d2eab97a4a99958faea0",
+        "size": 137
+      },
+      {
+        "path": "special_tokens_map.json",
+        "sha256": "d3a125c03103deb2acaf7730791bdbbf196f620e5a2213b664511ff9b4b25bab",
+        "size": 1151
+      },
+      {
+        "path": "tokenizer.json",
+        "sha256": "c8a215a59183d0d0781adc33bacd3ce6162716f7fd568fb30234a74d69803a7d",
+        "size": 11189060
+      },
+      {
+        "path": "tokenizer.model",
+        "sha256": "34ef7db83df785924fb83d7b887b6e822a031c56e15cff40aaf9b982988180df",
+        "size": 1614363
+      },
+      {
+        "path": "tokenizer_config.json",
+        "sha256": "1f979337347cc0cb72a6282d8a23ed183539aa81a87a906f022aee2bab83c7c5",
+        "size": 186947
+      }
+    ],
+    "model_dir": "~/.paddlex/official_models/PaddleOCR-VL-1.6",
+    "model_name": "PaddleOCR-VL-1.6-0.9B",
+    "resolved_model_dir": "/home/yeeun-hwang/.paddlex/official_models/PaddleOCR-VL-1.6"
+  },
+  "quality_rule_version": "0.3.0",
+  "schema_version": "project.rerecognition.v1",
+  "started_at_utc": "2026-11-11T10:11:44.801470+00:00",
+  "tokenizer": {
+    "path": "/home/yeeun-hwang/.paddlex/official_models/PaddleOCR-VL-1.6/tokenizer.json",
+    "sha256": "c8a215a59183d0d0781adc33bacd3ce6162716f7fd568fb30234a74d69803a7d"
+  }
+}

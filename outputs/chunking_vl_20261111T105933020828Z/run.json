@@ -1,0 +1,127 @@
+{
+  "code_sha256": {
+    "chunking/__init__.py": "b10674192a52ffadc3bd8e18e95526cddbdbeb7b8cacae00b34704ca466439d8",
+    "chunking/run.py": "32255b6824140a559281bf272e8d1bdcfc469bcdc35e9423428b69a380c9228a",
+    "chunking/structure.py": "15fb50c03f9669545a4b79f927267d35fdd86bb55077f4186524ea7b9d42e7b6",
+    "chunking/tables.py": "c20aba2e1e947ec4767c2645255bef5e608611b1daf529949d5f20173e2e94ce",
+    "chunking/tokens.py": "0a6a9a047646b3d988b0fd5b68d98a2c2365e55c4cd278a8f2cf91ff201cdd6d",
+    "common/__init__.py": "c2c9f12cc6310f7d84a98fa585b2943a51efed69bb708260526d65f2f413635a",
+    "common/files.py": "298c1f68e948e8ee41f895788014e83dcd1374642132c3e30625992a48a07a99",
+    "common/redaction.py": "b155c293493e1643807eb8aaf696ba89202c431d6a67c09653effccc29831c93",
+    "parsing/pdf_source.py": "ae6b549d218c0d4874d1be5ed726893a5cbd9eff6ae12f4ca468662e2245072e",
+    "parsing/quality_checks.py": "c37747b8260d1bf43538dd1cfca23c98e71665bc11d156b1c3085a50489a4875"
+  },
+  "config": {
+    "caption_max_gap_points": 72,
+    "flag_rules": [
+      "dominant_token",
+      "repeated_trigrams",
+      "long_number_sequence",
+      "output_length",
+      "merged_content_scope",
+      "table_grid",
+      "table_structure_limit"
+    ],
+    "input_runs": [
+      "../outputs/parsing_vl_20261110T233124280038Z",
+      "../outputs/parsing_structure_20261111T073737685789Z"
+    ],
+    "kind_markers": {
+      "caption": "Caption:",
+      "chart": "[Chart]",
+      "table": "[Table]",
+      "visual": "[Figure]"
+    },
+    "labels": {
+      "caption": [
+        "figure_title"
+      ],
+      "chart": [
+        "chart"
+      ],
+      "excluded": [
+        "header",
+        "footer",
+        "number",
+        "formula_number",
+        "header_image"
+      ],
+      "table": [
+        "table"
+      ],
+      "text": [
+        "text",
+        "aside_text",
+        "vertical_text",
+        "footnote",
+        "vision_footnote",
+        "display_formula",
+        "formula"
+      ],
+      "title_levels": [
+        [
+          "doc_title"
+        ],
+        [
+          "paragraph_title"
+        ]
+      ],
+      "visual": [
+        "image"
+      ]
+    },
+    "max_tokens": 512,
+    "output_root": "../outputs",
+    "overlap_tokens": 0,
+    "rerecognition_runs": [
+      "../outputs/rerecognition_vl_20261111T101144801007Z"
+    ],
+    "schema_version": "project.chunking.v1",
+    "selection": "selection.json",
+    "table_header_rows_without_th": 1,
+    "tokenizer": {
+      "add_special_tokens": true,
+      "model_config_file": "config.json",
+      "repo_id": "Qwen/Qwen3-Embedding-8B",
+      "revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+      "tokenizer_file": "tokenizer.json"
+    }
+  },
+  "config_path": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/configs/chunking.json",
+  "config_sha256": "48e08cab110704f4cc4bd5bea12932000a5262da5fbf1c336921d662c9c810e3",
+  "environment": {
+    "packages": {
+      "huggingface_hub": "2.4.0",
+      "tokenizers": "0.23.3"
+    },
+    "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+    "python": "3.12.16 (main, Oct 26 2026, 14:08:45) [Clang 23.1.3 ]"
+  },
+  "input_parser": "vl",
+  "input_run": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/outputs/parsing_vl_20261110T233124280038Z",
+  "input_run_json_sha256": "619be8a1d2595b508f7c08c0e4a822ead50ef187dfd71c8315f40be182ac3900",
+  "quality_rule_version": "0.3.0",
+  "rerecognition": {
+    "blocks": 3,
+    "blocks_jsonl_sha256": "5506f3f2d48d1e4dc0579e3556167f876858f1d4d6837ba70d06bad83c4f6d4a",
+    "path": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/outputs/rerecognition_vl_20261111T101144801007Z",
+    "run_json_sha256": "163675ffd17a78aef8c1f719b490381b07c4fd97150ea390065ae804ab41a15b"
+  },
+  "schema_version": "project.chunking.v1",
+  "selection_path": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/configs/selection.json",
+  "selection_sha256": "b24291db394bae2500e1382b9d8647716a6a6187e750f7b7bfe9e76052c2c261",
+  "started_at_utc": "2026-11-11T10:59:33.020985+00:00",
+  "strategy": "layout_structure",
+  "tokenizer": {
+    "add_special_tokens": true,
+    "model_config_file": "config.json",
+    "model_config_sha256": "dcccf7c7890c8debc4af8dace8d6acd8dd50bd56d50d4d8b60529381ba3de3d7",
+    "model_position_limit": 40960,
+    "repo_id": "Qwen/Qwen3-Embedding-8B",
+    "revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+    "special_tokens_per_input": 1,
+    "tokenizer_file": "tokenizer.json",
+    "tokenizer_sha256": "83cdf8c3a34f68862319cb1810ee7b1e2c0a44e0864ae930194ddb76bb7feb8d",
+    "weights_downloaded": false
+  }
+}

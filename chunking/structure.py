@@ -1,7 +1,8 @@
 """페이지 하나의 레이아웃 블록을 구조 기반 청크로 나누는 모듈이다. 파일 입출력은 하지 않는다.
 
 전체 위치: chunking/run.py가 페이지 JSON을 읽어 이 모듈의 build_page_chunks()에 넘긴다.
-입력: 페이지 기록(parsing.blocks), 청킹 설정, 토큰 측정기(tokens.TokenCounter), 블록별 검사 신호.
+입력: 페이지 기록(parsing.blocks), 청킹 설정, 토큰 측정기(tokens.TokenCounter), 블록별 검사 신호,
+      선택적 재인식 처리(overrides: 채택 블록의 대체 글자, 복구하지 못한 블록의 제외 사유).
 출력: 청크 목록, 제외 블록 목록(사유 포함), 페이지 통계.
 
 처리 순서
@@ -48,6 +49,10 @@ class Block:
     data: dict
     text: str
     flags: set
+    # 청크에 쓸 원래 내용이다. 재인식으로 대체한 블록은 data["content"]가 아니라 대체 글자다.
+    content: str = ""
+    # 대체 글자의 출처다. 파싱 결과를 그대로 쓰면 None이다.
+    replacement: dict | None = None
     captions: list = field(default_factory=list)
 
     @property
@@ -101,11 +106,14 @@ def _vertical_gap(a, b) -> float:
 class PageChunker:
     """페이지 하나를 처리하는 동안의 설정·측정기·결과를 묶는다. 페이지마다 새로 만든다."""
 
-    def __init__(self, record: dict, settings: dict, counter, flags_by_element: dict):
+    def __init__(self, record: dict, settings: dict, counter, flags_by_element: dict,
+                 overrides: dict | None = None):
         self.record = record
         self.settings = settings
         self.counter = counter
         self.flags_by_element = flags_by_element
+        # {element_id: {"content": 대체 글자, "source": 출처}} 또는 {element_id: {"exclude": 사유, "source": 출처}}
+        self.overrides = overrides or {}
         self.roles = label_roles(settings["labels"])
         self.markers = settings["kind_markers"]
         self.max_tokens = settings["max_tokens"]
@@ -128,19 +136,28 @@ class PageChunker:
             if role == "excluded":
                 self.exclude(data, "excluded_label")
                 continue
-            raw = data["content"]
+            override = self.overrides.get(data["element_id"])
+            if override and "exclude" in override:
+                # 생성 한도에서 잘린 반복 출력을 복구하지 못한 블록이다. 지우지 않고 사유·출처를 남긴다.
+                self.exclude(data, override["exclude"], override["source"])
+                continue
+            raw = override["content"] if override else data["content"]
             text = raw if role == "table" else IMAGE_TAG.sub(" ", raw).strip()
             if not text.strip() and role != "visual":
                 # VL 병합 인식에서는 내용이 같은 그룹의 다른 블록에 들어가 빈 블록이 남는다.
                 self.exclude(data, "empty_content")
                 continue
             flags = set(self.flags_by_element.get(data["element_id"], ()))
-            blocks.append(Block(order, role, level, data, text, flags))
+            blocks.append(Block(order, role, level, data, text, flags, content=raw,
+                                replacement=override["source"] if override else None))
         return blocks
 
-    def exclude(self, data: dict, reason: str):
-        self.excluded.append({"element_id": data["element_id"], "label": data["label"], "reason": reason,
-                              "characters": len(data.get("content") or "")})
+    def exclude(self, data: dict, reason: str, source: dict | None = None):
+        item = {"element_id": data["element_id"], "label": data["label"], "reason": reason,
+                "characters": len(data.get("content") or "")}
+        if source is not None:
+            item["rerecognition"] = source
+        self.excluded.append(item)
 
     # 2. 캡션 연결 ---------------------------------------------------------------
     def attach_captions(self, blocks: list[Block]) -> list[Block]:
@@ -284,7 +301,7 @@ class PageChunker:
 
     def emit_structured(self, block: Block, headings: list[Block]):
         """표·차트는 행 단위로, 그림은 줄 단위로 나눈다. 앞머리(제목·캡션·종류 표시)는 조각마다 반복한다."""
-        content = block.data["content"]
+        content = block.content
         table = None
         if block.role == "table":
             table = html_table_rows(content, self.settings["table_header_rows_without_th"])
@@ -347,20 +364,25 @@ class PageChunker:
             "caption_element_ids": [c.element_id for c in structured.captions] if structured else [],
             "blocks": [{"element_id": b.element_id, "label": b.data["label"], "role": b.role,
                         "bbox_pdf_points": b.data.get("bbox_pdf_points"),
-                        "bbox_image_pixels": b.data.get("bbox_image_pixels")} for b in members],
+                        "bbox_image_pixels": b.data.get("bbox_image_pixels"),
+                        "content_source": "rerecognition" if b.replacement else "parsing",
+                        **({"rerecognition": b.replacement} if b.replacement else {})} for b in members],
             "flags": sorted(flags),
             **extra,
         })
 
 
 def build_page_chunks(record: dict, settings: dict, counter, flags_by_element: dict,
-                      parser_tag: str) -> tuple[list[dict], list[dict], dict]:
-    """페이지 하나의 청크·제외 블록·통계를 반환한다. 청크 ID는 페이지 안 순번으로 만든다."""
+                      parser_tag: str, overrides: dict | None = None) -> tuple[list[dict], list[dict], dict]:
+    """페이지 하나의 청크·제외 블록·통계를 반환한다. 청크 ID는 페이지 안 순번으로 만든다.
+
+    overrides는 재인식 결과다. 채택된 블록은 대체 글자로, 복구하지 못한 블록은 제외 기록으로 처리한다.
+    """
     parsing = record.get("parsing") or {}
     if record.get("status") not in PARSED_STATUSES or parsing.get("status") not in PARSED_STATUSES:
         return [], [{"element_id": None, "label": None, "characters": 0,
                      "reason": f"page_not_parsed: {record.get('status')}/{parsing.get('status')}"}], {}
-    chunker = PageChunker(record, settings, counter, flags_by_element)
+    chunker = PageChunker(record, settings, counter, flags_by_element, overrides)
     chunker.build()
     # 읽기 순서를 따라 만든 순서 그대로 번호를 붙인다. 제목 단독 청크는 맨 뒤에 온다.
     for index, chunk in enumerate(chunker.chunks):

@@ -4,8 +4,10 @@
 페이지 JSON·파싱 실행 폴더는 테스트 안에서 만들고, 실제 결과 경로·개수를 고정하지 않는다.
 """
 
-# 표준 라이브러리: copy는 설정 변형, Path·tempfile은 임시 실행 폴더, unittest·mock은 테스트와 측정기 대체다.
+# 표준 라이브러리: copy는 설정 변형, json은 결과 JSONL 읽기·쓰기, Path·tempfile은 임시 실행 폴더,
+# unittest·mock은 테스트와 측정기 대체다.
 import copy
+import json
 from pathlib import Path
 import tempfile
 import unittest
@@ -172,7 +174,8 @@ class RunTests(unittest.TestCase):
         write_json(run / "documents" / doc_id / "page_00001.json", record)
         write_json(root / "selection.json", {"page_numbering": "pdf_viewer_1_based",
                                              "documents": [{"document_name": "synthetic", "page_numbers": [1, 2]}]})
-        config = {"schema_version": "project.chunking.v1", "input_runs": [str(run)], "selection": "selection.json",
+        config = {"schema_version": "project.chunking.v1", "input_runs": [str(run)], "rerecognition_runs": [],
+                  "selection": "selection.json",
                   "output_root": "out", "tokenizer": {"repo_id": "synthetic", "revision": "synthetic",
                   "tokenizer_file": "tokenizer.json", "model_config_file": "config.json", "add_special_tokens": True},
                   "flag_rules": ["dominant_token"], **copy.deepcopy(settings())}
@@ -196,6 +199,85 @@ class RunTests(unittest.TestCase):
             lines = (output / "chunks.jsonl").read_text(encoding="utf-8").splitlines()
             self.assertEqual(len(lines), summary["chunks"]["total"])
             self.assertEqual(read_json(output / "run.json")["tokenizer"]["weights_downloaded"], False)
+
+    def write_rerecognition(self, root, run, statuses):
+        """입력 실행 run.json 해시를 가진 재인식 결과 폴더를 만든다. statuses는 {블록 번호: 상태}다."""
+        folder = root / "rerecognition_vl_fixture"; folder.mkdir()
+        write_json(folder / "run.json", {"input_run_json_sha256": file_hash(run / "run.json")})
+        page_path = next((run / "documents").glob("*/page_00001.json"))
+        record = read_json(page_path)
+        rows = []
+        for index, status in statuses.items():
+            block_data = record["parsing"]["blocks"][index]
+            accepted = status == "accepted"
+            rows.append({"element_id": block_data["element_id"], "label": block_data["label"], "status": status,
+                         "page_json": page_path.relative_to(run).as_posix(), "page_json_sha256": file_hash(page_path),
+                         "original": {"content_sha256": digest(block_data["content"].encode("utf-8"))},
+                         "attempts": [{"dpi": 576, "accepted": accepted}],
+                         "content": "Recovered sentence." if accepted else None,
+                         "content_sha256": digest(b"Recovered sentence.") if accepted else None})
+        (folder / "blocks.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows), encoding="utf-8")
+        config = read_json(root / "chunking.json"); (root / "chunking.json").unlink()
+        write_json(root / "chunking.json", {**config, "rerecognition_runs": [str(folder)]})
+        return folder, page_path
+
+    def run_chunking(self, root):
+        from chunking.run import main
+        with patch("chunking.tokens.TokenCounter", return_value=WordCounter()):
+            code = main(["--config", str(root / "chunking.json")])
+        output = next((root / "out").glob("chunking_vl_*"))
+        chunks = [json.loads(line) for line in
+                  (output / "chunks.jsonl").read_text(encoding="utf-8").splitlines()]
+        excluded = [json.loads(line) for line in
+                    (output / "excluded.jsonl").read_text(encoding="utf-8").splitlines()]
+        return code, chunks, excluded, read_json(output / "summary.json")
+
+    def test_accepted_rerecognition_replaces_text_and_records_source(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); run = self.make_inputs(root)
+            before = {p: file_hash(p) for p in run.rglob("*") if p.is_file()}
+            self.write_rerecognition(root, run, {1: "accepted"})
+            _, chunks, _, summary = self.run_chunking(root)
+            body = next(c for c in chunks if c["kind"] == "text" and "Recovered sentence." in c["text"])
+            self.assertNotIn("Body text.", body["text"])
+            source = next(b for b in body["blocks"] if b["content_source"] == "rerecognition")
+            self.assertEqual(source["rerecognition"]["dpi"], 576)
+            self.assertEqual(summary["rerecognition"]["replaced"], 1)
+            self.assertEqual(summary["blocks"]["unassigned"], [])
+            # 원래 페이지 JSON은 바꾸지 않는다.
+            self.assertEqual(before, {p: file_hash(p) for p in run.rglob("*") if p.is_file()})
+
+    def test_unrecovered_block_is_excluded_with_reason_not_dropped(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); run = self.make_inputs(root)
+            self.write_rerecognition(root, run, {1: "unresolved"})
+            _, chunks, excluded, summary = self.run_chunking(root)
+            self.assertFalse(any("Body text." in c["text"] for c in chunks))
+            item = next(e for e in excluded if e["reason"] == "generation_limit_unrecovered")
+            self.assertEqual(item["rerecognition"]["status"], "unresolved")
+            self.assertEqual(summary["rerecognition"]["excluded"], 1)
+            self.assertEqual(summary["blocks"]["unassigned"], [])
+
+    def test_rerecognition_of_other_run_or_changed_page_is_not_applied(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); run = self.make_inputs(root)
+            folder, page_path = self.write_rerecognition(root, run, {1: "accepted"})
+            # 다른 실행의 결과(run.json 해시 불일치)는 적용하지 않는다.
+            (folder / "run.json").unlink(); write_json(folder / "run.json", {"input_run_json_sha256": "0" * 64})
+            _, chunks, _, summary = self.run_chunking(root)
+            self.assertIsNone(summary["rerecognition"])
+            self.assertTrue(any("Body text." in c["text"] for c in chunks))
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); run = self.make_inputs(root)
+            _, page_path = self.write_rerecognition(root, run, {1: "accepted"})
+            # 재인식 이후 페이지 JSON이 바뀌면 거부한다.
+            record = read_json(page_path); page_path.unlink(); record["status"] = "ok"; record["note"] = "changed"
+            write_json(page_path, record)
+            from chunking.run import main
+            with patch("chunking.tokens.TokenCounter", return_value=WordCounter()):
+                with self.assertRaises(SystemExit) as raised:
+                    main(["--config", str(root / "chunking.json")])
+            self.assertEqual(raised.exception.code, 2)
 
     def test_check_creates_nothing(self):
         from chunking.run import main

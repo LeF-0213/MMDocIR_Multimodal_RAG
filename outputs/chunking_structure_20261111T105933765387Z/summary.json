@@ -1,0 +1,237 @@
+{
+  "blocks": {
+    "excluded": 54,
+    "heading_only": 48,
+    "in_chunks": 282,
+    "total": 384,
+    "unassigned": []
+  },
+  "captions_as_text": 0,
+  "captions_attached": 21,
+  "chunks": {
+    "by_flag": {
+      "long_number_sequence": 4,
+      "table_grid": 12,
+      "table_structure_limit": 6,
+      "title_only": 12
+    },
+    "by_kind": {
+      "chart": 9,
+      "table": 26,
+      "text": 81,
+      "visual": 31
+    },
+    "flagged": 28,
+    "split_groups": 13,
+    "total": 147
+  },
+  "elapsed_seconds": 0.6245886270044139,
+  "excluded_by_reason": {
+    "empty_visual": 6,
+    "excluded_label": 48
+  },
+  "finished_at_utc": "2026-11-11T10:59:34.389500+00:00",
+  "hard_splits": 0,
+  "input_parser": "structure",
+  "input_run": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/outputs/parsing_structure_20261111T073737685789Z",
+  "output_dir": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/outputs/chunking_structure_20261111T105933765387Z",
+  "pages": {
+    "chunked": 27,
+    "missing": [],
+    "quality_flags_unavailable": 0,
+    "selected": 27,
+    "unreadable": []
+  },
+  "per_page": [
+    {
+      "chunks": 7,
+      "excluded": 3,
+      "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p1",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 3,
+      "excluded": 3,
+      "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p3",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 4,
+      "excluded": 3,
+      "page_id": "3afd24a8ec589157f414f587ae100795b54063144a228a08c69a792cb5dae943:p11",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 3,
+      "excluded": 0,
+      "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p4",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 5,
+      "excluded": 0,
+      "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p6",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 2,
+      "excluded": 2,
+      "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p8",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 1,
+      "excluded": 0,
+      "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p10",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 1,
+      "excluded": 0,
+      "page_id": "670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82:p15",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 4,
+      "excluded": 2,
+      "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p8",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 2,
+      "excluded": 2,
+      "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p9",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 5,
+      "excluded": 2,
+      "page_id": "772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36:p15",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 4,
+      "excluded": 4,
+      "page_id": "86582f690906603c36f8bc08266640f92e879b79b7bcdaaadb16bcc23823f87f:p5",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 4,
+      "excluded": 2,
+      "page_id": "86582f690906603c36f8bc08266640f92e879b79b7bcdaaadb16bcc23823f87f:p13",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 4,
+      "excluded": 1,
+      "page_id": "de7c2798d40a0c5c32b38e3ba65c0e70f93ab1ddad234a554ed74afa49ccf9b1:p3",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 3,
+      "excluded": 1,
+      "page_id": "de7c2798d40a0c5c32b38e3ba65c0e70f93ab1ddad234a554ed74afa49ccf9b1:p4",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 6,
+      "excluded": 1,
+      "page_id": "de7c2798d40a0c5c32b38e3ba65c0e70f93ab1ddad234a554ed74afa49ccf9b1:p6",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 6,
+      "excluded": 0,
+      "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p16",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 2,
+      "excluded": 0,
+      "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p29",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 5,
+      "excluded": 0,
+      "page_id": "ac872a5944c3fee80291f9ef0581226c119b4efd54d57298a2a3e40f2aa754c2:p40",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 8,
+      "excluded": 1,
+      "page_id": "f720ceb61ed6bba34910a9a02ea9d7df4767a4163c19a55b61300cb8e3b08c7a:p8",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 12,
+      "excluded": 0,
+      "page_id": "2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298:p2",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 14,
+      "excluded": 10,
+      "page_id": "2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298:p7",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 7,
+      "excluded": 8,
+      "page_id": "2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298:p21",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 13,
+      "excluded": 4,
+      "page_id": "2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298:p32",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 14,
+      "excluded": 2,
+      "page_id": "2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298:p34",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 4,
+      "excluded": 1,
+      "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p9",
+      "quality_flags": "inspected"
+    },
+    {
+      "chunks": 4,
+      "excluded": 2,
+      "page_id": "d1df921242ee22ac749ee6e7cffd6977509b73ab4ff533b6d22c5821646e1a9a:p22",
+      "quality_flags": "inspected"
+    }
+  ],
+  "rerecognition": null,
+  "schema_version": "project.chunking.v1",
+  "status": "completed",
+  "table_parse_failures": 0,
+  "title_only_chunks": 12,
+  "tokens": {
+    "all": {
+      "count": 147,
+      "max": 510,
+      "median": 147,
+      "min": 2,
+      "p90": 475.6,
+      "total": 29293
+    },
+    "max_tokens": 512,
+    "model_position_limit": 40960,
+    "over_max_tokens": 0,
+    "over_model_limit": 0,
+    "unflagged": {
+      "count": 119,
+      "max": 510,
+      "median": 146,
+      "min": 10,
+      "p90": 442.0,
+      "total": 22377
+    }
+  },
+  "unmapped_labels": {}
+}
