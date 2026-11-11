@@ -6,9 +6,10 @@
 실제 결과 경로·해시·개수를 고정하지 않고, 모든 PDF·설정은 임시 폴더에서 만든다.
 """
 
-# 표준 라이브러리: Path·tempfile은 임시 실행 폴더, SimpleNamespace·mock은 모델 없는 객체와
-# 호출 횟수 확인, unittest는 테스트 구성을 맡는다.
+# 표준 라이브러리: Path·tempfile은 임시 실행 폴더, shutil은 끊긴 실행에 없을 비교 보고서 폴더 삭제,
+# SimpleNamespace·mock은 모델 없는 객체와 호출 횟수 확인, unittest는 테스트 구성을 맡는다.
 from pathlib import Path
+import shutil
 import tempfile
 from types import SimpleNamespace
 import unittest
@@ -55,10 +56,13 @@ def write_pdf(path, pages, text):
 
 
 class ResumeFixture:
-    """정상 실행 → 전원 차단 상태 재현까지 준비한다."""
+    """정상 실행 → 전원 차단 상태 재현까지 준비한다.
 
-    def __init__(self, root):
-        from experiments.parsing_stage import main as parsing_main
+    with_baseline이면 실행 폴더와 다른 상위 폴더에 기준 실행을 먼저 만들고, 중단될 실행은
+    --compare-baseline으로 그 기준을 지정한다. 다른 상위 폴더라서 자동 선택으로는 찾을 수 없다.
+    """
+
+    def __init__(self, root, *, with_baseline=False):
         self.root = root
         (root / "source.py").write_text("value = 1\n")
         self.inputs = root / "inputs"; self.inputs.mkdir()
@@ -69,25 +73,35 @@ class ResumeFixture:
             {"document_name": INTERRUPTED_DOCUMENT, "page_numbers": [1, 2]},
             {"document_name": COMPLETED_DOCUMENT, "page_numbers": [1]}]})
         self.config = root / "record.json"; write_json(self.config, record_config(root))
+        self.baseline = root / "baselines" / "baseline" if with_baseline else None
+        if self.baseline:
+            self.parse(self.baseline, "--no-auto-compare")
         self.run = root / "runs" / "run"
-        with patch("parsing.vl_parser.build_parser", return_value=fake_parser()):
-            result = parsing_main(["--pdf-directory", str(self.inputs), "--selection", str(self.selection),
-                                   "--output-dir", str(self.run), "--experiment-config", str(self.config),
-                                   "--no-auto-compare"])
-        assert result == 0
+        self.parse(self.run, *(["--compare-baseline", str(self.baseline)] if self.baseline else ["--no-auto-compare"]))
         self.interrupted = self.run / "documents" / digest(INTERRUPTED_DOCUMENT.encode("utf-8"))
         self.completed = self.run / "documents" / digest(COMPLETED_DOCUMENT.encode("utf-8"))
-        # 전원 차단: 종료 기록이 없고, 첫 문서는 2페이지 PNG만 저장된 채 끊겼다.
+        # 전원 차단: 종료 기록·비교 보고서가 없고, 첫 문서는 2페이지 PNG만 저장된 채 끊겼다.
         for name in ("summary.json", FINISHED_FILE, "auto_comparison.json"):
             (self.run / name).unlink()
+        if self.baseline:
+            shutil.rmtree(self.run.with_name(self.run.name + "_comparison"))
         for name in ("document.json", "review_vl.pdf", "page_00002.json"):
             (self.interrupted / name).unlink()
 
-    def resume(self, *extra):
+    def parse(self, output, *comparison):
+        from experiments.parsing_stage import main as parsing_main
+        with patch("parsing.vl_parser.build_parser", return_value=fake_parser()):
+            result = parsing_main(["--pdf-directory", str(self.inputs), "--selection", str(self.selection),
+                                   "--output-dir", str(output), "--experiment-config", str(self.config),
+                                   *comparison])
+        assert result == 0
+
+    def resume(self, *extra, auto_compare=False):
         from experiments.resume_stage import main as resume_main
         parser = fake_parser()
+        comparison = [] if auto_compare else ["--no-auto-compare"]
         with patch("parsing.vl_parser.build_parser", return_value=parser):
-            result = resume_main(["--run-dir", str(self.run), "--no-auto-compare", *extra])
+            result = resume_main(["--run-dir", str(self.run), *comparison, *extra])
         return result, parser
 
 
@@ -181,6 +195,34 @@ class ResumeTests(unittest.TestCase):
                 self.assertEqual(resume_main(["--run-dir", str(fixture.run), "--check", "--no-auto-compare"]), 0)
             build.assert_not_called()
             self.assertEqual(before, {p: file_hash(p) for p in fixture.run.rglob("*") if p.is_file()})
+
+    def test_original_baseline_is_kept_when_resuming(self):
+        # 처음 지정한 기준은 자동 선택 범위 밖에 있다. 재개가 계획을 잃으면 비교를 건너뛴다.
+        with tempfile.TemporaryDirectory() as directory:
+            fixture = ResumeFixture(Path(directory), with_baseline=True)
+            result, _ = fixture.resume(auto_compare=True)
+            self.assertEqual(result, 0)
+            report = read_json(fixture.run / "auto_comparison.json")
+            self.assertEqual(report["status"], "completed")
+            self.assertEqual(report["mode"], "restored")
+            self.assertEqual(report["restored"]["original_mode"], "explicit")
+            self.assertEqual(Path(report["baseline"]), fixture.baseline.resolve())
+            self.assertTrue(Path(report["report_files"]["comparison.json"]["path"]).is_file())
+
+    def test_changed_baseline_skips_comparison_but_still_resumes(self):
+        # 중단 사이에 기준의 메타데이터가 바뀌면 다른 내용과 비교하게 되므로 비교만 생략한다.
+        with tempfile.TemporaryDirectory() as directory:
+            fixture = ResumeFixture(Path(directory), with_baseline=True)
+            path = fixture.baseline / "summary.json"
+            summary = read_json(path); path.unlink()
+            write_json(path, {**summary, "note": "changed after start"})
+            result, parser = fixture.resume(auto_compare=True)
+            self.assertEqual(result, 0)
+            self.assertEqual(parser.predict.call_count, 1)
+            report = read_json(fixture.run / "auto_comparison.json")
+            self.assertEqual(report["status"], "skipped")
+            self.assertEqual(report["mode"], "restored")
+            self.assertFalse(fixture.run.with_name(fixture.run.name + "_comparison").exists())
 
 
 class ResumeRecordTests(unittest.TestCase):
