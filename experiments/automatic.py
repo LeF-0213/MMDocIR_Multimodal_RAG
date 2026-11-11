@@ -4,9 +4,12 @@
 파서·선정 범위가 같은 최근 실행을 찾으며 모델이나 정답을 추정하지 않는다.
 종료 후 보고서는 입력 폴더 밖에 만들고, 비교 상태는 현재 실행 안에 따로 남긴다.
 기록·추론 구간을 닫은 뒤 실행하므로 보고서 생성 비용은 파싱 자원 측정에 포함하지 않는다.
+재개할 때는 restore_comparison이 중단 전 run.json에 고정한 계획을 다시 적용한다.
 """
 
-# 표준 라이브러리: datetime은 기록된 UTC 시각 정렬, pathlib는 입력·출력 경계를 확인한다.
+# 표준 라이브러리: argparse는 재개용 인자 사본(Namespace) 생성, datetime은 기록된 UTC 시각 정렬,
+# pathlib는 입력·출력 경계를 확인한다.
+import argparse
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -60,12 +63,18 @@ def _evidence(root):
             if (root / name).is_file()}
 
 
+def _base_plan(args, mode):
+    """비교 계획의 공통 필드다. mode는 기준을 정한 방법(explicit·latest_compatible_sibling·restored)이다."""
+    candidate = args.output_dir.resolve()
+    return {"schema_version": AUTO_COMPARISON_SCHEMA, "status": "pending", "candidate": str(candidate),
+            "mode": mode, "baseline": None, "search_root": str(candidate.parent),
+            "all_pages": args.all_pages, "ignored": []}
+
+
 def prepare_comparison(args, selection):
     """파일 생성·모델 로딩 전에 대상·출력·정답을 검증한다. 자동 선택의 근거도 반환한다."""
     candidate = args.output_dir.resolve()
-    plan = {"schema_version": AUTO_COMPARISON_SCHEMA, "status": "pending", "candidate": str(candidate),
-            "mode": "explicit" if args.compare_baseline else "latest_compatible_sibling",
-            "baseline": None, "search_root": str(candidate.parent), "all_pages": args.all_pages, "ignored": []}
+    plan = _base_plan(args, "explicit" if args.compare_baseline else "latest_compatible_sibling")
     if args.no_auto_compare:
         return {**plan, "status": "disabled", "reason": "--no-auto-compare 지정"}
     if args.comparison_gold:
@@ -122,6 +131,39 @@ def prepare_comparison(args, selection):
         raise FileExistsError(f"비교 보고서 폴더가 이미 있습니다: {output}")
     return {**plan, "baseline": str(baseline), "baseline_evidence": _evidence(baseline),
             "output_dir": str(output)}
+
+
+def restore_comparison(original, args, selection):
+    """중단 전 run.json에 고정한 비교 계획을 재개 세그먼트에 다시 적용한다. 파일은 읽기만 한다.
+
+    입력 original은 처음 실행이 추론 전에 저장한 계획(run.json의 automatic_comparison)이다.
+    시작할 때 기준을 고정한다는 원칙을 재개에도 지킨다. 자동 선택으로 골랐던 기준도 다시 찾지 않는다.
+    중단 사이에 더 최근 실행이 생겨도 그 실행으로 바뀌지 않게 하려는 것이다.
+    고정한 기준이 사라졌거나 메타데이터 해시가 달라졌으면 다른 내용과 비교하게 되므로 비교를 생략한다.
+    이때 파싱 재개는 막지 않는다. 정답·보고서 폴더는 재개 CLI에서 지정한 값이 있으면 그 값을 쓴다.
+    """
+    restored = {"source": "run.json", "original_mode": original.get("mode"),
+                "original_status": original.get("status")}
+    plan = {**_base_plan(args, "restored"), "restored": restored}
+    if original.get("status") == "disabled":
+        return {**plan, "status": "disabled", "reason": "중단 전 실행에서 자동 비교를 껐음"}
+    if original.get("status") != "pending" or not original.get("baseline"):
+        # 시작할 때 기준이 없어 생략했던 계획이다. 지금 다시 찾으면 고정 원칙이 깨지므로 생략을 잇는다.
+        return {**plan, "status": "skipped",
+                "reason": f"중단 전 시작 시 비교 기준 없음: {original.get('reason')}"}
+    baseline = Path(original["baseline"])
+    if not baseline.is_dir() or _evidence(baseline) != original.get("baseline_evidence"):
+        return {**plan, "status": "skipped", "baseline": str(baseline),
+                "reason": "중단 전 고정한 기준 실행이 없거나 메타데이터가 바뀌었습니다."}
+    # 원래 인자를 바꾸지 않도록 사본에 고정 기준을 넣고, 검증은 새 실행과 같은 prepare_comparison에 맡긴다.
+    options = argparse.Namespace(**vars(args))
+    options.compare_baseline, options.no_auto_compare = baseline, False
+    if options.comparison_gold is None and original.get("gold"):
+        options.comparison_gold = Path(original["gold"])
+        options.comparison_evaluation_config = Path(original["evaluation_config"])
+    if options.comparison_output_dir is None and original.get("output_dir"):
+        options.comparison_output_dir = Path(original["output_dir"])
+    return {**prepare_comparison(options, selection), "mode": "restored", "restored": restored}
 
 
 def finish_comparison(plan, root, *, interrupted=False, secrets=()):

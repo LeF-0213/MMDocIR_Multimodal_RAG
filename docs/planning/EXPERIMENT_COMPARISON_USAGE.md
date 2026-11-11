@@ -217,6 +217,7 @@ HF local_dir 메타데이터가 있으면 ETag와 실제 bytes를 대조해 comm
 .venv/bin/python -B main.py --resume "$INTERRUPTED_RUN"           # 남은 페이지 처리
 ```
 
+비교 기준은 처음 실행이 `run.json`의 `automatic_comparison`에 고정한 계획을 그대로 잇는다.
 원본 위치나 비교 기준을 바꾸려면 재개 모듈을 직접 실행한다.
 
 ```bash
@@ -234,6 +235,7 @@ HF local_dir 메타데이터가 있으면 ETag와 실제 bytes를 대조해 comm
 | 완료 문서 | `document.json`이 있으면 원본·페이지·PNG·그림·검토 PDF 해시를 확인하고 그대로 재사용. 손상되면 거부 |
 | 미완료 문서의 페이지 | 유효한 페이지 JSON은 재사용하고 검토 PDF 페이지만 다시 만듦. 없거나 손상된 페이지는 잔여 파일을 `partial/`로 옮긴 뒤 다시 처리 |
 | `failed` 페이지 | 실행 결과로 보고 다시 처리하지 않음 |
+| 자동 비교 | 재개 때 `--compare-baseline`·`--no-auto-compare`를 지정하지 않으면 중단 전 계획을 복원(`mode: restored`). 자동 선택으로 골랐던 기준도 다시 찾지 않음. 고정한 기준이 없어졌거나 메타데이터 해시가 바뀌었으면 비교만 생략하고 재개는 진행. 시작할 때 비교를 생략·해제한 실행은 그 상태를 이음 |
 | 시간·메모리 | `summary.json`의 경과 시간은 마지막 세그먼트만 측정(`elapsed_scope`). 비교 보고서는 전체 시간·메모리를 `not_comparable_resumed`로 표시. 페이지별 시간은 비교 가능 |
 
 재개는 새 실행과 같은 `parsing/run.py`의 `run_parsing()`·`process_document()`로 처리한다.

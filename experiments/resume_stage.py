@@ -7,6 +7,7 @@
 출력: 같은 실행 폴더의 resume/segment_<번호>/ 기록, summary.json, experiment_finished.json,
       선택적 비교 보고서(<실행명>_comparison/).
 
+비교 기준은 재개 CLI에서 지정하지 않으면 중단 전 run.json에 고정한 계획(기준 폴더·정답·보고서 폴더)을 잇는다.
 기록 설정은 현재 configs 파일이 아니라 중단 전 experiment.json에 남은 설정을 그대로 쓴다.
 설정이 바뀌어 pipeline·predict 옵션이 달라지는 것을 막기 위해서다. 중단 전 실행이 기록을 껐다면
 재개도 기록 없이 진행한다. --check는 호환성·재사용 예정만 출력하고 파일을 만들지 않는다.
@@ -43,7 +44,8 @@ def arguments(argv: list[str] | None = None) -> argparse.Namespace:
     source.add_argument("--base-url", help="원본 PDF HTTP(S) 폴더 URL. 생략하면 기록된 위치")
     cli.add_argument("--check", action="store_true", help="호환성·재사용 예정만 출력. 파일·모델 로딩 없음")
     comparison = cli.add_mutually_exclusive_group()
-    comparison.add_argument("--compare-baseline", type=Path, help="자동 선택 대신 비교할 기준 실행 폴더")
+    comparison.add_argument("--compare-baseline", type=Path,
+                            help="비교할 기준 실행 폴더. 생략하면 중단 전 실행이 고정한 기준")
     comparison.add_argument("--no-auto-compare", action="store_true", help="종료 후 자동 비교 끄기")
     cli.add_argument("--comparison-output-dir", type=Path, help="자동 보고서용 새 폴더")
     cli.add_argument("--comparison-gold", type=Path, help="자동 비교에 사용할 확인된 파싱 정답 JSON")
@@ -53,6 +55,20 @@ def arguments(argv: list[str] | None = None) -> argparse.Namespace:
     if args.no_auto_compare and (args.comparison_gold or args.comparison_output_dir):
         cli.error("--no-auto-compare와 자동 비교의 정답·출력 옵션을 함께 사용할 수 없습니다.")
     return args
+
+
+def comparison_plan(options: argparse.Namespace, args: argparse.Namespace, metadata: dict,
+                    selection: dict) -> dict:
+    """재개 세그먼트의 비교 계획을 정한다. 파일·모델을 만들지 않고 읽기만 한다.
+
+    재개 CLI에서 --compare-baseline이나 --no-auto-compare를 지정하면 그 선택을 따른다.
+    지정하지 않으면 중단 전 run.json에 고정한 계획을 다시 쓴다. 처음 실행에 지정한 기준이
+    재개 때 사라져 자동 선택으로 바뀌는 것을 막기 위해서다. 계획이 없는 과거 실행은 자동 선택이다.
+    """
+    original = metadata.get("automatic_comparison")
+    if options.compare_baseline or options.no_auto_compare or not isinstance(original, dict):
+        return automatic.prepare_comparison(args, selection)
+    return automatic.restore_comparison(original, args, selection)
 
 
 def previous_models(root: Path) -> dict | None:
@@ -93,15 +109,14 @@ def main(argv: list[str] | None = None) -> int:
         predict = recording["predict_options"] if recording else None
         compatibility = check_compatibility(args, metadata, pipeline_overrides=pipeline, predict_overrides=predict)
 
+        plan = comparison_plan(options, args, metadata, selection)
         if options.check:
-            plan = automatic.prepare_comparison(args, selection)
             print(json.dumps(clean({"status": "resumable", "run_dir": str(root), "compatibility": compatibility,
                                     "recording": "previous_config" if recording else "disabled",
                                     "documents": plan_resume(args, selection, root),
                                     "automatic_comparison": plan}, secrets), ensure_ascii=False, indent=2))
             return 0
 
-        comparison_plan = automatic.prepare_comparison(args, selection)
         expected = previous_models(root) if recording else None
         session = ResumeSession(root, metadata, compatibility)
         # 이전 시도의 종료 기록·자동 비교 상태 파일은 실험 기록 쪽 파일이라 여기서 이름을 넘긴다.
@@ -131,7 +146,7 @@ def main(argv: list[str] | None = None) -> int:
     summary, interrupted = outcome["summary"], outcome["interrupted"]
     if recorder:
         recorder.finish("interrupted" if interrupted else summary["status"], summary["fatal_error"])
-    comparison_result = automatic.finish_comparison(comparison_plan, outcome["root"],
+    comparison_result = automatic.finish_comparison(plan, outcome["root"],
                                                     interrupted=interrupted is not None, secrets=secrets)
     if interrupted:
         raise interrupted
