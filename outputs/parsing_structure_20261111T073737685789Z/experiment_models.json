@@ -1,0 +1,960 @@
+{
+  "models": {
+    "continuity": {
+      "status": "not_applicable"
+    },
+    "coverage": "configured_object_paths_only",
+    "models": [
+      {
+        "collection_seconds": 0.36498173300060444,
+        "directory": "/home/yeeun-hwang/.paddlex/official_models/PP-DocLayout_plus-L",
+        "files": [
+          {
+            "path": ".gitattributes",
+            "revision": {
+              "commit": "aa52b8528c84f9b1a34ac3a88fe0e576edb9d11d",
+              "evidence": ".cache/huggingface/download/.gitattributes.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "a3a43406012ee8c7b9b38dfab1b11610f33e8245cd864a9a9302d042616a859e",
+            "size": 1575
+          },
+          {
+            "path": "README.md",
+            "revision": {
+              "commit": "aa52b8528c84f9b1a34ac3a88fe0e576edb9d11d",
+              "evidence": ".cache/huggingface/download/README.md.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "71ad672ce4071f97eded25c22f9c452180d034b8bd7ffad91a1f53843fb189a0",
+            "size": 7121
+          },
+          {
+            "path": "config.json",
+            "revision": {
+              "commit": "aa52b8528c84f9b1a34ac3a88fe0e576edb9d11d",
+              "evidence": ".cache/huggingface/download/config.json.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "adc92346e7ecc5d54dc9ed224c754c9237f56e5d88b0c9208db08cb315d66c09",
+            "size": 6074
+          },
+          {
+            "path": "inference.json",
+            "revision": {
+              "commit": "aa52b8528c84f9b1a34ac3a88fe0e576edb9d11d",
+              "evidence": ".cache/huggingface/download/inference.json.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "99bd09c0a1b9e88d35c65c305b91711d98055fc94b4a6eecd50da02e04729384",
+            "size": 1081621
+          },
+          {
+            "path": "inference.pdiparams",
+            "revision": {
+              "commit": "aa52b8528c84f9b1a34ac3a88fe0e576edb9d11d",
+              "evidence": ".cache/huggingface/download/inference.pdiparams.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "24ca3e2e442164505e250deef59f7ee9a54ea12dd32875c9cd6155d959dc97da",
+            "size": 129307978
+          },
+          {
+            "path": "inference.yml",
+            "revision": {
+              "commit": "aa52b8528c84f9b1a34ac3a88fe0e576edb9d11d",
+              "evidence": ".cache/huggingface/download/inference.yml.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "d60f782a16f96afb27e8280399899a94c3e9ffc694ffb2f913ea00af1c522f1e",
+            "size": 1838
+          }
+        ],
+        "hash_kind": "sha256_sorted_file_inventory",
+        "implementation": {
+          "path": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/.venv/lib/python3.12/site-packages/paddlex/inference/models/object_detection/predictor.py",
+          "sha256": "e7b1421d33c3f78d20e820c92df8c766ad978b8dbaeac8f0fdd1bbc3b1a9581e"
+        },
+        "inventory_sha256": "68514e4c8db810b0efe26d972fb0d8486af38c306961fa636ea1299cdd27edf3",
+        "name": "PP-DocLayout_plus-L",
+        "object_path": [
+          "paddlex_pipeline",
+          "_pipeline",
+          "layout_det_model"
+        ],
+        "requested_revision": null,
+        "requested_source": null,
+        "revision_status": "local_hf_metadata_content_matched",
+        "role": "layout",
+        "status": "ok",
+        "usage_scope": "loaded_object_not_per_page_call",
+        "verified_revision": "aa52b8528c84f9b1a34ac3a88fe0e576edb9d11d"
+      },
+      {
+        "collection_seconds": 0.1727608120017976,
+        "directory": "/home/yeeun-hwang/.paddlex/official_models/PP-OCRv6_medium_det",
+        "files": [
+          {
+            "path": ".gitattributes",
+            "revision": {
+              "commit": "8e0f56fb2ef86b461d99cfc7ac5c137738985f61",
+              "evidence": ".cache/huggingface/download/.gitattributes.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "a3a43406012ee8c7b9b38dfab1b11610f33e8245cd864a9a9302d042616a859e",
+            "size": 1575
+          },
+          {
+            "path": "README.md",
+            "revision": {
+              "commit": "8e0f56fb2ef86b461d99cfc7ac5c137738985f61",
+              "evidence": ".cache/huggingface/download/README.md.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "59f37b08a9a49aa6c1275e7b0363991353582f4dc7676539a5d2b05aab57e744",
+            "size": 23247
+          },
+          {
+            "path": "inference.json",
+            "revision": {
+              "commit": "8e0f56fb2ef86b461d99cfc7ac5c137738985f61",
+              "evidence": ".cache/huggingface/download/inference.json.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "0f1a7ec35da36173529c7a60238b7f7919e3831929c3f700ad90ad4896adecd5",
+            "size": 312150
+          },
+          {
+            "path": "inference.pdiparams",
+            "revision": {
+              "commit": "8e0f56fb2ef86b461d99cfc7ac5c137738985f61",
+              "evidence": ".cache/huggingface/download/inference.pdiparams.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "85218d2e3d98f5a21c58b4220627be923a97aee5db3cc71f39536ab31ac53960",
+            "size": 61960476
+          },
+          {
+            "path": "inference.yml",
+            "revision": {
+              "commit": "8e0f56fb2ef86b461d99cfc7ac5c137738985f61",
+              "evidence": ".cache/huggingface/download/inference.yml.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "7298d5ead546584af2504d03355f881ac7a7bc0eb1e282d3e159277c1d0af871",
+            "size": 886
+          }
+        ],
+        "hash_kind": "sha256_sorted_file_inventory",
+        "implementation": {
+          "path": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/.venv/lib/python3.12/site-packages/paddlex/inference/models/text_detection/predictor.py",
+          "sha256": "145d99a714a6cfa7a5d95ce823a78b218de2d1a53cdf427e26e9190c2675b0e6"
+        },
+        "inventory_sha256": "ab416dfdbcded949dd15aeff480aa320114ba7470575b5713bdac494140dde64",
+        "name": "PP-OCRv6_medium_det",
+        "object_path": [
+          "paddlex_pipeline",
+          "_pipeline",
+          "general_ocr_pipeline",
+          "text_det_model"
+        ],
+        "requested_revision": null,
+        "requested_source": null,
+        "revision_status": "local_hf_metadata_content_matched",
+        "role": "text_detection",
+        "status": "ok",
+        "usage_scope": "loaded_object_not_per_page_call",
+        "verified_revision": "8e0f56fb2ef86b461d99cfc7ac5c137738985f61"
+      },
+      {
+        "collection_seconds": 0.21489075899808086,
+        "directory": "/home/yeeun-hwang/.paddlex/official_models/PP-OCRv6_medium_rec",
+        "files": [
+          {
+            "path": ".gitattributes",
+            "revision": {
+              "commit": "e5a92bcbc5cc1b494628e458d267778f0704fd7c",
+              "evidence": ".cache/huggingface/download/.gitattributes.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "a3a43406012ee8c7b9b38dfab1b11610f33e8245cd864a9a9302d042616a859e",
+            "size": 1575
+          },
+          {
+            "path": "README.md",
+            "revision": {
+              "commit": "e5a92bcbc5cc1b494628e458d267778f0704fd7c",
+              "evidence": ".cache/huggingface/download/README.md.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "75ff9c4853ed171f36224127805062f9bcd1cfbbcacae3d577344866df74f6d3",
+            "size": 23474
+          },
+          {
+            "path": "inference.json",
+            "revision": {
+              "commit": "e5a92bcbc5cc1b494628e458d267778f0704fd7c",
+              "evidence": ".cache/huggingface/download/inference.json.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "0b2e25e990bd072f1bf77d59d67d508bce6c4bd44af6624e0fb27d6da2cd00e8",
+            "size": 221814
+          },
+          {
+            "path": "inference.pdiparams",
+            "revision": {
+              "commit": "e5a92bcbc5cc1b494628e458d267778f0704fd7c",
+              "evidence": ".cache/huggingface/download/inference.pdiparams.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "1b01c79a914587933f615569e75de54f2e638ebb5d3f3b3c1b38c24ede8c7319",
+            "size": 76465087
+          },
+          {
+            "path": "inference.yml",
+            "revision": {
+              "commit": "e5a92bcbc5cc1b494628e458d267778f0704fd7c",
+              "evidence": ".cache/huggingface/download/inference.yml.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "991b700facf5b50a7de193468207d5f4255b538dde0d312ae3b7c7a9b6873129",
+            "size": 150580
+          }
+        ],
+        "hash_kind": "sha256_sorted_file_inventory",
+        "implementation": {
+          "path": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/.venv/lib/python3.12/site-packages/paddlex/inference/models/text_recognition/predictor.py",
+          "sha256": "3a85baae080f8778f0a131d15ccd39c9985cca9905752b939867f1efb6bb0c22"
+        },
+        "inventory_sha256": "c82acb95c323f3070011af4638ba21e8769bbc1a12523b97ea901d6137990c19",
+        "name": "PP-OCRv6_medium_rec",
+        "object_path": [
+          "paddlex_pipeline",
+          "_pipeline",
+          "general_ocr_pipeline",
+          "text_rec_model"
+        ],
+        "requested_revision": null,
+        "requested_source": null,
+        "revision_status": "local_hf_metadata_content_matched",
+        "role": "text_recognition",
+        "status": "ok",
+        "usage_scope": "loaded_object_not_per_page_call",
+        "verified_revision": "e5a92bcbc5cc1b494628e458d267778f0704fd7c"
+      },
+      {
+        "collection_seconds": 0.023103866002202267,
+        "directory": "/home/yeeun-hwang/.paddlex/official_models/PP-LCNet_x1_0_textline_ori",
+        "files": [
+          {
+            "path": ".gitattributes",
+            "revision": {
+              "commit": "cd237a44b0e359d4fe38310a416203cf7403faa5",
+              "evidence": ".cache/huggingface/download/.gitattributes.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "a3a43406012ee8c7b9b38dfab1b11610f33e8245cd864a9a9302d042616a859e",
+            "size": 1575
+          },
+          {
+            "path": "README.md",
+            "revision": {
+              "commit": "cd237a44b0e359d4fe38310a416203cf7403faa5",
+              "evidence": ".cache/huggingface/download/README.md.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "c2de067422621e296f697b849b90b8f6cae090a8e0a27d8b04eeb8d68ffb8ce0",
+            "size": 3554
+          },
+          {
+            "path": "config.json",
+            "revision": {
+              "commit": "cd237a44b0e359d4fe38310a416203cf7403faa5",
+              "evidence": ".cache/huggingface/download/config.json.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "c1a2576f9713adabdc4a58d9d654fcc9ea93b6efd0e2d3581d5aab409a33f14f",
+            "size": 2487
+          },
+          {
+            "path": "inference.json",
+            "revision": {
+              "commit": "cd237a44b0e359d4fe38310a416203cf7403faa5",
+              "evidence": ".cache/huggingface/download/inference.json.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "b81929eeaff8e52db0fafb49c9fbfc5bc0572f81641fe0179cc52096323fb4d4",
+            "size": 104399
+          },
+          {
+            "path": "inference.pdiparams",
+            "revision": {
+              "commit": "cd237a44b0e359d4fe38310a416203cf7403faa5",
+              "evidence": ".cache/huggingface/download/inference.pdiparams.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "0de2bcf996cf553e2b848dd7b1769dafffc6917b1ccdf55c1d8efe7909fbf743",
+            "size": 6743918
+          },
+          {
+            "path": "inference.yml",
+            "revision": {
+              "commit": "cd237a44b0e359d4fe38310a416203cf7403faa5",
+              "evidence": ".cache/huggingface/download/inference.yml.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "8d5120d0e1a30a9df7ed46aa9119da3796ed066777089d1c1d705f132d5e90f9",
+            "size": 735
+          }
+        ],
+        "hash_kind": "sha256_sorted_file_inventory",
+        "implementation": {
+          "path": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/.venv/lib/python3.12/site-packages/paddlex/inference/models/image_classification/predictor.py",
+          "sha256": "982ac4fe7a398c653eb596640f659764196f4a6f7baa680bb5ec670bd023e0a7"
+        },
+        "inventory_sha256": "981ed1cf6d23d08d70b586333b8e8f4704025d2e1c83e33cd008914ac67daaa1",
+        "name": "PP-LCNet_x1_0_textline_ori",
+        "object_path": [
+          "paddlex_pipeline",
+          "_pipeline",
+          "general_ocr_pipeline",
+          "textline_orientation_model"
+        ],
+        "requested_revision": null,
+        "requested_source": null,
+        "revision_status": "local_hf_metadata_content_matched",
+        "role": "textline_orientation",
+        "status": "ok",
+        "usage_scope": "loaded_object_not_per_page_call",
+        "verified_revision": "cd237a44b0e359d4fe38310a416203cf7403faa5"
+      },
+      {
+        "collection_seconds": 0.02368273499814677,
+        "directory": "/home/yeeun-hwang/.paddlex/official_models/PP-LCNet_x1_0_table_cls",
+        "files": [
+          {
+            "path": ".gitattributes",
+            "revision": {
+              "commit": "2fa6323e7dab88fa883081db1460995f46af2922",
+              "evidence": ".cache/huggingface/download/.gitattributes.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "a3a43406012ee8c7b9b38dfab1b11610f33e8245cd864a9a9302d042616a859e",
+            "size": 1575
+          },
+          {
+            "path": "README.md",
+            "revision": {
+              "commit": "2fa6323e7dab88fa883081db1460995f46af2922",
+              "evidence": ".cache/huggingface/download/README.md.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "ab8d4e04a6d2d5adeae5efeed08fe3b33d1bda8f363116ce1bea8d1c22fbca38",
+            "size": 11629
+          },
+          {
+            "path": "config.json",
+            "revision": {
+              "commit": "2fa6323e7dab88fa883081db1460995f46af2922",
+              "evidence": ".cache/huggingface/download/config.json.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "3ba2c2754d073d0e91b54fa11bcfff987dead2f94d7a8d3d57c1804071b176ab",
+            "size": 2539
+          },
+          {
+            "path": "inference.json",
+            "revision": {
+              "commit": "2fa6323e7dab88fa883081db1460995f46af2922",
+              "evidence": ".cache/huggingface/download/inference.json.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "43401e76ed7b0e34787533016ea4ec9193d5b5964c3f948991fc5b531651ef33",
+            "size": 104441
+          },
+          {
+            "path": "inference.pdiparams",
+            "revision": {
+              "commit": "2fa6323e7dab88fa883081db1460995f46af2922",
+              "evidence": ".cache/huggingface/download/inference.pdiparams.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "d0224afd9cfddf22da17407c6c78491baaa1f25922fbb312c9b0d2037c802db0",
+            "size": 6743918
+          },
+          {
+            "path": "inference.yml",
+            "revision": {
+              "commit": "2fa6323e7dab88fa883081db1460995f46af2922",
+              "evidence": ".cache/huggingface/download/inference.yml.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "891b1f4b0ccddaf6aca0fce8c8a38e5ab5da9f62fb9adaa7c75e161ee03bb787",
+            "size": 762
+          }
+        ],
+        "hash_kind": "sha256_sorted_file_inventory",
+        "implementation": {
+          "path": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/.venv/lib/python3.12/site-packages/paddlex/inference/models/image_classification/predictor.py",
+          "sha256": "982ac4fe7a398c653eb596640f659764196f4a6f7baa680bb5ec670bd023e0a7"
+        },
+        "inventory_sha256": "cce76a2b32dd793fa12743679278a5bf72cdeb470aa8ccb896085935b26f4a45",
+        "name": "PP-LCNet_x1_0_table_cls",
+        "object_path": [
+          "paddlex_pipeline",
+          "_pipeline",
+          "table_recognition_pipeline",
+          "table_cls_model"
+        ],
+        "requested_revision": null,
+        "requested_source": null,
+        "revision_status": "local_hf_metadata_content_matched",
+        "role": "table_classification",
+        "status": "ok",
+        "usage_scope": "loaded_object_not_per_page_call",
+        "verified_revision": "2fa6323e7dab88fa883081db1460995f46af2922"
+      },
+      {
+        "collection_seconds": 1.057501572999172,
+        "directory": "/home/yeeun-hwang/.paddlex/official_models/SLANeXt_wired",
+        "files": [
+          {
+            "path": ".gitattributes",
+            "revision": {
+              "commit": "763069fcda6a065f2171753205a32bf899a88d15",
+              "evidence": ".cache/huggingface/download/.gitattributes.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "a3a43406012ee8c7b9b38dfab1b11610f33e8245cd864a9a9302d042616a859e",
+            "size": 1575
+          },
+          {
+            "path": "README.md",
+            "revision": {
+              "commit": "763069fcda6a065f2171753205a32bf899a88d15",
+              "evidence": ".cache/huggingface/download/README.md.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "6e5529b446ac4ece9afdbabc006407b849171921a0687665199ca6be06fdc504",
+            "size": 12912
+          },
+          {
+            "path": "config.json",
+            "revision": {
+              "commit": "763069fcda6a065f2171753205a32bf899a88d15",
+              "evidence": ".cache/huggingface/download/config.json.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "1379eb21de34e69e3c5e68492304751db7f139037487c2c62133cdb22233993d",
+            "size": 4948
+          },
+          {
+            "path": "inference.json",
+            "revision": {
+              "commit": "763069fcda6a065f2171753205a32bf899a88d15",
+              "evidence": ".cache/huggingface/download/inference.json.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "5b872f08e74f628ca1db8405db147e82e6e0c7cb358e101fd01cdafc946632d8",
+            "size": 959302
+          },
+          {
+            "path": "inference.pdiparams",
+            "revision": {
+              "commit": "763069fcda6a065f2171753205a32bf899a88d15",
+              "evidence": ".cache/huggingface/download/inference.pdiparams.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "ff0362a30f707fa7d27d8453c4396b992fca287377a42d01515bca6eeb3908f5",
+            "size": 364771513
+          },
+          {
+            "path": "inference.yml",
+            "revision": {
+              "commit": "763069fcda6a065f2171753205a32bf899a88d15",
+              "evidence": ".cache/huggingface/download/inference.yml.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "abbbd1b4dc6b1a2e9cd34c035514da53a1a6b1ec267292b0b8802025650a33bf",
+            "size": 2066
+          }
+        ],
+        "hash_kind": "sha256_sorted_file_inventory",
+        "implementation": {
+          "path": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/.venv/lib/python3.12/site-packages/paddlex/inference/models/table_structure_recognition/predictor.py",
+          "sha256": "d62cd23f7754337a4d71464bff62a460570e20c6cc6193f67fbd1315dbc2c55a"
+        },
+        "inventory_sha256": "215b3da647b3ddeed4ecee2dc5fe1d380715e65154b82f912547568410485bf1",
+        "name": "SLANeXt_wired",
+        "object_path": [
+          "paddlex_pipeline",
+          "_pipeline",
+          "table_recognition_pipeline",
+          "wired_table_rec_model"
+        ],
+        "requested_revision": null,
+        "requested_source": null,
+        "revision_status": "local_hf_metadata_content_matched",
+        "role": "wired_table_structure",
+        "status": "ok",
+        "usage_scope": "loaded_object_not_per_page_call",
+        "verified_revision": "763069fcda6a065f2171753205a32bf899a88d15"
+      },
+      {
+        "collection_seconds": 0.02775471600034507,
+        "directory": "/home/yeeun-hwang/.paddlex/official_models/SLANet_plus",
+        "files": [
+          {
+            "path": ".gitattributes",
+            "revision": {
+              "commit": "bae6e5f8c3c4e7da0c0b7639fdf3228fe76184e2",
+              "evidence": ".cache/huggingface/download/.gitattributes.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "a3a43406012ee8c7b9b38dfab1b11610f33e8245cd864a9a9302d042616a859e",
+            "size": 1575
+          },
+          {
+            "path": "README.md",
+            "revision": {
+              "commit": "bae6e5f8c3c4e7da0c0b7639fdf3228fe76184e2",
+              "evidence": ".cache/huggingface/download/README.md.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "a58bdd49c26b01af9d81c5d90684e2f303a4ebe26327d73f49a1ac1e64c80c63",
+            "size": 15347
+          },
+          {
+            "path": "config.json",
+            "revision": {
+              "commit": "bae6e5f8c3c4e7da0c0b7639fdf3228fe76184e2",
+              "evidence": ".cache/huggingface/download/config.json.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "de63f29e0096cbfc7dcf772ae7dabc47c3e5348f29e949d9b4dda8875e90ea31",
+            "size": 4897
+          },
+          {
+            "path": "inference.json",
+            "revision": {
+              "commit": "bae6e5f8c3c4e7da0c0b7639fdf3228fe76184e2",
+              "evidence": ".cache/huggingface/download/inference.json.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "aba91cd956f4a1648b0f89df94c3cf8acaa066b47e2b689d109843b40d8545a2",
+            "size": 315660
+          },
+          {
+            "path": "inference.pdiparams",
+            "revision": {
+              "commit": "bae6e5f8c3c4e7da0c0b7639fdf3228fe76184e2",
+              "evidence": ".cache/huggingface/download/inference.pdiparams.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "012986b0e2bfe90410618bfb4b7cf4fcb6c978caefd84c63c2934f8387b09ab8",
+            "size": 7666515
+          },
+          {
+            "path": "inference.yml",
+            "revision": {
+              "commit": "bae6e5f8c3c4e7da0c0b7639fdf3228fe76184e2",
+              "evidence": ".cache/huggingface/download/inference.yml.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "8a6372d3269a6f112fe13a2da7952a84da6e112c10a3146cbb43de5bd01d19fa",
+            "size": 2035
+          }
+        ],
+        "hash_kind": "sha256_sorted_file_inventory",
+        "implementation": {
+          "path": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/.venv/lib/python3.12/site-packages/paddlex/inference/models/table_structure_recognition/predictor.py",
+          "sha256": "d62cd23f7754337a4d71464bff62a460570e20c6cc6193f67fbd1315dbc2c55a"
+        },
+        "inventory_sha256": "721e74cffcc92afde87c6271b48b9df8161bf1588e0f1c8df796858a76f9fc6e",
+        "name": "SLANet_plus",
+        "object_path": [
+          "paddlex_pipeline",
+          "_pipeline",
+          "table_recognition_pipeline",
+          "wireless_table_rec_model"
+        ],
+        "requested_revision": null,
+        "requested_source": null,
+        "revision_status": "local_hf_metadata_content_matched",
+        "role": "wireless_table_structure",
+        "status": "ok",
+        "usage_scope": "loaded_object_not_per_page_call",
+        "verified_revision": "bae6e5f8c3c4e7da0c0b7639fdf3228fe76184e2"
+      },
+      {
+        "collection_seconds": 0.3736791549999907,
+        "directory": "/home/yeeun-hwang/.paddlex/official_models/RT-DETR-L_wired_table_cell_det",
+        "files": [
+          {
+            "path": ".gitattributes",
+            "revision": {
+              "commit": "e2bd53c06b3a815d86acbf5c6779dada58819cfe",
+              "evidence": ".cache/huggingface/download/.gitattributes.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "a3a43406012ee8c7b9b38dfab1b11610f33e8245cd864a9a9302d042616a859e",
+            "size": 1575
+          },
+          {
+            "path": "README.md",
+            "revision": {
+              "commit": "e2bd53c06b3a815d86acbf5c6779dada58819cfe",
+              "evidence": ".cache/huggingface/download/README.md.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "400b7336ab11edafd5c00fb2ceff791f2e50bc99ccc7fbe3e3e48832ae97a463",
+            "size": 14392
+          },
+          {
+            "path": "config.json",
+            "revision": {
+              "commit": "e2bd53c06b3a815d86acbf5c6779dada58819cfe",
+              "evidence": ".cache/huggingface/download/config.json.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "411eaf19f4cbdfcc5bf4da8aaf15eeb57e7e98213cb721cdb890ec0fa2c1930e",
+            "size": 5695
+          },
+          {
+            "path": "inference.json",
+            "revision": {
+              "commit": "e2bd53c06b3a815d86acbf5c6779dada58819cfe",
+              "evidence": ".cache/huggingface/download/inference.json.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "abea237f1e53d3dc3bf7ea1321dfebe78552a6070e567dfc94028b622fd575e8",
+            "size": 1081363
+          },
+          {
+            "path": "inference.pdiparams",
+            "revision": {
+              "commit": "e2bd53c06b3a815d86acbf5c6779dada58819cfe",
+              "evidence": ".cache/huggingface/download/inference.pdiparams.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "357321c2845f0a035e8d118622649685a3cdb89d28b09a64e45a5a3df7a9fedc",
+            "size": 128841073
+          },
+          {
+            "path": "inference.yml",
+            "revision": {
+              "commit": "e2bd53c06b3a815d86acbf5c6779dada58819cfe",
+              "evidence": ".cache/huggingface/download/inference.yml.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "edf6d6180f2b9e3e666c744ee5ded38a72c6ef9056cd193250e3e55ba268acef",
+            "size": 1630
+          }
+        ],
+        "hash_kind": "sha256_sorted_file_inventory",
+        "implementation": {
+          "path": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/.venv/lib/python3.12/site-packages/paddlex/inference/models/object_detection/predictor.py",
+          "sha256": "e7b1421d33c3f78d20e820c92df8c766ad978b8dbaeac8f0fdd1bbc3b1a9581e"
+        },
+        "inventory_sha256": "ae59a109da28b02cbe284a79aafe5841917492a73b31224b849a4534c5a58890",
+        "name": "RT-DETR-L_wired_table_cell_det",
+        "object_path": [
+          "paddlex_pipeline",
+          "_pipeline",
+          "table_recognition_pipeline",
+          "wired_table_cells_detection_model"
+        ],
+        "requested_revision": null,
+        "requested_source": null,
+        "revision_status": "local_hf_metadata_content_matched",
+        "role": "wired_cells",
+        "status": "ok",
+        "usage_scope": "loaded_object_not_per_page_call",
+        "verified_revision": "e2bd53c06b3a815d86acbf5c6779dada58819cfe"
+      },
+      {
+        "collection_seconds": 0.4406405480003741,
+        "directory": "/home/yeeun-hwang/.paddlex/official_models/RT-DETR-L_wireless_table_cell_det",
+        "files": [
+          {
+            "path": ".gitattributes",
+            "revision": {
+              "commit": "25ca86356a601c877476bb0dcc5fd09153d9d64d",
+              "evidence": ".cache/huggingface/download/.gitattributes.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "a3a43406012ee8c7b9b38dfab1b11610f33e8245cd864a9a9302d042616a859e",
+            "size": 1575
+          },
+          {
+            "path": "README.md",
+            "revision": {
+              "commit": "25ca86356a601c877476bb0dcc5fd09153d9d64d",
+              "evidence": ".cache/huggingface/download/README.md.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "ddba71f68d0baeb0154ecfd7da506cf7a994403cd3628a56a6df80d1f60067a9",
+            "size": 15124
+          },
+          {
+            "path": "config.json",
+            "revision": {
+              "commit": "25ca86356a601c877476bb0dcc5fd09153d9d64d",
+              "evidence": ".cache/huggingface/download/config.json.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "cf38c6c63c0c5c5b1598c19019cd4d4e6af35a14667c6ec2656aeb215b7e97e1",
+            "size": 5698
+          },
+          {
+            "path": "inference.json",
+            "revision": {
+              "commit": "25ca86356a601c877476bb0dcc5fd09153d9d64d",
+              "evidence": ".cache/huggingface/download/inference.json.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "abea237f1e53d3dc3bf7ea1321dfebe78552a6070e567dfc94028b622fd575e8",
+            "size": 1081363
+          },
+          {
+            "path": "inference.pdiparams",
+            "revision": {
+              "commit": "25ca86356a601c877476bb0dcc5fd09153d9d64d",
+              "evidence": ".cache/huggingface/download/inference.pdiparams.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "c0f8c9ea07be8916ece73a8acf807bd21aed3ef11969b319c2dccb2406774c34",
+            "size": 128841073
+          },
+          {
+            "path": "inference.yml",
+            "revision": {
+              "commit": "25ca86356a601c877476bb0dcc5fd09153d9d64d",
+              "evidence": ".cache/huggingface/download/inference.yml.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "f2d0f00ea42aacc162f72a35cf54330e392a7d669e9a1b43896d3bd77a512621",
+            "size": 1633
+          }
+        ],
+        "hash_kind": "sha256_sorted_file_inventory",
+        "implementation": {
+          "path": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/.venv/lib/python3.12/site-packages/paddlex/inference/models/object_detection/predictor.py",
+          "sha256": "e7b1421d33c3f78d20e820c92df8c766ad978b8dbaeac8f0fdd1bbc3b1a9581e"
+        },
+        "inventory_sha256": "2b1211d6ba91f0ac7e086ec135c358c3da85f3f3e4340b4efa90ada508f89175",
+        "name": "RT-DETR-L_wireless_table_cell_det",
+        "object_path": [
+          "paddlex_pipeline",
+          "_pipeline",
+          "table_recognition_pipeline",
+          "wireless_table_cells_detection_model"
+        ],
+        "requested_revision": null,
+        "requested_source": null,
+        "revision_status": "local_hf_metadata_content_matched",
+        "role": "wireless_cells",
+        "status": "ok",
+        "usage_scope": "loaded_object_not_per_page_call",
+        "verified_revision": "25ca86356a601c877476bb0dcc5fd09153d9d64d"
+      },
+      {
+        "collection_seconds": 7.171599645516835e-05,
+        "files": [],
+        "object_path": [
+          "paddlex_pipeline",
+          "_pipeline",
+          "formula_recognition_pipeline",
+          "formula_rec_model"
+        ],
+        "reason": "AttributeError: '_FormulaRecognitionPipeline' object has no attribute 'formula_rec_model'",
+        "requested_revision": null,
+        "requested_source": null,
+        "revision_status": "unverified",
+        "role": "formula",
+        "status": "unavailable",
+        "usage_scope": "loaded_object_not_per_page_call",
+        "verified_revision": null
+      },
+      {
+        "collection_seconds": 5.48928431999957,
+        "directory": "/home/yeeun-hwang/.paddlex/official_models/PP-Chart2Table_safetensors",
+        "files": [
+          {
+            "path": ".gitattributes",
+            "revision": {
+              "commit": "13f9fa591480881e8eba90080dee5f82020007b2",
+              "evidence": ".cache/huggingface/download/.gitattributes.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "34448b82c17d60fec9b65b1f093c115ddbaadc04beb1b0140b6bfed2e012a930",
+            "size": 1570
+          },
+          {
+            "path": "README.md",
+            "revision": {
+              "commit": "13f9fa591480881e8eba90080dee5f82020007b2",
+              "evidence": ".cache/huggingface/download/README.md.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "fee3c638536f51ef562a3b17b0f6a3740e4022b8273ebdce4b81fd8c4b89628e",
+            "size": 2504
+          },
+          {
+            "path": "added_tokens.json",
+            "revision": {
+              "commit": "13f9fa591480881e8eba90080dee5f82020007b2",
+              "evidence": ".cache/huggingface/download/added_tokens.json.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "a8c69ba7b424263c6b11a2a428c6a137c8db1205735d82ee2a8b3f3f21c73c7e",
+            "size": 5685
+          },
+          {
+            "path": "chat_template.jinja",
+            "revision": {
+              "commit": "13f9fa591480881e8eba90080dee5f82020007b2",
+              "evidence": ".cache/huggingface/download/chat_template.jinja.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "78c349f59f82ecaf1e4916d2afca526b740c6a42a6e48068afc28fa8dd7102ba",
+            "size": 557
+          },
+          {
+            "path": "config.json",
+            "revision": {
+              "commit": "13f9fa591480881e8eba90080dee5f82020007b2",
+              "evidence": ".cache/huggingface/download/config.json.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "2cd3a8a9c9b598d4d4757479fe5441cad4c88bf1d54ede60b57e99d0a7d27ec5",
+            "size": 2001
+          },
+          {
+            "path": "generation_config.json",
+            "revision": {
+              "commit": "13f9fa591480881e8eba90080dee5f82020007b2",
+              "evidence": ".cache/huggingface/download/generation_config.json.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "8efc7f5a9ebd5878f1ef37413d7baa4945ebdf60394b9914255b0bb85744c589",
+            "size": 81
+          },
+          {
+            "path": "inference.yml",
+            "revision": {
+              "commit": "13f9fa591480881e8eba90080dee5f82020007b2",
+              "evidence": ".cache/huggingface/download/inference.yml.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "cd8c731994fec64fe4a50a981a6e4e8f5f5ba4f4ce7c6896ed408f8b5460104c",
+            "size": 49
+          },
+          {
+            "path": "merges.txt",
+            "revision": {
+              "commit": "13f9fa591480881e8eba90080dee5f82020007b2",
+              "evidence": ".cache/huggingface/download/merges.txt.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+            "size": 1671853
+          },
+          {
+            "path": "model.safetensors",
+            "revision": {
+              "commit": "13f9fa591480881e8eba90080dee5f82020007b2",
+              "evidence": ".cache/huggingface/download/model.safetensors.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "725fec36a72e44cf5e1b5e8f1055b1a7d015b730919809a5cfa352f56b4d60bd",
+            "size": 2242172856
+          },
+          {
+            "path": "preprocessor_config.json",
+            "revision": {
+              "commit": "13f9fa591480881e8eba90080dee5f82020007b2",
+              "evidence": ".cache/huggingface/download/preprocessor_config.json.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "8f3ef21d0712483c9379773bd8d8dbd5459c5a80affb27ad9dfef9340c838dcb",
+            "size": 823
+          },
+          {
+            "path": "qwen.tiktoken",
+            "revision": {
+              "commit": "13f9fa591480881e8eba90080dee5f82020007b2",
+              "evidence": ".cache/huggingface/download/qwen.tiktoken.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "b2b1b8dfb5cc5f024bafc373121c6aba3f66f9a5a0269e243470a1de16a33186",
+            "size": 2561218
+          },
+          {
+            "path": "special_tokens_map.json",
+            "revision": {
+              "commit": "13f9fa591480881e8eba90080dee5f82020007b2",
+              "evidence": ".cache/huggingface/download/special_tokens_map.json.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "ae10503128d9b5d64f638315ac6662e4362c27a3af34f628874b3d10f36d018c",
+            "size": 514
+          },
+          {
+            "path": "tokenizer.json",
+            "revision": {
+              "commit": "13f9fa591480881e8eba90080dee5f82020007b2",
+              "evidence": ".cache/huggingface/download/tokenizer.json.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "804a00c21a315623fe96133d70eef3d2bd091bef6579b3ef16ce0e946b555f88",
+            "size": 11459023
+          },
+          {
+            "path": "tokenizer_config.json",
+            "revision": {
+              "commit": "13f9fa591480881e8eba90080dee5f82020007b2",
+              "evidence": ".cache/huggingface/download/tokenizer_config.json.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "ebf4e7d1ac441e3d84a44228a1a7392977b375a34c8fbc8b87c68e6a832e98ba",
+            "size": 269
+          },
+          {
+            "path": "vocab.json",
+            "revision": {
+              "commit": "13f9fa591480881e8eba90080dee5f82020007b2",
+              "evidence": ".cache/huggingface/download/vocab.json.metadata",
+              "status": "content_matched"
+            },
+            "sha256": "87a257b04b17642a0688c98cd1df89c398bda4fee532d6f88b38a659ecb4ac8d",
+            "size": 3383407
+          }
+        ],
+        "hash_kind": "sha256_sorted_file_inventory",
+        "implementation": {
+          "path": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/.venv/lib/python3.12/site-packages/paddlex/inference/models/doc_vlm/predictor.py",
+          "sha256": "9353a5fa81c1bd57a1e5f2e6bdad0e24c4ed1caccd765f4b5bb127e906e1c45c"
+        },
+        "inventory_sha256": "c743cbe5c4d38c3e729ff82b9dc42b794b0ff821970ba561ae9633c13fbb00c4",
+        "name": "PP-Chart2Table",
+        "object_path": [
+          "paddlex_pipeline",
+          "_pipeline",
+          "chart_recognition_model"
+        ],
+        "requested_revision": null,
+        "requested_source": null,
+        "revision_status": "local_hf_metadata_content_matched",
+        "role": "chart",
+        "status": "ok",
+        "usage_scope": "loaded_object_not_per_page_call",
+        "verified_revision": "13f9fa591480881e8eba90080dee5f82020007b2"
+      }
+    ],
+    "status": "partial"
+  },
+  "run_id": "85e8cc7a-1c7e-4a1b-9015-4c305f0d2d24",
+  "schema_version": "project.experiment.v1",
+  "stage_run_id": "976d1c8a-66bc-414a-8204-78cf40d7234d"
+}

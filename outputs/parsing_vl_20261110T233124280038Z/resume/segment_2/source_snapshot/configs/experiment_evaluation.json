@@ -1,0 +1,23 @@
+{
+  "schema_version": "project.parsing_evaluation.v1",
+  "normalization": {
+    "unicode_form": "NFC",
+    "collapse_whitespace": true,
+    "casefold": false
+  },
+  "sentence": {
+    "minimum_similarity": 0.8,
+    "maximum_join_blocks": 4,
+    "maximum_candidates": 2000,
+    "maximum_page_characters": 200000,
+    "maximum_alignment_characters": 20000
+  },
+  "position": {
+    "iou_threshold": 0.5,
+    "table_iou_threshold": 0.5
+  },
+  "table": {
+    "maximum_grid_slots": 20000,
+    "maximum_tables": 100
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": "project.parsing_resume.v1",
+  "segment": 2,
+  "started_at_utc": "2026-11-11T04:01:16.205623+00:00",
+  "original_started_at_utc": "2026-11-10T23:31:24.671906+00:00",
+  "environment": {
+    "python": "3.12.16 (main, Oct 26 2026, 14:08:45) [Clang 23.1.3 ]",
+    "executable": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/.venv/bin/python",
+    "platform": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+    "packages": {
+      "paddleocr": "3.7.0",
+      "paddlex": "3.7.2",
+      "paddlepaddle": "3.3.1",
+      "paddlepaddle-gpu": null,
+      "PyMuPDF": "1.28.2",
+      "numpy": "2.3.5",
+      "pillow": "13.0.0",
+      "psutil": "7.2.2"
+    }
+  },
+  "code_sha256": {
+    "__init__.py": "793ba5489b5cadd6152fb97117190e3ebd8278ad3d0983626b9b5e9b6b27b6a7",
+    "model_result.py": "62957e104fd79dfcf075bc90fc44f11f4456734db4f2740f894216bf66265b95",
+    "pdf_parser.py": "014d4fc6cc4f77aa53cf40cf8cfcdfebfd858ff15522a2a60f4c958dc28e2de7",
+    "pdf_source.py": "ae6b549d218c0d4874d1be5ed726893a5cbd9eff6ae12f4ca468662e2245072e",
+    "quality_checks.py": "a5067d78ece93c35a3483228e39eb679d760762aa1bebca95e3a06cf1179b99d",
+    "result_store.py": "1e0569a507cab0b0f5233f7a8f26687def4365126d0b20af145fb1a1216786b1",
+    "resume.py": "de25e44c792b7a04a06b5fc0e8479ba2118885d97859483a624f1addf60ca8d1",
+    "review_pdf.py": "fa5ee1f3bf58ea94a83067dadd8c905a8628bdf2558cac03e9894f8ef7df9b89",
+    "run.py": "d6ccc63b2cb0489b38ad9efb3625d48602476f0369d963b8ca621fc64c5e86b6",
+    "structure_parser.py": "132ff229de7e82ddf605608cedb6a664fd5b0ab3d6ee27f967f4e154a3d9ff5f",
+    "validate_run.py": "8a2e6cd1eb2c3cc29ed972ff2135a7f5d8a654ce73e0c7989121b87916bd976c",
+    "vl_parser.py": "19f2b1f99989b2f57f7948ff8edc34acd199379456b3cef6e9792837bd86020e",
+    "common/__init__.py": "c2c9f12cc6310f7d84a98fa585b2943a51efed69bb708260526d65f2f413635a",
+    "common/files.py": "298c1f68e948e8ee41f895788014e83dcd1374642132c3e30625992a48a07a99",
+    "common/redaction.py": "b155c293493e1643807eb8aaf696ba89202c431d6a67c09653effccc29831c93"
+  },
+  "compatibility": {
+    "code": {
+      "recorded_files": 15,
+      "changed": [],
+      "added": []
+    },
+    "packages": "same",
+    "python": "same",
+    "platform": {
+      "before": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39",
+      "after": "Linux-6.8.0-147-generic-x86_64-with-glibc2.39"
+    },
+    "parser_options": "same",
+    "predict_options": "same"
+  },
+  "set_aside": []
+}

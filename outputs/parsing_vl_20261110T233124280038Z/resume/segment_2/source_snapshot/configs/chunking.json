@@ -1,0 +1,43 @@
+{
+  "schema_version": "project.chunking.v1",
+  "input_runs": [
+    "../outputs/parsing_vl_20261027T015138481163Z",
+    "../outputs/parsing_structure_20261028T232222203813Z"
+  ],
+  "selection": "selection.json",
+  "output_root": "../outputs",
+  "tokenizer": {
+    "repo_id": "Qwen/Qwen3-Embedding-8B",
+    "revision": "1d8ad4ca9b3dd8059ad90a75d4983776a23d44af",
+    "tokenizer_file": "tokenizer.json",
+    "model_config_file": "config.json",
+    "add_special_tokens": true
+  },
+  "max_tokens": 512,
+  "overlap_tokens": 0,
+  "caption_max_gap_points": 72,
+  "table_header_rows_without_th": 1,
+  "kind_markers": {
+    "table": "[Table]",
+    "chart": "[Chart]",
+    "visual": "[Figure]",
+    "caption": "Caption:"
+  },
+  "labels": {
+    "title_levels": [["doc_title"], ["paragraph_title"]],
+    "text": ["text", "aside_text", "vertical_text", "footnote", "vision_footnote", "display_formula", "formula"],
+    "table": ["table"],
+    "chart": ["chart"],
+    "visual": ["image"],
+    "caption": ["figure_title"],
+    "excluded": ["header", "footer", "number", "formula_number", "header_image"]
+  },
+  "flag_rules": [
+    "dominant_token",
+    "repeated_trigrams",
+    "long_number_sequence",
+    "output_length",
+    "merged_content_scope",
+    "table_grid"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "all_pages": false,
+  "baseline": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/outputs/parsing_structure_20261028T232222203813Z",
+  "baseline_evidence": {
+    "run.json": "f89d71a5a2f90b3072d83d3c4fbc2596f029a5a299e7f9bf757cb9ed59bf9437",
+    "selection.json": "430d945c6d1659cd2086dffa1ff9a00b313ba9732f35c25dd199a74f52c17401",
+    "summary.json": "880468a11c4b4f561c3aa7fe2bcdb61700cad1fc88348779d13f9e981b8e4e5b"
+  },
+  "candidate": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/outputs/parsing_structure_20261111T073737685789Z",
+  "evaluation_config": null,
+  "gold": null,
+  "ignored": [],
+  "mode": "explicit",
+  "output_dir": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/outputs/parsing_structure_20261111T073737685789Z_comparison",
+  "report_files": {
+    "comparison.json": {
+      "path": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/outputs/parsing_structure_20261111T073737685789Z_comparison/comparison.json",
+      "sha256": "3887862806a85c2b2ec6bd819cb43873c81c91d1b1063567257ea367f821d7c3"
+    },
+    "comparison.md": {
+      "path": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/outputs/parsing_structure_20261111T073737685789Z_comparison/comparison.md",
+      "sha256": "0629970a497b8ce3668da9cab57cde5cca9e94d67547f8ec113da6d26617c11f"
+    }
+  },
+  "schema_version": "project.parsing_auto_comparison.v1",
+  "search_root": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/outputs",
+  "status": "completed",
+  "summary": {
+    "after_problems": 0,
+    "before_problems": 9,
+    "common_pages": 27,
+    "different_pdf_pages": 0,
+    "model_comparison": "unavailable",
+    "page_count": 27,
+    "quality_status": "unmeasured",
+    "unconfirmed_pdf_pages": 0
+  }
+}
