@@ -82,14 +82,12 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 [환경 기록](docs/environment/log/README.md)에 있고, ID를 누르면 상세 기록으로 넘어간다.
 이슈 상태가 바뀌면 이 표도 같은 커밋에서 고친다([docs/AGENTS.md](docs/AGENTS.md#남은-이슈)).
 
-현재 29개: 미해결 9, 부분 해결 2, 표시만 4, 관찰만 11, 한계 3.
+현재 27개: 미해결 7, 부분 해결 2, 표시만 4, 관찰만 11, 한계 3.
 
 | ID | 단계 · 모듈 | 이슈 | 케이스 | 상태 | 현재 대응 |
 |---|---|---|---|---|---|
 | [C-01](docs/chunking/log/2026-11-11_vl.md#2-입력-재인식-결과-적용) | 청킹 · 입력·재인식 적용 | 재인식으로 바꾼 글자가 부분 전사 | VL · Toyota p7 그림(P-04) | 미해결 | 반복 없이 끝나 채택했지만 원뿔 안 일본어 대부분이 빠짐. 그대로 청크에 들어감 |
-| [C-03](docs/chunking/log/../../environment/log/2026-11-11_windows-crlf-hash-mismatch.md) | 청킹 · 입력·재인식 적용 | 줄바꿈이 바뀐 작업 사본에서 재인식 결과 적용 실패 | 환경 · Windows CRLF 사본(E-02) | 미해결 | 입력 `run.json` 해시가 달라져 적용 거부. LF 컨테이너에서 실행. `.gitattributes`는 머지 전 |
 | [E-01](docs/environment/log/2026-11-11_container-termination.md) | 실행 환경 | VL 재파싱 중 컨테이너 종료 | — | 미해결 | Docker 호스트 쪽 작업으로 컨테이너가 종료·삭제된 것으로 본다. 주체는 권한이 없어 미확인. 실행은 재개로 끝냈다 |
-| [E-02](docs/environment/log/2026-11-11_windows-crlf-hash-mismatch.md) | 실행 환경 | Windows CRLF 변환으로 해시 불일치 | — | 미해결 | Windows Git이 받을 때 LF를 CRLF로 바꿔 코드·결과 파일 해시가 기록과 달라졌다. `.gitattributes`로 LF 고정(별도 브랜치, 머지 전) |
 | [E-03](docs/environment/log/2026-11-11_system-packages-lost.md) | 실행 환경 | 재시작 때 시스템 라이브러리 소실 | — | 미해결 | 시작할 때마다 이미지에서 새 컨테이너를 만들어 apt 설치분이 사라진다. 이미지 변경에는 템플릿 관리자 권한이 필요하다 |
 | [P-02](docs/parsing/log/2026-11-11_structure.md#2-레이아웃-검출-연표-표와-목록을-표-하나로-묶음) | 파싱 · 레이아웃 검출·병합 | 서로 다른 구조를 표 상자 하나로 검출 | Structure · Toyota p32(연표 표 + 두 열 목록) | 미해결 | 검출 결과 확인까지. 대응 후보 없음. 청크에 표 격자 신호 |
 | [P-05](docs/parsing/log/2026-11-11_vl.md#2-입력렌더링-vlm이-빨강파랑이-바뀐-이미지를-받음) | 파싱 · 영역 인식 (VLM·OCR) | VLM 입력의 빨강·파랑 채널이 바뀜 | VL · 모든 페이지 | 미해결 | BGR 배열이 변환 없이 VLM에 들어가는 경로 확인. 품질 영향 미측정 |
