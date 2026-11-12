@@ -534,6 +534,8 @@ python3 -I tools/docs_check.py --config .github/docs-check.json --base origin/ma
 문서 내용이 코드와 맞는지는 판단하지 않는다. 실패한 PR의 머지를 막으려면 저장소 관리자가 `main` Ruleset에서
 `docs-check`를 필수 상태 검사로 지정해야 한다(미설정).
 
+사람·AI 리뷰는 두지 않고 이 검사만 쓴다(2026-11-12 결정). 따라서 문서 내용이 코드와 맞는지는 PR 작성자가 직접 확인한다.
+
 ## 문서와 작업 방식
 
 문서는 `docs/planning/`의 계획, `docs/data/`의 데이터 명세, `docs/parsing_log/`의 파싱 검토·검증,
