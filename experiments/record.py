@@ -71,12 +71,12 @@ def load_record_config(path):
     config = read_json(path)
     required = {"schema_version", "project_root", "source_paths", "source_suffixes",
                 "git_timeout_seconds", "memory", "experiment", "model_bindings",
-                "secret_environment_names", "environment_packages", "pipeline_options", "predict_options"}
+                "secret_environment_names", "pipeline_options", "predict_options"}
     if not isinstance(config, dict) or set(config) != required:
         raise ValueError(f"기록 설정의 필수 필드를 확인하세요: {sorted(required)}")
     if config["schema_version"] != RECORD_SCHEMA:
         raise ValueError("지원하지 않는 기록 설정 스키마입니다.")
-    for key in ("source_paths", "source_suffixes", "model_bindings", "secret_environment_names", "environment_packages"):
+    for key in ("source_paths", "source_suffixes", "model_bindings", "secret_environment_names"):
         if not isinstance(config[key], list):
             raise ValueError(f"{key}는 목록이어야 합니다.")
     for key in ("pipeline_options", "predict_options", "experiment", "memory"):
@@ -95,7 +95,7 @@ def load_record_config(path):
         raise ValueError("Git 조회 제한 시간은 유한한 양수 초여야 합니다.")
     if (not config["source_paths"] or not config["source_suffixes"]
             or any(not isinstance(x, str) or not x for x in config["source_paths"] + config["source_suffixes"]
-                   + config["secret_environment_names"] + config["environment_packages"])):
+                   + config["secret_environment_names"])):
         raise ValueError("소스 목록·확장자·환경 변수 이름을 확인하세요.")
     root = (path.parent / config["project_root"]).resolve()
     if not root.is_dir():
@@ -222,8 +222,11 @@ class ExperimentRecorder:
     """단계 공통 기록 API다. 후속 청킹·검색은 stage 이름과 결과물 종류만 달리 연결한다."""
 
     def __init__(self, root, config, requested, stage="parsing", *, record_dir=None, run_id=None,
-                 expected_models=None):
+                 expected_models=None, environment_packages=()):
         """record_dir·run_id·expected_models는 재개 세그먼트에서만 지정한다.
+
+        environment_packages: 버전을 기록할 패키지 이름. 무엇을 기록할지는 단계가 정하므로 호출부가 넘긴다.
+            파싱은 parsing.run.ENVIRONMENT_PACKAGES를 넘겨 run.json과 같은 목록을 쓴다. 비우면 OS·Python만 남긴다.
 
         record_dir: 시작 manifest·자원 기록·소스 복사본을 둘 폴더. 기본은 실행 폴더다.
         run_id: 중단 전 실행의 ID. 종료 기록이 같은 실행으로 연결되도록 이어받는다.
@@ -234,6 +237,7 @@ class ExperimentRecorder:
         if not self.record_dir.is_relative_to(self.root):
             raise ValueError("세그먼트 기록 폴더는 실행 폴더 안에 있어야 합니다.")
         self.config = config
+        self.environment_packages = tuple(environment_packages)
         self.project = Path(config["project_root"]).resolve()
         self.secrets = known_secrets(config["secret_environment_names"])
         self.started = perf_counter()
@@ -264,7 +268,7 @@ class ExperimentRecorder:
     def _environment(self):
         """지정한 패키지 버전과 OS·Python 정보를 읽는다. 모델이나 인증 환경은 import하지 않는다."""
         packages = {}
-        for name in self.config["environment_packages"]:
+        for name in self.environment_packages:
             try:
                 packages[name] = version(name)
             except PackageNotFoundError:

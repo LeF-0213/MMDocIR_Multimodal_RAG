@@ -62,8 +62,9 @@ IMAGE = np.zeros((4, 4, 3), dtype=np.uint8)
 
 class OptionTests(unittest.TestCase):
     def test_merge_is_disabled_by_default_and_can_be_overridden(self):
-        self.assertIs(vl_parser.parser_options("cpu")["merge_layout_blocks"], False)
-        overridden = vl_parser.parser_options("cpu", overrides={"merge_layout_blocks": True})
+        # cpu_threads는 이 검사와 무관해 가장 작은 유효값 1을 넘긴다.
+        self.assertIs(vl_parser.parser_options("cpu", 1)["merge_layout_blocks"], False)
+        overridden = vl_parser.parser_options("cpu", 1, overrides={"merge_layout_blocks": True})
         self.assertIs(overridden["merge_layout_blocks"], True)
 
 

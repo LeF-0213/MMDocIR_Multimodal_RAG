@@ -54,6 +54,20 @@ AGENTS.md 「하드코딩 금지」에 따라 위치·영향·수정안을 먼�
 | 10 | `parsing/validate_run.py`, `experiments/compare.py` | 문서 ID·페이지 파일명 규칙 | `parsing/run.py`와 따로 구현돼 어긋나도 드러나지 않음 | 공용 함수로 통합 |
 | 11 | `parsing/run.py` | 환경 패키지 목록 | 기록 설정의 목록과 이중 관리됨. 9번 지적도 여기서 비롯함 | 한 곳으로 통합 |
 
+후속(2026-11-12, 브랜치 `fix/hardcoded-defaults-v2`): 2·5~11번을 반영했다. 2026-11-06에 만든 브랜치
+`fix/hardcoded-defaults`(커밋 `c05ca6c`, 머지하지 않음)를 참고해 당시 main에 맞춰 다시 적용했다.
+
+| # | 반영 내용 |
+|---|---|
+| 1 | 이 브랜치 이전에 main에서 다른 방식으로 처리됐다. `--pdf-dir` 기본값이 없고, 생략하면 실행 폴더의 `source.pdf` 사본과 대조한다 |
+| 2 | 수정안을 바꿨다. 필수 인자 대신 실행 폴더에 저장된 `selection.json`을 기본값으로 쓰고, 다른 목록을 주면 차이를 요약에 남긴다. 기존 명령이 깨지지 않고 기본값이 코드가 아닌 그 실행의 기록에서 온다 |
+| 3·4 | 반영하지 않았다. 반영 여부 미정 |
+| 5·6 | `parsing/run.py`의 이름 있는 상수(`DEFAULT_*`)로 모으고, 경로는 파일 위치 기준으로 바꿨다. 어댑터의 `cpu_threads`, `read_pdf_bytes`의 timeout은 필수 인자다 |
+| 7·8 | `LIMITS`에 `maximum_sequence_digits`를 더하고(값 9, 판정 동일, 규칙 0.3.1), 값마다 단위·역할·측정 분포를 주석에 적었다. 선택 근거는 기록이 없어 쓰지 않았다. `--limits` 인자는 넣지 않았다 |
+| 9 | 표시 상수로 묶었다 |
+| 10 | `parsing/result_store.py`에 모았다. 리뷰 뒤 생긴 `resume.py`·`rerecognize.py`·`chunking/run.py`의 같은 규칙도 함께 옮겼다 |
+| 11 | `parsing/run.py`의 `ENVIRONMENT_PACKAGES` 하나로 합쳤다. 기록 설정에서는 `pillow`가 빠져 실제로 목록이 어긋나 있었다 |
+
 ## 4. 검증
 
 - `requirements.txt`와 같은 버전의 `PyMuPDF`, `psutil`과 범위 안의 `numpy 2.5.4`를 임시 가상환경에 설치해 전체 테스트를 실행했다. Python 3.12.3, Linux, 105개 전부 통과했고 이 중 23개가 이번에 추가한 회귀 테스트다.

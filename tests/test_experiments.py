@@ -90,7 +90,7 @@ def record_config(root):
         "git_timeout_seconds": TEST_GIT_TIMEOUT_SECONDS,
         "memory": {"interval_seconds": TEST_INTERVAL_SECONDS, "include_children": False, "gpu_device": None},
         "experiment": {"purpose": "모의 경계 검증"}, "model_bindings": [],
-        "secret_environment_names": [], "environment_packages": [], "pipeline_options": {}, "predict_options": {}}
+        "secret_environment_names": [], "pipeline_options": {}, "predict_options": {}}
 
 
 def legacy_run(root, record):
@@ -1076,9 +1076,29 @@ class ReviewRegressionTests(unittest.TestCase):
                      if scope["name"] == "prediction"]
             self.assertIn({"page_id": "synthetic-page"}, names)
 
-    def test_recording_config_lists_gpu_paddle_package(self):
-        config = read_json(Path(__file__).resolve().parents[1] / "configs" / "experiment_recording.json")
-        self.assertIn("paddlepaddle-gpu", config["environment_packages"])
+    def test_parsing_package_list_includes_gpu_paddle_build(self):
+        # CPU·GPU 빌드 중 어느 쪽이 설치됐는지 구분하려면 두 이름을 모두 조회해야 한다.
+        from parsing.run import ENVIRONMENT_PACKAGES
+        self.assertIn("paddlepaddle", ENVIRONMENT_PACKAGES)
+        self.assertIn("paddlepaddle-gpu", ENVIRONMENT_PACKAGES)
+
+    def test_recorder_records_only_packages_given_by_stage(self):
+        # 패키지 목록은 기록 설정이 아니라 호출한 단계가 넘긴다. 넘긴 이름만 manifest에 남아야 한다.
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); (root / "source.py").write_text("value = 1\n")
+            output = root / "run"; output.mkdir()
+            recorder = ExperimentRecorder(output, record_config(root), {}, environment_packages=("psutil",))
+            recorder.finish("completed")
+            packages = read_json(output / MANIFEST_FILE)["environment"]["packages"]
+            self.assertEqual(set(packages), {"psutil"})
+
+    def test_recording_config_with_package_list_is_rejected(self):
+        # 목록을 설정과 코드 두 곳에 두면 어긋나므로, 예전 필드가 남은 설정은 조용히 무시하지 않고 거부한다.
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); path = root / "record.json"
+            write_json(path, {**record_config(root), "project_root": ".", "environment_packages": ["psutil"]})
+            with self.assertRaises(ValueError):
+                load_record_config(path)
 
 
 if __name__ == "__main__":

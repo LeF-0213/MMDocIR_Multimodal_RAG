@@ -14,7 +14,9 @@ from urllib.parse import quote, urlsplit
 from urllib.request import urlopen
 
 # 내부 공통 모듈: read_json은 중복 키·NaN을 거부하는 엄격한 설정 읽기를 맡는다.
+# result_store는 실행 폴더 형식과 함께 프로젝트의 페이지 번호 기준을 정의한다.
 from common.files import read_json
+from .result_store import PAGE_NUMBERING
 
 
 def load_selection(path: Path) -> dict:
@@ -22,8 +24,8 @@ def load_selection(path: Path) -> dict:
     data = read_json(path)
     if not isinstance(data, dict):
         raise ValueError("선택 설정의 최상위 값은 객체여야 합니다.")
-    if data.get("page_numbering") != "pdf_viewer_1_based":
-        raise ValueError("페이지 번호 기준은 pdf_viewer_1_based여야 합니다.")
+    if data.get("page_numbering") != PAGE_NUMBERING:
+        raise ValueError(f"페이지 번호 기준은 {PAGE_NUMBERING}여야 합니다.")
 
     documents = data.get("documents")
     if not isinstance(documents, list) or not documents:
@@ -93,10 +95,10 @@ def build_pdf_url(base_url: str, document_name: str) -> str:
     return f"{base_url.rstrip('/')}/{filename}"
 
 
-def read_pdf_bytes(pdf_url: str, timeout: float = 30) -> bytes:
+def read_pdf_bytes(pdf_url: str, timeout: float) -> bytes:
     """응답 전체를 메모리로 읽는다. HTTP 오류를 숨기지 않으며 PDF 형식은 이후 검사한다."""
-    # 30초는 연결·읽기 대기의 초기 설정이며 총 다운로드 시간 상한은 아니다.
-    # CLI에서 바꿀 수 있다. 재시도를 자동 추가해 비용·실패를 숨기지 않는다.
+    # timeout은 연결·읽기 대기 초이며 총 다운로드 시간 상한은 아니다.
+    # 기본값은 run.py의 DEFAULT_HTTP_TIMEOUT_SECONDS가 정한다. 재시도를 자동 추가해 비용·실패를 숨기지 않는다.
     with urlopen(pdf_url, timeout=timeout) as response:
         data = response.read()
 
