@@ -35,7 +35,7 @@ ID는 한 번 붙이면 바꾸지 않는다.
 |---|---|---|---|---|---|
 | [C-01](2026-11-11_vl.md#2-입력-재인식-결과-적용) | 재인식으로 바꾼 글자가 부분 전사 | VL · Toyota p7 그림(P-04) | 미해결 | 반복 없이 끝나 채택했지만 원뿔 안 일본어 대부분이 빠짐. 그대로 청크에 들어감 | [2026-11-11 VL](2026-11-11_vl.md#2-입력-재인식-결과-적용) |
 | [C-02](2026-11-11_vl.md#2-입력-재인식-결과-적용) | 재인식으로도 복구하지 못한 반복 블록 | VL · 슬라이드 p6 차트(P-04) | 부분 해결 | 원문이 아닌 반복 글자는 청크에서 빼고 `excluded.jsonl`에 `generation_limit_unrecovered`로 남김. 그림 내용은 잃음 | [2026-11-11 VL](2026-11-11_vl.md#2-입력-재인식-결과-적용) |
-| [C-03](../../environment/log/2026-11-11_windows-crlf-hash-mismatch.md) | 줄바꿈이 바뀐 작업 사본에서 재인식 결과 적용 실패 | 환경 · Windows CRLF 사본 | 미해결 | 입력 `run.json` 해시가 달라져 적용 거부. LF 컨테이너에서 실행. `.gitattributes`는 머지 전 | [환경 기록](../../environment/log/2026-11-11_windows-crlf-hash-mismatch.md) |
+| [C-03](../../environment/log/2026-11-11_windows-crlf-hash-mismatch.md) | 줄바꿈이 바뀐 작업 사본에서 재인식 결과 적용 실패 | 환경 · Windows CRLF 사본(E-02) | 미해결 | 입력 `run.json` 해시가 달라져 적용 거부. LF 컨테이너에서 실행. `.gitattributes`는 머지 전 | [환경 기록](../../environment/log/2026-11-11_windows-crlf-hash-mismatch.md) |
 
 ### 검사 신호
 

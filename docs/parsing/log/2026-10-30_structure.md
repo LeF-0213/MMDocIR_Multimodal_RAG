@@ -15,20 +15,20 @@ PDF → 파싱 → 원본 대조·품질 검사〔현재〕 → 청킹 → 임�
 
 ## 이슈 요약
 
-이 기록에서 다룬 이슈다. 상태는 이 기록을 쓴 시점 기준이며, 현재 상태와 전체 목록은 [파싱 이슈 목록](README.md#이슈-목록)에 있다.
+이 기록에서 다룬 이슈다. 상태는 현재 기준이다. 다른 기록에서 해결했거나 원인을 찾은 이슈는 그 기록을 링크했다. 전체 목록은 [파싱 이슈 목록](README.md#이슈-목록)에 있다.
 
-| ID | 모듈 | 이슈 유형 | 케이스 | 이 기록 시점 상태 | 절 |
+| ID | 모듈 | 이슈 유형 | 케이스 | 현재 상태 | 이 기록의 절 |
 |---|---|---|---|---|---|
 | P-08 | 영역 인식 | 그림 속 문장이 다른 상자와 섞임 | RAG p3, NUS p9 | 관찰만 | [3](#3-영역-인식문자-ocr-그림-속-문장의-영역-혼합) |
 | P-09 | 영역 인식 | 표의 아이콘 셀 정보 누락 | UHD 설명서 p8 | 관찰만 | [3](#3-영역-인식문자-ocr-그림-속-문장의-영역-혼합) |
 | P-11 | 표 인식 | 표 값이 다른 행으로 이동 | 3M p15 | 관찰만 | [4](#4-표-인식) |
-| P-12 | 표 인식 | 하단 여러 행이 한 셀에 합쳐짐 | RAG 논문 p6 | 관찰만 | [4](#4-표-인식) |
-| P-13 | 표 인식 | 머리글 병합·체크 표시 오인식 | DETR p13 Table 4 | 관찰만 | [4](#4-표-인식) |
+| P-12 | 표 인식 | 하단 여러 행이 한 셀에 합쳐짐 | RAG 논문 p6 | 표시만([상세](2026-11-11_structure.md#31-구조-토큰-상한에서-잘려-마지막-행에-여러-행이-합쳐짐)) | [4](#4-표-인식) |
+| P-13 | 표 인식 | 머리글 병합·체크 표시 오인식 | DETR p13 Table 4 | 미해결([상세](2026-11-11_structure.md#32-머리글-칸-수가-원본보다-하나-적음)) | [4](#4-표-인식) |
 | P-14 | 표 인식 | 표 머리글 누락 | 3M 인명·직책 표 | 관찰만 | [4](#4-표-인식) |
 | P-17 | 수식 인식 | 첨자 구조 손상 | DETR p5 식 (2) | 관찰만 | [7](#7-두-파서에서-공통으로-관찰된-인식-문제-structure-쪽-근거) |
 | P-03 | 레이아웃·인식 | 도식 누락·영역 혼합 | Toyota p21 | 관찰만 | [7](#7-두-파서에서-공통으로-관찰된-인식-문제-structure-쪽-근거) |
-| P-02 | 레이아웃 검출 | 조직도·연표 관계 손상(파서 구분 없이 기록) | Toyota p32 | 관찰만 | [8](#8-문서별-관찰) |
-| P-16 | 차트 인식 | 비정상 수치표(파서 구분 없이 기록) | 슬라이드 p6 | 관찰만 | [8](#8-문서별-관찰) |
+| P-02 | 레이아웃 검출 | 조직도·연표 관계 손상(파서 구분 없이 기록) | Toyota p32 | 미해결([상세](2026-11-11_structure.md#2-레이아웃-검출-연표-표와-목록을-표-하나로-묶음)) | [8](#8-문서별-관찰) |
+| P-16 | 차트 인식 | 비정상 수치표(파서 구분 없이 기록) | 슬라이드 p6 | 미해결([상세](2026-11-11_structure.md#4-차트-인식-연표-그림을-표로-바꾸며-값을-지어냄)) | [8](#8-문서별-관찰) |
 
 ## 1. 실행 개요
 
@@ -74,30 +74,30 @@ Structure의 과거 oneDNN 실행 예외는 인식 품질 문제와 별개다.
 ```mermaid
 flowchart TD
     IMG("페이지 이미지<br/>144 DPI BGR 배열")
-    REG("레이아웃 영역 목록<br/>상자 · 라벨")
+    REG("레이아웃 영역 목록<br/>상자 · 라벨<br/>PP-DocLayout_plus-L")
 
     subgraph STIN["PP-StructureV3 내부: 라벨별로 다른 모델"]
-        TXT("문장 영역<br/>글자 상자 → 인식 글자")
-        TAB("표 영역<br/>표 구조 + 셀 상자 + 셀 글자 → HTML 표")
-        FOR("수식 영역<br/>LaTeX")
-        CHA("차트 영역<br/>파이프 표")
+        TXT("문장 영역 → 인식 글자<br/>PP-OCRv6_medium det · rec")
+        TAB("표 영역 → HTML 표<br/>표 분류 · 표 구조(SLANeXt_wired · SLANet_plus)<br/>셀 검출(RT-DETR-L) · 셀 OCR")
+        FOR("수식 영역 → LaTeX<br/>PP-FormulaNet_plus-L")
+        CHA("차트 영역 → 파이프 표<br/>PP-Chart2Table")
     end
 
     RES("parsing_res_list<br/>영역 상자 · 라벨 · 내용")
-    BLOCKS("공통 블록 parsing.blocks<br/>내용 · 픽셀 bbox + PDF 좌표")
+    BLOCKS("공통 블록 parsing.blocks<br/>내용 · 픽셀 bbox + PDF bbox")
     PJSON[("page_N.json")]
 
-    IMG -->|"PP-DocLayout_plus-L<br/>레이아웃 검출"| REG
-    REG -->|"PP-OCRv6_medium_det → PP-OCRv6_medium_rec"| TXT
-    REG -->|"표 분류 → SLANeXt_wired · SLANet_plus 표 구조<br/>RT-DETR-L 셀 검출 · 셀 OCR"| TAB
-    REG -->|"PP-FormulaNet_plus-L"| FOR
-    REG -->|"PP-Chart2Table"| CHA
+    IMG -->|"레이아웃 검출"| REG
+    REG --> TXT
+    REG --> TAB
+    REG --> FOR
+    REG --> CHA
     TXT --> RES
     TAB --> RES
     FOR --> RES
     CHA --> RES
-    RES -->|"model_result · pdf_parser.add_pdf_coordinates"| BLOCKS
-    BLOCKS --> PJSON
+    RES -->|"model_result · add_pdf_coordinates"| BLOCKS
+    BLOCKS -->|"save_page"| PJSON
 ```
 
 | 실행 기록으로 확인한 설정 | 공식 버전 설정의 구성 |

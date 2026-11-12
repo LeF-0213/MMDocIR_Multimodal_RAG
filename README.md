@@ -74,6 +74,47 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 `auto_comparison.json`에 남긴다. 기준 직접 지정은 `--compare-baseline`, 기록/비교 끄기는
 `--no-experiment-record`/`--no-auto-compare`다. 정답 없이 품질은 미측정으로 표시한다.
 
+## 남은 이슈
+
+파싱·청킹·실행 환경에서 아직 끝나지 않은 이슈를 모았다. 해결과 정상 동작은 뺐다. 상태의 뜻과 전체 목록은
+[파싱 이슈 목록](docs/parsing/log/README.md#이슈-목록), [청킹 이슈 목록](docs/chunking/log/README.md#이슈-목록),
+[환경 기록](docs/environment/log/README.md)에 있고, ID를 누르면 상세 기록으로 넘어간다.
+이슈 상태가 바뀌면 이 표도 같은 커밋에서 고친다([docs/AGENTS.md](docs/AGENTS.md#남은-이슈)).
+
+현재 29개: 미해결 9, 부분 해결 2, 표시만 4, 관찰만 11, 한계 3.
+
+| ID | 단계 · 모듈 | 이슈 | 케이스 | 상태 | 현재 대응 |
+|---|---|---|---|---|---|
+| [C-01](docs/chunking/log/2026-11-11_vl.md#2-입력-재인식-결과-적용) | 청킹 · 입력·재인식 적용 | 재인식으로 바꾼 글자가 부분 전사 | VL · Toyota p7 그림(P-04) | 미해결 | 반복 없이 끝나 채택했지만 원뿔 안 일본어 대부분이 빠짐. 그대로 청크에 들어감 |
+| [C-03](docs/chunking/log/../../environment/log/2026-11-11_windows-crlf-hash-mismatch.md) | 청킹 · 입력·재인식 적용 | 줄바꿈이 바뀐 작업 사본에서 재인식 결과 적용 실패 | 환경 · Windows CRLF 사본(E-02) | 미해결 | 입력 `run.json` 해시가 달라져 적용 거부. LF 컨테이너에서 실행. `.gitattributes`는 머지 전 |
+| [E-01](docs/environment/log/2026-11-11_container-termination.md) | 실행 환경 | VL 재파싱 중 컨테이너 종료 | — | 미해결 | Docker 호스트 쪽 작업으로 컨테이너가 종료·삭제된 것으로 본다. 주체는 권한이 없어 미확인. 실행은 재개로 끝냈다 |
+| [E-02](docs/environment/log/2026-11-11_windows-crlf-hash-mismatch.md) | 실행 환경 | Windows CRLF 변환으로 해시 불일치 | — | 미해결 | Windows Git이 받을 때 LF를 CRLF로 바꿔 코드·결과 파일 해시가 기록과 달라졌다. `.gitattributes`로 LF 고정(별도 브랜치, 머지 전) |
+| [E-03](docs/environment/log/2026-11-11_system-packages-lost.md) | 실행 환경 | 재시작 때 시스템 라이브러리 소실 | — | 미해결 | 시작할 때마다 이미지에서 새 컨테이너를 만들어 apt 설치분이 사라진다. 이미지 변경에는 템플릿 관리자 권한이 필요하다 |
+| [P-02](docs/parsing/log/2026-11-11_structure.md#2-레이아웃-검출-연표-표와-목록을-표-하나로-묶음) | 파싱 · 레이아웃 검출·병합 | 서로 다른 구조를 표 상자 하나로 검출 | Structure · Toyota p32(연표 표 + 두 열 목록) | 미해결 | 검출 결과 확인까지. 대응 후보 없음. 청크에 표 격자 신호 |
+| [P-05](docs/parsing/log/2026-11-11_vl.md#2-입력렌더링-vlm이-빨강파랑이-바뀐-이미지를-받음) | 파싱 · 영역 인식 (VLM·OCR) | VLM 입력의 빨강·파랑 채널이 바뀜 | VL · 모든 페이지 | 미해결 | BGR 배열이 변환 없이 VLM에 들어가는 경로 확인. 품질 영향 미측정 |
+| [P-13](docs/parsing/log/2026-11-11_structure.md#32-머리글-칸-수가-원본보다-하나-적음) | 파싱 · 표 인식 | 머리글 칸 수 부족·체크 표시 오인식 | Structure · DETR p13 Table 4 | 미해결 | 머리글 9칸 예측과 칸 상자 어긋남 확인. 내부 이유 미확인 |
+| [P-16](docs/parsing/log/2026-11-11_structure.md#4-차트-인식-연표-그림을-표로-바꾸며-값을-지어냄) | 파싱 · 차트·수식 인식 | 데이터 표가 없는 그림을 표로 바꾸며 값을 지어냄 | Structure · 슬라이드 p6 연표 | 미해결 | 원본에 없는 연도·이름 확인. 원인은 추론(차트→표 모델에 연표 입력). 청크에 번호 나열 신호 |
+| [C-02](docs/chunking/log/2026-11-11_vl.md#2-입력-재인식-결과-적용) | 청킹 · 입력·재인식 적용 | 재인식으로도 복구하지 못한 반복 블록 | VL · 슬라이드 p6 차트(P-04) | 부분 해결 | 원문이 아닌 반복 글자는 청크에서 빼고 `excluded.jsonl`에 `generation_limit_unrecovered`로 남김. 그림 내용은 잃음 |
+| [P-04](docs/parsing/log/2026-11-11_vl.md#4-vlm-영역-인식-생성-한도까지-반복된-출력) | 파싱 · 영역 인식 (VLM·OCR) | 생성 한도(4,096토큰)까지 반복 출력 | VL · Toyota p2 그림, Toyota p7 그림, 슬라이드 p6 차트 | 부분 해결 | 원인은 입력 해상도 부족(p2 실험). 한도에 닿은 블록만 576 DPI로 재인식: p2 채택, p7 채택(부분 전사), p6 미복구 → 청크에서 제외 |
+| [C-05](docs/chunking/log/2026-11-11_structure.md#2-검사-신호-표-구조-상한-신호-6개-추가) | 청킹 · 검사 신호 | 파서의 표 구조 오류가 청크에 그대로 들어감 | Structure · RAG p6(P-12), DETR p13(P-13), Toyota p32(P-02), 3M p15 행 이동(P-11) | 표시만 | 표 격자·표 구조 상한 신호를 청크에 붙임. 3M p15 행 이동은 신호도 없음 |
+| [C-06](docs/chunking/log/2026-11-10_structure.md#2-검사-신호-표-격자와-번호-나열) | 청킹 · 검사 신호 | 지어낸 차트 값이 청크에 들어감 | Structure · 슬라이드 p6(P-16) | 표시만 | 번호 나열 신호가 붙은 청크 4개. 원문일 가능성을 규칙으로 가를 수 없어 지우지 않음 |
+| [C-08](docs/chunking/log/2026-11-10_vl.md#4-제목-묶음-제목-단독-청크) | 청킹 · 제목 묶음 | 뒤따르는 내용이 없는 제목 단독 청크 | VL 10개 · Structure 12개(`Contents`, `MISSION` 등, 2토큰 안팎) | 표시만 | `title_only`로 표시해 검색에서 걸러 낼 수 있게 함 |
+| [P-12](docs/parsing/log/2026-11-11_structure.md#31-구조-토큰-상한에서-잘려-마지막-행에-여러-행이-합쳐짐) | 파싱 · 표 인식 | 구조 토큰 상한(500)에서 잘려 마지막 행에 11행이 합쳐짐 | Structure · RAG 논문 p6 Table I | 표시만 | 규칙 0.3.0 `table_structure_limit`로 표시. 표 내용은 그대로 |
+| [P-03](docs/parsing/log/2026-10-30_vl.md#8-두-파서에서-공통으로-관찰된-인식-문제-vl-쪽-근거) | 파싱 · 레이아웃 검출·병합 | 도식 누락·영역 혼합 | VL·Structure · Toyota p21 | 관찰만 | — |
+| [P-06](docs/parsing/log/2026-10-30_vl.md#42-관찰만-한-인식-문제) | 파싱 · 영역 인식 (VLM·OCR) | 단어 오인식·정보 누락 | VL · 3M p9 `Elected`→`Executed`, NUS p9 전공 조합 누락 | 관찰만 | — |
+| [P-07](docs/parsing/log/2026-10-30_vl.md#42-관찰만-한-인식-문제) | 파싱 · 영역 인식 (VLM·OCR) | 그림 내부 문자 오인식 | VL · RAG p3 `dismissal`→`原始` | 관찰만 | — |
+| [P-08](docs/parsing/log/2026-10-30_structure.md#3-영역-인식문자-ocr-그림-속-문장의-영역-혼합) | 파싱 · 영역 인식 (VLM·OCR) | 그림 속 문장이 다른 상자와 섞임 | Structure · RAG p3, NUS p9 | 관찰만 | — |
+| [P-09](docs/parsing/log/2026-10-30_structure.md#3-영역-인식문자-ocr-그림-속-문장의-영역-혼합) | 파싱 · 영역 인식 (VLM·OCR) | 표의 아이콘 셀 정보 누락 | Structure · UHD 설명서 p8 | 관찰만 | 문자가 없는 셀일 수 있어 OCR 실패와 구분 |
+| [P-10](docs/parsing/log/2026-10-30_vl.md#5-표-인식-열헤더-손상) | 파싱 · 표 인식 | 표 열·머리글 대응 손상 | VL · DETR p13 Table 3(마지막 Δ열 손실), 3M p15(여분 빈 열) | 관찰만 | — |
+| [P-11](docs/parsing/log/2026-10-30_structure.md#4-표-인식) | 파싱 · 표 인식 | 표 값이 다른 행으로 이동 | Structure · 3M p15 `0.85` | 관찰만 | — |
+| [P-14](docs/parsing/log/2026-10-30_structure.md#4-표-인식) | 파싱 · 표 인식 | 표 머리글 누락 | Structure · 3M 인명·직책 표 `Age` | 관찰만 | — |
+| [P-15](docs/parsing/log/2026-10-30_vl.md#42-관찰만-한-인식-문제) | 파싱 · 차트·수식 인식 | 원본 막대와 맞지 않는 그래프 수치표 | VL · 슬라이드 p15 | 관찰만 | — |
+| [P-17](docs/parsing/log/2026-10-30_vl.md#8-두-파서에서-공통으로-관찰된-인식-문제-vl-쪽-근거) | 파싱 · 차트·수식 인식 | 수식 첨자 구조 손상 | VL·Structure · DETR p5 식 (2) | 관찰만 | — |
+| [P-19](docs/parsing/log/2026-10-30_vl.md#13-구조무결성-검사-결과) | 파싱 · 결과 변환·저장 | bbox가 PDF 경계를 약 0.11pt 넘어 `partial` | VL · Toyota p21 | 관찰만 | 좌표 변환 중 생긴 작은 초과로, 내용 오류의 크기를 나타내지 않음 |
+| [C-09](docs/chunking/log/../README.md#6-알려진-한계) | 청킹 · 제목 묶음 | 다단 본문에서 읽기 순서가 틀리면 제목 묶음도 틀림 | 전체 · 사례 미확인 | 한계 | 파서가 돌려준 블록 순서를 따름 |
+| [C-12](docs/chunking/log/../README.md#6-알려진-한계) | 청킹 · 표 변환·길이 맞추기 | `<th>` 없는 두 줄 머리글의 둘째 줄이 데이터 행이 됨 | VL · 3M p15 `December 31, 2018 / 2018 / 2017` | 한계 | 규칙으로 안정적으로 구분하기 어려워 머리글 행 수를 설정값(1)으로 둠 |
+| [C-13](docs/chunking/log/../README.md#6-알려진-한계) | 청킹 · 표 변환·길이 맞추기 | 영어 문장 규칙이 약어에서 잘못 나눌 수 있음 | 전체 · `e.g.` 등, 사례 미확인 | 한계 | 영어 문장 경계 정규식 사용 |
+
 ## 구조와 코드 읽는 순서
 
 ```text
@@ -533,7 +574,7 @@ VL 출력이 생성 한도에 닿아 잘린 블록(반복 출력)만 원본 PDF 
 | [2026-11-06_code-review.md](docs/reviews/2026-11-06_code-review.md) | 코드 리뷰 지적 사항, 수정 내용과 검증, 남은 항목 |
 | [RAG_LEARNING_PLAN.md](docs/planning/RAG_LEARNING_PLAN.md) | 별도로 보존하는 기본 학습 커리큘럼 |
 | [AGENTS.md](AGENTS.md) | 탑다운 학습, 코드·주석·글쓰기, 하드코딩 금지, 파일 변경·커밋·푸시 규칙 |
-| [docs/AGENTS.md](docs/AGENTS.md) | docs 안의 폴더 구조, 단계 README, 실행 묶음·모델별 기록(log), 타임라인·이슈 목록, 그림 종류, 이전 형식 문서의 이동 규칙 |
+| [docs/AGENTS.md](docs/AGENTS.md) | docs 안의 폴더 구조, 단계 README, 실행 묶음·모델별 기록(log), 타임라인·이슈 목록·남은 이슈 관리, 그림 종류와 렌더링 확인, 이전 형식 문서의 이동 규칙 |
 | [outputs/AGENTS.md](outputs/AGENTS.md) | 실행 결과 폴더의 생성·보존 규칙, 줄바꿈과 해시, 커밋할 파일과 50MB 초과 파일 처리 |
 
 현재 범위의 전체 코드를 먼저 보고 주석을 따라 이해·실행·수정한다.

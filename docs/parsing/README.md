@@ -18,57 +18,54 @@ PDF 텍스트층은 모델 결과와 따로 보존해 대조 자료로 쓴다.
 
 ## 1. 데이터 흐름
 
-노드는 데이터(형식·저장 위치), 화살표는 그 데이터를 바꾸는 모듈·함수다. 원통은 파일로 저장되는 데이터,
-둥근 사각형은 메모리에만 있는 중간 데이터다. 모델 안의 흐름(레이아웃 검출 → 영역 인식)은 모델마다 달라
-[VL](log/2026-10-30_vl.md#15-데이터-흐름)·[Structure](log/2026-10-30_structure.md#14-데이터-흐름) 기록에 따로 그렸다.
+노드는 데이터, 화살표는 그 데이터를 바꾸는 함수다. 원통은 파일로 저장되는 데이터, 둥근 사각형은 메모리에만 있는
+중간 데이터다. 가운데 줄기가 주 흐름이고, 옆으로 나간 원통은 그 단계에서 함께 저장하는 파일이다.
+원통 중 재인식·규칙 검사 결과를 뺀 나머지는 `outputs/parsing_파서_UTC시각/documents/문서 ID/` 아래에 저장된다.
+모델 안의 흐름은 모델마다 달라 [VL](log/2026-10-30_vl.md#15-데이터-흐름)·[Structure](log/2026-10-30_structure.md#14-데이터-흐름) 기록에 따로 그렸다.
 
 ```mermaid
 flowchart TD
     SEL[/"configs/selection.json<br/>문서명 · 페이지 번호"/]
     PDF("원본 PDF bytes")
-
-    subgraph PREP["페이지 준비"]
-        NATIVE("PDF 텍스트층 · 이미지 배치<br/>블록 · 줄 · span + PDF 좌표")
-        IMG("페이지 이미지<br/>144 DPI BGR 배열")
-        MAT("픽셀 → PDF 좌표 변환 행렬<br/>배율 · 회전 · CropBox")
-    end
-
+    PAGE("페이지 준비 결과<br/>PDF 텍스트층 · 이미지 배치<br/>144 DPI BGR 페이지 이미지<br/>픽셀 → PDF 좌표 변환 행렬")
     RAW("모델 결과 JSON<br/>영역 상자 · 라벨 · 내용")
-    BLOCKS("공통 블록<br/>element_id · label · content<br/>bbox 픽셀 좌표 + PDF 좌표")
-
-    subgraph RUN["outputs/parsing_파서_UTC시각/documents/문서 ID/"]
-        SRCPDF[("source.pdf<br/>원본 사본, 커밋 안 함")]
-        PNG[("page_N.png")]
-        PJSON[("page_N.json<br/>native · render · parsing.raw · parsing.blocks")]
-        CROPS[("page_N/imgs/*.jpg<br/>그림 crop")]
-        REVIEW[("review_파서.pdf<br/>원본 위에 bbox 표시")]
-    end
-
-    REPORT[("규칙 검사 보고서 JSON<br/>신호 · 근거")]
-    REREC[("outputs/rerecognition_vl_UTC시각/<br/>blocks.jsonl: 대체 글자 · 상태")]
+    BLOCKS("공통 블록<br/>element_id · label · content<br/>픽셀 bbox + PDF bbox")
+    PJSON[("page_N.json<br/>native · render<br/>parsing.raw · parsing.blocks")]
+    REREC[("rerecognition_vl_UTC시각/<br/>blocks.jsonl")]
     CHUNK["청킹 단계"]
 
-    SEL -->|"pdf_source.read_pdf_bytes<br/>HTTP 또는 로컬에서 읽기"| PDF
-    PDF -->|"pdf_parser.prepare_page<br/>텍스트층 추출"| NATIVE
-    PDF -->|"pdf_parser.prepare_page<br/>렌더링 · RGB→BGR"| IMG
-    PDF -->|"pdf_parser.prepare_page"| MAT
-    PDF -->|"run.process_document<br/>사본 저장"| SRCPDF
-    PDF -->|"pdf_parser.prepare_page<br/>RGB 렌더링을 PNG로"| PNG
-    IMG -->|"어댑터 parse_image → model_result.predict_page<br/>레이아웃 검출 → 영역 인식"| RAW
-    RAW -->|"model_result.normalize_result_blocks<br/>내용 · 픽셀 bbox 복사"| BLOCKS
-    MAT -->|"pdf_parser.add_pdf_coordinates<br/>PDF 좌표 추가"| BLOCKS
-    RAW -->|"model_result.result_images<br/>run.parse_page가 저장"| CROPS
-    NATIVE --> PJSON
-    RAW -->|"원본 그대로 보존"| PJSON
-    BLOCKS -->|"run.save_page"| PJSON
-    BLOCKS -->|"review_pdf.add_review_page"| REVIEW
+    COPY[("source.pdf<br/>page_N.png")]
+    CROPS[("page_N/imgs/*.jpg")]
+    REVIEW[("review_파서.pdf")]
+    REPORT[("규칙 검사<br/>보고서 JSON")]
 
-    PJSON -->|"validate_run.inspect_run<br/>입력은 읽기만 함"| REPORT
-    PJSON -->|"rerecognize.find_targets<br/>4,080토큰 이상 VL 블록"| REREC
-    SRCPDF -->|"영역만 576 DPI로 다시 렌더링"| REREC
-    PJSON --> CHUNK
-    REREC --> CHUNK
+    SEL -->|"① read_pdf_bytes"| PDF
+    PDF -->|"② prepare_page"| PAGE
+    PDF -.->|"③ 저장"| COPY
+    PAGE -->|"④ predict_page"| RAW
+    RAW -.->|"⑤ result_images"| CROPS
+    RAW -->|"⑥ normalize · add_pdf_coordinates"| BLOCKS
+    BLOCKS -.->|"⑦ add_review_page"| REVIEW
+    BLOCKS -->|"⑧ save_page"| PJSON
+    PJSON -.->|"⑨ validate_run"| REPORT
+    PJSON -->|"⑩ rerecognize"| REREC
+    PJSON -->|"⑪"| CHUNK
+    REREC -->|"⑪"| CHUNK
 ```
+
+| 화살표 | 함수 | 하는 일 |
+|---|---|---|
+| ① | `pdf_source.read_pdf_bytes` | 선정 문서의 PDF를 HTTP 주소나 로컬 폴더에서 읽는다 |
+| ② | `pdf_parser.prepare_page` | 텍스트층·이미지 배치를 추출하고, 페이지를 144 DPI로 렌더링해 RGB→BGR 배열로 바꾸고, 좌표 변환 행렬을 만든다 |
+| ③ | `run.process_document`·`run.parse_page` | 원본 사본 `source.pdf`(커밋하지 않음)와 RGB 렌더링 PNG를 저장한다 |
+| ④ | 어댑터 `parse_image` → `model_result.predict_page` | 페이지 이미지 하나를 모델에 넣어 레이아웃 검출과 영역 인식을 한다 |
+| ⑤ | `model_result.result_images` | 결과 객체의 그림 crop(`markdown_images`)을 꺼내 저장한다 |
+| ⑥ | `model_result.normalize_result_blocks`·`pdf_parser.add_pdf_coordinates` | 모델 결과를 공통 블록으로 옮기고(내용·픽셀 bbox 그대로), ②의 행렬로 PDF 좌표를 더한다 |
+| ⑦ | `review_pdf.add_review_page` | 원본 페이지 사본 위에 블록 bbox와 번호를 표시한다 |
+| ⑧ | `run.save_page` | 텍스트층(`native`), 렌더링 정보, 모델 원본(`parsing.raw`), 공통 블록을 한 JSON으로 저장한다 |
+| ⑨ | `validate_run.inspect_run` | 저장된 페이지를 읽기만 하고 규칙 신호를 별도 보고서로 낸다 |
+| ⑩ | `rerecognize` | 출력이 4,080토큰 이상인 VL 블록만 골라 `source.pdf` 사본에서 그 영역을 576 DPI로 다시 렌더링해 다시 인식한다 |
+| ⑪ | `chunking.run` | 페이지 JSON의 블록과 재인식 결과를 함께 읽어 청크를 만든다 |
 
 ## 2. 결정 사항과 이유
 

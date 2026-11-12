@@ -29,38 +29,42 @@ PDF → 파싱 → 청킹〔현재〕 → 임베딩 → 인덱스 → 검색·�
 
 ## 2. 데이터 흐름
 
-노드는 데이터, 화살표는 그 데이터를 바꾸는 함수다. 원통은 파일로 저장되는 데이터, 둥근 사각형은 메모리에만 있는 중간 데이터다.
+노드는 데이터, 화살표는 그 데이터를 바꾸는 함수다. 원통은 파일로 저장되는 데이터, 둥근 사각형은 메모리에만 있는
+중간 데이터다. 출력 원통 세 개는 `outputs/chunking_파서_UTC시각/` 아래에 저장된다.
 
 ```mermaid
 flowchart TD
-    PJSON[("파싱 실행 폴더<br/>page_N.json의 parsing.blocks<br/>element_id · label · content · bbox")]
-    RJSON[("재인식 결과 blocks.jsonl<br/>블록별 상태 · 새 글자")]
-    CFG[/"configs/chunking.json<br/>라벨 역할 · 최대 토큰 · 토크나이저"/]
-
-    OV("블록별 대체 처리<br/>accepted: 새 글자 / 그 밖: 제외 사유")
-    FL("블록별 검사 신호<br/>반복 · 병합 · 표 격자 · 표 구조 상한")
+    PJSON[("파싱 실행의 page_N.json<br/>parsing.blocks")]
+    RJSON[("재인식 blocks.jsonl<br/>VL만")]
+    IN("블록별 입력<br/>원래 글자 또는 대체 글자 · 제외 사유<br/>블록별 검사 신호")
     ROLE("역할이 붙은 블록<br/>제목 · 본문 · 표 · 차트 · 그림 · 캡션")
-    GRP("청크 후보 묶음<br/>제목 경로 + 본문 묶음, 표·차트·그림은 따로<br/>캡션은 대상에 붙음")
+    GRP("청크 후보 묶음<br/>제목 경로 + 본문 묶음<br/>표 · 차트 · 그림은 따로, 캡션은 대상에")
     UNITS("조각 목록<br/>문장 · 표 행(열 제목: 값) · 그림 줄")
+    CHUNKS[("chunks.jsonl")]
+    EXC[("excluded.jsonl")]
+    SUM[("summary.json<br/>run.json")]
 
-    CHUNKS[("chunks.jsonl<br/>text · token_count · element_ids · bbox · flags")]
-    EXC[("excluded.jsonl<br/>제외 블록 · 사유")]
-    SUM[("summary.json · run.json<br/>수 · 토큰 분포 · 누락 · 입력 해시")]
-
-    RJSON -->|"run.load_rerecognition<br/>입력 run.json · 페이지 JSON 해시 확인"| OV
-    PJSON -->|"run.page_flags → quality_checks.inspect_page"| FL
-    OV -->|"run.replacement_flags<br/>새 글자로 반복·길이 신호 다시 계산"| FL
-    PJSON -->|"structure.build_page_chunks<br/>라벨 → 역할"| ROLE
-    OV -->|"글자 대체 · 제외"| ROLE
-    CFG -.-> ROLE
-    ROLE -->|"캡션 연결 · 제목 묶음"| GRP
-    GRP -->|"표는 tables.html_table_rows, 차트는 pipe_table_rows로 행 변환<br/>상한을 넘으면 문장 → 토큰 경계로 나눔"| UNITS
-    UNITS -->|"tokens.TokenCounter로 길이 측정<br/>상한까지 채움 · 제목·캡션 앞머리 반복"| CHUNKS
-    FL -->|"블록 신호를 청크 flags로"| CHUNKS
-    ROLE -->|"제외 라벨 · 빈 내용 · 재인식 미복구"| EXC
-    CHUNKS -->|"run.chunk_run<br/>모든 블록이 청크·제목·제외 중 한 곳에 있는지 확인"| SUM
-    EXC --> SUM
+    PJSON -->|"① page_flags"| IN
+    RJSON -->|"② load_rerecognition"| IN
+    IN -->|"③ build_page_chunks"| ROLE
+    ROLE -.->|"④ 제외"| EXC
+    ROLE -->|"⑤ 캡션 연결 · 제목 묶음"| GRP
+    GRP -->|"⑥ 행 변환 · 경계 분할"| UNITS
+    UNITS -->|"⑦ 토큰 측정 · 채우기"| CHUNKS
+    CHUNKS -->|"⑧ chunk_run"| SUM
+    EXC -.->|"⑧"| SUM
 ```
+
+| 화살표 | 함수 | 하는 일 |
+|---|---|---|
+| ① | `run.page_flags` → `parsing.quality_checks.inspect_page` | 페이지 JSON의 블록마다 반복·병합·표 격자·표 구조 상한 신호를 계산한다 |
+| ② | `run.load_rerecognition`·`run.replacement_flags` | 입력 실행 `run.json`·페이지 JSON 해시가 같을 때만 재인식 결과를 읽어, 채택 블록은 새 글자와 새 신호로, 나머지는 제외 사유로 바꾼다 |
+| ③ | `structure.build_page_chunks` | 설정(`configs/chunking.json`)의 라벨 역할에 따라 블록에 역할을 붙인다 |
+| ④ | `structure.PageChunker.exclude` | 제외 라벨·빈 내용·재인식 미복구 블록을 사유와 함께 따로 모은다 |
+| ⑤ | `structure.PageChunker` | 캡션을 가장 가까운 표·차트·그림에 붙이고, 제목이 바뀔 때마다 본문 묶음을 끊는다 |
+| ⑥ | `tables.html_table_rows`·`pipe_table_rows`·`PageChunker.split_units` | 표·차트를 행으로 바꾸고, 상한을 넘는 조각은 문장 → 토큰 경계로 나눈다(2.2절) |
+| ⑦ | `tokens.TokenCounter`·`PageChunker.pack` | 실제 토크나이저로 길이를 재며 상한까지 조각을 채우고, 제목·캡션 앞머리를 반복하고, 블록 신호를 청크 `flags`로 옮긴다 |
+| ⑧ | `run.chunk_run` | 모든 블록이 청크·제목 문맥·제외 기록 중 한 곳에 있는지 확인하고 통계와 입력 해시를 남긴다 |
 
 ### 2.1 처리 단계
 

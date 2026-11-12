@@ -1,5 +1,6 @@
 # Windows 작업 사본의 CRLF 변환으로 해시가 기록과 달라짐
 
+- ID: E-02
 - 상태: 미해결. 해결 변경(`.gitattributes`)은 별도 브랜치 `chore/gitattributes-lf`에 있고 아직 main에 합치지 않았다.
 - 관련 실행: [rerecognition_vl_20261111T101144801007Z](../../../outputs/rerecognition_vl_20261111T101144801007Z),
   [chunking_vl_20261111T105933020828Z](../../../outputs/chunking_vl_20261111T105933020828Z)
