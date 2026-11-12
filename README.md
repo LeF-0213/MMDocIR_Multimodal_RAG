@@ -34,7 +34,8 @@ PDF의 텍스트·표·수식·그림을 원본 위치와 연결하고, 검색 �
 이전 PyMuPDF 실행은 8개 문서·24페이지 기록이다. 현재 27페이지나 새 모델 파이프라인의 검증 결과로 취급하지 않는다.
 선정 목록은 [configs/selection.json](configs/selection.json), 문서별 관찰은 [DATA_SPEC.md](docs/data/DATA_SPEC.md)에 기록했다.
 `3M_2018_10K`의 대상은 8·9·15페이지로 정정했다. 기존 VL 실행의 7·8·15페이지 기록은 보존하고,
-9페이지만 추가할 때는 [configs/selection_3m_page9.json](configs/selection_3m_page9.json)을 사용한다.
+2026-10-28에 9페이지 하나만 담은 일회용 선정 목록으로 9페이지를 추가 파싱했다. 이 목록 파일은 2026-11-12에 지웠고,
+내용(`3M_2018_10K` 9페이지)은 아래 `page_00009_run.json`의 `selection`에 남아 있다. 이후 실행은 모두 `configs/selection.json`을 쓴다.
 추가 결과는 기존 실행의 `documents/<문서 ID>/`에 보관했다. 이 문서의 `review_vl.pdf`는
 8·9·15페이지 통합 검토본이며, 페이지별 bbox는 각각 6·19·18개다. 별도 추가 실행 폴더는 남기지 않았다.
 추가 실행 조건은 `page_00009_run.json`, 현재 검토 대상은 `document.json`과 `review_pages_8_9_15.json`에 기록했다.
@@ -82,7 +83,6 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 ├─ configs/
 │  ├─ parsing_run.json       # 입력·파서·장치·출력·기록·비교 설정
 │  ├─ selection.json
-│  ├─ selection_3m_page9.json
 │  ├─ experiment_recording.json # 기록·소스·메모리·모델 객체·실험 옵션
 │  └─ experiment_evaluation.json # 매칭·위치·표 평가 설정
 ├─ common/                 # 도메인과 무관한 공용 도구. parsing·experiments를 모름
