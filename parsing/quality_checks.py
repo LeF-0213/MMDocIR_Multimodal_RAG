@@ -27,7 +27,7 @@ LIMITS = {
     "coordinate_tolerance": 0.00001,
     # PP-StructureV3 표 구조 모델(SLANet_plus·SLANeXt_wired)의 inference.yml max_text_length다.
     # 디코더는 이 길이까지만 구조 토큰을 내므로, 이 수에 닿은 표는 뒤쪽 행이 잘렸을 수 있다.
-    # 근거: docs/parsing/log/2026-11-11_structure-table-structure-limit.md 2절(RAG 논문 p6, 다시 센 구조 토큰 501개).
+    # 근거: docs/parsing/log/2026-11-11_structure.md 3.1절(RAG 논문 p6, 다시 센 구조 토큰 501개).
     "table_structure_tokens": 500,
 }
 # 표 구조 토큰 상한을 적용할 파싱 출처다. VL 표는 VLM이 직접 만들어 이 상한과 관계없다.

@@ -38,7 +38,7 @@
 | 모델·자원 | 모델 가중치 revision 미확보, 경과 시간 기록 | 구성 모델별 파일 동일성과 출처, 구간별 메모리 기록 |
 
 근거: [현재 실행 코드](../../parsing/run.py), [결과 변환](../../parsing/model_result.py),
-[규칙 검사 실행](../../parsing/validate_run.py), [기존 문제 정리](../parsing/log/2026-10-30_parser-quality-review.md).
+[규칙 검사 실행](../../parsing/validate_run.py), [기존 문제 정리](../parsing/log/README.md).
 현재 데이터 범위·실행 횟수·검토 신호 수를 새 비교 기능의 검증 결과로 바꾸어 적지 않는다.
 
 ## 2. 비교 방식과 통제 조건

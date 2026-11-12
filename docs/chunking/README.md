@@ -23,22 +23,32 @@ PDF → 파싱 → 청킹〔현재〕 → 임베딩 → 인덱스 → 검색·�
 | 입력 | 병합 해제 재파싱의 VL·Structure 실행 둘 다 + VL 재인식 결과 | 같은 설정으로 두 파서 결과의 청크 수·길이·제외 블록을 비교한다. 2026-11-11에 기준 파싱 실행에서 바꿨다 |
 | 표 표현 | 행별 "열 제목: 값" + 원본 HTML 보존 | 값마다 열 제목을 붙여 조각만 봐도 숫자의 의미가 남게 한다. 원본은 `table.source_content`에 둔다 |
 | 길이 측정 | Qwen3-Embedding-8B 토크나이저 | 텍스트 임베딩 우선 후보. 실제 임베딩 입력과 같은 기준으로 세려고 토크나이저 파일만 받고 가중치는 받지 않았다 |
-| 생성 한도에 닿은 VL 블록 | 재인식 글자로 바꾸거나, 복구하지 못하면 청크에서 빼고 사유를 남긴다 | 2026-11-11 결정. 한도에서 잘린 반복 출력은 원문이 아님을 확인했다([VL 생성 한도 반복](../parsing/log/2026-11-11_vl-generation-limit-repetition.md)). 원문이 아닌 글자를 임베딩하지 않는다. 지우지 않고 `excluded.jsonl`에 남겨 누락이 드러나게 한다 |
+| 생성 한도에 닿은 VL 블록 | 재인식 글자로 바꾸거나, 복구하지 못하면 청크에서 빼고 사유를 남긴다 | 2026-11-11 결정. 한도에서 잘린 반복 출력은 원문이 아님을 확인했다([VL 생성 한도 반복](../parsing/log/2026-11-11_vl.md#4-vlm-영역-인식-생성-한도까지-반복된-출력)). 원문이 아닌 글자를 임베딩하지 않는다. 지우지 않고 `excluded.jsonl`에 남겨 누락이 드러나게 한다 |
 | 그 밖의 반복·이상 신호 | 청크로 만들고 신호만 표시 | 원문일 가능성이 남아 있어 지우면 근거까지 잃을 수 있다. 크기 통계는 신호 없는 청크(`unflagged`)를 따로 집계한다 |
 | 재인식 결과 적용 조건 | 입력 실행 `run.json` 해시가 같을 때만 적용, 재인식 뒤 페이지 JSON이 바뀌었으면 실행 중단 | 폴더 이름만 같고 내용이 다른 실행에 엉뚱한 결과를 덮어쓰지 않기 위해서다 |
 
 ## 2. 처리 흐름
 
-```text
-configs/chunking.json ─┐
-파싱 실행 폴더 ─────────┼→ chunking/run.py ─ 페이지 JSON 읽기·해시
-재인식 결과 폴더 ───────┤        ├→ load_rerecognition  입력 run.json 해시가 같은 재인식 결과만 적용
-configs/selection.json ┘        │
-                                ├→ parsing.quality_checks.inspect_page  반복·병합·표 격자·표 구조 상한 신호
-                                ├→ chunking/structure.py  역할 분류 → 캡션 연결 → 제목 묶음 → 길이 맞추기
-                                │     ├ chunking/tables.py  HTML 표·파이프 표 → "열 제목: 값" 행
-                                │     └ chunking/tokens.py  실제 입력 기준 토큰 수·토큰 경계 분할
-                                └→ outputs/chunking_<파서>_<UTC>/ run.json·chunks.jsonl·excluded.jsonl·summary.json
+```mermaid
+flowchart TD
+    CFG[/"configs/chunking.json<br/>configs/selection.json"/]
+    PRUN[("파싱 실행 폴더<br/>페이지 JSON")]
+    RREC[("재인식 결과 폴더<br/>blocks.jsonl")]
+    RUN("chunking/run.py<br/>설정·입력 읽기, 페이지 JSON 해시")
+    LOAD("load_rerecognition<br/>입력 run.json 해시가 같은 재인식 결과만 적용")
+    QC("parsing.quality_checks.inspect_page<br/>반복 · 병합 · 표 격자 · 표 구조 상한 신호")
+    STR("chunking/structure.py<br/>역할 분류 → 캡션 연결 → 제목 묶음 → 길이 맞추기")
+    CHK("chunking/run.py<br/>누락 확인: 모든 블록이 청크·제목 문맥·제외 기록 중 한 곳에 있는지")
+    TAB("chunking/tables.py<br/>HTML 표·파이프 표 → 열 제목: 값 행")
+    TOK("chunking/tokens.py<br/>실제 입력 기준 토큰 수 · 토큰 경계 분할")
+    OUT[("outputs/chunking_파서_UTC시각/<br/>run.json · chunks.jsonl · excluded.jsonl · summary.json")]
+
+    CFG --> RUN
+    PRUN --> RUN
+    RREC --> LOAD --> RUN
+    RUN --> QC --> STR --> CHK --> OUT
+    STR -.표 변환.- TAB
+    STR -.토큰 측정.- TOK
 ```
 
 1. **역할 분류**: 라벨을 제목(단계별)·본문·표·차트·그림·캡션·제외로 나눈다. 설정에 없는 라벨은 본문으로 다루고
@@ -67,6 +77,15 @@ configs/selection.json ┘        │
 | 1 | 블록 단위 | 행 단위 | 줄 단위 |
 | 2 | 영어 문장 경계(마침표·물음표·느낌표 뒤 공백 다음에 대문자·숫자·여는 기호) | 같음 | 같음 |
 | 3 | 토큰 경계(`hard_split` 표시) | 같음 | 같음 |
+
+```mermaid
+flowchart LR
+    P["조각<br/>본문 블록 · 표 행 · 그림 줄"] --> Q1{"상한 이하?"}
+    Q1 -- 예 --> USE["그대로 쓴다"]
+    Q1 -- 아니오 --> SEN["문장 경계로 나눈다"] --> Q2{"문장 하나가<br/>상한 이하?"}
+    Q2 -- 예 --> USE
+    Q2 -- 아니오 --> HARD["토큰 개수로 자른다<br/>hard_split 표시"]
+```
 
 - 나눈 조각마다 제목·캡션·종류 표시(`[Table]` 등)를 반복한다. 조각만 검색돼도 무엇의 일부인지 알 수 있게 하기 위해서다.
 - 3순위가 있는 이유: 정한 청크 크기 상한을 모든 청크가 지키게 하기 위해서다. 문장 하나가 상한보다 길면 경계로는
@@ -148,8 +167,8 @@ configs/selection.json ┘        │
 - 재인식으로 바꾼 글자도 완전한 원문은 아니다. Toyota p7은 영어 라벨과 일본어 아래쪽 상자만 나왔다.
 - 복구하지 못해 뺀 블록은 원래 출력에 맞는 글자가 일부 있어도 함께 빠진다(`excluded.jsonl`에서 확인).
 - Structure 슬라이드 p6 차트의 지어낸 값과 RAG p6 표 마지막 행은 신호만 붙이고 그대로 둔다
-  ([차트 환각](../parsing/log/2026-11-11_structure-chart-hallucination.md),
-  [표 구조 토큰 상한](../parsing/log/2026-11-11_structure-table-structure-limit.md)).
+  ([차트 환각](../parsing/log/2026-11-11_structure.md#4-차트-인식-연표-그림을-표로-바꾸며-값을-지어냄),
+  [표 구조 토큰 상한](../parsing/log/2026-11-11_structure.md#31-구조-토큰-상한에서-잘려-마지막-행에-여러-행이-합쳐짐)).
 - 재인식 결과 적용은 파일 해시로 판정하므로 줄바꿈이 바뀐 작업 사본에서는 실패한다
   ([CRLF 해시 불일치](../environment/log/2026-11-11_windows-crlf-hash-mismatch.md)).
 

@@ -26,8 +26,8 @@ PDF의 텍스트·표·수식·그림을 원본 위치와 연결하고, 검색 �
 | 실행 기록·전후 비교 | 파싱 시 기본 기록과 최근 호환 실행의 자동 비교. 공통 manifest·소스 diff·모델 파일·RSS·정답 기반 문장/위치/표 평가·JSON/Markdown 보고서. 실제 원문 품질 개선은 미측정 |
 | 기본 진입점 | 루트 `main.py`가 실행 설정을 읽어 HTTP·로컬 PDF 파싱·기록·자동 비교 실행. 모의 모델로 연속 실행 검증, 실제 신규 OCR 추론은 미수행 |
 | 실행 재개 | `main.py --resume`으로 중단된 실행의 유효 페이지를 재사용하고 남은 페이지만 `run.py`의 같은 처리 경로로 처리. 처음 실행에 고정한 비교 기준을 이어 씀. 모의 테스트만 확인. 이 기능 추가 전에 중단된 실행은 코드가 달라 재개 불가(새로 실행) |
-| 재파싱 | 병합 해제 후 VL·Structure 27페이지 재파싱 완료(컨테이너, VL은 한 번 중단 후 재개). VL 병합 그룹 22→0, 빈 text 블록 23→0, 규칙 검사 검토 페이지 14→3. bbox·라벨은 같음. Structure 블록 출력은 기준과 같음. 정답 대조는 미수행 ([병합 해제 재파싱](docs/parsing/log/2026-11-11_vl-merge-off-reparse.md)) |
-| 재인식 | VL 출력이 생성 한도(4,096토큰)에 닿은 블록만 576 DPI로 다시 인식(`parsing.rerecognize`). 3개 중 Toyota p2·p7 채택, 슬라이드 p6 미복구. 원래 파싱 결과는 그대로 두고 별도 폴더에 저장 ([VL 생성 한도 반복](docs/parsing/log/2026-11-11_vl-generation-limit-repetition.md)) |
+| 재파싱 | 병합 해제 후 VL·Structure 27페이지 재파싱 완료(컨테이너, VL은 한 번 중단 후 재개). VL 병합 그룹 22→0, 빈 text 블록 23→0, 규칙 검사 검토 페이지 14→3. bbox·라벨은 같음. Structure 블록 출력은 기준과 같음. 정답 대조는 미수행 ([병합 해제 재파싱](docs/parsing/log/2026-11-11_vl.md)) |
+| 재인식 | VL 출력이 생성 한도(4,096토큰)에 닿은 블록만 576 DPI로 다시 인식(`parsing.rerecognize`). 3개 중 Toyota p2·p7 채택, 슬라이드 p6 미복구. 원래 파싱 결과는 그대로 두고 별도 폴더에 저장 ([VL 생성 한도 반복](docs/parsing/log/2026-11-11_vl.md#4-vlm-영역-인식-생성-한도까지-반복된-출력)) |
 | 청킹 | 레이아웃 블록 구조 기반 청킹. 재파싱 결과 + 재인식 적용으로 VL 170개(신호 12)·Structure 147개(신호 28) 청크, 미배정 블록 0, 512토큰 초과 0. 복구 못 한 반복 블록은 사유와 함께 제외. 근거 보존은 미측정 ([청킹 README](docs/chunking/README.md)) |
 | 이후 단계 | 임베딩·인덱스·검색·리랭킹·Recall@1·@3·@10 평가는 미구현 |
 
@@ -45,7 +45,7 @@ PDF의 텍스트·표·수식·그림을 원본 위치와 연결하고, 검색 �
 PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 기록과 이번 재실행을 구분한다.
 두 결과를 자동으로 합치거나 한 파서를 정답 판정기로 쓰지 않고 원본 PDF와 대조한다.
 
-[파서별 문제와 공통 파싱 문제](docs/parsing/log/2026-10-30_parser-quality-review.md)에 VL·Structure별 문제,
+[파서별 문제와 공통 파싱 문제](docs/parsing/log/README.md)에 VL·Structure별 문제,
 두 파서의 공통 인식 문제, PDF 텍스트층 추출, 프로젝트 변환·저장의 제약을 나눠 정리했다.
 평가 범위·원본 근거·검토 한계·다음 실험도 함께 기록했다.
 2026-11-02 코드 확인에서 VL의 `merge_layout_blocks=True`와 병합 그룹을 확인했다.
@@ -131,7 +131,7 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 │  │  └─ DATA_SPEC.md     # 선정 문서·페이지·관찰 특성
 │  ├─ parsing/
 │  │  ├─ README.md        # 파싱 설계 결정·이유, 출력 형식을 읽는 코드, 현재 상태
-│  │  └─ log/             # 문제·실행 기록(YYYY-MM-DD_<주제>.md)과 타임라인 README
+│  │  └─ log/             # 실행 묶음·모델별 기록(YYYY-MM-DD_<모델>.md)과 타임라인 README
 │  ├─ chunking/
 │  │  ├─ README.md        # 청킹 설계·설정·출력 형식·한계
 │  │  └─ log/             # 청킹 실행 기록과 타임라인
@@ -491,7 +491,7 @@ VL 출력이 생성 한도에 닿아 잘린 블록(반복 출력)만 원본 PDF 
 .venv/bin/python -B -m parsing.rerecognize
 ```
 
-문제 발견부터 원인·해결책 선택·결과까지는 [VL 생성 한도 반복](docs/parsing/log/2026-11-11_vl-generation-limit-repetition.md)에 정리했다.
+문제 발견부터 원인·해결책 선택·결과까지는 [VL 생성 한도 반복](docs/parsing/log/2026-11-11_vl.md#4-vlm-영역-인식-생성-한도까지-반복된-출력)에 정리했다.
 
 ## 청킹 실행
 
@@ -512,7 +512,7 @@ VL 출력이 생성 한도에 닿아 잘린 블록(반복 출력)만 원본 PDF 
 
 문서는 `docs/planning/`의 계획, `docs/data/`의 데이터 명세, `docs/parsing/`·`docs/chunking/`의 단계별 설계(README)와
 기록(`log/`), `docs/environment/log/`의 실행 환경 문제, `docs/reviews/`의 코드 리뷰 기록으로 나눈다.
-기록은 문제 하나마다 "어디서 보였나 → 원인 → 해결책 선택 이유 → 결과" 순서로 쓰고, 단계별 `log/README.md` 타임라인에 모은다.
+단계 기록은 실행 묶음·모델별 파일 안을 파이프라인 모듈 순서로 나누고, 문제마다 "어디서 보였나 → 원인 → 해결책 선택 이유 → 결과" 순서로 쓴다. 단계별 `log/README.md` 타임라인에 모은다.
 작성 규칙은 [docs/AGENTS.md](docs/AGENTS.md)에 있다.
 학습 순서는 기본 학습 계획에서, 모델별 문제와 이미지 API·변경 효과 측정 상태는 파싱 기록에서 확인한다.
 전체 단계에 걸친 실행 기록·변경 비교의 구현 방향은 공통 실행 비교 계획에서 확인한다.
@@ -526,7 +526,7 @@ VL 출력이 생성 한도에 닿아 잘린 블록(반복 출력)만 원본 PDF 
 | [DATA_SPEC.md](docs/data/DATA_SPEC.md) | 선정 문서·페이지·관찰 특성 |
 | [PARSING_VALIDATION_PLAN.md](docs/planning/PARSING_VALIDATION_PLAN.md) | 공통 품질 검증 단계의 입력·출력, 규칙·원본 대조·재인식, 지표·완료 기준 |
 | [파싱 README](docs/parsing/README.md) | 파서·옵션·DPI·재인식 등 설계 결정과 이유, 페이지 JSON을 읽는 코드, 현재 상태 |
-| [파싱 기록](docs/parsing/log/README.md) | 정성 검토, 영역 병합, 병합 해제 재파싱, 생성 한도 반복, 색 순서, Structure 차트·표 문제의 기록 타임라인 |
+| [파싱 기록](docs/parsing/log/README.md) | 실행 묶음(첫 실행, 병합 해제 재파싱)·모델(VL, Structure)별 기록과 타임라인. 영역 병합, 생성 한도 반복과 재인식, 색 순서, Structure 표·차트 문제 |
 | [청킹 README](docs/chunking/README.md) | 구조 기반 청킹의 결정·처리 흐름·강제 분할·설정·출력 형식·한계 |
 | [청킹 기록](docs/chunking/log/README.md) | 청킹 실행별 결과와 전후 비교 타임라인 |
 | [환경 기록](docs/environment/log/README.md) | 컨테이너 종료, 시스템 패키지 소실, Windows CRLF 해시 불일치 |
