@@ -9,7 +9,7 @@
   crops/        시도마다 모델에 넣은 영역 이미지(RGB PNG). 원본과 눈으로 대조하는 용도
   summary.json  대상·채택·미해결 수와 경과 시간
 
-왜 필요한가(docs/parsing_log/PARSING_ROOT_CAUSES.md 2절):
+왜 필요한가(docs/parsing/log/2026-11-11_vl-generation-limit-repetition.md 2절):
 - VL 반복 출력 3건은 출력이 생성 한도 4,096토큰에 정확히 닿은 image·chart 블록이었다.
 - 설치된 PaddleX 로컬 경로는 repetition_penalty를 무시하므로 생성 설정으로는 반복을 끊을 수 없다.
 - Toyota p2는 같은 모델·프롬프트·입력 방식에서 해상도만 576 DPI로 올리면 반복 없이 원문을 옮겼다.

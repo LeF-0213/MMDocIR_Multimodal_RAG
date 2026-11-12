@@ -10,7 +10,7 @@ PDF → 파싱〔재실행·전후 비교〕 → 청킹 → 임베딩 → 인덱
 
 ## 1. 무엇을 확인했나
 
-[파서별 문제 검토](PARSING_REVIEW.md#문장bbox-불일치의-유력한-발생-경로)에서 VL의 문장–bbox 불일치는
+[파서별 문제 검토](2026-10-30_parser-quality-review.md#문장bbox-불일치의-유력한-발생-경로)에서 VL의 문장–bbox 불일치는
 PaddleX의 영역 병합(`merge_layout_blocks=True`)이 유력한 원인이었다. 병합 그룹의 텍스트가 첫 블록에
 몰리고 나머지 블록은 빈 문자열로 남는 현상이다. PR #13에서 다음 두 가지를 바꿨다.
 
@@ -24,8 +24,8 @@ Structure에는 병합 옵션이 없으므로 이번 재실행에서 바뀐 것�
 
 | 항목 | VL | Structure |
 |---|---|---|
-| 새 실행 | [parsing_vl_20261110T233124280038Z](../../outputs/parsing_vl_20261110T233124280038Z) | [parsing_structure_20261111T073737685789Z](../../outputs/parsing_structure_20261111T073737685789Z) |
-| 기준 실행 | [parsing_vl_20261027T015138481163Z](../../outputs/parsing_vl_20261027T015138481163Z) | [parsing_structure_20261028T232222203813Z](../../outputs/parsing_structure_20261028T232222203813Z) |
+| 새 실행 | [parsing_vl_20261110T233124280038Z](../../../outputs/parsing_vl_20261110T233124280038Z) | [parsing_structure_20261111T073737685789Z](../../../outputs/parsing_structure_20261111T073737685789Z) |
+| 기준 실행 | [parsing_vl_20261027T015138481163Z](../../../outputs/parsing_vl_20261027T015138481163Z) | [parsing_structure_20261028T232222203813Z](../../../outputs/parsing_structure_20261028T232222203813Z) |
 | 바뀐 설정 | `parser_options.merge_layout_blocks`: 키 없음(기본 병합) → `False` | 없음 |
 | 페이지 상태 | `ok` 26·`partial` 1 (기준과 같음) | `ok` 27 (기준과 같음) |
 | 실행 환경 | Coder 컨테이너, Linux, Python 3.12.16, CPU 4스레드, 144 DPI | 같음 |
@@ -40,13 +40,13 @@ Structure에는 병합 옵션이 없으므로 이번 재실행에서 바뀐 것�
   컨테이너에만 있고 SHA-256은 `d5be00348cd5d8af06ba562bde0ce920369f24a584c04bc168f649ca7f6e59c0`이다.
   최대 RSS 집계는 실행 폴더의 `experiment_finished.json`에 있다.
 - 기준 VL 실행의 3M 9페이지는 최초 실행이 아니라 추가 실행 기록(`page_00009_run.json`)이다.
-  이번 비교는 현재 [선정 목록](../../configs/selection.json)의 27페이지(3M 8·9·15)를 기준으로 했다.
+  이번 비교는 현재 [선정 목록](../../../configs/selection.json)의 27페이지(3M 8·9·15)를 기준으로 했다.
 
 ## 3. 비교 방법
 
 | 비교 | 도구 | 결과 위치 |
 |---|---|---|
-| 실행 전후 보고서 | `experiments.compare` | VL: [comparison.md](../../outputs/parsing_vl_20261110T233124280038Z_comparison/comparison.md) · Structure: [comparison.md](../../outputs/parsing_structure_20261111T073737685789Z_comparison/comparison.md) |
+| 실행 전후 보고서 | `experiments.compare` | VL: [comparison.md](../../../outputs/parsing_vl_20261110T233124280038Z_comparison/comparison.md) · Structure: [comparison.md](../../../outputs/parsing_structure_20261111T073737685789Z_comparison/comparison.md) |
 | 규칙 검사 | `parsing.validate_run` 규칙 0.2.0, 원본 PDF 대조 | 보고서는 저장소에 넣지 않음. 아래 명령으로 다시 만들 수 있음 |
 | 블록 단위 대조 | 일회성 분석 스크립트(저장소 밖) | 페이지별 블록 내용·bbox·라벨 일치 여부, 빈 블록, 텍스트층 토큰 겹침 |
 
@@ -96,7 +96,7 @@ Structure에는 병합 옵션이 없으므로 이번 재실행에서 바뀐 것�
 - 블록별 텍스트가 해당 bbox 영역의 원문과 맞는지는 위 예시 몇 개만 확인했다. 27페이지 전체를 원문과 대조하지는 않았다.
 - Toyota 2페이지의 반복 출력은 그대로다. 한 블록이 2,050단어이고 그중 2,029단어가 "China"다.
   병합을 꺼도 바뀌지 않았으므로 병합이 원인은 아니다. 이후 조사에서 생성 한도 4,096토큰까지 이어진 반복이며,
-  입력 해상도를 576 DPI로 올리면 사라지는 것을 확인했다([원인 조사](PARSING_ROOT_CAUSES.md#2-vl-반복-생성-toyota-p2p7-슬라이드-0e94-p6)).
+  입력 해상도를 576 DPI로 올리면 사라지는 것을 확인했다([원인 조사](2026-11-11_vl-generation-limit-repetition.md)).
 - Toyota 21페이지의 `partial`도 그대로다. 한 bbox가 PDF 오른쪽 경계를 약 0.11pt 넘은 경고이며 병합과 관계없다.
 
 ## 5. Structure 결과
@@ -135,6 +135,6 @@ Structure에는 병합 옵션이 없으므로 이번 재실행에서 바뀐 것�
 
 ## 8. 다음 단계
 
-- 청킹 결과([VL](../../outputs/chunking_vl_20261110T024752259178Z)·[Structure](../../outputs/chunking_structure_20261110T024753784345Z))는 기준 파싱 결과로 만들었다.
+- 청킹 결과([VL](../../../outputs/chunking_vl_20261110T024752259178Z)·[Structure](../../../outputs/chunking_structure_20261110T024753784345Z))는 기준 파싱 결과로 만들었다.
   VL은 블록 텍스트가 바뀌었으므로 새 실행으로 청킹을 다시 해야 한다. Structure는 블록 출력이 같다.
-- 남은 문제의 원인 조사는 [재파싱 후 남은 문제의 원인 조사](PARSING_ROOT_CAUSES.md)에 정리했다.
+- 남은 문제의 원인 조사는 [재파싱 후 남은 문제의 원인 조사](README.md)에 정리했다.

@@ -26,9 +26,9 @@ PDF의 텍스트·표·수식·그림을 원본 위치와 연결하고, 검색 �
 | 실행 기록·전후 비교 | 파싱 시 기본 기록과 최근 호환 실행의 자동 비교. 공통 manifest·소스 diff·모델 파일·RSS·정답 기반 문장/위치/표 평가·JSON/Markdown 보고서. 실제 원문 품질 개선은 미측정 |
 | 기본 진입점 | 루트 `main.py`가 실행 설정을 읽어 HTTP·로컬 PDF 파싱·기록·자동 비교 실행. 모의 모델로 연속 실행 검증, 실제 신규 OCR 추론은 미수행 |
 | 실행 재개 | `main.py --resume`으로 중단된 실행의 유효 페이지를 재사용하고 남은 페이지만 `run.py`의 같은 처리 경로로 처리. 처음 실행에 고정한 비교 기준을 이어 씀. 모의 테스트만 확인. 이 기능 추가 전에 중단된 실행은 코드가 달라 재개 불가(새로 실행) |
-| 재파싱 | 병합 해제 후 VL·Structure 27페이지 재파싱 완료(컨테이너, VL은 한 번 중단 후 재개). VL 병합 그룹 22→0, 빈 text 블록 23→0, 규칙 검사 검토 페이지 14→3. bbox·라벨은 같음. Structure 블록 출력은 기준과 같음. 정답 대조는 미수행 ([재파싱 결과](docs/parsing_log/REPARSE_RESULT.md)) |
-| 재인식 | VL 출력이 생성 한도(4,096토큰)에 닿은 블록만 576 DPI로 다시 인식(`parsing.rerecognize`). 3개 중 Toyota p2·p7 채택, 슬라이드 p6 미복구. 원래 파싱 결과는 그대로 두고 별도 폴더에 저장 ([원인 조사 9절](docs/parsing_log/PARSING_ROOT_CAUSES.md#9-적용한-수정과-결과-2026-11-11)) |
-| 청킹 | 레이아웃 블록 구조 기반 청킹. 재파싱 결과 + 재인식 적용으로 VL 170개(신호 12)·Structure 147개(신호 28) 청크, 미배정 블록 0, 512토큰 초과 0. 복구 못 한 반복 블록은 사유와 함께 제외. 근거 보존은 미측정 ([구조 기반 청킹](docs/chunking/CHUNKING.md)) |
+| 재파싱 | 병합 해제 후 VL·Structure 27페이지 재파싱 완료(컨테이너, VL은 한 번 중단 후 재개). VL 병합 그룹 22→0, 빈 text 블록 23→0, 규칙 검사 검토 페이지 14→3. bbox·라벨은 같음. Structure 블록 출력은 기준과 같음. 정답 대조는 미수행 ([병합 해제 재파싱](docs/parsing/log/2026-11-11_vl-merge-off-reparse.md)) |
+| 재인식 | VL 출력이 생성 한도(4,096토큰)에 닿은 블록만 576 DPI로 다시 인식(`parsing.rerecognize`). 3개 중 Toyota p2·p7 채택, 슬라이드 p6 미복구. 원래 파싱 결과는 그대로 두고 별도 폴더에 저장 ([VL 생성 한도 반복](docs/parsing/log/2026-11-11_vl-generation-limit-repetition.md)) |
+| 청킹 | 레이아웃 블록 구조 기반 청킹. 재파싱 결과 + 재인식 적용으로 VL 170개(신호 12)·Structure 147개(신호 28) 청크, 미배정 블록 0, 512토큰 초과 0. 복구 못 한 반복 블록은 사유와 함께 제외. 근거 보존은 미측정 ([청킹 README](docs/chunking/README.md)) |
 | 이후 단계 | 임베딩·인덱스·검색·리랭킹·Recall@1·@3·@10 평가는 미구현 |
 
 이전 PyMuPDF 실행은 8개 문서·24페이지 기록이다. 현재 27페이지나 새 모델 파이프라인의 검증 결과로 취급하지 않는다.
@@ -45,7 +45,7 @@ PDF의 텍스트·표·수식·그림을 원본 위치와 연결하고, 검색 �
 PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 기록과 이번 재실행을 구분한다.
 두 결과를 자동으로 합치거나 한 파서를 정답 판정기로 쓰지 않고 원본 PDF와 대조한다.
 
-[파서별 문제와 공통 파싱 문제](docs/parsing_log/PARSING_REVIEW.md)에 VL·Structure별 문제,
+[파서별 문제와 공통 파싱 문제](docs/parsing/log/2026-10-30_parser-quality-review.md)에 VL·Structure별 문제,
 두 파서의 공통 인식 문제, PDF 텍스트층 추출, 프로젝트 변환·저장의 제약을 나눠 정리했다.
 평가 범위·원본 근거·검토 한계·다음 실험도 함께 기록했다.
 2026-11-02 코드 확인에서 VL의 `merge_layout_blocks=True`와 병합 그룹을 확인했다.
@@ -59,7 +59,7 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 2026-11-05에 공통 실행 기록과 정답을 입력받는 파싱 전후 평가를 추가했다.
 기존 실행에 없던 메모리·가중치 revision을 소급해 채우거나 실제 품질 개선을 확인한 것은 아니다.
 
-[파싱 품질 검증 단계 계획](docs/parsing_log/PARSING_VALIDATION_PLAN.md)은 위 검토 절차를 VL·Structure 뒤에 적용하는 설계안이다.
+[파싱 품질 검증 단계 계획](docs/planning/PARSING_VALIDATION_PLAN.md)은 위 검토 절차를 VL·Structure 뒤에 적용하는 설계안이다.
 규칙 검사·원본 근거 정렬·선택적 시각 검토·재인식·청킹 전달 정책과 완료 기준을 정리했다.
 첫 규칙 검사 코드는 구현해 실행했고, 추가 모델 호출·문장 위치 복구·표 의미 대응 검증은 아직 미구현이다.
 
@@ -120,22 +120,25 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 │  ├─ run.py               # 설정·입력 실행 읽기, 청킹 실행 폴더 저장 진입점
 │  └─ __init__.py
 ├─ docs/
+│  ├─ AGENTS.md            # docs 작성 규칙: 단계 README와 문제·실행 기록(log)
 │  ├─ planning/
 │  │  ├─ PROJECT_PLAN.md  # 설계·기술 선정 근거·실험 계획
+│  │  ├─ PARSING_VALIDATION_PLAN.md # 파싱 품질 검증 구현 계획
 │  │  ├─ EXPERIMENT_COMPARISON_PLAN.md # 공통 실행 기록·단계별 전후 비교 설계
 │  │  ├─ EXPERIMENT_COMPARISON_USAGE.md # 현재 기록·비교·평가 사용법과 한계
 │  │  └─ RAG_LEARNING_PLAN.md # 기본 학습 커리큘럼
 │  ├─ data/
 │  │  └─ DATA_SPEC.md     # 선정 문서·페이지·관찰 특성
-│  ├─ reviews/
-│  │  └─ CODE_REVIEW_2026-11-06.md # 코드 리뷰 지적·수정·남은 항목
+│  ├─ parsing/
+│  │  ├─ README.md        # 파싱 설계 결정·이유, 출력 형식을 읽는 코드, 현재 상태
+│  │  └─ log/             # 문제·실행 기록(YYYY-MM-DD_<주제>.md)과 타임라인 README
 │  ├─ chunking/
-│  │  └─ CHUNKING.md      # 구조 기반 청킹 설계·설정·실제 결과·한계
-│  └─ parsing_log/
-│     ├─ PARSING_REVIEW.md # 파서별·공통·텍스트층·저장 문제
-│     ├─ PARSING_VALIDATION_PLAN.md # 품질 검증 구현 계획
-│     ├─ REPARSE_RESULT.md # 병합 해제 재파싱의 전후 비교 결과
-│     └─ PARSING_ROOT_CAUSES.md # 재파싱 후 남은 문제의 원인 조사(사실·추론 구분)
+│  │  ├─ README.md        # 청킹 설계·설정·출력 형식·한계
+│  │  └─ log/             # 청킹 실행 기록과 타임라인
+│  ├─ environment/
+│  │  └─ log/             # 컨테이너·시스템 패키지·줄바꿈 같은 실행 환경 문제 기록
+│  └─ reviews/
+│     └─ 2026-11-06_code-review.md # 코드 리뷰 지적·수정·남은 항목
 ├─ requirements.txt
 ├─ tests/
 │  ├─ test_parsing_quality.py # 기존 규칙 경계·CLI·원본 보존 검증
@@ -488,7 +491,7 @@ VL 출력이 생성 한도에 닿아 잘린 블록(반복 출력)만 원본 PDF 
 .venv/bin/python -B -m parsing.rerecognize
 ```
 
-원인과 결과는 [원인 조사](docs/parsing_log/PARSING_ROOT_CAUSES.md)의 2절·9절에 정리했다.
+문제 발견부터 원인·해결책 선택·결과까지는 [VL 생성 한도 반복](docs/parsing/log/2026-11-11_vl-generation-limit-repetition.md)에 정리했다.
 
 ## 청킹 실행
 
@@ -503,13 +506,15 @@ VL 출력이 생성 한도에 닿아 잘린 블록(반복 출력)만 원본 PDF 
 ```
 
 고정 길이 분할과의 비교는 프로젝트 결정으로 제외했다. 처리 흐름·설정값 의미·실제 결과·한계는
-[구조 기반 청킹](docs/chunking/CHUNKING.md)에 정리했다.
+[청킹 README](docs/chunking/README.md)에, 실행별 결과는 [청킹 기록](docs/chunking/log/README.md)에 정리했다.
 
 ## 문서와 작업 방식
 
-문서는 `docs/planning/`의 계획, `docs/data/`의 데이터 명세, `docs/parsing_log/`의 파싱 검토·검증,
-`docs/chunking/`의 청킹 설계·결과, `docs/reviews/`의 코드 리뷰 기록으로 나눈다.
-학습 순서는 기본 학습 계획에서, 모델별 문제와 이미지 API·변경 효과 측정 상태는 파싱 문제 정리에서 확인한다.
+문서는 `docs/planning/`의 계획, `docs/data/`의 데이터 명세, `docs/parsing/`·`docs/chunking/`의 단계별 설계(README)와
+기록(`log/`), `docs/environment/log/`의 실행 환경 문제, `docs/reviews/`의 코드 리뷰 기록으로 나눈다.
+기록은 문제 하나마다 "어디서 보였나 → 원인 → 해결책 선택 이유 → 결과" 순서로 쓰고, 단계별 `log/README.md` 타임라인에 모은다.
+작성 규칙은 [docs/AGENTS.md](docs/AGENTS.md)에 있다.
+학습 순서는 기본 학습 계획에서, 모델별 문제와 이미지 API·변경 효과 측정 상태는 파싱 기록에서 확인한다.
 전체 단계에 걸친 실행 기록·변경 비교의 구현 방향은 공통 실행 비교 계획에서 확인한다.
 계획·정성 관찰·직접 실행한 검사 결과를 구분해 읽는다.
 
@@ -519,14 +524,16 @@ VL 출력이 생성 한도에 닿아 잘린 블록(반복 출력)만 원본 PDF 
 | [EXPERIMENT_COMPARISON_PLAN.md](docs/planning/EXPERIMENT_COMPARISON_PLAN.md) | 공통 실행 기록, 설정·소스 diff, 문장·위치·표 전후 평가, 모델 출처·메모리, 후속 단계 확장 설계 |
 | [EXPERIMENT_COMPARISON_USAGE.md](docs/planning/EXPERIMENT_COMPARISON_USAGE.md) | 현재 기록·비교 CLI, 설정값의 의미, 정답 파일 구조, 검증 방법·제한 |
 | [DATA_SPEC.md](docs/data/DATA_SPEC.md) | 선정 문서·페이지·관찰 특성 |
-| [PARSING_REVIEW.md](docs/parsing_log/PARSING_REVIEW.md) | VL·Structure별 문제, 공통·텍스트층·저장 문제, 이미지 API, 변경 기록·효과 측정 상태 |
-| [PARSING_VALIDATION_PLAN.md](docs/parsing_log/PARSING_VALIDATION_PLAN.md) | 공통 품질 검증 단계의 입력·출력, 규칙·원본 대조·재인식, 지표·완료 기준 |
-| [REPARSE_RESULT.md](docs/parsing_log/REPARSE_RESULT.md) | 병합 해제 재파싱의 실행 조건, VL·Structure 전후 비교, 남은 문제와 한계 |
-| [PARSING_ROOT_CAUSES.md](docs/parsing_log/PARSING_ROOT_CAUSES.md) | VL 반복 생성·표 구조·차트·실행 환경 문제의 원인. 확인한 사실, 통제 실험, 추론, 미확인 항목 구분 |
-| [CODE_REVIEW_2026-11-06.md](docs/reviews/CODE_REVIEW_2026-11-06.md) | 코드 리뷰 지적 사항, 수정 내용과 검증, 남은 항목 |
+| [PARSING_VALIDATION_PLAN.md](docs/planning/PARSING_VALIDATION_PLAN.md) | 공통 품질 검증 단계의 입력·출력, 규칙·원본 대조·재인식, 지표·완료 기준 |
+| [파싱 README](docs/parsing/README.md) | 파서·옵션·DPI·재인식 등 설계 결정과 이유, 페이지 JSON을 읽는 코드, 현재 상태 |
+| [파싱 기록](docs/parsing/log/README.md) | 정성 검토, 영역 병합, 병합 해제 재파싱, 생성 한도 반복, 색 순서, Structure 차트·표 문제의 기록 타임라인 |
+| [청킹 README](docs/chunking/README.md) | 구조 기반 청킹의 결정·처리 흐름·강제 분할·설정·출력 형식·한계 |
+| [청킹 기록](docs/chunking/log/README.md) | 청킹 실행별 결과와 전후 비교 타임라인 |
+| [환경 기록](docs/environment/log/README.md) | 컨테이너 종료, 시스템 패키지 소실, Windows CRLF 해시 불일치 |
+| [2026-11-06_code-review.md](docs/reviews/2026-11-06_code-review.md) | 코드 리뷰 지적 사항, 수정 내용과 검증, 남은 항목 |
 | [RAG_LEARNING_PLAN.md](docs/planning/RAG_LEARNING_PLAN.md) | 별도로 보존하는 기본 학습 커리큘럼 |
 | [AGENTS.md](AGENTS.md) | 탑다운 학습, 코드·주석·글쓰기, 하드코딩 금지, 파일 변경·커밋·푸시 규칙 |
-| [docs/AGENTS.md](docs/AGENTS.md) | docs 안의 폴더 구조, 단계 README, 문제·실행 기록(log)과 타임라인, 문서 이동 규칙. 기존 문서는 아직 이 구조로 옮기지 않음 |
+| [docs/AGENTS.md](docs/AGENTS.md) | docs 안의 폴더 구조, 단계 README, 문제·실행 기록(log)과 타임라인, 이전 형식 문서의 이동 규칙 |
 | [outputs/AGENTS.md](outputs/AGENTS.md) | 실행 결과 폴더의 생성·보존 규칙, 줄바꿈과 해시, 커밋할 파일과 50MB 초과 파일 처리 |
 
 현재 범위의 전체 코드를 먼저 보고 주석을 따라 이해·실행·수정한다.

@@ -32,7 +32,7 @@ docs의 기록이 실행 폴더를 링크한다. 그래서 한 번 만든 폴더
 
 - 결과 파일은 코드가 쓴 바이트 그대로 둔다. JSON은 LF 줄바꿈으로 저장되고, 기록된 해시도 그 바이트로 계산한 값이다.
 - Windows에서 `core.autocrlf=true`로 저장소를 받으면 git이 LF를 CRLF로 바꿔 해시가 기록과 달라진다.
-  실제로 청킹이 재인식 결과를 적용하지 못한 일이 있었다([구조 기반 청킹](../docs/chunking/CHUNKING.md) 6절).
+  실제로 청킹이 재인식 결과를 적용하지 못한 일이 있었다([구조 기반 청킹](../docs/environment/log/2026-11-11_windows-crlf-hash-mismatch.md)).
 - 줄바꿈이 바뀐 작업 사본에서는 해시를 확인하는 실행(청킹, 재인식, 재개, 실행 비교)을 하지 않는다.
   확인할 때는 파일의 SHA-256을 `run.json` 등에 기록된 값과 비교한다.
 
@@ -45,5 +45,5 @@ docs의 기록이 실행 폴더를 링크한다. 그래서 한 번 만든 폴더
   일반 git에 한 번 넣은 파일은 나중에 지워도 이력에 남아 클론할 때마다 내려받게 된다.
   대신 그 실행의 기록 문서에 파일 경로, 크기, SHA-256, 실제 보관 위치, 요약이 든 파일을 적는다.
   예: `parsing_vl_20261110T233124280038Z/resume/segment_2/resources.jsonl`(88MB)은
-  [병합 해제 재파싱 결과](../docs/parsing_log/REPARSE_RESULT.md) 2절에 이렇게 기록했다.
+  [컨테이너 종료 기록](../docs/environment/log/2026-11-11_container-termination.md) 4절에 이렇게 기록했다.
 - 커밋하지 않은 큰 파일은 추적되지 않은 채 남는다. outputs/를 한꺼번에 스테이징할 때 파일 크기를 먼저 확인한다.

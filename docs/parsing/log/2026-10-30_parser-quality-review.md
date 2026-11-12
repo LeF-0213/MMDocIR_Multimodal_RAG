@@ -14,7 +14,7 @@ PDF → 파싱 → 원본 대조·품질 검사〔현재〕 → 청킹 → 임�
 2026-11-02에는 로컬 `.venv`에 패키지를 설치해 결과 객체 API와 일부 함수를 실행 확인했다.
 모델 가중치를 사용하는 재추론, 파싱 코드 수정, 출력 교정, 검색 품질 측정은 수행하지 않았다.
 
-이 검토 절차를 VL·Structure 뒤에 적용하는 설계는 [품질 검증 단계 구현 계획](PARSING_VALIDATION_PLAN.md)에 정리했다.
+이 검토 절차를 VL·Structure 뒤에 적용하는 설계는 [품질 검증 단계 구현 계획](../../planning/PARSING_VALIDATION_PLAN.md)에 정리했다.
 이 문서는 관찰과 근거, 계획 문서는 향후 입력·출력·자동화 범위와 완료 기준을 담당한다.
 이후 첫 규칙 검사를 파일로 구현해 실행한 현황은 계획 문서 7절과 README의 규칙 검사 절에 기록했다.
 아래 최초 정성 검토와 당시의 개선 제안을 실제 규칙 검사·모델 재실행 결과와 구분한다.
@@ -26,10 +26,10 @@ PDF → 파싱 → 원본 대조·품질 검사〔현재〕 → 청킹 → 임�
 
 ## 1. 평가 범위와 실행 기록
 
-- [선정 목록](../../configs/selection.json)의 9개 문서·27페이지를 비교했다.
+- [선정 목록](../../../configs/selection.json)의 9개 문서·27페이지를 비교했다.
 - 페이지 번호는 PDF 첫 페이지를 1로 센 순번이며 인쇄된 쪽 번호와 구분한다.
-- VL 결과: [parsing_vl_20261027T015138481163Z](../../outputs/parsing_vl_20261027T015138481163Z).
-- Structure 결과: [parsing_structure_20261028T232222203813Z](../../outputs/parsing_structure_20261028T232222203813Z).
+- VL 결과: [parsing_vl_20261027T015138481163Z](../../../outputs/parsing_vl_20261027T015138481163Z).
+- Structure 결과: [parsing_structure_20261028T232222203813Z](../../../outputs/parsing_structure_20261028T232222203813Z).
 - VL의 최초 실행은 3M 7·8·15페이지를 포함한다. 현재 비교는 8·9·15페이지이며,
   추가된 9페이지의 별도 실행 기록을 사용한다. 과거 7페이지는 비교에서 제외했다.
 - VL 루트의 `run.json`·`summary.json`은 최초 실행 기록이다. 추가 실행을 포함하는 새 요약으로 해석하지 않는다.
@@ -88,7 +88,7 @@ CER/WER, 표 구조 정확도, 문장 위치 정확도, 전체 통과율은 측�
 | 문제 | 실제 관찰과 근거 | 원인 확인 수준 |
 |---|---|---|
 | 비정상 반복·원문에 없는 내용 | Toyota 2페이지 블록 20에 무관한 국제학회 문장과 `China` 2,029회 반복. 7페이지 도식에서도 반복 관찰. [2페이지 JSON][toyota2-vl] · [PNG][toyota2-img] | 반복이 필터에 남는 경로는 추가 확인. 최초 생성 원인은 미확인 |
-| 문장과 bbox의 귀속 불일치 | 게슈탈트 8페이지 왼쪽 블록 1에 Closure·Continuity가 함께 들어가고 오른쪽 블록 2는 비어 있음. 두 블록의 `group_id=1`. 뉴스와 NUS 22페이지에도 영역 간 내용 병합 관찰. [게슈탈트 JSON][gestalt-vl] · [PNG][gestalt-img] | [영역 병합 경로](#문장bbox-불일치의-유력한-발생-경로)와 일치. 2026-11-11 병합 해제 재파싱에서 병합 그룹·빈 text 블록이 사라짐. 정답 대조는 미수행([재파싱 결과](REPARSE_RESULT.md)) |
+| 문장과 bbox의 귀속 불일치 | 게슈탈트 8페이지 왼쪽 블록 1에 Closure·Continuity가 함께 들어가고 오른쪽 블록 2는 비어 있음. 두 블록의 `group_id=1`. 뉴스와 NUS 22페이지에도 영역 간 내용 병합 관찰. [게슈탈트 JSON][gestalt-vl] · [PNG][gestalt-img] | [영역 병합 경로](#문장bbox-불일치의-유력한-발생-경로)와 일치. 2026-11-11 병합 해제 재파싱에서 병합 그룹·빈 text 블록이 사라짐. 정답 대조는 미수행([재파싱 결과](2026-11-11_vl-merge-off-reparse.md)) |
 | 단어 오인식·정보 누락 | 3M 9페이지 `Elected`를 `Executed`로 인식. NUS 9페이지 전공 조합 일부 누락 | 결과에서 확인. 세부 발생 단계는 미확인 |
 | 표의 열·헤더 손상 | DETR 13페이지 Table 3의 헤더 대응과 마지막 Δ열 손실. 3M 15페이지에도 여분 빈 열·헤더 문제. [DETR JSON][detr13-vl] · [PNG][detr13-img] | 표 인식 결과의 손상 확인. 검출·입력 crop·생성 중 최초 원인은 미확인 |
 | 그림 내부 문자 오인식 | RAG 3페이지의 `dismissal`을 `原始`로 출력. [JSON][rag3-vl] · [PNG][rag3-img] | 출력과 원문 불일치 관찰. 작은 문자 인식과 생성 과정의 기여는 분리하지 못함 |
@@ -255,7 +255,7 @@ PaddleX 3.7.2의 `merge_blocks()`는 조건에 맞는 영역의 이미지를 연
 
 2026-11-11 병합을 끄고 같은 27페이지를 다시 파싱했다. VL의 병합 그룹 22개와 빈 text 블록 23개가 모두 사라졌고,
 bbox·라벨은 그대로, 텍스트는 같은 블록 사이에서 다시 나뉘었다. 블록별 텍스트를 정답과 대조하지는 않았다.
-결과와 한계는 [병합 해제 재파싱 결과](REPARSE_RESULT.md)에 정리했다.
+결과와 한계는 [병합 해제 재파싱 결과](2026-11-11_vl-merge-off-reparse.md)에 정리했다.
 
 2026-11-02 새로 설치한 PaddleOCR 3.7.0·PaddleX 3.7.2에서도 함수 동작을 확인했다.
 게슈탈트 두 텍스트 bbox와 같은 크기의 모의 이미지를 `merge_blocks()`에 넣으면
@@ -293,11 +293,11 @@ bbox·라벨은 그대로, 텍스트는 같은 블록 사이에서 다시 나뉘
 ### 2026-11-02 확인 당시의 변경 기록과 효과 측정
 
 아래 미구현 항목의 구현 방향과 청킹 이후 확장은
-[단계별 실행 기록과 전후 비교 계획](../planning/EXPERIMENT_COMPARISON_PLAN.md)에 정리했다.
+[단계별 실행 기록과 전후 비교 계획](../../planning/EXPERIMENT_COMPARISON_PLAN.md)에 정리했다.
 이는 2026-11-04 설계 문서이며 아래 구현 상태나 기존 실행 결과를 변경한 것은 아니다.
 
 2026-11-05에는 공통 실행 기록·소스 diff·모델 파일·메모리·파싱 전후 평가 코드를 추가했다.
-현재 사용법과 실제 지원 범위는 [실행 비교 사용법](../planning/EXPERIMENT_COMPARISON_USAGE.md)을 참고한다.
+현재 사용법과 실제 지원 범위는 [실행 비교 사용법](../../planning/EXPERIMENT_COMPARISON_USAGE.md)을 참고한다.
 아래 표는 추가 구현 전의 확인 기록으로 보존한다. 과거 결과에 새 메모리·revision·품질 점수를 채워 넣지 않았다.
 
 | 항목 | 구현 상태 | 한계 |
@@ -391,23 +391,23 @@ OCR confidence 역시 문장의 사실성 확률이 아니다. 명확한 원문 
 이번 문서 작성으로 기존 run.json의 `quality_evaluation: not_run`을 변경하지 않았다.
 이는 당시 자동 실행 기록이며, 이번 정성 검토를 자동 평가 실행으로 바꾸어 기록하지 않는다.
 
-[toyota2-vl]: ../../outputs/parsing_vl_20261027T015138481163Z/documents/2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298/page_00002.json
-[toyota2-img]: ../../outputs/parsing_vl_20261027T015138481163Z/documents/2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298/page_00002.png
-[gestalt-vl]: ../../outputs/parsing_vl_20261027T015138481163Z/documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/page_00008.json
-[gestalt-st]: ../../outputs/parsing_structure_20261028T232222203813Z/documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/page_00008.json
-[gestalt-img]: ../../outputs/parsing_vl_20261027T015138481163Z/documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/page_00008.png
-[detr13-vl]: ../../outputs/parsing_vl_20261027T015138481163Z/documents/86582f690906603c36f8bc08266640f92e879b79b7bcdaaadb16bcc23823f87f/page_00013.json
-[detr13-st]: ../../outputs/parsing_structure_20261028T232222203813Z/documents/86582f690906603c36f8bc08266640f92e879b79b7bcdaaadb16bcc23823f87f/page_00013.json
-[detr13-img]: ../../outputs/parsing_vl_20261027T015138481163Z/documents/86582f690906603c36f8bc08266640f92e879b79b7bcdaaadb16bcc23823f87f/page_00013.png
-[3m15-vl]: ../../outputs/parsing_vl_20261027T015138481163Z/documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/page_00015.json
-[3m15-st]: ../../outputs/parsing_structure_20261028T232222203813Z/documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/page_00015.json
-[3m15-img]: ../../outputs/parsing_vl_20261027T015138481163Z/documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/page_00015.png
-[detr5-vl]: ../../outputs/parsing_vl_20261027T015138481163Z/documents/86582f690906603c36f8bc08266640f92e879b79b7bcdaaadb16bcc23823f87f/page_00005.json
-[detr5-st]: ../../outputs/parsing_structure_20261028T232222203813Z/documents/86582f690906603c36f8bc08266640f92e879b79b7bcdaaadb16bcc23823f87f/page_00005.json
-[detr5-img]: ../../outputs/parsing_vl_20261027T015138481163Z/documents/86582f690906603c36f8bc08266640f92e879b79b7bcdaaadb16bcc23823f87f/page_00005.png
-[rag3-vl]: ../../outputs/parsing_vl_20261027T015138481163Z/documents/de7c2798d40a0c5c32b38e3ba65c0e70f93ab1ddad234a554ed74afa49ccf9b1/page_00003.json
-[rag3-st]: ../../outputs/parsing_structure_20261028T232222203813Z/documents/de7c2798d40a0c5c32b38e3ba65c0e70f93ab1ddad234a554ed74afa49ccf9b1/page_00003.json
-[rag3-img]: ../../outputs/parsing_vl_20261027T015138481163Z/documents/de7c2798d40a0c5c32b38e3ba65c0e70f93ab1ddad234a554ed74afa49ccf9b1/page_00003.png
-[rag6-vl]: ../../outputs/parsing_vl_20261027T015138481163Z/documents/de7c2798d40a0c5c32b38e3ba65c0e70f93ab1ddad234a554ed74afa49ccf9b1/page_00006.json
-[rag6-st]: ../../outputs/parsing_structure_20261028T232222203813Z/documents/de7c2798d40a0c5c32b38e3ba65c0e70f93ab1ddad234a554ed74afa49ccf9b1/page_00006.json
-[rag6-img]: ../../outputs/parsing_vl_20261027T015138481163Z/documents/de7c2798d40a0c5c32b38e3ba65c0e70f93ab1ddad234a554ed74afa49ccf9b1/page_00006.png
+[toyota2-vl]: ../../../outputs/parsing_vl_20261027T015138481163Z/documents/2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298/page_00002.json
+[toyota2-img]: ../../../outputs/parsing_vl_20261027T015138481163Z/documents/2eaa8902b6ea6415e13186080fa7b9f310e6c49a358438097677c2f91deb4298/page_00002.png
+[gestalt-vl]: ../../../outputs/parsing_vl_20261027T015138481163Z/documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/page_00008.json
+[gestalt-st]: ../../../outputs/parsing_structure_20261028T232222203813Z/documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/page_00008.json
+[gestalt-img]: ../../../outputs/parsing_vl_20261027T015138481163Z/documents/670aceefba12d5fde77212a555eb25fd3dc06a489a21bbe2b559421a2a363f82/page_00008.png
+[detr13-vl]: ../../../outputs/parsing_vl_20261027T015138481163Z/documents/86582f690906603c36f8bc08266640f92e879b79b7bcdaaadb16bcc23823f87f/page_00013.json
+[detr13-st]: ../../../outputs/parsing_structure_20261028T232222203813Z/documents/86582f690906603c36f8bc08266640f92e879b79b7bcdaaadb16bcc23823f87f/page_00013.json
+[detr13-img]: ../../../outputs/parsing_vl_20261027T015138481163Z/documents/86582f690906603c36f8bc08266640f92e879b79b7bcdaaadb16bcc23823f87f/page_00013.png
+[3m15-vl]: ../../../outputs/parsing_vl_20261027T015138481163Z/documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/page_00015.json
+[3m15-st]: ../../../outputs/parsing_structure_20261028T232222203813Z/documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/page_00015.json
+[3m15-img]: ../../../outputs/parsing_vl_20261027T015138481163Z/documents/772c0ad228f8f35bd4492ae6e5a5d7022a6db46553f91a0cf021037b5c5d1d36/page_00015.png
+[detr5-vl]: ../../../outputs/parsing_vl_20261027T015138481163Z/documents/86582f690906603c36f8bc08266640f92e879b79b7bcdaaadb16bcc23823f87f/page_00005.json
+[detr5-st]: ../../../outputs/parsing_structure_20261028T232222203813Z/documents/86582f690906603c36f8bc08266640f92e879b79b7bcdaaadb16bcc23823f87f/page_00005.json
+[detr5-img]: ../../../outputs/parsing_vl_20261027T015138481163Z/documents/86582f690906603c36f8bc08266640f92e879b79b7bcdaaadb16bcc23823f87f/page_00005.png
+[rag3-vl]: ../../../outputs/parsing_vl_20261027T015138481163Z/documents/de7c2798d40a0c5c32b38e3ba65c0e70f93ab1ddad234a554ed74afa49ccf9b1/page_00003.json
+[rag3-st]: ../../../outputs/parsing_structure_20261028T232222203813Z/documents/de7c2798d40a0c5c32b38e3ba65c0e70f93ab1ddad234a554ed74afa49ccf9b1/page_00003.json
+[rag3-img]: ../../../outputs/parsing_vl_20261027T015138481163Z/documents/de7c2798d40a0c5c32b38e3ba65c0e70f93ab1ddad234a554ed74afa49ccf9b1/page_00003.png
+[rag6-vl]: ../../../outputs/parsing_vl_20261027T015138481163Z/documents/de7c2798d40a0c5c32b38e3ba65c0e70f93ab1ddad234a554ed74afa49ccf9b1/page_00006.json
+[rag6-st]: ../../../outputs/parsing_structure_20261028T232222203813Z/documents/de7c2798d40a0c5c32b38e3ba65c0e70f93ab1ddad234a554ed74afa49ccf9b1/page_00006.json
+[rag6-img]: ../../../outputs/parsing_vl_20261027T015138481163Z/documents/de7c2798d40a0c5c32b38e3ba65c0e70f93ab1ddad234a554ed74afa49ccf9b1/page_00006.png
