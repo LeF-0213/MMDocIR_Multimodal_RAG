@@ -1,6 +1,6 @@
 # PR마다 문서 갱신·일관성(tools/docs_check.py)과 Mermaid 그림(tools/diagram_check.py)을 검사한다.
 # 규칙은 .github/docs-check.json에 있다.
-# main 브랜치 Ruleset에서 이 작업(docs-check)을 필수 상태 검사로 지정해야 실패 시 머지가 막힌다.
+# main 브랜치 Ruleset "main 보호"가 이 작업(docs-check)을 필수 상태 검사로 지정해 실패하면 머지가 막힌다.
 # 단위 테스트는 여기서 돌리지 않는다.
 name: docs-check
 
@@ -18,8 +18,9 @@ jobs:
   docs-check:
     runs-on: ubuntu-24.04
     steps:
-      # actions/checkout v4.2.2. 태그는 옮겨질 수 있어 커밋 SHA로 고정한다(2026-11-12 git ls-remote로 확인).
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      # actions/checkout v7.0.1(2026-07-20 공개, Node 24 실행). v4는 지원이 끝난 Node 20을 써 경고가 떴다.
+      # 태그는 옮겨질 수 있어 커밋 SHA로 고정한다(2026-11-12 git ls-remote로 확인).
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           # base...head 분기점을 계산하려면 두 브랜치의 이력이 모두 필요하다.
           fetch-depth: 0
