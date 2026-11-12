@@ -49,9 +49,39 @@ Structure의 과거 oneDNN 실행 예외는 인식 품질 문제와 별개다.
 | 내용이 빈 블록 | image 7 |
 | 라이브러리 반환값→공통 블록 | 두 실행의 54개 페이지 JSON에서 내용과 이미지 bbox의 변경 없음 |
 
-### 1.4 파이프라인 흐름
+### 1.4 데이터 흐름
 
-프로젝트 실행 흐름은 [VL 기록 1.5절](2026-10-30_vl.md#15-파이프라인-흐름)과 같고, 어댑터만 `structure_parser.py`다.
+페이지 준비와 저장은 [VL 기록 1.5절](2026-10-30_vl.md#15-데이터-흐름)과 같고, 모델 내부만 다르다.
+아래는 기본 설정에 정의된 모듈로 그린 이 실행 당시의 흐름이다. 각 표에서 어떤 표 구조·셀 검출 모델이 실행됐는지는 확인하지 않았다.
+
+```mermaid
+flowchart TD
+    IMG("페이지 이미지<br/>144 DPI BGR 배열")
+    REG("레이아웃 영역 목록<br/>상자 · 라벨")
+
+    subgraph STIN["PP-StructureV3 내부: 라벨별로 다른 모델"]
+        TXT("문장 영역<br/>글자 상자 → 인식 글자")
+        TAB("표 영역<br/>표 구조 + 셀 상자 + 셀 글자 → HTML 표")
+        FOR("수식 영역<br/>LaTeX")
+        CHA("차트 영역<br/>파이프 표")
+    end
+
+    RES("parsing_res_list<br/>영역 상자 · 라벨 · 내용")
+    BLOCKS("공통 블록 parsing.blocks<br/>내용 · 픽셀 bbox + PDF 좌표")
+    PJSON[("page_N.json")]
+
+    IMG -->|"PP-DocLayout_plus-L<br/>레이아웃 검출"| REG
+    REG -->|"PP-OCRv6_medium_det → PP-OCRv6_medium_rec"| TXT
+    REG -->|"표 분류 → SLANeXt_wired · SLANet_plus 표 구조<br/>RT-DETR-L 셀 검출 · 셀 OCR"| TAB
+    REG -->|"PP-FormulaNet_plus-L"| FOR
+    REG -->|"PP-Chart2Table"| CHA
+    TXT --> RES
+    TAB --> RES
+    FOR --> RES
+    CHA --> RES
+    RES -->|"model_result · pdf_parser.add_pdf_coordinates"| BLOCKS
+    BLOCKS --> PJSON
+```
 
 | 실행 기록으로 확인한 설정 | 공식 버전 설정의 구성 |
 |---|---|

@@ -27,36 +27,49 @@ PDF → 파싱 → 청킹〔현재〕 → 임베딩 → 인덱스 → 검색·�
 | 그 밖의 반복·이상 신호 | 청크로 만들고 신호만 표시 | 원문일 가능성이 남아 있어 지우면 근거까지 잃을 수 있다. 크기 통계는 신호 없는 청크(`unflagged`)를 따로 집계한다 |
 | 재인식 결과 적용 조건 | 입력 실행 `run.json` 해시가 같을 때만 적용, 재인식 뒤 페이지 JSON이 바뀌었으면 실행 중단 | 폴더 이름만 같고 내용이 다른 실행에 엉뚱한 결과를 덮어쓰지 않기 위해서다 |
 
-## 2. 처리 흐름
+## 2. 데이터 흐름
+
+노드는 데이터, 화살표는 그 데이터를 바꾸는 함수다. 원통은 파일로 저장되는 데이터, 둥근 사각형은 메모리에만 있는 중간 데이터다.
 
 ```mermaid
 flowchart TD
-    CFG[/"configs/chunking.json<br/>configs/selection.json"/]
-    PRUN[("파싱 실행 폴더<br/>페이지 JSON")]
-    RREC[("재인식 결과 폴더<br/>blocks.jsonl")]
-    RUN("chunking/run.py<br/>설정·입력 읽기, 페이지 JSON 해시")
-    LOAD("load_rerecognition<br/>입력 run.json 해시가 같은 재인식 결과만 적용")
-    QC("parsing.quality_checks.inspect_page<br/>반복 · 병합 · 표 격자 · 표 구조 상한 신호")
-    STR("chunking/structure.py<br/>역할 분류 → 캡션 연결 → 제목 묶음 → 길이 맞추기")
-    CHK("chunking/run.py<br/>누락 확인: 모든 블록이 청크·제목 문맥·제외 기록 중 한 곳에 있는지")
-    TAB("chunking/tables.py<br/>HTML 표·파이프 표 → 열 제목: 값 행")
-    TOK("chunking/tokens.py<br/>실제 입력 기준 토큰 수 · 토큰 경계 분할")
-    OUT[("outputs/chunking_파서_UTC시각/<br/>run.json · chunks.jsonl · excluded.jsonl · summary.json")]
+    PJSON[("파싱 실행 폴더<br/>page_N.json의 parsing.blocks<br/>element_id · label · content · bbox")]
+    RJSON[("재인식 결과 blocks.jsonl<br/>블록별 상태 · 새 글자")]
+    CFG[/"configs/chunking.json<br/>라벨 역할 · 최대 토큰 · 토크나이저"/]
 
-    CFG --> RUN
-    PRUN --> RUN
-    RREC --> LOAD --> RUN
-    RUN --> QC --> STR --> CHK --> OUT
-    STR -.표 변환.- TAB
-    STR -.토큰 측정.- TOK
+    OV("블록별 대체 처리<br/>accepted: 새 글자 / 그 밖: 제외 사유")
+    FL("블록별 검사 신호<br/>반복 · 병합 · 표 격자 · 표 구조 상한")
+    ROLE("역할이 붙은 블록<br/>제목 · 본문 · 표 · 차트 · 그림 · 캡션")
+    GRP("청크 후보 묶음<br/>제목 경로 + 본문 묶음, 표·차트·그림은 따로<br/>캡션은 대상에 붙음")
+    UNITS("조각 목록<br/>문장 · 표 행(열 제목: 값) · 그림 줄")
+
+    CHUNKS[("chunks.jsonl<br/>text · token_count · element_ids · bbox · flags")]
+    EXC[("excluded.jsonl<br/>제외 블록 · 사유")]
+    SUM[("summary.json · run.json<br/>수 · 토큰 분포 · 누락 · 입력 해시")]
+
+    RJSON -->|"run.load_rerecognition<br/>입력 run.json · 페이지 JSON 해시 확인"| OV
+    PJSON -->|"run.page_flags → quality_checks.inspect_page"| FL
+    OV -->|"run.replacement_flags<br/>새 글자로 반복·길이 신호 다시 계산"| FL
+    PJSON -->|"structure.build_page_chunks<br/>라벨 → 역할"| ROLE
+    OV -->|"글자 대체 · 제외"| ROLE
+    CFG -.-> ROLE
+    ROLE -->|"캡션 연결 · 제목 묶음"| GRP
+    GRP -->|"표는 tables.html_table_rows, 차트는 pipe_table_rows로 행 변환<br/>상한을 넘으면 문장 → 토큰 경계로 나눔"| UNITS
+    UNITS -->|"tokens.TokenCounter로 길이 측정<br/>상한까지 채움 · 제목·캡션 앞머리 반복"| CHUNKS
+    FL -->|"블록 신호를 청크 flags로"| CHUNKS
+    ROLE -->|"제외 라벨 · 빈 내용 · 재인식 미복구"| EXC
+    CHUNKS -->|"run.chunk_run<br/>모든 블록이 청크·제목·제외 중 한 곳에 있는지 확인"| SUM
+    EXC --> SUM
 ```
+
+### 2.1 처리 단계
 
 1. **역할 분류**: 라벨을 제목(단계별)·본문·표·차트·그림·캡션·제외로 나눈다. 설정에 없는 라벨은 본문으로 다루고
    `unmapped_labels`에 센다. 내용이 빈 블록은 `empty_content`, 머리글·바닥글·쪽 번호는 `excluded_label`로 남긴다.
 2. **캡션 연결**: 캡션을 세로 간격이 가장 가까운 표·차트·그림에 붙인다. 간격이 설정값을 넘으면 본문으로 다룬다.
 3. **제목 묶음**: 블록 순서대로 걸으며 제목이 바뀔 때 본문 묶음을 끊는다. 상위 제목이 바뀌면 하위 제목을 지운다.
    표·차트·그림은 별도 청크다. 모든 청크 앞에 `상위 제목 > 하위 제목`을 붙인다.
-4. **길이 맞추기**: 아래 2.1절.
+4. **길이 맞추기**: 아래 2.2절.
 5. **누락 확인**: 모든 블록이 청크 내용·제목 문맥·제외 기록 중 한 곳에 있는지 대조한다(`blocks.unassigned`).
 
 재인식 결과는 1단계에서 적용한다. 원래 페이지 JSON은 바꾸지 않는다.
@@ -68,7 +81,7 @@ flowchart TD
 
 뒤따르는 내용이 없어 어떤 청크의 제목 문맥으로도 쓰이지 않은 제목은 단독 청크로 남기고 `title_only`로 표시한다.
 
-### 2.1 길이 맞추기와 강제 분할
+### 2.2 길이 맞추기와 강제 분할
 
 청크가 최대 토큰(`max_tokens`)을 넘으면 의미가 덜 깨지는 경계부터 차례로 나눈다.
 
@@ -77,6 +90,8 @@ flowchart TD
 | 1 | 블록 단위 | 행 단위 | 줄 단위 |
 | 2 | 영어 문장 경계(마침표·물음표·느낌표 뒤 공백 다음에 대문자·숫자·여는 기호) | 같음 | 같음 |
 | 3 | 토큰 경계(`hard_split` 표시) | 같음 | 같음 |
+
+판단 순서(데이터 흐름이 아니라 조각 하나를 나누는 규칙)다.
 
 ```mermaid
 flowchart LR

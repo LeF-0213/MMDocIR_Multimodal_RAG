@@ -16,27 +16,58 @@ PDF → 파싱〔현재〕 → 청킹 → 임베딩 → 인덱스 → 검색·�
 PDF 페이지를 이미지로 렌더링해 레이아웃 파서로 영역(블록)별 내용을 얻고, 각 블록에 이미지 좌표와 PDF 좌표를 붙여 저장한다.
 PDF 텍스트층은 모델 결과와 따로 보존해 대조 자료로 쓴다.
 
-## 1. 처리 흐름
+## 1. 데이터 흐름
+
+노드는 데이터(형식·저장 위치), 화살표는 그 데이터를 바꾸는 모듈·함수다. 원통은 파일로 저장되는 데이터,
+둥근 사각형은 메모리에만 있는 중간 데이터다. 모델 안의 흐름(레이아웃 검출 → 영역 인식)은 모델마다 달라
+[VL](log/2026-10-30_vl.md#15-데이터-흐름)·[Structure](log/2026-10-30_structure.md#14-데이터-흐름) 기록에 따로 그렸다.
 
 ```mermaid
 flowchart TD
-    CFG[/"configs/selection.json<br/>configs/parsing_run.json"/]
-    SRC("pdf_source.py<br/>원본 PDF bytes 읽기 (HTTP 또는 로컬)")
-    PREP("pdf_parser.py<br/>텍스트층·이미지 배치 추출<br/>페이지 렌더링 (BGR 배열)<br/>이미지→PDF 좌표 변환 행렬")
-    ADP("vl_parser.py 또는 structure_parser.py<br/>파서 하나 초기화")
-    RES("model_result.py<br/>predict() → 원본 JSON parsing.raw 보존<br/>→ 공통 블록 parsing.blocks")
-    COORD("pdf_parser.py<br/>블록 이미지 bbox 유지 + PDF 좌표 추가")
-    STORE("review_pdf.py · result_store.py<br/>검토 PDF · PNG · 페이지 JSON · 그림 crop · 요약 저장")
-    OUT[("outputs/parsing_파서_UTC시각/")]
+    SEL[/"configs/selection.json<br/>문서명 · 페이지 번호"/]
+    PDF("원본 PDF bytes")
 
-    CFG --> SRC --> PREP --> ADP --> RES --> COORD --> STORE --> OUT
-
-    subgraph POST["후처리: 별도 실행, 입력 실행은 읽기만 함"]
-        VAL("validate_run.py<br/>규칙 검사: 반복 · 병합 · 좌표 · 표 격자 · 표 구조 상한 · 그림 참조")
-        RER("rerecognize.py<br/>생성 한도에 닿은 VL 블록만 576 DPI로 다시 인식")
+    subgraph PREP["페이지 준비"]
+        NATIVE("PDF 텍스트층 · 이미지 배치<br/>블록 · 줄 · span + PDF 좌표")
+        IMG("페이지 이미지<br/>144 DPI BGR 배열")
+        MAT("픽셀 → PDF 좌표 변환 행렬<br/>배율 · 회전 · CropBox")
     end
-    OUT --> VAL
-    OUT --> RER --> REOUT[("outputs/rerecognition_vl_UTC시각/")]
+
+    RAW("모델 결과 JSON<br/>영역 상자 · 라벨 · 내용")
+    BLOCKS("공통 블록<br/>element_id · label · content<br/>bbox 픽셀 좌표 + PDF 좌표")
+
+    subgraph RUN["outputs/parsing_파서_UTC시각/documents/문서 ID/"]
+        SRCPDF[("source.pdf<br/>원본 사본, 커밋 안 함")]
+        PNG[("page_N.png")]
+        PJSON[("page_N.json<br/>native · render · parsing.raw · parsing.blocks")]
+        CROPS[("page_N/imgs/*.jpg<br/>그림 crop")]
+        REVIEW[("review_파서.pdf<br/>원본 위에 bbox 표시")]
+    end
+
+    REPORT[("규칙 검사 보고서 JSON<br/>신호 · 근거")]
+    REREC[("outputs/rerecognition_vl_UTC시각/<br/>blocks.jsonl: 대체 글자 · 상태")]
+    CHUNK["청킹 단계"]
+
+    SEL -->|"pdf_source.read_pdf_bytes<br/>HTTP 또는 로컬에서 읽기"| PDF
+    PDF -->|"pdf_parser.prepare_page<br/>텍스트층 추출"| NATIVE
+    PDF -->|"pdf_parser.prepare_page<br/>렌더링 · RGB→BGR"| IMG
+    PDF -->|"pdf_parser.prepare_page"| MAT
+    PDF -->|"run.process_document<br/>사본 저장"| SRCPDF
+    PDF -->|"pdf_parser.prepare_page<br/>RGB 렌더링을 PNG로"| PNG
+    IMG -->|"어댑터 parse_image → model_result.predict_page<br/>레이아웃 검출 → 영역 인식"| RAW
+    RAW -->|"model_result.normalize_result_blocks<br/>내용 · 픽셀 bbox 복사"| BLOCKS
+    MAT -->|"pdf_parser.add_pdf_coordinates<br/>PDF 좌표 추가"| BLOCKS
+    RAW -->|"model_result.result_images<br/>run.parse_page가 저장"| CROPS
+    NATIVE --> PJSON
+    RAW -->|"원본 그대로 보존"| PJSON
+    BLOCKS -->|"run.save_page"| PJSON
+    BLOCKS -->|"review_pdf.add_review_page"| REVIEW
+
+    PJSON -->|"validate_run.inspect_run<br/>입력은 읽기만 함"| REPORT
+    PJSON -->|"rerecognize.find_targets<br/>4,080토큰 이상 VL 블록"| REREC
+    SRCPDF -->|"영역만 576 DPI로 다시 렌더링"| REREC
+    PJSON --> CHUNK
+    REREC --> CHUNK
 ```
 
 ## 2. 결정 사항과 이유
