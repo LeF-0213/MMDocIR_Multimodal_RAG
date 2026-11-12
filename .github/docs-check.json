@@ -1,0 +1,61 @@
+{
+  "schema_version": "project.docs_check.v1",
+  "sync_rules": [
+    {
+      "name": "파싱 코드·설정",
+      "when": ["parsing/**/*.py", "configs/parsing_run.json", "configs/rerecognition.json", "configs/experiment_recording.json"],
+      "require_any": ["docs/parsing/**"]
+    },
+    {
+      "name": "청킹 코드·설정",
+      "when": ["chunking/**/*.py", "configs/chunking.json"],
+      "require_any": ["docs/chunking/**"]
+    },
+    {
+      "name": "새 파싱·재인식 실행 결과",
+      "when": ["outputs/parsing_*/**", "outputs/rerecognition_*/**"],
+      "require_any": ["docs/parsing/log/**"]
+    },
+    {
+      "name": "새 청킹 실행 결과",
+      "when": ["outputs/chunking_*/**"],
+      "require_any": ["docs/chunking/log/**"]
+    },
+    {
+      "name": "실험 기록 코드",
+      "when": ["experiments/**/*.py"],
+      "require_any": ["docs/planning/EXPERIMENT_COMPARISON_USAGE.md"]
+    },
+    {
+      "name": "파싱 기록 추가·수정",
+      "when": ["docs/parsing/log/20*.md"],
+      "require_any": ["docs/parsing/log/README.md"]
+    },
+    {
+      "name": "청킹 기록 추가·수정",
+      "when": ["docs/chunking/log/20*.md"],
+      "require_any": ["docs/chunking/log/README.md"]
+    }
+  ],
+  "exemption": {
+    "label": "docs-not-needed",
+    "reason_marker": "문서 갱신 불필요 이유:"
+  },
+  "links": {
+    "include": ["**/*.md"],
+    "exclude": ["outputs/**", ".claude/**"]
+  },
+  "issues": {
+    "id_pattern": "[PCE]-[0-9]{2}",
+    "stage_lists": ["docs/parsing/log/README.md", "docs/chunking/log/README.md", "docs/environment/log/README.md"],
+    "stage_list_status_column": {"docs/parsing/log/README.md": 3, "docs/chunking/log/README.md": 3, "docs/environment/log/README.md": 3},
+    "records": ["docs/parsing/log/20*.md", "docs/chunking/log/20*.md"],
+    "record_summary_heading": "## 이슈 요약",
+    "record_status_column": 4,
+    "remaining_file": "README.md",
+    "remaining_heading": "## 남은 이슈",
+    "remaining_status_column": 4,
+    "statuses": ["해결", "부분 해결", "표시만", "미해결", "관찰만", "한계", "정상 동작"],
+    "closed_statuses": ["해결", "정상 동작"]
+  }
+}

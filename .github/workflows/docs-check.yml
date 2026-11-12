@@ -1,0 +1,31 @@
+# PR마다 문서 갱신·일관성을 검사한다(tools/docs_check.py). 규칙은 .github/docs-check.json에 있다.
+# main 브랜치 Ruleset에서 이 작업(docs-check)을 필수 상태 검사로 지정해야 실패 시 머지가 막힌다.
+# 단위 테스트는 여기서 돌리지 않는다.
+name: docs-check
+
+on:
+  pull_request:
+    # edited: PR 설명에 예외 이유를 적거나 고치면 다시 검사한다.
+    # labeled/unlabeled: 예외 라벨(docs-not-needed)을 붙이거나 떼면 다시 검사한다.
+    types: [opened, synchronize, reopened, edited, labeled, unlabeled]
+
+# 저장소를 읽기만 한다. 댓글·라벨·상태 쓰기 권한을 주지 않는다.
+permissions:
+  contents: read
+
+jobs:
+  docs-check:
+    runs-on: ubuntu-24.04
+    steps:
+      # actions/checkout v4.2.2. 태그는 옮겨질 수 있어 커밋 SHA로 고정한다(2026-11-12 git ls-remote로 확인).
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          # base...head 분기점을 계산하려면 두 브랜치의 이력이 모두 필요하다.
+          fetch-depth: 0
+      # 러너에 기본으로 있는 python3(표준 라이브러리만 사용)로 실행한다. PR 설명은 명령줄에 넣지 않고
+      # 이벤트 파일에서 읽어, 설명에 쓴 글자가 셸 명령으로 해석되지 않게 한다.
+      - name: 문서 갱신·일관성 검사
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: python3 -I tools/docs_check.py --config .github/docs-check.json --base "$BASE_SHA" --head "$HEAD_SHA" --event "$GITHUB_EVENT_PATH"

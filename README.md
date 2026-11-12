@@ -79,6 +79,9 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 ```text
 .
 ├─ main.py                  # 설정 파일 기반 파싱·기록·자동 비교 진입점
+├─ .github/                # PR 문서 검사 워크플로·검사 규칙(docs-check.json)·PR 템플릿
+├─ tools/
+│  └─ docs_check.py        # PR 문서 갱신·링크·이슈 상태 일치 검사. 표준 라이브러리만 사용
 ├─ configs/
 │  ├─ parsing_run.json       # 입력·파서·장치·출력·기록·비교 설정
 │  ├─ selection.json
@@ -504,6 +507,32 @@ VL 출력이 생성 한도에 닿아 잘린 블록(반복 출력)만 원본 PDF 
 
 고정 길이 분할과의 비교는 프로젝트 결정으로 제외했다. 처리 흐름·설정값 의미·실제 결과·한계는
 [구조 기반 청킹](docs/chunking/CHUNKING.md)에 정리했다.
+
+## PR 문서 검사
+
+PR마다 GitHub Actions(`.github/workflows/docs-check.yml`)가 [tools/docs_check.py](tools/docs_check.py)를 실행한다.
+규칙은 [.github/docs-check.json](.github/docs-check.json)에 있다. 단위 테스트는 이 검사에서 돌리지 않는다.
+
+| 검사 | 실패 조건 |
+|---|---|
+| A 짝 문서 갱신 | 규칙의 코드·설정·실행 결과 경로가 바뀌었는데 짝이 되는 문서가 하나도 바뀌지 않음 |
+| B1 링크 | 추적 중인 마크다운의 상대 링크·제목 앵커가 없는 파일·제목을 가리킴 |
+| B2 이슈 상태 일치 | 같은 이슈 ID의 상태가 단계 이슈 목록, 기록의 이슈 요약, 루트 README 남은 이슈에서 다름 |
+| B3 남은 이슈 범위 | 끝나지 않은 이슈가 루트 README 남은 이슈에 없거나, 끝난 이슈가 남아 있음 |
+| B4 상태별 수 | 표 위에 적은 상태별 수가 실제 행 수와 다름 |
+
+문서를 바꿀 필요가 없는 PR은 `docs-not-needed` 라벨을 붙이고 PR 설명의 `문서 갱신 불필요 이유:` 줄에 이유를 적으면
+검사 A를 넘긴다. 이유가 비어 있으면 실패한다. 검사 B는 넘기지 않는다.
+
+푸시 전에 같은 검사를 로컬에서 돌릴 수 있다. 파일을 만들거나 바꾸지 않는다.
+
+```bash
+python3 -I tools/docs_check.py --config .github/docs-check.json --base origin/main
+```
+
+종료 코드 0은 통과, 1은 검사 실패, 2는 실행 인자·설정 오류다. 검사는 문서가 바뀌었는지와 문서끼리 맞는지만 보며,
+문서 내용이 코드와 맞는지는 판단하지 않는다. 실패한 PR의 머지를 막으려면 저장소 관리자가 `main` Ruleset에서
+`docs-check`를 필수 상태 검사로 지정해야 한다(미설정).
 
 ## 문서와 작업 방식
 
