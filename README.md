@@ -81,7 +81,9 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 ├─ main.py                  # 설정 파일 기반 파싱·기록·자동 비교 진입점
 ├─ .github/                # PR 문서 검사 워크플로·검사 규칙(docs-check.json)·PR 템플릿
 ├─ tools/
-│  └─ docs_check.py        # PR 문서 갱신·링크·이슈 상태 일치 검사. 표준 라이브러리만 사용
+│  ├─ docs_check.py        # PR 문서 갱신·링크·이슈 상태 일치 검사. 표준 라이브러리만 사용
+│  ├─ diagram_check.py     # Mermaid 그림 렌더링·선 교차·상자/라벨 겹침 검사
+│  └─ diagram/             # 그림 검사용 npm 의존성 고정(package.json·lock), 좌표 측정 스크립트, 브라우저 옵션
 ├─ configs/
 │  ├─ parsing_run.json       # 입력·파서·장치·출력·기록·비교 설정
 │  ├─ selection.json
@@ -510,7 +512,8 @@ VL 출력이 생성 한도에 닿아 잘린 블록(반복 출력)만 원본 PDF 
 
 ## PR 문서 검사
 
-PR마다 GitHub Actions(`.github/workflows/docs-check.yml`)가 [tools/docs_check.py](tools/docs_check.py)를 실행한다.
+PR마다 GitHub Actions(`.github/workflows/docs-check.yml`)가 [tools/docs_check.py](tools/docs_check.py)와
+[tools/diagram_check.py](tools/diagram_check.py)를 실행한다.
 규칙은 [.github/docs-check.json](.github/docs-check.json)에 있다. 단위 테스트는 이 검사에서 돌리지 않는다.
 
 | 검사 | 실패 조건 |
@@ -520,6 +523,7 @@ PR마다 GitHub Actions(`.github/workflows/docs-check.yml`)가 [tools/docs_check
 | B2 이슈 상태 일치 | 같은 이슈 ID의 상태가 단계 이슈 목록, 기록의 이슈 요약, 루트 README 남은 이슈에서 다름 |
 | B3 남은 이슈 범위 | 끝나지 않은 이슈가 루트 README 남은 이슈에 없거나, 끝난 이슈가 남아 있음 |
 | B4 상태별 수 | 표 위에 적은 상태별 수가 실제 행 수와 다름 |
+| D 그림 | Mermaid 그림이 렌더링되지 않음, 선끼리 교차, 선이 다른 상자나 다른 선의 라벨을 지남, 상자·묶음 상자·라벨끼리 겹침, 노드 글자의 꺾쇠, 한 줄 40자를 넘는 선 라벨 |
 
 문서를 바꿀 필요가 없는 PR은 `docs-not-needed` 라벨을 붙이고 PR 설명의 `문서 갱신 불필요 이유:` 줄에 이유를 적으면
 검사 A를 넘긴다. 이유가 비어 있으면 실패한다. 검사 B는 넘기지 않는다.
@@ -528,7 +532,15 @@ PR마다 GitHub Actions(`.github/workflows/docs-check.yml`)가 [tools/docs_check
 
 ```bash
 python3 -I tools/docs_check.py --config .github/docs-check.json --base origin/main
+
+# 그림 검사: 처음 한 번 의존성을 설치한다(tools/diagram/node_modules 생성, puppeteer가 ~/.cache/puppeteer에 브라우저를 내려받음).
+npm ci --prefix tools/diagram --no-audit --no-fund
+python3 -I tools/diagram_check.py --config .github/docs-check.json
 ```
+
+그림 검사는 렌더링한 SVG를 브라우저에 띄워 상자·선·라벨 좌표를 재고(`tools/diagram/measure.mjs`) 교차와 겹침을 판정한다.
+헤드리스 브라우저에는 시스템 라이브러리(`libnss3` 등)와 한글 글꼴이 필요하다. GitHub 실행 환경에는 라이브러리가 있고
+글꼴은 워크플로가 설치한다. 선이 지나치게 돌아가는지처럼 보기 좋음 자체는 판정하지 않는다.
 
 종료 코드 0은 통과, 1은 검사 실패, 2는 실행 인자·설정 오류다. 검사는 문서가 바뀌었는지와 문서끼리 맞는지만 보며,
 문서 내용이 코드와 맞는지는 판단하지 않는다. 실패한 PR의 머지를 막으려면 저장소 관리자가 `main` Ruleset에서

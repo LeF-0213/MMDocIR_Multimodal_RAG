@@ -1,4 +1,5 @@
-# PR마다 문서 갱신·일관성을 검사한다(tools/docs_check.py). 규칙은 .github/docs-check.json에 있다.
+# PR마다 문서 갱신·일관성(tools/docs_check.py)과 Mermaid 그림(tools/diagram_check.py)을 검사한다.
+# 규칙은 .github/docs-check.json에 있다.
 # main 브랜치 Ruleset에서 이 작업(docs-check)을 필수 상태 검사로 지정해야 실패 시 머지가 막힌다.
 # 단위 테스트는 여기서 돌리지 않는다.
 name: docs-check
@@ -29,3 +30,16 @@ jobs:
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: python3 -I tools/docs_check.py --config .github/docs-check.json --base "$BASE_SHA" --head "$HEAD_SHA" --event "$GITHUB_EVENT_PATH"
+      # 그림 검사 도구: tools/diagram/package-lock.json에 고정한 mermaid-cli·mermaid·puppeteer를 설치한다.
+      # puppeteer가 설치 중에 헤드리스 브라우저를 내려받는다. 러너 기본 Node(18 이상)로 충분하다.
+      - name: 그림 검사 도구 설치
+        if: ${{ !cancelled() }}
+        run: npm ci --prefix tools/diagram --no-audit --no-fund
+      # 한글 글꼴이 없으면 글자 폭이 달라져 로컬과 다른 배치로 판정한다.
+      - name: 한글 글꼴 설치
+        if: ${{ !cancelled() }}
+        run: sudo apt-get update -q && sudo apt-get install -y -q fonts-nanum
+      # 앞 단계가 실패해도 그림 결과까지 한 번에 보이도록 실행한다. 어느 단계든 실패하면 작업은 실패한다.
+      - name: Mermaid 그림 검사
+        if: ${{ !cancelled() }}
+        run: python3 -I tools/diagram_check.py --config .github/docs-check.json

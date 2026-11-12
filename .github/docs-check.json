@@ -3,38 +3,101 @@
   "sync_rules": [
     {
       "name": "파싱 코드·설정",
-      "when": ["parsing/**/*.py", "configs/parsing_run.json", "configs/rerecognition.json", "configs/experiment_recording.json"],
-      "require_any": ["docs/parsing/**"]
+      "when": [
+        "parsing/**/*.py",
+        "configs/parsing_run.json",
+        "configs/rerecognition.json",
+        "configs/experiment_recording.json"
+      ],
+      "require_any": [
+        "docs/parsing/**"
+      ]
     },
     {
       "name": "청킹 코드·설정",
-      "when": ["chunking/**/*.py", "configs/chunking.json"],
-      "require_any": ["docs/chunking/**"]
+      "when": [
+        "chunking/**/*.py",
+        "configs/chunking.json"
+      ],
+      "require_any": [
+        "docs/chunking/**"
+      ]
     },
     {
       "name": "새 파싱·재인식 실행 결과",
-      "when": ["outputs/parsing_*/**", "outputs/rerecognition_*/**"],
-      "require_any": ["docs/parsing/log/**"]
+      "when": [
+        "outputs/parsing_*/**",
+        "outputs/rerecognition_*/**"
+      ],
+      "require_any": [
+        "docs/parsing/log/**"
+      ]
     },
     {
       "name": "새 청킹 실행 결과",
-      "when": ["outputs/chunking_*/**"],
-      "require_any": ["docs/chunking/log/**"]
+      "when": [
+        "outputs/chunking_*/**"
+      ],
+      "require_any": [
+        "docs/chunking/log/**"
+      ]
+    },
+    {
+      "name": "공용 도구",
+      "when": [
+        "common/**/*.py"
+      ],
+      "require_any": [
+        "README.md",
+        "docs/**"
+      ]
+    },
+    {
+      "name": "실행 진입점",
+      "when": [
+        "main.py"
+      ],
+      "require_any": [
+        "README.md",
+        "docs/parsing/README.md"
+      ]
+    },
+    {
+      "name": "의존성",
+      "when": [
+        "requirements.txt",
+        "tools/diagram/package.json"
+      ],
+      "require_any": [
+        "README.md"
+      ]
     },
     {
       "name": "실험 기록 코드",
-      "when": ["experiments/**/*.py"],
-      "require_any": ["docs/planning/EXPERIMENT_COMPARISON_USAGE.md"]
+      "when": [
+        "experiments/**/*.py"
+      ],
+      "require_any": [
+        "docs/planning/EXPERIMENT_COMPARISON_USAGE.md"
+      ]
     },
     {
       "name": "파싱 기록 추가·수정",
-      "when": ["docs/parsing/log/20*.md"],
-      "require_any": ["docs/parsing/log/README.md"]
+      "when": [
+        "docs/parsing/log/20*.md"
+      ],
+      "require_any": [
+        "docs/parsing/log/README.md"
+      ]
     },
     {
       "name": "청킹 기록 추가·수정",
-      "when": ["docs/chunking/log/20*.md"],
-      "require_any": ["docs/chunking/log/README.md"]
+      "when": [
+        "docs/chunking/log/20*.md"
+      ],
+      "require_any": [
+        "docs/chunking/log/README.md"
+      ]
     }
   ],
   "exemption": {
@@ -42,20 +105,62 @@
     "reason_marker": "문서 갱신 불필요 이유:"
   },
   "links": {
-    "include": ["**/*.md"],
-    "exclude": ["outputs/**", ".claude/**"]
+    "include": [
+      "**/*.md"
+    ],
+    "exclude": [
+      "outputs/**",
+      ".claude/**"
+    ]
   },
   "issues": {
     "id_pattern": "[PCE]-[0-9]{2}",
-    "stage_lists": ["docs/parsing/log/README.md", "docs/chunking/log/README.md", "docs/environment/log/README.md"],
-    "stage_list_status_column": {"docs/parsing/log/README.md": 3, "docs/chunking/log/README.md": 3, "docs/environment/log/README.md": 3},
-    "records": ["docs/parsing/log/20*.md", "docs/chunking/log/20*.md"],
+    "stage_lists": [
+      "docs/parsing/log/README.md",
+      "docs/chunking/log/README.md",
+      "docs/environment/log/README.md"
+    ],
+    "stage_list_status_column": {
+      "docs/parsing/log/README.md": 3,
+      "docs/chunking/log/README.md": 3,
+      "docs/environment/log/README.md": 3
+    },
+    "records": [
+      "docs/parsing/log/20*.md",
+      "docs/chunking/log/20*.md"
+    ],
     "record_summary_heading": "## 이슈 요약",
     "record_status_column": 4,
     "remaining_file": "README.md",
     "remaining_heading": "## 남은 이슈",
     "remaining_status_column": 4,
-    "statuses": ["해결", "부분 해결", "표시만", "미해결", "관찰만", "한계", "정상 동작"],
-    "closed_statuses": ["해결", "정상 동작"]
+    "statuses": [
+      "해결",
+      "부분 해결",
+      "표시만",
+      "미해결",
+      "관찰만",
+      "한계",
+      "정상 동작"
+    ],
+    "closed_statuses": [
+      "해결",
+      "정상 동작"
+    ]
+  },
+  "diagrams": {
+    "include": [
+      "**/*.md"
+    ],
+    "exclude": [
+      "outputs/**",
+      ".claude/**",
+      "tools/diagram/node_modules/**"
+    ],
+    "max_edge_label_chars_per_line": 40,
+    "endpoint_margin_px": 14,
+    "node_margin_px": 3,
+    "label_margin_px": 2,
+    "render_timeout_s": 120
   }
 }
