@@ -1,0 +1,11 @@
+{
+  "name": "mmdocir-diagram-check",
+  "private": true,
+  "description": "문서의 Mermaid 그림을 렌더링하고 좌표를 재는 도구 의존성. 2주 이상 지난 판으로 정확히 고정한다.",
+  "type": "module",
+  "dependencies": {
+    "@mermaid-js/mermaid-cli": "11.17.1",
+    "mermaid": "11.17.2",
+    "puppeteer": "24.43.1"
+  }
+}
