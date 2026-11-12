@@ -526,6 +526,7 @@ VL 출력이 생성 한도에 닿아 잘린 블록(반복 출력)만 원본 PDF 
 | [CODE_REVIEW_2026-11-06.md](docs/reviews/CODE_REVIEW_2026-11-06.md) | 코드 리뷰 지적 사항, 수정 내용과 검증, 남은 항목 |
 | [RAG_LEARNING_PLAN.md](docs/planning/RAG_LEARNING_PLAN.md) | 별도로 보존하는 기본 학습 커리큘럼 |
 | [AGENTS.md](AGENTS.md) | 탑다운 학습, 코드·주석·글쓰기, 하드코딩 금지, 파일 변경·커밋·푸시 규칙 |
+| [docs/AGENTS.md](docs/AGENTS.md) | docs 안의 폴더 구조, 단계 README, 문제·실행 기록(log)과 타임라인, 문서 이동 규칙. 기존 문서는 아직 이 구조로 옮기지 않음 |
 
 현재 범위의 전체 코드를 먼저 보고 주석을 따라 이해·실행·수정한다.
 전체 데이터 흐름과 실제 코드의 입력·출력 예시를 먼저 확인하고, 상세 설명은 실행 진입점부터 호출 순서대로 나눠 진행한다.
