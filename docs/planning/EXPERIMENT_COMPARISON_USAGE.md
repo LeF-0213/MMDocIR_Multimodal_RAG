@@ -63,10 +63,14 @@ GPU 수집은 이미 로딩된 Paddle의 allocator API만 사용하며 GPU 전�
 | `memory.include_children` | 자식 프로세스도 PID별로 기록. RSS 합계를 고유 메모리 사용량으로 표시하지 않음 |
 | `memory.gpu_device` | null이면 GPU 수집 미요청. 지원 환경에서 장치 ID 또는 Paddle GPU 장치 문자열 지정 |
 | `secret_environment_names` | 기록에서 가려야 하는 비밀 값의 환경 변수 이름. 실제 값을 JSON에 적지 않음 |
-| `environment_packages` | 모델을 import하지 않고 버전만 확인할 패키지 목록. OS·Python·보이는 논리 CPU 수와 함께 기록하며 CPU quota는 추정하지 않음 |
 | `experiment` | 목적·변경 변수·고정 조건·기대 효과를 작성. 실행 의도이며 인과 효과의 검증 결과가 아님 |
 | `pipeline_options`·`predict_options` | 실제 생성자·predict와 실행 기록에 함께 적용할 override. 기본 제공 값은 빈 객체 |
 | `model_bindings` | parser별 모델 역할·실제 객체 속성 경로·이름/폴더 속성 이름. 모델 이름으로 캐시 경로를 추측하지 않음 |
+
+버전을 기록할 패키지 목록은 이 설정에 두지 않는다. 실행 환경이 아니라 무엇을 기록할지의 정의라, 파싱은
+`parsing/run.py`의 `ENVIRONMENT_PACKAGES` 하나로 `run.json`과 `experiment.json`에 같은 목록을 남긴다(2026-11-12 변경).
+그 전에는 설정의 `environment_packages`와 코드 목록이 따로 있었고 `pillow`가 설정에서 빠져 있었다.
+이 필드가 남은 예전 설정 파일은 거부하므로 필드를 지운 뒤 쓴다. 이미 저장된 실행 폴더의 기록은 바꾸지 않는다.
 
 기본 binding은 설치된 PaddleOCR 3.7.0·PaddleX 3.7.2의 단일 장치 객체 구조를 기준으로 작성했다.
 라이브러리·엔진·다중 장치 구조가 달라져 경로를 찾지 못하면 해당 모델을 미확보로 기록한다.
@@ -344,7 +348,8 @@ Markdown은 같은 JSON에서 요약과 소스 diff·품질 집계를 생성한�
 파싱 중단 시에는 자원 종료 기록과 자동 비교 생략 상태를 남기고 중단 예외를 다시 전달한다.
 메모리 실패·모델 파일 경로 미확보는 기록 상태에 남으며 인식 정확도나 가중치 revision을 대신 만들지 않는다.
 
-후속 단계는 `ExperimentRecorder(..., stage=...)`에 실제 단계 이름·요청 조건을 전달한다.
+후속 단계는 `ExperimentRecorder(..., stage=..., environment_packages=...)`에 실제 단계 이름·요청 조건과
+버전을 기록할 패키지 목록을 전달한다.
 `reuse()`에는 원본 실행·단계·결과물 ID와 기대 해시를 전달해 이전 결과를 입력 참조로 연결한다.
 원본 ID는 호출부의 선언이며 현재 파일의 해시 일치와 구분한다.
 새 결과는 `artifact()`에 등록하고, 먼저 등록한 입력/출력 ID만 부모로 연결해 생성 순환을 막는다.

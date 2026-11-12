@@ -22,7 +22,7 @@ import numpy as np
 from .model_result import predict_page
 
 
-def parser_options(device: str, formula_model: str, cpu_threads: int = 4, *, overrides: dict | None = None) -> dict:
+def parser_options(device: str, formula_model: str, cpu_threads: int, *, overrides: dict | None = None) -> dict:
     """모델을 로딩하지 않고 실제 초기화와 실행 기록에 쓸 설정을 반환한다."""
     if not isinstance(device, str) or not device.strip():
         raise ValueError("device에 실행 장치를 지정해야 합니다.")
@@ -35,7 +35,7 @@ def parser_options(device: str, formula_model: str, cpu_threads: int = 4, *, ove
         # PaddlePaddle 실행 경로다. 프레임워크 이름을 인식 품질의 근거로 삼지 않는다.
         "engine": "paddle",
         "device": device,
-        # 개인 컨테이너의 4코어를 초기 기준으로 삼으며 CLI에서 변경할 수 있다.
+        # 기본값은 run.py의 DEFAULT_CPU_THREADS가 정하며 CLI·실행 설정으로 바꿀 수 있다.
         "cpu_threads": cpu_threads,
         # Windows·PaddlePaddle 3.3.1·PaddleX 3.7.2의 실제 페이지 추론에서
         # oneDNN 경로가 pir::ArrayAttribute<pir::DoubleAttribute> 오류로 실패했다.
@@ -81,7 +81,7 @@ def predict_options() -> dict:
     return {}
 
 
-def build_parser(device: str, formula_model: str, cpu_threads: int = 4, *, overrides: dict | None = None):
+def build_parser(device: str, formula_model: str, cpu_threads: int, *, overrides: dict | None = None):
     """명시한 설정으로 모델을 로딩한다. 초기화 실패는 실행부에 전달한다."""
     # PaddleOCR의 PPStructureV3는 레이아웃·OCR·표·수식 모델을 연결한다.
     # 지연 import로 도움말·설정 조회만으로 모델을 로딩하지 않게 한다.

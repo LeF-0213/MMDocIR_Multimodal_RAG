@@ -31,12 +31,14 @@ from time import perf_counter
 
 # 내부 공통 모듈: 엄격한 JSON 읽기·배타적 저장·해시를 parsing·experiments와 같은 규칙으로 쓴다.
 import common
-from common.files import digest, file_hash, read_json, write_json
+from common.files import file_hash, read_json, write_json
 
 # 내부 파싱 모듈: load_selection은 선정 목록 검증, quality_checks는 반복·병합·표 격자 신호를 만든다.
 # 청킹은 신호를 계산하지 않고 파싱 검사의 결과를 그대로 받아 청크에 표시한다.
+# result_store는 파싱 실행 폴더의 문서 ID·페이지 파일 이름 규칙이다. 파싱이 저장한 규칙 그대로 읽는다.
 from parsing.pdf_source import load_selection
 from parsing.quality_checks import CONTENT_RULES, RULE_VERSION, content_findings, inspect_page
+from parsing.result_store import document_id, document_path, page_stem
 
 # 내부 청킹 모듈: structure는 페이지별 청크 생성, tokens는 토크나이저 로딩을 맡는다.
 from .structure import build_page_chunks, label_roles
@@ -194,9 +196,9 @@ def environment() -> dict:
 def selected_pages(input_run: Path, selection: dict):
     """선정 목록 순서대로 (문서명, 페이지 번호, 페이지 JSON 경로)를 낸다. 파일 존재는 호출부가 확인한다."""
     for item in selection["documents"]:
-        doc_id = digest(item["document_name"].encode("utf-8"))
+        doc_id = document_id(item["document_name"])
         for number in sorted(item["page_numbers"]):
-            yield item["document_name"], number, input_run / "documents" / doc_id / f"page_{number:05d}.json"
+            yield item["document_name"], number, input_run / document_path(doc_id, f"{page_stem(number)}.json")
 
 
 def write_jsonl(path: Path, rows: list[dict]) -> None:

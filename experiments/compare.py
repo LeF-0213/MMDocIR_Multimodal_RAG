@@ -6,10 +6,9 @@
 """
 
 # 표준 라이브러리: argparse는 입력 경로, Counter는 상태 집계, difflib는 실제 소스 diff,
-# hashlib는 기존 문서명 ID 매핑, json은 콘솔 요약, re는 페이지 파일 형식을 확인한다.
+# json은 콘솔 요약, re는 보고서 코드 블록의 백틱 표식 길이를 확인한다.
 import argparse
 from difflib import unified_diff
-import hashlib
 import json
 import re
 # pathlib는 경로, datetime은 비교 시각을 기록한다.
@@ -24,13 +23,13 @@ from .schema import COMPARE_SCHEMA, FINISHED_FILE, MANIFEST_FILE, RECORD_SCHEMA
 from .evaluate import evaluate_pair, validate_settings
 # 기존 규칙 검사는 의미 정확도 평가와 별도로 재사용한다. 이 모듈도 모델 의존성이 없다.
 from parsing.quality_checks import LIMITS, RULE_VERSION, inspect_page
+# 실행 폴더의 문서 ID·폴더·파일 이름 규칙은 저장 모듈의 정의를 그대로 써서 어긋남을 막는다.
+from parsing.result_store import (DOCUMENT_DIRECTORY, PAGE_JSON_PATTERN, PAGE_NUMBERING, SOURCE_PDF_FILE,
+                                  document_id)
 
-# 파일명·정규식은 기존 parsing.v1 저장 형식의 정의이며 실행 경로 기본값이 아니다.
+# 파일명은 기존 parsing.v1 저장 형식의 정의이며 실행 경로 기본값이 아니다.
 LEGACY_RUN_FILE = "run.json"
 LEGACY_SUMMARY_FILE = "summary.json"
-LEGACY_DOCUMENT_DIRECTORY = "documents"
-LEGACY_SOURCE_FILE = "source.pdf"
-PAGE_FILENAME = re.compile(r"page_(\d+)\.json$")
 REPORT_JSON = "comparison.json"
 REPORT_MARKDOWN = "comparison.md"
 # 결과에 영향을 주도록 요청한 실행 조건이다. 시각·경로·비교 계획 같은 운영 정보와 구분해 보여준다.
@@ -98,22 +97,22 @@ def load_run(root, selection=None):
     if selection is not None:
         if not isinstance(selection, dict) or not isinstance(selection.get("documents"), list) or not selection["documents"]:
             raise ValueError("선정 목록에 문서 목록이 필요합니다.")
-        if selection.get("page_numbering") != "pdf_viewer_1_based":
+        if selection.get("page_numbering") != PAGE_NUMBERING:
             raise ValueError("선정 목록의 페이지 기준을 확인해야 합니다.")
         for item in selection["documents"]:
             if not isinstance(item.get("document_name"), str) or not item["document_name"]:
                 raise ValueError("선정 목록에는 비어 있지 않은 문서명이 필요합니다.")
             if not isinstance(item.get("page_numbers"), list) or not item["page_numbers"]:
                 raise ValueError("선정 목록에는 페이지 순번 목록이 필요합니다.")
-            doc_id = hashlib.sha256(item["document_name"].encode("utf-8")).hexdigest()
+            doc_id = document_id(item["document_name"])
             for number in item["page_numbers"]:
                 if type(number) is not int or number < 1 or (doc_id, number) in expected:
                     raise ValueError("선정 목록 페이지 순번·중복 오류")
                 expected.add((doc_id, number))
-    document_root = root / LEGACY_DOCUMENT_DIRECTORY
+    document_root = root / DOCUMENT_DIRECTORY
     files = sorted(document_root.glob("*/page_*.json")) if document_root.exists() else []
     for path in files:
-        match = PAGE_FILENAME.fullmatch(path.name)
+        match = PAGE_JSON_PATTERN.fullmatch(path.name)
         if not match:
             continue
         key = (path.parent.name, int(match.group(1)))
@@ -126,7 +125,7 @@ def load_run(root, selection=None):
                 raise ValueError("페이지 결과는 JSON 객체여야 합니다.")
             if key[1] < 1 or (record.get("document_id"), record.get("page_number")) != key:
                 raise ValueError("페이지 파일 경로와 내부 ID 불일치")
-            if record.get("page_numbering") != "pdf_viewer_1_based":
+            if record.get("page_numbering") != PAGE_NUMBERING:
                 raise ValueError("페이지 번호 기준 불일치")
             blocks = record.get("parsing", {}).get("blocks", [])
             if not isinstance(blocks, list) or any(not isinstance(b, dict) or not isinstance(b.get("content"), str) for b in blocks):
@@ -138,7 +137,7 @@ def load_run(root, selection=None):
             record["_page_execution"] = ({"path": supplemental.relative_to(root).as_posix(),
                 "sha256": file_hash(inside(root, supplemental.relative_to(root))),
                 "record": read_json(inside(root, supplemental.relative_to(root)))} if supplemental.is_file() else None)
-            source = path.parent / LEGACY_SOURCE_FILE
+            source = path.parent / SOURCE_PDF_FILE
             if key[0] not in source_hashes:
                 source_hashes[key[0]] = file_hash(inside(root, source.relative_to(root))) if source.is_file() else None
                 if source_hashes[key[0]] is None:

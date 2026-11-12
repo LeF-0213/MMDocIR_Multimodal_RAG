@@ -22,7 +22,7 @@ PDF의 텍스트·표·수식·그림을 원본 위치와 연결하고, 검색 �
 | Structure 실행 | PP-StructureV3 27페이지(3M 8·9·15 포함) 처리 기록: `ok` 27개. 처리 상태이며 품질 판정이 아님 |
 | 품질 검토 | 2026-10-30 선정 27페이지의 이미지·JSON 정성 비교. 반복·원문에 없는 내용, 문장–bbox 불일치, 표 행·열 대응 오류 확인. 정확도 점수는 미측정 |
 | 남은 확인 | VL 영역 병합 옵션 비교, 반복·환각 식별, 문장 위치 복구와 표 구조 검증. 2026-11-08 VL 병합 기본값을 끄고 그림 crop 저장을 추가했으나 재실행은 미수행 |
-| 규칙 검사 구현 | `parsing.validate_run`: 입력 해시·ID·좌표·반복·병합 그룹·표 격자·표 구조 토큰 상한·그림 참조 검사(규칙 0.3.0). 실제 54페이지 실행 확인은 0.1.0 기준. 원문 의미 정확도는 미측정 |
+| 규칙 검사 구현 | `parsing.validate_run`: 입력 해시·ID·좌표·반복·병합 그룹·표 격자·표 구조 토큰 상한·그림 참조 검사(규칙 0.3.1, 판정은 0.3.0과 같음). 실제 54페이지 실행 확인은 0.1.0 기준. 원문 의미 정확도는 미측정 |
 | 실행 기록·전후 비교 | 파싱 시 기본 기록과 최근 호환 실행의 자동 비교. 공통 manifest·소스 diff·모델 파일·RSS·정답 기반 문장/위치/표 평가·JSON/Markdown 보고서. 실제 원문 품질 개선은 미측정 |
 | 기본 진입점 | 루트 `main.py`가 실행 설정을 읽어 HTTP·로컬 PDF 파싱·기록·자동 비교 실행. 모의 모델로 연속 실행 검증, 실제 신규 OCR 추론은 미수행 |
 | 실행 재개 | `main.py --resume`으로 중단된 실행의 유효 페이지를 재사용하고 남은 페이지만 `run.py`의 같은 처리 경로로 처리. 처음 실행에 고정한 비교 기준을 이어 씀. 모의 테스트만 확인. 이 기능 추가 전에 중단된 실행은 코드가 달라 재개 불가(새로 실행) |
@@ -123,6 +123,7 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 ├─ tools/
 │  ├─ docs_check.py        # PR 문서 갱신·링크·이슈 상태 일치 검사. 표준 라이브러리만 사용
 │  ├─ diagram_check.py     # Mermaid 그림 렌더링·선 교차·상자/라벨 겹침 검사
+│  ├─ limits_distribution.py # 저장된 파싱 실행에서 규칙 검사 임계값(LIMITS) 측정값 분포. 읽기만 함
 │  └─ diagram/             # 그림 검사용 npm 의존성 고정(package.json·lock), 좌표 측정 스크립트, 브라우저 옵션
 ├─ configs/
 │  ├─ parsing_run.json       # 입력·파서·장치·출력·기록·비교 설정
@@ -150,7 +151,7 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 │  ├─ vl_parser.py         # 4. PaddleOCR-VL 설정과 호출
 │  ├─ structure_parser.py  # 5. PP-StructureV3 설정과 호출
 │  ├─ review_pdf.py        # 6. 원문 복사본 위 bbox 표시
-│  ├─ result_store.py      # 7. JSON·PDF·PNG·그림 crop 저장
+│  ├─ result_store.py      # 7. JSON·PDF·PNG·그림 crop 저장, 실행 폴더의 문서 ID·파일 이름 규칙 정의
 │  ├─ run.py               # 8. 파싱 실행 본체, 기록 없는 진입점
 │  ├─ resume.py            # 중단 실행의 설정 복원·호환성 검사·재개 세션. 처리는 run.py가 맡음
 │  ├─ quality_checks.py    # 저장된 페이지의 순수 규칙 검사
@@ -381,6 +382,8 @@ python -B -m experiments.parsing_stage --help
 이 방식에서는 `PDF_BASE_URL`에 준비한 PDF 서버 주소를 지정한다. 로컬은 `--base-url` 대신 `--pdf-directory`를 쓴다.
 같은 출력 폴더가 이미 있으면 덮어쓰지 않고 실패한다.
 `--device`(`cpu`, `gpu:0` 등)와 `--cpu-threads`(기본값 4)는 실행 환경에 맞춰 정한다.
+인자를 생략했을 때의 기본값(`--selection`, 출력 상위 폴더, 장치, 스레드 수, DPI, HTTP 대기 초)은 `parsing/run.py`의
+`DEFAULT_*` 상수 한곳에 있다. `--selection`과 출력 폴더 기본값은 실행 위치가 아니라 프로젝트 폴더 기준이다(2026-11-12).
 
 ```bash
 python -B -m experiments.parsing_stage \
@@ -474,7 +477,7 @@ VL이 `<table>…`, Structure가 `<html><body><table>…`로 시작하고, 라�
 
 ## 저장 결과의 규칙 검사
 
-`parsing.validate_run`은 현재 선정 목록의 문서·페이지를 읽는다. 파싱 모델을 로딩하지 않고
+`parsing.validate_run`은 선정 목록의 문서·페이지를 읽는다. 파싱 모델을 로딩하지 않고
 표준 라이브러리로 입력 해시·ID·좌표 변환, 반복·긴 번호 나열, VL 병합 그룹, HTML 표 격자를 검사한다.
 추론 파이프라인과 별도 실행하며 기존 raw·페이지 JSON·PNG·요약은 수정하지 않는다.
 
@@ -482,18 +485,33 @@ VL이 `<table>…`, Structure가 `<html><body><table>…`로 시작하고, 라�
 
 ```bash
 python3 -B -m parsing.validate_run \
-  --run-dir outputs/parsing_vl_20261027T015138481163Z
-
-python3 -B -m parsing.validate_run \
   --run-dir outputs/parsing_structure_20261028T232222203813Z
+
+# 첫 VL 실행은 실행 뒤 3M 9페이지를 따로 추가해, 저장된 목록(3M 7·8·15)과 현재 검토 대상(8·9·15)이 다르다.
+python3 -B -m parsing.validate_run \
+  --run-dir outputs/parsing_vl_20261027T015138481163Z \
+  --selection configs/selection.json
 ```
 
-선정 목록 기본값은 `configs/selection.json`이다. 원본 PDF 폴더는 `--pdf-dir`로 지정한다.
+`--selection`을 생략하면 실행 폴더에 저장된 `selection.json`, 즉 그 실행이 실제로 쓴 목록으로 검사한다
+(2026-11-12부터. 그 전에는 `configs/selection.json`이 기본값이었다). 실행 폴더에 목록이 없으면 `--selection`을 요구하고 멈춘다.
+다른 목록을 지정하면 요약의 `selection_check`에 저장된 목록과의 차이를 남긴다. 위 VL 예시는
+`different`, `only_in_given: [["3M_2018_10K", 9]]`, `only_in_saved: [["3M_2018_10K", 7]]`이 나온다(2026-11-12 실행).
+원본 PDF 폴더는 `--pdf-dir`로 지정한다.
 생략하면 실행 폴더의 `documents/<문서 ID>/source.pdf` 사본을 대조하고 보고서에 `source_reference: run_copy`를 남긴다.
 이 경우 사본의 무결성만 확인하며 원래 배포 파일과 같은지는 확인하지 않는다. 대조할 파일이 없으면 해시 검증을 `unresolved`로 남긴다.
 블록 내용의 `<img src>` 참조가 저장 기록·파일·해시와 맞지 않으면 `html_image_reference`로 표시한다.
 2026-11-08 이전 실행은 그림을 저장하지 않았으므로 참조가 있는 페이지에서 이 신호가 나온다.
-3M의 현재 대상은 8·9·15페이지이며 과거 7페이지는 자동 포함하지 않는다.
+3M의 현재 대상은 8·9·15페이지다. 첫 VL 실행 폴더를 목록 없이 검사하면 그 실행이 쓴 과거 7페이지가 대상이 된다.
+
+임계값(`quality_checks.LIMITS`)은 개발용 초기값이다. 값마다 단위·역할과 저장된 실행에서 잰 분포를 코드 주석에 적었다.
+분포를 다시 재려면 다음을 실행한다. 파일을 만들지 않고 표준 출력에 JSON을 낸다.
+
+```bash
+python3 -B -m tools.limits_distribution \
+  outputs/parsing_vl_20261027T015138481163Z outputs/parsing_structure_20261028T232222203813Z \
+  outputs/parsing_vl_20261110T233124280038Z outputs/parsing_structure_20261111T073737685789Z
+```
 
 상세 보고서를 저장하려면 `--output outputs/quality_vl_01.json`을 추가한다. 이는 새 JSON 하나를 생성한다.
 입력 실행 폴더 안에는 저장할 수 없고, 기존 파일을 덮어쓰거나 부모 폴더를 자동 생성하지 않는다.

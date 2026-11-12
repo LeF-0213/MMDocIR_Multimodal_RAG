@@ -22,6 +22,8 @@ from .schema import FINISHED_FILE, MANIFEST_FILE
 from .compare import LEGACY_RUN_FILE, LEGACY_SUMMARY_FILE, REPORT_JSON, REPORT_MARKDOWN, load_run, run_comparison
 from .evaluate import validate_gold, validate_settings
 from parsing.pdf_source import load_selection
+# 실행 폴더에 저장한 선정 목록의 파일 이름이다. 저장 모듈의 정의를 쓴다.
+from parsing.result_store import SELECTION_FILE
 
 # 프로젝트 루트 기준 기본 설정 경로다. 실행 인자로 교체할 수 있고 실제 경로·해시는 기록한다.
 # 설치된 이 모듈의 위치를 기준으로 잡아 다른 현재 디렉터리에서도 같은 설정을 사용한다.
@@ -32,7 +34,6 @@ DEFAULT_EVALUATION_CONFIG = CONFIG_DIRECTORY / "experiment_evaluation.json"
 AUTO_COMPARISON_FILE = "auto_comparison.json"
 AUTO_COMPARISON_SCHEMA = "project.parsing_auto_comparison.v1"
 COMPARISON_DIRECTORY_SUFFIX = "_comparison"
-SELECTION_FILE = "selection.json"
 TERMINAL_STATUSES = frozenset({"completed", "completed_with_errors"})
 # 파싱 결과가 남은 페이지 상태의 정의다. failed는 비교할 출력이 없으므로 제외한다.
 USABLE_PAGE_STATUSES = ("ok", "empty", "partial")

@@ -14,16 +14,39 @@ from html.parser import HTMLParser
 
 # 0.2.0: 생략 가능한 표 종료 태그 허용, 미해결만 있는 페이지의 검토 상태 분리
 # 0.3.0: 반복·길이 검사를 content_findings()로 분리, Structure 표 구조 토큰 상한(table_structure_limit) 추가
-RULE_VERSION = "0.3.0"
-# 반복 임계값은 개발용 초기값이며 환각 확정 기준이 아니다.
-# 좌표 허용 오차는 부동소수점 계산 비교용이고 문장 위치의 허용 오차가 아니다.
+# 0.3.1: 번호 자릿수 상한을 LIMITS의 maximum_sequence_digits로 옮김. 값(9자리)과 판정은 0.3.0과 같다
+RULE_VERSION = "0.3.1"
+# 아래 수치는 개발용 초기값이며 환각 확정 기준이 아니다. 신호는 원본과 대조할 후보를 고를 뿐이다.
+# 반복·길이 수치를 처음 정한 이유는 커밋·문서 어디에도 기록되지 않았다. 그래서 값마다 단위·역할과
+# 저장된 실행에서 잰 분포만 적는다. 측정은 tools/limits_distribution.py로 2026-11-12에 했고, 대상은
+# 파싱 실행 4개(VL 2026-10-27·2026-11-10, Structure 2026-10-28·2026-11-11)의 저장된 선정 페이지 블록 1,651개다.
+# 이미 본 개발 표본이므로 일반적인 기준의 근거가 아니며, 평가 성능으로 쓰지 않는다.
 LIMITS = {
+    # 단위: \w+ 토큰 수. 이보다 짧은 블록은 반복 비율을 보지 않는다. 짧으면 우연한 반복도 비율이 높다.
+    # 측정: 3~39토큰 블록 880개 중 최다 토큰 비율 0.5 이상은 10개였고 모두 4~5토큰 블록이다.
     "minimum_tokens": 40,
+    # 단위: 가장 많은 토큰 수 / 전체 토큰 수. 한 단어가 블록을 차지하는 반복을 찾는다.
+    # 측정: 40토큰 이상 485개 중 최댓값 0.99(VL Toyota p2, 두 실행), 그다음 0.35. 표본에서는 0.35~0.99
+    # 사이 어느 값이든 결과가 같아, 이 표본이 0.5라는 값 자체를 뒷받침하지는 않는다.
     "dominant_token_ratio": 0.5,
+    # 단위: 블록 content의 문자 수. 비정상적으로 긴 출력을 찾는다.
+    # 측정: 최댓값 14,355(VL Toyota p2), 그다음 8,068(VL RAG 논문 p6 표). 정상적으로 긴 블록도 걸릴 수 있다.
     "maximum_characters": 10000,
+    # 단위: 1 - 고유한 세 단어 묶음 수 / 전체 묶음 수. 한 단어 비율이 낮아도 문장이 반복되면 잡는다.
+    # 측정: 40토큰 이상 중 최댓값 0.989(VL Toyota p2), 그다음 0.39. 0.39~0.989 사이면 표본 결과가 같다.
     "repeated_trigram_ratio": 0.7,
+    # 단위: 1씩 증가하는 번호의 연속 개수. 원문의 정상 목록일 수도 있어 표시만 한다.
+    # 측정: 834(VL Toyota p7), 697(VL 슬라이드 p6), 63(Structure 슬라이드 p6), 그다음 3.
+    # 3을 넘는 값이면 표본 결과가 같다.
     "long_sequence_length": 50,
+    # 단위: 번호 숫자의 자릿수. 이보다 긴 값은 연속 번호 검사에서 뺀다. 빠진 값은 신호로 남지 않는다.
+    # Python int()는 기본 4,300자리를 넘는 문자열을 거부하고 큰 수는 변환 비용도 크므로 상한이 필요하다.
+    # 측정: 10자리 이상은 Structure 슬라이드 p15의 '1994199519965' 같은 값뿐이고, 연도가 붙어 읽힌 형태다.
+    "maximum_sequence_digits": 9,
+    # 단위: 병합을 펼친 표 격자의 칸 수. 품질 기준이 아니라 잘못된 rowspan·colspan의 자원 한도다.
     "maximum_grid_slots": 20000,
+    # 단위: PDF point(1/72 inch). 같은 행렬로 다시 계산한 좌표의 부동소수점 비교용이며
+    # 문장 위치의 허용 오차가 아니다.
     "coordinate_tolerance": 0.00001,
     # PP-StructureV3 표 구조 모델(SLANet_plus·SLANeXt_wired)의 inference.yml max_text_length다.
     # 디코더는 이 길이까지만 구조 토큰을 내므로, 이 수에 닿은 표는 뒤쪽 행이 잘렸을 수 있다.
@@ -171,45 +194,68 @@ def structure_token_count(html):
     return count
 
 
+def content_measurements(content, label):
+    """블록 내용 하나의 반복·길이 측정값이다. 임계값은 적용하지 않는다.
+
+    content_findings()가 이 값에 LIMITS를 적용하고, tools/limits_distribution.py가 같은 값으로
+    저장된 실행의 분포를 잰다. 측정과 판정을 나눠 두 곳이 같은 계산을 쓰게 한다.
+    """
+    # 표 태그 이름의 반복이 문자 반복 신호로 섞이지 않도록 태그를 제외한다.
+    # 이 문자열은 검사에만 쓰며 원본 content에는 반영하지 않는다.
+    text = re.sub(r"<[^>]*>", " ", content) if label == "table" else content
+    tokens = re.findall(r"\w+", text.casefold())
+    measured = {"tokens": len(tokens), "characters": len(content),
+                "dominant_token": None, "dominant_count": 0, "dominant_ratio": None,
+                "repeated_trigram_ratio": None}
+    if tokens:
+        token, count = Counter(tokens).most_common(1)[0]
+        measured.update(dominant_token=token, dominant_count=count, dominant_ratio=count / len(tokens))
+    trigrams = list(zip(tokens, tokens[1:], tokens[2:]))
+    if trigrams:
+        # 연속한 세 단어 묶음의 중복 비율이다. 긴 문장이 반복되면 한 단어의
+        # 점유율이 낮아도 신호를 얻는다. 정상 반복도 표시될 수 있다.
+        measured["repeated_trigram_ratio"] = 1 - len(set(trigrams)) / len(trigrams)
+
+    # 번호 목록·차트의 연속 행 번호는 원문의 정상 목록일 수도 있다.
+    # 표 행 머리 번호와 "1." 형식 번호를 이 순서로 따로 세어 각각의 최장 연속 길이를 남긴다.
+    sequences = [
+        re.findall(r"(?m)^\s*(\d+)\s*\|", content),
+        re.findall(r"\b(\d+)\.", content),
+    ]
+    measured["sequence_lengths"] = []
+    measured["skipped_long_numbers"] = []
+    for values in sequences:
+        measured["skipped_long_numbers"] += [v for v in values if len(v) > LIMITS["maximum_sequence_digits"]]
+        numbers = [int(v) for v in values if len(v) <= LIMITS["maximum_sequence_digits"]]
+        longest = streak = 1 if numbers else 0
+        for previous, current in zip(numbers, numbers[1:]):
+            streak = streak + 1 if current == previous + 1 else 1
+            longest = max(longest, streak)
+        measured["sequence_lengths"].append(longest)
+    return measured
+
+
 def content_findings(content, label):
     """블록 내용 하나의 반복·길이 신호를 (규칙, 근거) 목록으로 반환한다. 페이지 정보가 필요 없다.
 
     inspect_page와 재인식 단계(rerecognize.py)가 같은 기준으로 판정하도록 분리했다.
     """
     found = []
-    # 표 태그 이름의 반복이 문자 반복 신호로 섞이지 않도록 태그를 제외한다.
-    # 이 문자열은 검사에만 쓰며 원본 content에는 반영하지 않는다.
-    text = re.sub(r"<[^>]*>", " ", content) if label == "table" else content
-    tokens = re.findall(r"\w+", text.casefold())
-    if len(tokens) >= LIMITS["minimum_tokens"]:
-        token, count = Counter(tokens).most_common(1)[0]
-        ratio = count / len(tokens)
-        if ratio >= LIMITS["dominant_token_ratio"]:
-            found.append(("dominant_token", {"token": token, "count": count, "ratio": ratio}))
-        trigrams = list(zip(tokens, tokens[1:], tokens[2:]))
-        # 연속한 세 단어 묶음의 중복 비율이다. 긴 문장이 반복되면 한 단어의
-        # 점유율이 낮아도 신호를 얻는다. 정상 반복도 표시될 수 있다.
-        duplicate_ratio = 1 - len(set(trigrams)) / len(trigrams)
-        if duplicate_ratio >= LIMITS["repeated_trigram_ratio"]:
-            found.append(("repeated_trigrams", {"ratio": duplicate_ratio}))
-
-    # 번호 목록·차트의 연속 행 번호는 원문의 정상 목록일 수도 있다.
-    # 자동 삭제하거나 환각으로 확정하지 않고 긴 연속 구간만 표시한다.
-    sequences = [
-        re.findall(r"(?m)^\s*(\d+)\s*\|", content),
-        re.findall(r"\b(\d+)\.", content),
-    ]
-    for values in sequences:
-        numbers = [int(v) for v in values if len(v) < 10]
-        longest = streak = 1 if numbers else 0
-        for previous, current in zip(numbers, numbers[1:]):
-            streak = streak + 1 if current == previous + 1 else 1
-            longest = max(longest, streak)
-        if longest >= LIMITS["long_sequence_length"]:
-            found.append(("long_number_sequence", {"length": longest}))
+    measured = content_measurements(content, label)
+    if measured["tokens"] >= LIMITS["minimum_tokens"]:
+        if measured["dominant_ratio"] >= LIMITS["dominant_token_ratio"]:
+            found.append(("dominant_token", {"token": measured["dominant_token"],
+                                             "count": measured["dominant_count"],
+                                             "ratio": measured["dominant_ratio"]}))
+        if measured["repeated_trigram_ratio"] >= LIMITS["repeated_trigram_ratio"]:
+            found.append(("repeated_trigrams", {"ratio": measured["repeated_trigram_ratio"]}))
+    # 자동 삭제하거나 환각으로 확정하지 않고 긴 연속 구간만 표시한다. 두 형식 중 먼저 넘은 쪽을 근거로 남긴다.
+    for length in measured["sequence_lengths"]:
+        if length >= LIMITS["long_sequence_length"]:
+            found.append(("long_number_sequence", {"length": length}))
             break
-    if len(content) > LIMITS["maximum_characters"]:
-        found.append(("output_length", {"characters": len(content)}))
+    if measured["characters"] > LIMITS["maximum_characters"]:
+        found.append(("output_length", {"characters": measured["characters"]}))
     return found
 
 
