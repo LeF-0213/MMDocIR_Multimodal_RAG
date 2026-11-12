@@ -134,7 +134,7 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 │  │  └─ log/             # 실행 묶음·모델별 기록(YYYY-MM-DD_<모델>.md)과 타임라인 README
 │  ├─ chunking/
 │  │  ├─ README.md        # 청킹 설계·설정·출력 형식·한계
-│  │  └─ log/             # 청킹 실행 기록과 타임라인
+│  │  └─ log/             # 실행 묶음·모델별 기록(YYYY-MM-DD_<모델>.md)과 타임라인 README
 │  ├─ environment/
 │  │  └─ log/             # 컨테이너·시스템 패키지·줄바꿈 같은 실행 환경 문제 기록
 │  └─ reviews/
@@ -528,7 +528,7 @@ VL 출력이 생성 한도에 닿아 잘린 블록(반복 출력)만 원본 PDF 
 | [파싱 README](docs/parsing/README.md) | 파서·옵션·DPI·재인식 등 설계 결정과 이유, 페이지 JSON을 읽는 코드, 현재 상태 |
 | [파싱 기록](docs/parsing/log/README.md) | 실행 묶음(첫 실행, 병합 해제 재파싱)·모델(VL, Structure)별 기록과 타임라인. 영역 병합, 생성 한도 반복과 재인식, 색 순서, Structure 표·차트 문제 |
 | [청킹 README](docs/chunking/README.md) | 구조 기반 청킹의 결정·데이터 흐름·강제 분할·설정·출력 형식·한계 |
-| [청킹 기록](docs/chunking/log/README.md) | 청킹 실행별 결과와 전후 비교 타임라인 |
+| [청킹 기록](docs/chunking/log/README.md) | 실행 묶음(첫 청킹, 재파싱·재인식 입력)·모델별 기록, 타임라인과 같은 묶음의 VL·Structure 비교 표 |
 | [환경 기록](docs/environment/log/README.md) | 컨테이너 종료, 시스템 패키지 소실, Windows CRLF 해시 불일치 |
 | [2026-11-06_code-review.md](docs/reviews/2026-11-06_code-review.md) | 코드 리뷰 지적 사항, 수정 내용과 검증, 남은 항목 |
 | [RAG_LEARNING_PLAN.md](docs/planning/RAG_LEARNING_PLAN.md) | 별도로 보존하는 기본 학습 커리큘럼 |

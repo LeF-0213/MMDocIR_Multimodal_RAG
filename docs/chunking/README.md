@@ -189,5 +189,5 @@ flowchart LR
 
 ## 7. 현재 상태
 
-최신 실행은 2026-11-11 [재파싱·재인식 입력 청킹](log/2026-11-11_reparse-rerecognition-input.md)이다.
+최신 실행은 2026-11-11 묶음이다([VL](log/2026-11-11_vl.md), [Structure](log/2026-11-11_structure.md)).
 VL 170개·Structure 147개 청크이고 미배정 블록과 512토큰 초과 청크는 없다.
