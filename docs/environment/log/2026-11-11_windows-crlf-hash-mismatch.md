@@ -1,10 +1,10 @@
 # Windows 작업 사본의 CRLF 변환으로 해시가 기록과 달라짐
 
 - ID: E-02
-- 상태: 미해결. 해결 변경(`.gitattributes`)은 별도 브랜치 `chore/gitattributes-lf`에 있고 아직 main에 합치지 않았다.
+- 상태: 해결. `.gitattributes`를 main에 합쳤다(#20, `e54b3d7`). 확인은 [4절 후속](#4-결과)에 있다.
 - 관련 실행: [rerecognition_vl_20261111T101144801007Z](../../../outputs/rerecognition_vl_20261111T101144801007Z),
   [chunking_vl_20261111T105933020828Z](../../../outputs/chunking_vl_20261111T105933020828Z)
-- 코드: `1655543`(#19)
+- 코드: `1655543`(#19), 해결 `e54b3d7`(#20)
 - 출처: PR #19 커밋 메시지, `docs/chunking/CHUNKING.md` 6절, `docs/parsing_log/PARSING_ROOT_CAUSES.md` 9.1절(커밋 `1655543`).
   2절의 재현 테스트는 2026-11-12에 새로 했다.
 
@@ -62,9 +62,15 @@ git -c core.autocrlf=true clone -q -b chore/gitattributes-lf "$REPO" repo2  # [4
 - 저장소의 텍스트 파일이 이미 LF라 `git add --renormalize .`으로 바뀌는 파일은 없었다.
 - main에 합치기 전이라 상태는 미해결로 둔다.
 
+후속(2026-11-12): `.gitattributes`를 main에 합쳤다(#20, `e54b3d7`). main `6a85cc7`을 scratchpad에
+`core.autocrlf=true`로 새로 클론하자 `RUN_JSON`의 CR 0개, SHA-256 `dd09e74be71f`(기록과 같음), 루트 `AGENTS.md` CR 0개,
+`git ls-files --eol`에서 작업 폴더가 CRLF인 파일 0개, 변경 표시 0개였다. 그래서 상태를 해결로 바꿨다.
+
 ## 5. 남은 문제와 다음 단계
 
 - `chore/gitattributes-lf`를 main에 합친 뒤 상태를 고친다.
 - 이미 CRLF로 받은 Windows 작업 사본은 pull만으로 바뀌지 않는다([2]). 커밋하지 않은 변경을 먼저 커밋하거나 stash한 뒤
   `git rm -r --cached .`와 `git reset --hard`로 다시 받아야 한다([3]). 이 명령은 커밋하지 않은 변경을 지운다.
 - 실제 Windows에서는 확인하지 않았다. 재현은 Linux에서 `core.autocrlf=true`로 흉내 낸 것이다.
+
+후속(2026-11-12): 첫 항목은 끝났다([4절 후속](#4-결과)). 나머지 두 항목은 그대로 남는다.
