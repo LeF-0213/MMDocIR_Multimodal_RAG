@@ -526,14 +526,14 @@ VL 출력이 생성 한도에 닿아 잘린 블록(반복 출력)만 원본 PDF 
 | [DATA_SPEC.md](docs/data/DATA_SPEC.md) | 선정 문서·페이지·관찰 특성 |
 | [PARSING_VALIDATION_PLAN.md](docs/planning/PARSING_VALIDATION_PLAN.md) | 공통 품질 검증 단계의 입력·출력, 규칙·원본 대조·재인식, 지표·완료 기준 |
 | [파싱 README](docs/parsing/README.md) | 파서·옵션·DPI·재인식 등 설계 결정과 이유, 페이지 JSON을 읽는 코드, 현재 상태 |
-| [파싱 기록](docs/parsing/log/README.md) | 실행 묶음(첫 실행, 병합 해제 재파싱)·모델(VL, Structure)별 기록과 타임라인. 영역 병합, 생성 한도 반복과 재인식, 색 순서, Structure 표·차트 문제 |
+| [파싱 기록](docs/parsing/log/README.md) | 실행 묶음(첫 실행, 병합 해제 재파싱)·모델(VL, Structure)별 기록, 타임라인, 이슈 목록(모듈 > 유형 > 케이스, 상태·해결 방법). 영역 병합, 생성 한도 반복과 재인식, 색 순서, Structure 표·차트 문제 |
 | [청킹 README](docs/chunking/README.md) | 구조 기반 청킹의 결정·데이터 흐름·강제 분할·설정·출력 형식·한계 |
-| [청킹 기록](docs/chunking/log/README.md) | 실행 묶음(첫 청킹, 재파싱·재인식 입력)·모델별 기록, 타임라인과 같은 묶음의 VL·Structure 비교 표 |
+| [청킹 기록](docs/chunking/log/README.md) | 실행 묶음(첫 청킹, 재파싱·재인식 입력)·모델별 기록, 타임라인, 이슈 목록과 같은 묶음의 VL·Structure 비교 표 |
 | [환경 기록](docs/environment/log/README.md) | 컨테이너 종료, 시스템 패키지 소실, Windows CRLF 해시 불일치 |
 | [2026-11-06_code-review.md](docs/reviews/2026-11-06_code-review.md) | 코드 리뷰 지적 사항, 수정 내용과 검증, 남은 항목 |
 | [RAG_LEARNING_PLAN.md](docs/planning/RAG_LEARNING_PLAN.md) | 별도로 보존하는 기본 학습 커리큘럼 |
 | [AGENTS.md](AGENTS.md) | 탑다운 학습, 코드·주석·글쓰기, 하드코딩 금지, 파일 변경·커밋·푸시 규칙 |
-| [docs/AGENTS.md](docs/AGENTS.md) | docs 안의 폴더 구조, 단계 README, 문제·실행 기록(log)과 타임라인, 이전 형식 문서의 이동 규칙 |
+| [docs/AGENTS.md](docs/AGENTS.md) | docs 안의 폴더 구조, 단계 README, 실행 묶음·모델별 기록(log), 타임라인·이슈 목록, 그림 종류, 이전 형식 문서의 이동 규칙 |
 | [outputs/AGENTS.md](outputs/AGENTS.md) | 실행 결과 폴더의 생성·보존 규칙, 줄바꿈과 해시, 커밋할 파일과 50MB 초과 파일 처리 |
 
 현재 범위의 전체 코드를 먼저 보고 주석을 따라 이해·실행·수정한다.
