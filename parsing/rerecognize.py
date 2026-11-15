@@ -54,6 +54,8 @@ from tokenizers import Tokenizer
 import common
 from common.files import digest, file_hash, read_json, write_json
 from .pdf_source import load_selection
+# result_store는 입력 실행 폴더의 문서 ID·폴더·파일 이름 규칙을 정의한다. 파싱이 저장한 규칙 그대로 읽는다.
+from .result_store import SELECTION_FILE, SOURCE_PDF_FILE, document_id, document_path, page_stem
 from .quality_checks import RULE_VERSION, content_findings
 
 # 기본 설정 위치다. --config로 바꿀 수 있고 실제 경로·해시는 run.json에 남긴다.
@@ -69,7 +71,6 @@ SUPPORTED_PARSER = "vl"
 RUN_TIMESTAMP_FORMAT = "%Y%m%dT%H%M%S%fZ"
 RUN_FILE, BLOCKS_FILE, SUMMARY_FILE, CROPS_DIRECTORY = "run.json", "blocks.jsonl", "summary.json", "crops"
 TOKENIZER_FILE = "tokenizer.json"
-SELECTION_FILE = "selection.json"
 # PDF 1 point = 1/72 inch. DPI를 렌더링 배율로 바꾸는 정의값이다.
 POINTS_PER_INCH = 72
 # 버전을 기록할 패키지다. 재인식 출력에 영향을 주는 모델 실행·렌더링·토큰 계산 패키지만 남긴다.
@@ -136,9 +137,9 @@ def find_targets(input_run: Path, config: dict, counter: TokenCounter) -> list[d
     threshold = config["generation_limit_tokens"] - config["limit_margin_tokens"]
     targets = []
     for item in selection["documents"]:
-        doc_id = digest(item["document_name"].encode("utf-8"))
+        doc_id = document_id(item["document_name"])
         for number in sorted(item["page_numbers"]):
-            path = input_run / "documents" / doc_id / f"page_{number:05d}.json"
+            path = input_run / document_path(doc_id, f"{page_stem(number)}.json")
             if not path.is_file():
                 continue
             record = read_json(path)
@@ -251,7 +252,7 @@ def rerecognize(input_run: Path, config: dict, context: dict, counter: TokenCoun
             row["status"] = SKIPPED
             rows.append(row)
             continue
-        pdf_path = input_run / "documents" / target["document_id"] / "source.pdf"
+        pdf_path = input_run / document_path(target["document_id"], SOURCE_PDF_FILE)
         if file_hash(pdf_path) != target["source_sha256"]:
             raise ValueError(f"원본 PDF 사본의 해시가 페이지 기록과 다릅니다: {pdf_path}")
         for dpi in config["render_dpis"]:

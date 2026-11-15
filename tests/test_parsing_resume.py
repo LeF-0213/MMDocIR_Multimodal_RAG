@@ -36,7 +36,7 @@ def record_config(root):
             "git_timeout_seconds": TEST_GIT_TIMEOUT_SECONDS,
             "memory": {"interval_seconds": TEST_INTERVAL_SECONDS, "include_children": False, "gpu_device": None},
             "experiment": {"purpose": "재개 경계 검증"}, "model_bindings": [],
-            "secret_environment_names": [], "environment_packages": [], "pipeline_options": {}, "predict_options": {}}
+            "secret_environment_names": [], "pipeline_options": {}, "predict_options": {}}
 
 
 def fake_parser():

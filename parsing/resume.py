@@ -25,25 +25,25 @@ import argparse
 from datetime import datetime, timezone
 from pathlib import Path
 
-# 내부 공통 모듈: digest·file_hash는 원본·결과 파일 동일성, inside는 기록된 상대 경로가
+# 내부 공통 모듈: file_hash는 원본·결과 파일 동일성, inside는 기록된 상대 경로가
 # 실행 폴더 밖으로 나가지 않는지 확인, read_json은 엄격한 JSON 읽기를 맡는다.
 # clean은 저장 전 민감정보 제거다.
-from common.files import digest, file_hash, inside, read_json
+from common.files import file_hash, inside, read_json
 from common.redaction import clean
 
-# 내부 파싱 모듈: pdf_source는 선정 목록 검증, result_store는 배타적 저장을 맡는다.
+# 내부 파싱 모듈: pdf_source는 선정 목록 검증, result_store는 배타적 저장과 실행 폴더의
+# 문서 ID·폴더·파일 이름 규칙을 맡는다. 재개는 run.py가 만든 폴더를 같은 규칙으로 다시 읽어야 한다.
 # run.py는 이 모듈을 import하므로, run.py의 함수는 필요한 함수 안에서만 늦게 가져와 순환 import를 피한다.
 from .pdf_source import load_selection
-from .result_store import save_json
+from .result_store import (SELECTION_FILE, SOURCE_PDF_FILE, document_id, document_path, page_identifier,
+                           page_stem, save_json)
 
 # 아래 이름은 실행 폴더 저장 형식의 정의다. run.py가 같은 이름으로 파일을 만든다.
+# 문서 폴더·페이지 파일 이름처럼 검사·비교·청킹도 읽는 규칙은 result_store에 있다.
 RUN_SCHEMA = "project.parsing.v1"
 RUN_FILE = "run.json"
 SUMMARY_FILE = "summary.json"
-SELECTION_FILE = "selection.json"
 DOCUMENT_FILE = "document.json"
-SOURCE_FILE = "source.pdf"
-DOCUMENTS_DIRECTORY = "documents"
 # 재개 기록 형식의 정의다. 최초 실행을 1번 세그먼트로 세고 재개는 2번부터 만든다.
 RESUME_SCHEMA = "project.parsing_resume.v1"
 RESUME_DIRECTORY = "resume"
@@ -58,11 +58,6 @@ FINAL_PAGE_STATUSES = frozenset({"ok", "empty", "partial", "failed"})
 
 class ResumeError(ValueError):
     """재개 조건을 만족하지 않는다. 결과를 섞지 않도록 처리를 시작하거나 계속하지 않는다."""
-
-
-def page_stem(number: int) -> str:
-    """run.py와 같은 페이지 파일 이름 규칙이다."""
-    return f"page_{number:05d}"
 
 
 def restore_arguments(root: Path, *, pdf_directory: Path | None = None,
@@ -166,7 +161,7 @@ def inspect_saved_page(root: Path, folder: Path, doc_id: str, number: int,
         return None, f"unreadable_json: {type(exc).__name__}"
     if not isinstance(record, dict):
         return None, "not_object"
-    if record.get("page_id") != f"{doc_id}:p{number}" or record.get("page_number") != number:
+    if record.get("page_id") != page_identifier(doc_id, number) or record.get("page_number") != number:
         return None, "id_mismatch"
     if source_sha256 is not None and record.get("source_sha256") != source_sha256:
         return None, "source_hash_mismatch"
@@ -199,7 +194,7 @@ def page_summary(doc_id: str, number: int, record: dict) -> dict:
         "page_number": number,
         "page_id": record["page_id"],
         "status": record["status"],
-        "json_path": f"{DOCUMENTS_DIRECTORY}/{doc_id}/{page_stem(number)}.json",
+        "json_path": document_path(doc_id, f"{page_stem(number)}.json"),
         "native_status": (record.get("native") or {}).get("status"),
         "parser_status": (record.get("parsing") or {}).get("status"),
     }
@@ -210,14 +205,14 @@ def plan_resume(args: argparse.Namespace, selection: dict, root: Path) -> list[d
     root = Path(root).resolve()
     plan = []
     for item in selection["documents"]:
-        doc_id = digest(item["document_name"].encode("utf-8"))
-        folder = root / DOCUMENTS_DIRECTORY / doc_id
+        doc_id = document_id(item["document_name"])
+        folder = root / document_path(doc_id)
         entry = {"document_name": item["document_name"], "document_id": doc_id}
         if (folder / DOCUMENT_FILE).is_file():
             entry["action"] = "reuse_document"
             plan.append(entry)
             continue
-        source = folder / SOURCE_FILE
+        source = folder / SOURCE_PDF_FILE
         source_sha256 = file_hash(source) if source.is_file() else None
         entry["action"] = "resume_document"
         entry["saved_source"] = source_sha256 is not None
@@ -314,7 +309,7 @@ class ResumeSession:
         if not isinstance(entry, dict) or entry.get("document_id") != doc_id:
             raise ResumeError(f"완료 문서 기록의 ID가 다릅니다: {doc_id}")
         source_sha256 = entry.get("source_sha256")
-        source = folder / SOURCE_FILE
+        source = folder / SOURCE_PDF_FILE
         if source_sha256 and (not source.is_file() or file_hash(source) != source_sha256):
             raise ResumeError(f"완료 문서의 원본 사본이 없거나 해시가 다릅니다: {doc_id}")
         review = entry.get("review_pdf")
@@ -342,7 +337,7 @@ class ResumeSession:
 
     def check_source(self, folder: Path, source_sha256: str, name: str) -> bool:
         """미완료 문서의 원본 사본이 있으면 해시를 대조한다. 있으면 True(새로 저장하지 않음)다."""
-        saved = folder / SOURCE_FILE
+        saved = folder / SOURCE_PDF_FILE
         if not saved.is_file():
             return False
         # 중단 전과 다른 원본으로 남은 페이지를 처리하면 한 문서에 두 원본이 섞인다.
@@ -368,7 +363,7 @@ class ResumeSession:
             rebuilt = add_review_page(review, document, number,
                                       {"status": record["status"],
                                        "blocks": (record.get("parsing") or {}).get("blocks", [])},
-                                      f"{DOCUMENTS_DIRECTORY}/{context.doc_id}/{page_stem(number)}.json")
+                                      document_path(context.doc_id, f"{page_stem(number)}.json"))
             saved = record.get("review") or {}
             keys = ("review_page_number", "status", "drawn_count", "warnings")
             if any(rebuilt.get(key) != saved.get(key) for key in keys):

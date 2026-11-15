@@ -19,8 +19,8 @@ import tempfile
 import unittest
 
 # 내부 모듈: 순수 페이지 검사와 실행 폴더 검사를 서로 구분해 검증한다.
-from parsing.quality_checks import (LIMITS, STRUCTURE_TABLE_SOURCE, TableGrid, inspect_page,
-                                    structure_token_count)
+from parsing.quality_checks import (LIMITS, STRUCTURE_TABLE_SOURCE, TableGrid, content_findings,
+                                    content_measurements, inspect_page, structure_token_count)
 from parsing.validate_run import inspect_run
 
 
@@ -101,6 +101,15 @@ class PageTests(unittest.TestCase):
         self.assertEqual(repeated["status"], "suspected")
         self.assertEqual(repeated["evidence"]["count"], 100)
         self.assertEqual(record, original)
+
+    def test_number_digit_limit_is_inclusive_and_longer_numbers_are_listed(self):
+        # 자릿수 상한과 같은 길이의 번호는 연속 검사에 들어가고, 한 자리 더 긴 번호는 빠지되 측정값에 남는다.
+        digits, length = LIMITS["maximum_sequence_digits"], LIMITS["long_sequence_length"]
+        at_limit = " ".join(f"{10 ** (digits - 1) + i}." for i in range(length))
+        over_limit = " ".join(f"{10 ** digits + i}." for i in range(length))
+        self.assertIn("long_number_sequence", {rule for rule, _ in content_findings(at_limit, "text")})
+        self.assertNotIn("long_number_sequence", {rule for rule, _ in content_findings(over_limit, "text")})
+        self.assertEqual(len(content_measurements(over_limit, "text")["skipped_long_numbers"]), length)
 
     def test_normal_text_is_not_declared_correct(self):
         report = inspect_page(page_record())
@@ -205,13 +214,47 @@ class RunTests(unittest.TestCase):
     def inspect(self):
         return inspect_run(self.run_dir, self.selection, self.pdf_dir)
 
-    def command(self, *extra):
+    def command(self, *extra, selection=True):
+        given = ["--selection", str(self.selection)] if selection else []
         return subprocess.run(
             [sys.executable, "-B", "-m", "parsing.validate_run",
-             "--run-dir", str(self.run_dir), "--selection", str(self.selection),
+             "--run-dir", str(self.run_dir), *given,
              "--pdf-dir", str(self.pdf_dir), *map(str, extra)],
             cwd=ROOT, capture_output=True, text=True, timeout=20,
         )
+
+    def save_run_selection(self, page_numbers):
+        """실행 당시 저장한 것처럼 실행 폴더에 선정 목록을 둔다."""
+        (self.run_dir / "selection.json").write_text(json.dumps({
+            "page_numbering": "pdf_viewer_1_based",
+            "documents": [{"document_name": "fixture", "page_numbers": page_numbers}],
+        }), encoding="utf-8")
+
+    def test_saved_selection_is_used_when_not_given(self):
+        self.save_run_selection([1])
+        output = self.base / "report.json"
+        result = self.command("--output", output, selection=False)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        report = json.loads(output.read_text(encoding="utf-8"))
+        self.assertEqual(Path(report["selection"]), (self.run_dir / "selection.json").resolve())
+        self.assertEqual(report["summary"]["selection_check"], {"status": "run_saved"})
+        self.assertEqual(report["summary"]["page_count"], 1)
+
+    def test_missing_saved_selection_requires_option(self):
+        # 실행 폴더에 목록이 없으면 다른 목록으로 조용히 대신하지 않고 멈춘다.
+        output = self.base / "report.json"
+        result = self.command("--output", output, selection=False)
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("--selection", result.stderr)
+        self.assertFalse(output.exists())
+
+    def test_given_selection_difference_from_saved_is_reported(self):
+        self.save_run_selection([1, 2])
+        check = self.inspect()["summary"]["selection_check"]
+        self.assertEqual(check, {"status": "different", "only_in_given": [],
+                                 "only_in_saved": [["fixture", 2]]})
+        self.save_run_selection([1])
+        self.assertEqual(self.inspect()["summary"]["selection_check"]["status"], "matched")
 
     def test_changed_image_is_detected(self):
         self.page.with_suffix(".png").write_bytes(b"changed image")

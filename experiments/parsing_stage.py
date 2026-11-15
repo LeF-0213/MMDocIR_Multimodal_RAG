@@ -16,7 +16,9 @@ from pathlib import Path
 from common.files import digest
 from common.redaction import clean, known_secrets
 from parsing.pdf_source import load_selection
-from parsing.run import add_parsing_arguments, run_parsing, validate_parsing_arguments, validate_source
+# ENVIRONMENT_PACKAGES는 run.json과 실험 기록이 함께 쓰는 버전 기록 대상 패키지 목록이다.
+from parsing.run import (ENVIRONMENT_PACKAGES, add_parsing_arguments, run_parsing, validate_parsing_arguments,
+                         validate_source)
 
 # automatic은 기준 실행 선택과 종료 후 비교를 맡는다. 기본 설정 경로도 이 모듈이 소유한다.
 from . import automatic
@@ -79,7 +81,7 @@ def main(argv: list[str] | None = None, *, launch_context: dict | None = None) -
         """run.json을 저장한 뒤 parsing.run이 호출한다. 시작 기록에 같은 실행 조건을 남긴다."""
         nonlocal recorder
         from .record import ExperimentRecorder
-        recorder = ExperimentRecorder(root, recording, metadata)
+        recorder = ExperimentRecorder(root, recording, metadata, environment_packages=ENVIRONMENT_PACKAGES)
         return recorder
 
     try:

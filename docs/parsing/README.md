@@ -83,6 +83,8 @@ flowchart TD
 | Structure oneDNN | 끔(`enable_mkldnn=False`) | Windows·PaddlePaddle 3.3.1에서 oneDNN 오류로 추론이 실패했다. 호환성 조치이며 품질과 관계없다 | 프로젝트 계획 |
 | 처리 상태 | `ok`·`empty`·`partial`·`failed` | 처리 상태이며 품질 판정이 아니다. 문자열이 있으면 `ok`다 | [첫 실행 묶음 VL](log/2026-10-30_vl.md) 1.5절 |
 | 규칙 검사 | 별도 실행, 별도 보고서, 원본 결과 수정 없음 | 반복·병합·표 격자 같은 신호는 원문 대조가 필요한 후보다. 신호로 확정 오류를 판정하지 않는다 | [검증 계획](../planning/PARSING_VALIDATION_PLAN.md) |
+| 규칙 검사의 선정 목록 | 기본은 실행 폴더에 저장된 `selection.json`. `--selection`으로 다른 목록을 주면 저장된 목록과의 차이를 요약에 남김(2026-11-12) | 예전 기본값 `configs/selection.json`은 실행 뒤 바뀔 수 있어, 검사 범위가 실행과 달라져도 드러나지 않았다. 저장된 목록이 없으면 멈춘다 | [코드 리뷰 기록](../reviews/2026-11-06_code-review.md#3-수정하지-않은-항목) 2번 |
+| 규칙 검사 임계값 | 개발용 초기값 유지(`quality_checks.LIMITS`) | 처음 정한 이유가 기록에 없다. 값마다 단위·역할과 저장된 실행 4개에서 잰 분포를 주석에 적었다. 표본에서는 0.5 같은 값 자체를 뒷받침하지 못한다 | `quality_checks.py`, [tools/limits_distribution.py](../../tools/limits_distribution.py) |
 | 생성 한도 블록 | 끝난 실행의 해당 블록만 576 DPI로 다시 인식, 별도 폴더 저장 | 원래 결과를 덮어쓰지 않는다. 채택은 "반복 없이 스스로 끝남"이며 정확성 보증이 아니다 | [VL 생성 한도 반복](log/2026-11-11_vl.md#4-vlm-영역-인식-생성-한도까지-반복된-출력) 4.3절 |
 
 ## 3. 실행
@@ -100,6 +102,11 @@ flowchart TD
 [README의 페이지 JSON 필드와 ID·좌표 연결](../../README.md#페이지-json-필드와-id좌표-연결)에 있다.
 재인식 결과(`run.json`·`blocks.jsonl`·`crops/`·`summary.json`)의 필드는
 [parsing/rerecognize.py](../../parsing/rerecognize.py)의 모듈 설명에 있다.
+
+실행 폴더의 저장 형식(문서 ID = 문서명 SHA-256, `documents/<문서 ID>/page_00001.json`, `source.pdf`,
+`selection.json`, 페이지 ID `<문서 ID>:p<번호>`, 페이지 번호 기준 `pdf_viewer_1_based`)은
+[parsing/result_store.py](../../parsing/result_store.py) 한곳에서 정의하고, 아래 읽는 코드도 그 정의를 가져다 쓴다(2026-11-12).
+예전에는 모듈마다 같은 규칙을 따로 적어 한쪽만 바뀌어도 드러나지 않았다.
 
 페이지 JSON의 `parsing.blocks`를 읽는 코드는 다음과 같다. 형식을 바꾸면 함께 확인한다.
 
@@ -123,4 +130,4 @@ flowchart TD
 - 최신 파싱 실행: VL [parsing_vl_20261110T233124280038Z](../../outputs/parsing_vl_20261110T233124280038Z),
   Structure [parsing_structure_20261111T073737685789Z](../../outputs/parsing_structure_20261111T073737685789Z)(병합 해제 재파싱)
 - 최신 재인식: [rerecognition_vl_20261111T101144801007Z](../../outputs/rerecognition_vl_20261111T101144801007Z)
-- 규칙 검사 버전: 0.3.0
+- 규칙 검사 버전: 0.3.1(번호 자릿수 상한에 이름만 붙였고 판정은 0.3.0과 같다. 저장된 실행 4개의 보고서로 확인)

@@ -29,7 +29,7 @@ import numpy as np
 from .model_result import json_builtin, normalize_result_blocks, predict_page
 
 
-def parser_options(device: str, cpu_threads: int = 4, *, overrides: dict | None = None) -> dict:
+def parser_options(device: str, cpu_threads: int, *, overrides: dict | None = None) -> dict:
     """모델을 로딩하지 않고 초기화 설정을 구성한다. 실행 기록에도 사용한다."""
     if not isinstance(device, str) or not device.strip():
         raise ValueError("device에 'cpu', 'gpu:0' 등의 장치를 지정해야 합니다.")
@@ -46,8 +46,7 @@ def parser_options(device: str, cpu_threads: int = 4, *, overrides: dict | None 
         "engine": "paddle",
         "device": device,
 
-        # 전달받은 개인 컨테이너의 4코어에 맞춘 초기값이다.
-        # 전체 서버의 코어 수를 가정하지 않으며 CLI로 바꿀 수 있다.
+        # 기본값은 run.py의 DEFAULT_CPU_THREADS가 정하며 CLI·실행 설정으로 바꿀 수 있다.
         # 이 값 하나로 모든 라이브러리의 스레드 수가 제한되지는 않는다.
         "cpu_threads": cpu_threads,
 
@@ -138,7 +137,7 @@ def predict_options() -> dict:
     }
 
 
-def build_parser(device: str, cpu_threads: int = 4, *, overrides: dict | None = None):
+def build_parser(device: str, cpu_threads: int, *, overrides: dict | None = None):
     """명시한 설정으로 모델을 한 번 로딩한다. 실패는 run.py에 전달한다."""
     options = parser_options(device, cpu_threads, overrides=overrides)
 

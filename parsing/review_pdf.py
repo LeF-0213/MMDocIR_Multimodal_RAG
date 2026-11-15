@@ -13,6 +13,18 @@ https://pymupdf.readthedocs.io/en/latest/page.html
 # 이미 사용하는 PDF 라이브러리로 원문을 유지하며 별도 래스터 PDF 변환을 피한다.
 import pymupdf
 
+# 검토 PDF 표시값이다. 화면 확인용이라 파싱 결과와 검색 품질에는 영향을 주지 않는다.
+# 원문을 가리지 않으면서 눈에 띄도록 정한 값이며 실측한 값은 아니다. 좌표·크기 단위는 PDF point다.
+NOTE_POSITION = (10, 10)
+# PyMuPDF 색상은 0~1 범위의 RGB다. 테두리와 번호가 같은 색을 쓰도록 하나로 둔다.
+BOX_COLOR = (0.05, 0.25, 0.85)
+BOX_BORDER_WIDTH = 0.7
+LABEL_FONT_SIZE = 7
+# 번호를 테두리 왼쪽 위 안쪽에 넣고, 페이지 아래로 잘리지 않게 여백을 둔다.
+LABEL_OFFSET_X = 1
+LABEL_OFFSET_Y = 7
+LABEL_BOTTOM_MARGIN = 2
+
 
 def add_review_page(
     review: pymupdf.Document,
@@ -42,7 +54,7 @@ def add_review_page(
     # 페이지 상태는 영역이 없거나 파싱에 실패한 페이지도 검토 PDF에 남기기 위한
     # 메모다. 모든 실패 페이지에 가짜 bbox를 만드는 방식은 사용하지 않는다.
     # 뷰어 좌상단 위치를 회전 전 좌표로 옮겨 PDF 회전이 있는 페이지도 배치한다.
-    note_point = pymupdf.Point(10, 10) * page.derotation_matrix
+    note_point = pymupdf.Point(*NOTE_POSITION) * page.derotation_matrix
     note = page.add_text_annot(note_point, f"JSON: {json_reference}\n상태: {result['status']}")
     note.set_info(title="파싱 실행 정보", subject=json_reference)
     note.update()
@@ -72,8 +84,8 @@ def add_review_page(
 
         # 렌더링용 테두리만 표시 영역으로 제한한다. 원본 숫자는 JSON에 유지한다.
         annot = page.add_rect_annot(visible)
-        annot.set_colors(stroke=(0.05, 0.25, 0.85))
-        annot.set_border(width=0.7)
+        annot.set_colors(stroke=BOX_COLOR)
+        annot.set_border(width=BOX_BORDER_WIDTH)
         annot.set_info(
             title=element_id,
             subject=f"{block['label']} | {json_reference}",
@@ -89,8 +101,9 @@ def add_review_page(
         # 판정값이 아니다. 전체 ID·추출 내용은 주석 또는 JSON에서 확인한다.
         # 한글 본문을 작은 상자에 욱여넣지 않아 원문 가림을 줄인다.
         label = str(block["source_list_index"] + 1)
-        point = pymupdf.Point(visible.x0 + 1, min(visible.y0 + 7, bounds.y1 - 2))
-        page.insert_text(point, label, fontsize=7, color=(0.05, 0.25, 0.85), overlay=True)
+        point = pymupdf.Point(visible.x0 + LABEL_OFFSET_X,
+                              min(visible.y0 + LABEL_OFFSET_Y, bounds.y1 - LABEL_BOTTOM_MARGIN))
+        page.insert_text(point, label, fontsize=LABEL_FONT_SIZE, color=BOX_COLOR, overlay=True)
         report["drawn_count"] += 1
 
     if report["warnings"]:

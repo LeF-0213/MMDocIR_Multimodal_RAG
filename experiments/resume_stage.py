@@ -27,7 +27,8 @@ from common.redaction import clean, known_secrets
 # 원본 위치 검사를 맡는다. 의존 방향은 experiments → parsing이며 parsing은 이 모듈을 모른다.
 from parsing.resume import (FIRST_SEGMENT, RESUME_DIRECTORY, SEGMENT_PREFIX, ResumeError, ResumeSession,
                             check_compatibility, plan_resume, restore_arguments)
-from parsing.run import run_parsing, validate_source
+# ENVIRONMENT_PACKAGES는 run.json과 실험 기록이 함께 쓰는 버전 기록 대상 패키지 목록이다.
+from parsing.run import ENVIRONMENT_PACKAGES, run_parsing, validate_source
 
 # 내부 실험 모듈: automatic은 비교 기준 고정과 종료 후 보고서, schema는 기록 파일 이름,
 # record는 세그먼트 기록기를 제공한다(psutil 로딩을 늦추려고 실행 시점에 가져온다).
@@ -128,7 +129,8 @@ def main(argv: list[str] | None = None) -> int:
             nonlocal recorder
             from .record import ExperimentRecorder
             recorder = ExperimentRecorder(run_root, recording, requested, record_dir=session.directory,
-                                          run_id=manifest["run_id"], expected_models=expected)
+                                          run_id=manifest["run_id"], expected_models=expected,
+                                          environment_packages=ENVIRONMENT_PACKAGES)
             return recorder
     except (OSError, ValueError, TypeError, KeyError) as exc:
         print(f"재개 실패: {clean(str(exc))}", flush=True)

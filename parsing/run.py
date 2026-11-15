@@ -45,10 +45,33 @@ from common.redaction import clean, diagnostic_clean
 # 아래 내부 모듈은 네트워크 입력과 파일 저장의 책임을 분리한다.
 # PDF 처리·모델·검토 모듈은 CLI 검증 뒤 가져와 --help의 의존성을 줄인다.
 from .pdf_source import build_pdf_url, load_selection, local_pdf_path, read_pdf_bytes
-from .result_store import create_output_directory, save_bytes, save_bytes_under, save_json
+# result_store는 저장 함수와 함께 실행 폴더의 ID·파일 이름 규칙을 정의한다. 읽는 쪽 모듈도 같은 정의를 쓴다.
+from .result_store import (PAGE_NUMBERING, SELECTION_FILE, SOURCE_PDF_FILE, create_output_directory,
+                           document_id, document_path, page_identifier, page_stem, save_bytes, save_bytes_under,
+                           save_json)
 # 재개 모듈: 재개 세션을 받으면 끝난 문서·페이지를 재사용한다. ResumeError는 재개 조건 위반이다.
 from .resume import ResumeError
 
+# 인자를 직접 지정하는 실행의 기본값이다. main.py는 configs/parsing_run.json의 값을 넘긴다.
+# 경로는 이 파일 위치 기준이라 실행 위치가 달라도 같은 폴더를 가리킨다. 실제 적용 값은 run.json에 남는다.
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_SELECTION = PROJECT_ROOT / "configs" / "selection.json"
+DEFAULT_OUTPUT_ROOT = PROJECT_ROOT / "outputs"
+# 별도 장치 없이 실행할 수 있는 값으로 시작한다. 속도나 품질을 비교해 고른 값이 아니다.
+DEFAULT_DEVICE = "cpu"
+# 전달받은 개인 컨테이너의 4코어에 맞춘 시작값이다. 서버 전체의 코어 수를 뜻하지 않는다.
+# 두 어댑터는 기본값 없이 이 값을 인자로 받는다.
+DEFAULT_CPU_THREADS = 4
+# PDF 1포인트를 2픽셀로 렌더링하는 시작값이다. 최적 품질로 실측한 값이 아니며
+# 작은 수식은 높은 DPI와 비용을 비교해야 한다.
+DEFAULT_DPI = 144
+# HTTP 연결·읽기 대기 초다. 총 다운로드 시간 제한이 아니며 실측해 고른 값이 아니다.
+DEFAULT_HTTP_TIMEOUT_SECONDS = 30
+# 버전을 기록할 파싱 의존성이다. CPU·GPU 빌드 중 어느 쪽이 설치됐는지도 구분한다.
+# 실행 환경마다 달라지는 값이 아니라 무엇을 기록할지의 정의다. run.json과 실험 기록(experiment.json)이
+# 같은 목록을 쓰도록 이 정의 하나만 두고, experiments.parsing_stage·resume_stage가 기록기에 넘긴다.
+ENVIRONMENT_PACKAGES = ("paddleocr", "paddlex", "paddlepaddle", "paddlepaddle-gpu",
+                        "PyMuPDF", "numpy", "pillow", "psutil")
 # 실행 폴더 이름의 UTC 직렬화 형식이다. 실제 상위 폴더·파서는 설정이나 CLI에서 받는다.
 RUN_TIMESTAMP_FORMAT = "%Y%m%dT%H%M%S%fZ"
 
@@ -72,7 +95,7 @@ def add_parsing_arguments(cli: argparse.ArgumentParser) -> None:
     cli.add_argument(
         "--selection",
         type=Path,
-        default=Path("configs/selection.json"),
+        default=DEFAULT_SELECTION,
         help="PDF 뷰어 기준 1부터 시작하는 페이지 선택 목록",
     )
     source = cli.add_mutually_exclusive_group(required=True)
@@ -86,17 +109,14 @@ def add_parsing_arguments(cli: argparse.ArgumentParser) -> None:
         default="vl",
         help="vl: PaddleOCR-VL, structure: PP-StructureV3",
     )
-    cli.add_argument("--device", default="cpu", help="예: cpu 또는 gpu:0")
-    cli.add_argument("--cpu-threads", type=positive_int, default=4)
-
-    # 144 DPI는 PDF 1포인트를 2픽셀로 렌더링하는 시작값이다.
-    # 최적 품질로 실측한 값이 아니며 작은 수식은 높은 DPI와 비용을 비교해야 한다.
-    cli.add_argument("--dpi", type=positive_int, default=144)
+    cli.add_argument("--device", default=DEFAULT_DEVICE, help="예: cpu 또는 gpu:0")
+    cli.add_argument("--cpu-threads", type=positive_int, default=DEFAULT_CPU_THREADS)
+    cli.add_argument("--dpi", type=positive_int, default=DEFAULT_DPI)
     cli.add_argument("--formula-model", help="structure 경로에서 사용할 수식 모델 ID")
     cli.add_argument(
         "--timeout",
         type=float,
-        default=30,
+        default=DEFAULT_HTTP_TIMEOUT_SECONDS,
         help="HTTP 연결·읽기 대기 초. 총 다운로드 시간 제한은 아님",
     )
     cli.add_argument(
@@ -118,7 +138,7 @@ def validate_parsing_arguments(cli: argparse.ArgumentParser, args: argparse.Name
         cli.error("--device에는 비어 있지 않은 장치를 지정해야 합니다.")
     if args.output_dir is None:
         # 마이크로초를 포함하되 충돌하면 덮어쓰지 않고 실패한다.
-        args.output_dir = new_output_directory(Path("outputs"), args.parser)
+        args.output_dir = new_output_directory(DEFAULT_OUTPUT_ROOT, args.parser)
 
 
 def arguments(argv: list[str] | None = None) -> argparse.Namespace:
@@ -155,16 +175,7 @@ def source_hashes() -> dict:
 def environment_record() -> dict:
     """모델을 import하지 않고 설치 버전과 실제 실행 환경을 조회한다."""
     packages = {}
-    for name in (
-        "paddleocr",
-        "paddlex",
-        "paddlepaddle",
-        "paddlepaddle-gpu",
-        "PyMuPDF",
-        "numpy",
-        "pillow",
-        "psutil",
-    ):
+    for name in ENVIRONMENT_PACKAGES:
         try:
             packages[name] = version(name)
         except PackageNotFoundError:
@@ -217,7 +228,7 @@ def parse_page(context: DocumentContext, number: int, document, record: dict) ->
 
     recorder = context.recorder
     page_id = record["page_id"]
-    stem = f"page_{number:05d}"
+    stem = page_stem(number)
     image_artifact = None
     page_stage = "page_validation"
     # image·png는 이 함수의 지역 변수라 기록에 들어가지 않고, 반환과 함께 참조가 사라진다.
@@ -233,7 +244,7 @@ def parse_page(context: DocumentContext, number: int, document, record: dict) ->
         if png is not None:
             save_bytes(context.folder / f"{stem}.png", png)
             record["page_image"] = {
-                "path": f"documents/{context.doc_id}/{stem}.png",
+                "path": document_path(context.doc_id, f"{stem}.png"),
                 "sha256": digest(png),
             }
             if recorder:
@@ -267,7 +278,7 @@ def parse_page(context: DocumentContext, number: int, document, record: dict) ->
             page_stage = "result_image_save"
             for reference, data in sorted(image_bytes.items()):
                 path = save_bytes_under(context.folder / stem, reference, data)
-                relative = f"documents/{context.doc_id}/{stem}/{reference}"
+                relative = document_path(context.doc_id, f"{stem}/{reference}")
                 parsed["result_images"]["items"].append(
                     {"reference": reference, "path": relative, "sha256": digest(data)})
                 if recorder:
@@ -316,7 +327,7 @@ def add_page_review(context: DocumentContext, number: int, document, review, rec
                 # 빈 목록을 넘겨 원본 복사본과 실패 상태만 남긴다.
                 "blocks": record.get("parsing", {}).get("blocks", []),
             },
-            f"documents/{context.doc_id}/page_{number:05d}.json",
+            document_path(context.doc_id, f"{page_stem(number)}.json"),
         )
         record["review"]["path"] = context.review_pdf
         if (
@@ -333,12 +344,12 @@ def process_page(context: DocumentContext, number: int, document, review) -> tup
     """한 페이지를 처리한다. 실패는 record에 남기며 다음 페이지 처리를 막지 않는다."""
     started = perf_counter()
     record = {
-        "page_id": f"{context.doc_id}:p{number}",
+        "page_id": page_identifier(context.doc_id, number),
         "id_origin": "project_generated",
         "document_id": context.doc_id,
         "document_name": context.name,
         "page_number": number,
-        "page_numbering": "pdf_viewer_1_based",
+        "page_numbering": PAGE_NUMBERING,
         "page_index": number - 1,
         "source_sha256": context.source_sha256,
         "status": "failed",
@@ -360,7 +371,7 @@ def save_page(context: DocumentContext, number: int, record: dict, image_artifac
     from .model_result import json_builtin
 
     recorder = context.recorder
-    stem = f"page_{number:05d}"
+    stem = page_stem(number)
     if recorder:
         record["experiment"] = {"run_id": recorder.run_id, "stage_run_id": recorder.stage_id}
     save_json(context.folder / f"{stem}.json", diagnostic_clean(json_builtin(record), recorder.secrets if recorder else ()))
@@ -371,7 +382,7 @@ def save_page(context: DocumentContext, number: int, record: dict, image_artifac
         "page_number": number,
         "page_id": record["page_id"],
         "status": record["status"],
-        "json_path": f"documents/{context.doc_id}/{stem}.json",
+        "json_path": document_path(context.doc_id, f"{stem}.json"),
         "native_status": record.get("native", {}).get("status"),
         "parser_status": record.get("parsing", {}).get("status"),
     }
@@ -401,8 +412,8 @@ def process_document(
     name = item["document_name"]
     # 경로명은 문서명 해시 전체를 쓴다. 파일명에 OS 예약문자·긴 이름이 있어도
     # 안전하게 저장하며 이름의 해시와 원본 bytes의 해시는 별개 필드로 기록한다.
-    doc_id = digest(name.encode("utf-8"))
-    folder = root / "documents" / doc_id
+    doc_id = document_id(name)
+    folder = root / document_path(doc_id)
     report = None
     if resume is not None:
         # document.json까지 저장된 문서는 검증 후 그대로 쓴다. 손상되면 ResumeError로 실행을 멈춘다.
@@ -425,11 +436,11 @@ def process_document(
     try:
         data = read_source(entry, args, recorder)
         entry["source_sha256"] = digest(data)
-        entry["source_pdf"] = f"documents/{doc_id}/source.pdf"
+        entry["source_pdf"] = document_path(doc_id, SOURCE_PDF_FILE)
         # 재개 중 원본 사본이 이미 있으면 해시만 대조하고 새로 저장하지 않는다.
         if resume is None or not resume.check_source(folder, entry["source_sha256"], name):
-            save_bytes(folder / "source.pdf", data)
-        source_artifact = (recorder.artifact(folder / "source.pdf", "source_pdf", source_sha256=entry["source_sha256"])
+            save_bytes(folder / SOURCE_PDF_FILE, data)
+        source_artifact = (recorder.artifact(folder / SOURCE_PDF_FILE, "source_pdf", source_sha256=entry["source_sha256"])
                            if recorder else None)
 
         stage = "open_pdf"
@@ -443,7 +454,7 @@ def process_document(
                 else sorted(item["page_numbers"])
             )
             entry["requested_page_numbers"] = page_numbers
-            entry["review_pdf"] = f"documents/{doc_id}/review_{args.parser}.pdf"
+            entry["review_pdf"] = document_path(doc_id, f"review_{args.parser}.pdf")
             context = DocumentContext(args, adapter, parser, recorder, predict_overrides, folder, doc_id, name,
                                       entry["source_sha256"], source_artifact, entry["review_pdf"])
 
@@ -534,7 +545,7 @@ def run_parsing(
     root = args.output_dir
     if resume is None:
         create_output_directory(root)
-        save_json(root / "selection.json", selection)
+        save_json(root / SELECTION_FILE, selection)
     started = perf_counter()
     metadata = {
         "schema_version": "project.parsing.v1",
