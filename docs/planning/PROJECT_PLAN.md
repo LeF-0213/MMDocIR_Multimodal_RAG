@@ -43,10 +43,10 @@
 | 주 파싱 | **PaddleOCR-VL v1.6**. 실제 실행 기록이 있으며 문자·표·수식·읽기 순서 품질은 원본과 대조 |
 | 비교 파싱 | **PP-StructureV3 복구**. PP-OCRv6 medium 문자 OCR과 PP-FormulaNet_plus-L 수식 인식으로 실행 확인 중 |
 | 파싱 실행 | **PaddlePaddle 사용 방향 유지** |
-| 텍스트 임베딩 | **Qwen3-Embedding-8B 우선 후보**. 최종 선택으로 단정하지 않음 |
-| 이미지 임베딩 | **Qwen3-VL-Embedding-8B 선택** |
+| 텍스트 임베딩 | **Qwen3-Embedding-8B, OpenRouter API로 실행**(2026-11-14). 최종 선택으로 단정하지 않음. [임베딩 README](../embedding/README.md) |
+| 이미지 임베딩 | **Qwen3-VL-Embedding-2B로 실행**(2026-11-14 변경). 아래 8B 선택 근거는 그대로 두고, 컨테이너 메모리 한도(16GiB)에서 8B를 올릴 수 없어 2B로 바꿨다. [임베딩 README](../embedding/README.md) |
 | 세 번째 표현 채널 | 역할·모델·질의 표현 미정. DINOv3는 검토 후보 |
-| 리랭커·DB | 미정. 다룰 입력 모달리티와 실패 유형을 확인한 뒤 선정 |
+| 리랭커·DB | **Qwen3-VL-Reranker-2B·Qdrant**(2026-11-14). [검색 README](../retrieval/README.md), [인덱싱 README](../indexing/README.md) |
 | 연결 프레임워크 | **LangGraph + 필요한 LangChain 구성 요소 선택**. 실행 상태·경로 제어와 검색/모델 연결의 역할을 분리 |
 
 각 후보는 다음 연결로 설명하고 기록한다.

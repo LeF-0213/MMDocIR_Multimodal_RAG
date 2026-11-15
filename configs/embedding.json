@@ -1,0 +1,34 @@
+{
+  "schema_version": "project.embedding.v1",
+  "selection": "selection.json",
+  "output_root": "../outputs",
+  "channels": ["image", "text"],
+  "text": {
+    "chunking_runs": [
+      "../outputs/chunking_vl_20261111T105933020828Z",
+      "../outputs/chunking_structure_20261111T105933765387Z"
+    ],
+    "model": {
+      "model_id": "qwen/qwen3-embedding-8b",
+      "api_base": "https://openrouter.ai/api/v1",
+      "api_key_env": "OPENROUTER_API_KEY",
+      "batch_size": 32,
+      "timeout_seconds": 60,
+      "max_retries": 3,
+      "retry_backoff_seconds": 5,
+      "query_instruction": "Given a question about a document, retrieve passages from the document that answer the question"
+    }
+  },
+  "image": {
+    "page_image_run": "../outputs/parsing_vl_20261110T233124280038Z",
+    "model": {
+      "repo_id": "Qwen/Qwen3-VL-Embedding-2B",
+      "revision": "9f2f7e710d6d81056aa5c0a4f04764fec6bb7bda",
+      "device": "cpu",
+      "dtype": "float32",
+      "cpu_threads": 4,
+      "document_prompt": "Represent the user's input.",
+      "query_prompt": "Retrieve document page images that answer the user's question."
+    }
+  }
+}
