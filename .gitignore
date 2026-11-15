@@ -12,3 +12,9 @@ __pycache__/
 
 # 그림 검사 도구의 npm 의존성. tools/diagram/package-lock.json으로 다시 설치한다.
 tools/diagram/node_modules/
+
+# Qdrant 로컬 모드 저장 폴더. 컬렉션은 outputs/embedding_*의 벡터로 다시 만들 수 있고, 인덱싱 기록은 outputs/indexing_*에 둔다.
+data/qdrant/
+
+# API 키 같은 비밀 값을 담는 로컬 환경 변수 파일. 저장소에 올리지 않는다.
+.env

@@ -1,0 +1,36 @@
+{
+  "collections": [
+    {
+      "ann_neighbor_agreement": {
+        "ann_index_used": false,
+        "hnsw_ef": 128,
+        "mean": 1.0,
+        "min": 1.0,
+        "top_k": 10
+      },
+      "channel": "image",
+      "check_seconds": 0.08614687202498317,
+      "collection": "embedding_image_page_20261114T045842594709Z",
+      "dimension": 2048,
+      "distance": "COSINE",
+      "embedding_run": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/outputs/embedding_image_page_20261114T045842594709Z",
+      "embedding_summary_sha256": "059109694dda8864bf29747e7a52461d0128f2d594579f347511150ded1d8aa0",
+      "indexed_vectors_count": 0,
+      "points": 27,
+      "records": 27,
+      "roundtrip_max_abs_diff": 1.4901161193847656e-08,
+      "self_retrieval_top1": "27/27",
+      "status": "completed",
+      "upsert_seconds": 0.36282222298905253
+    }
+  ],
+  "elapsed_seconds": 0.5134229700197466,
+  "finished_at_utc": "2026-11-14T04:58:59.395031+00:00",
+  "output_dir": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/outputs/indexing_20261114T045858920512Z",
+  "schema_version": "project.indexing.v1",
+  "status": "completed",
+  "store": {
+    "mode": "local",
+    "path": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/data/qdrant"
+  }
+}

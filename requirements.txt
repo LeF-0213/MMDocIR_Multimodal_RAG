@@ -21,3 +21,16 @@ tokenizers==0.23.3
 
 # 고정 revision의 토크나이저·설정 파일만 내려받는 Hugging Face 클라이언트(2026-11-10 설치 버전)
 huggingface_hub==2.4.0
+
+# 아래는 임베딩·인덱싱·검색 단계(2026-11-14 설치 버전). CPU 휠은 PyTorch 색인에서 받는다:
+#   --extra-index-url https://download.pytorch.org/whl/cpu
+# 로컬 Qwen3-VL-Embedding·Qwen3-VL-Reranker 실행(가중치 dtype·스레드 지정)
+torch==2.15.0+cpu
+# Qwen3-VL 비디오·이미지 전처리기가 import한다(모델 카드의 sentence-transformers[image] 의존성)
+torchvision==0.29.2+cpu
+# Qwen3-VL 모델 구현(모델 카드 요구: 4.57.0 이상)
+transformers==5.23.0
+# 모델 카드가 안내하는 로딩·풀링·정규화(SentenceTransformer)와 리랭커 점수(CrossEncoder)
+sentence-transformers==6.3.0
+# 벡터 DB Qdrant 클라이언트. 로컬 모드(서버 없이 폴더에 저장)와 서버 연결을 같은 API로 쓴다
+qdrant-client==1.20.0

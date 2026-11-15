@@ -1,0 +1,36 @@
+{
+  "channel": "image",
+  "dimension": 2048,
+  "elapsed_seconds": 625.3932490629959,
+  "input": {
+    "missing_pages": [],
+    "parsing_run": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/outputs/parsing_vl_20261110T233124280038Z",
+    "run_json_sha256": "619be8a1d2595b508f7c08c0e4a822ead50ef187dfd71c8315f40be182ac3900"
+  },
+  "model": {
+    "cpu_threads": 4,
+    "device": "cpu",
+    "dimension": 2048,
+    "document_prompt": "Represent the user's input.",
+    "dtype": "float32",
+    "image_max_pixels": null,
+    "image_seconds_total": 615.6922178042005,
+    "load_seconds": 3.7630103660048917,
+    "provider": "local",
+    "query_prompt": "Retrieve document page images that answer the user's question.",
+    "repo_id": "Qwen/Qwen3-VL-Embedding-2B",
+    "revision": "9f2f7e710d6d81056aa5c0a4f04764fec6bb7bda"
+  },
+  "norm_before_normalization": {
+    "max": 1.0000001192092896,
+    "median": 1.0,
+    "min": 0.9999998807907104
+  },
+  "normalized": true,
+  "output_dir": "/home/yeeun-hwang/abs-sandbox/MMDocIR_Multimodal_RAG/outputs/embedding_image_page_20261114T045842594709Z",
+  "records_sha256": "b2aff4e198fbd72b6a0f74f1949c7d43a4354bcf6b833b55591a076845ab49eb",
+  "schema_version": "project.embedding.v1",
+  "status": "completed",
+  "vectors": 27,
+  "vectors_sha256": "2de8d26b4eca16572b7a0c5920ff0f073a4ad2f57ba12764672cd1c5a0a948e4"
+}

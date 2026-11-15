@@ -43,6 +43,56 @@
       ]
     },
     {
+      "name": "임베딩 코드·설정",
+      "when": [
+        "embedding/**/*.py",
+        "configs/embedding.json"
+      ],
+      "require_any": [
+        "docs/embedding/**"
+      ]
+    },
+    {
+      "name": "인덱싱 코드·설정",
+      "when": [
+        "indexing/**/*.py",
+        "configs/indexing.json"
+      ],
+      "require_any": [
+        "docs/indexing/**"
+      ]
+    },
+    {
+      "name": "검색·검색 평가 코드·설정",
+      "when": [
+        "retrieval/**/*.py",
+        "evaluation/**/*.py",
+        "configs/retrieval.json",
+        "configs/evaluation_retrieval.json"
+      ],
+      "require_any": [
+        "docs/retrieval/**"
+      ]
+    },
+    {
+      "name": "새 임베딩 실행 결과",
+      "when": [
+        "outputs/embedding_*/**"
+      ],
+      "require_any": [
+        "docs/embedding/log/**"
+      ]
+    },
+    {
+      "name": "새 인덱싱 실행 결과",
+      "when": [
+        "outputs/indexing_*/**"
+      ],
+      "require_any": [
+        "docs/indexing/log/**"
+      ]
+    },
+    {
       "name": "공용 도구",
       "when": [
         "common/**/*.py"
@@ -97,6 +147,24 @@
       ],
       "require_any": [
         "docs/chunking/log/README.md"
+      ]
+    },
+    {
+      "name": "임베딩 기록 추가·수정",
+      "when": [
+        "docs/embedding/log/20*.md"
+      ],
+      "require_any": [
+        "docs/embedding/log/README.md"
+      ]
+    },
+    {
+      "name": "인덱싱 기록 추가·수정",
+      "when": [
+        "docs/indexing/log/20*.md"
+      ],
+      "require_any": [
+        "docs/indexing/log/README.md"
       ]
     }
   ],

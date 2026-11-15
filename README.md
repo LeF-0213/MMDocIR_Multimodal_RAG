@@ -29,7 +29,9 @@ PDF의 텍스트·표·수식·그림을 원본 위치와 연결하고, 검색 �
 | 재파싱 | 병합 해제 후 VL·Structure 27페이지 재파싱 완료(컨테이너, VL은 한 번 중단 후 재개). VL 병합 그룹 22→0, 빈 text 블록 23→0, 규칙 검사 검토 페이지 14→3. bbox·라벨은 같음. Structure 블록 출력은 기준과 같음. 정답 대조는 미수행 ([병합 해제 재파싱](docs/parsing/log/2026-11-11_vl.md)) |
 | 재인식 | VL 출력이 생성 한도(4,096토큰)에 닿은 블록만 576 DPI로 다시 인식(`parsing.rerecognize`). 3개 중 Toyota p2·p7 채택, 슬라이드 p6 미복구. 원래 파싱 결과는 그대로 두고 별도 폴더에 저장 ([VL 생성 한도 반복](docs/parsing/log/2026-11-11_vl.md#4-vlm-영역-인식-생성-한도까지-반복된-출력)) |
 | 청킹 | 레이아웃 블록 구조 기반 청킹. 재파싱 결과 + 재인식 적용으로 VL 170개(신호 12)·Structure 147개(신호 28) 청크, 미배정 블록 0, 512토큰 초과 0. 복구 못 한 반복 블록은 사유와 함께 제외. 근거 보존은 미측정 ([청킹 README](docs/chunking/README.md)) |
-| 이후 단계 | 임베딩·인덱스·검색·리랭킹·Recall@1·@3·@10 평가는 미구현 |
+| 임베딩 | 텍스트 `qwen/qwen3-embedding-8b`(OpenRouter API)·이미지 `Qwen3-VL-Embedding-2B`(로컬 CPU). 이미지 채널 27페이지 → 2048차원 벡터 27개. 텍스트 채널은 API 키가 없어 미실행 ([임베딩 README](docs/embedding/README.md)) |
+| 인덱싱 | Qdrant 로컬 모드, 임베딩 실행 하나당 컬렉션 하나. 이미지 컬렉션 적재와 개수·왕복·자기 검색 확인. 로컬 모드라 ANN 비교는 미수행 ([인덱싱 README](docs/indexing/README.md)) |
+| 검색·평가 | 문서 범위 필터 → 채널별 검색 → 페이지 집계 → RRF → Qwen3-VL-Reranker-2B, 페이지 단위 Recall·Hit·MRR·nDCG와 질의별 실패 단계. 코드·단위 테스트만 작성, 질문·정답 파일이 없어 미실행 ([검색 README](docs/retrieval/README.md)) |
 
 이전 PyMuPDF 실행은 8개 문서·24페이지 기록이다. 현재 27페이지나 새 모델 파이프라인의 검증 결과로 취급하지 않는다.
 선정 목록은 [configs/selection.json](configs/selection.json), 문서별 관찰은 [DATA_SPEC.md](docs/data/DATA_SPEC.md)에 기록했다.
@@ -129,7 +131,10 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 │  ├─ parsing_run.json       # 입력·파서·장치·출력·기록·비교 설정
 │  ├─ selection.json
 │  ├─ experiment_recording.json # 기록·소스·메모리·모델 객체·실험 옵션
-│  └─ experiment_evaluation.json # 매칭·위치·표 평가 설정
+│  ├─ experiment_evaluation.json # 매칭·위치·표 평가 설정
+│  ├─ chunking.json          # 청킹 입력·크기·라벨 역할·토크나이저
+│  ├─ embedding.json         # 임베딩 채널·입력 실행·모델·지시문
+│  └─ indexing.json          # Qdrant 위치·거리·HNSW·확인 검색 설정
 ├─ common/                 # 도메인과 무관한 공용 도구. parsing·experiments를 모름
 │  ├─ files.py             # 엄격한 JSON·해시·경로 경계
 │  ├─ redaction.py         # 민감정보 제거와 비밀 의심 소스 판별
@@ -164,6 +169,22 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 │  ├─ structure.py         # 페이지 블록의 역할 분류·캡션 연결·제목 묶음·길이 맞추기
 │  ├─ run.py               # 설정·입력 실행 읽기, 청킹 실행 폴더 저장 진입점
 │  └─ __init__.py
+├─ embedding/              # 청크·페이지 이미지 → 정규화 벡터. embedding → parsing(선정 목록) → common
+│  ├─ encoders.py          # OpenRouter 텍스트 임베딩·로컬 Qwen3-VL-Embedding 어댑터
+│  ├─ run.py               # 입력 확인·채널별 임베딩 실행 폴더 저장 진입점
+│  └─ __init__.py
+├─ indexing/               # 임베딩 실행 → Qdrant 컬렉션. indexing → common
+│  ├─ store.py             # Qdrant 연결·컬렉션 이름·포인트 ID 규칙
+│  ├─ run.py               # 적재·라벨 없는 저장 확인 진입점
+│  └─ __init__.py
+├─ retrieval/              # 질문 → 채널별 검색·결합·리랭킹 순위. retrieval → embedding·indexing·parsing → common
+│  ├─ fusion.py            # 청크 → 페이지 집계(max)·RRF 결합
+│  ├─ rerank.py            # Qwen3-VL-Reranker 점수
+│  ├─ run.py               # 검색 실행 진입점. 정답 파일을 읽지 않음
+│  └─ __init__.py
+├─ evaluation/             # 검색 순위 + 정답 파일 → 페이지 단위 점수·실패 단계
+│  ├─ retrieval.py
+│  └─ __init__.py
 ├─ docs/
 │  ├─ AGENTS.md            # docs 작성 규칙: 단계 README와 문제·실행 기록(log)
 │  ├─ planning/
@@ -180,6 +201,9 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 │  ├─ chunking/
 │  │  ├─ README.md        # 청킹 설계·설정·출력 형식·한계
 │  │  └─ log/             # 실행 묶음·모델별 기록(YYYY-MM-DD_<모델>.md)과 타임라인 README
+│  ├─ embedding/           # 임베딩 설계(README)와 채널별 실행 기록(log/)
+│  ├─ indexing/            # 인덱싱 설계(README)와 실행 기록(log/)
+│  ├─ retrieval/           # 검색·리랭킹·검색 평가 설계(README)
 │  ├─ environment/
 │  │  └─ log/             # 컨테이너·시스템 패키지·줄바꿈 같은 실행 환경 문제 기록
 │  └─ reviews/
@@ -191,7 +215,8 @@ PP-StructureV3 비교 경로를 다시 복구했다. 이전 27페이지 실패 �
 │  ├─ test_experiments.py    # 기록·diff·복구/퇴행·모델/자원·파싱 연결 검증
 │  ├─ test_parsing_resume.py # 중단 재개·잔여 파일 보존·코드/원본/모델 불일치 거부·비교 기준 유지 검증
 │  ├─ test_parsing_rerecognize.py # 재인식 대상 선택·DPI 재시도·채택/거부·원본 미변경 검증
-│  └─ test_chunking.py       # 표 변환·제목 묶음·캡션·길이 분할·겹침·누락 보고·재인식 적용 검증
+│  ├─ test_chunking.py       # 표 변환·제목 묶음·캡션·길이 분할·겹침·누락 보고·재인식 적용 검증
+│  └─ test_retrieval.py      # 정규화·포인트 ID·질문 파일·문서 필터·페이지 집계·RRF·검색 지표·실패 단계 검증
 └─ outputs/
 ```
 
@@ -310,8 +335,10 @@ PDF에서 직접 추출한 텍스트층과 모델 인식 결과는 따로 보존
 의존성 설치와 파싱 실행에는 같은 Python을 사용한다.
 
 ```bash
-python -m pip install -r requirements.txt
+python -m pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu
 ```
+
+`--extra-index-url`은 임베딩·검색 단계의 CPU용 PyTorch 휠(`torch==2.15.0+cpu` 등)을 받는 PyTorch 색인이다.
 
 2026-11-08 Linux 컨테이너(Ubuntu 24.04, GPU 없음)에서는 `uv venv --seed --python 3.12 .venv`로 가상환경을 만들고
 `uv pip install --python .venv/bin/python -r requirements.txt`로 설치했다. 최소 설치 Ubuntu에는 PaddleX가 고정한
@@ -569,6 +596,26 @@ VL 출력이 생성 한도에 닿아 잘린 블록(반복 출력)만 원본 PDF 
 
 고정 길이 분할과의 비교는 프로젝트 결정으로 제외했다. 데이터 흐름·설정값 의미·실제 결과·한계는
 [청킹 README](docs/chunking/README.md)에, 실행별 결과는 [청킹 기록](docs/chunking/log/README.md)에 정리했다.
+
+## 임베딩·인덱싱·검색 실행
+
+임베딩은 청킹 실행(텍스트)과 파싱 실행의 페이지 PNG(이미지)를 벡터로 바꿔 `outputs/embedding_<채널>_<UTC>/`에 저장한다.
+인덱싱은 그 벡터를 Qdrant 컬렉션에 넣고 `outputs/indexing_<UTC>/`에 확인 결과를 남긴다. 로컬 모드 저장 폴더 `data/qdrant/`는
+git에 넣지 않는다. 텍스트 채널은 OpenRouter API를 쓰므로 루트 `.env`(git 제외)에 `OPENROUTER_API_KEY`를 넣고 셸에 불러온다.
+이미지 임베딩·리랭커는 처음 실행 때 가중치를 Hugging Face 캐시에 내려받고, 모델 하나에 약 13GB 메모리를 쓴다.
+
+```bash
+.venv/bin/python -B -m embedding.run --check
+set -a; source .env; set +a
+.venv/bin/python -B -m embedding.run --channel text    # 원격 호출·과금
+.venv/bin/python -B -m embedding.run --channel image   # 페이지당 약 23초(CPU 4스레드 실측)
+.venv/bin/python -B -m indexing.run
+.venv/bin/python -B -m retrieval.run --check            # configs/retrieval.json과 질문 파일이 필요
+.venv/bin/python -B -m evaluation.retrieval             # 정답 파일은 이 단계만 읽음
+```
+
+설계와 결과는 [임베딩 README](docs/embedding/README.md), [인덱싱 README](docs/indexing/README.md),
+[검색 README](docs/retrieval/README.md)에 정리했다.
 
 ## PR 문서 검사
 

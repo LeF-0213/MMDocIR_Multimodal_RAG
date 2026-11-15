@@ -1,0 +1,12 @@
+{
+  "schema_version": "project.indexing.v1",
+  "embedding_runs": [
+    "../outputs/embedding_image_page_20261114T045842594709Z"
+  ],
+  "output_root": "../outputs",
+  "qdrant": {"path": "../data/qdrant", "url": null, "api_key_env": null},
+  "distance": "COSINE",
+  "hnsw": {"m": 16, "ef_construct": 100, "full_scan_threshold": 10000},
+  "upsert_batch_size": 64,
+  "check": {"top_k": 10, "hnsw_ef": 128}
+}
